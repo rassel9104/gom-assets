@@ -1111,8 +1111,4 @@ html.multipropertyindex .datepicker tfoot th.clear:hover {
 }
 
 /* Mobile */
-@media (max-width:768px) {
-  html.multipropertyindex .property-count {
-    font-size: clamp(1.1rem, 1.2vw + .9rem, 1.4rem) !important;
-  }
-}
+@media (max-width:768px) {}
