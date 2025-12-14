@@ -1110,5 +1110,43 @@ html.multipropertyindex .datepicker tfoot th.clear:hover {
   text-decoration: underline !important;
 }
 
+/* PROPERTIES: Mobile MENU overlay fullscreen + por encima del drawer */
+@media (max-width:768px) {
+  html.multipropertyindex #header-menu-phone-container.header-menu-container {
+    position: fixed !important;
+    top: 0;
+    /* debajo del header top: var(--gom-hdr-h, 9.6rem) !important;*/
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+
+    height: auto !important;
+    max-height: none !important;
+    overflow-y: auto !important;
+
+    z-index: 9990 !important;
+  }
+
+  /* Bootstrap 3: cuando abre, añade .in */
+  html.multipropertyindex #header-menu-phone-container.header-menu-container.in {
+    display: block !important;
+  }
+
+  /* Evitar que el drawer “corte” el overlay del menú */
+  html.multipropertyindex body.menu-open .gom-prop-drawer,
+  html.multipropertyindex body.menu-open .gom-prop-drawer__panel {
+    display: none !important;
+  }
+}
+
+/* Seguridad: overlay desktop siempre fullscreen */
+html.multipropertyindex #gom-desktop-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100svh !important;
+  z-index: 50000 !important;
+}
+
 /* Mobile */
 @media (max-width:768px) {}

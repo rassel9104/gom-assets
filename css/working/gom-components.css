@@ -438,4 +438,69 @@ html.has-fullpage-background #content {
     padding: 0 !important;
 }
 
-/* ============================================================
+/* ============================================================*/
+@media (max-width:768px) {
+
+    /* deja espacio para el brand footer */
+    #header-menu-phone-container {
+        padding-bottom: 14.5rem !important;
+    }
+
+    /* apaga el logo como background para evitar recortes */
+    #header-menu-phone-container::after {
+        content: none !important;
+        background-image: none !important;
+    }
+
+    /* brand footer fijo abajo, estilo drawer */
+    #header-menu-phone-container .gom-menu-brand {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        padding: 1.4rem 1.8rem calc(env(safe-area-inset-bottom) + 1.2rem);
+        text-align: center;
+        background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
+        z-index: 9991;
+        pointer-events: none;
+    }
+
+    #header-menu-phone-container .gom-menu-brand * {
+        pointer-events: auto;
+    }
+
+    #header-menu-phone-container .gom-menu-brand img {
+        width: min(260px, 70vw);
+        height: auto;
+        display: block;
+        margin: 0 auto .8rem;
+        opacity: .92;
+    }
+
+    #header-menu-phone-container .gom-menu-brand .gom-tagline {
+        font-family: var(--main-font);
+        letter-spacing: .14em;
+        text-transform: uppercase;
+        font-size: 1.05rem;
+        color: rgba(255, 255, 255, .65);
+        margin-bottom: .8rem;
+    }
+
+    #header-menu-phone-container .gom-menu-brand .gom-wa {
+        display: inline-flex;
+        align-items: center;
+        gap: .6rem;
+        border: 1px solid rgba(255, 255, 255, .35);
+        padding: .7rem 1.1rem;
+        color: rgba(255, 255, 255, .92) !important;
+        text-decoration: none !important;
+        text-transform: uppercase;
+        letter-spacing: .16em;
+        font-size: 1.05rem;
+        background: rgba(255, 255, 255, .06);
+    }
+
+    #header-menu-phone-container .gom-menu-brand .gom-wa:hover {
+        background: rgba(255, 255, 255, .10);
+    }
+}
