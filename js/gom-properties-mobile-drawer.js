@@ -16,7 +16,7 @@
   // ---- Drawer footer (customize) ----
   var GOM_DRAWER_HOME_URL = 'https://gardenofmanors.com';
   var GOM_DRAWER_LOGO_URL = 'https://uc.orez.io/f/d75e4c3b34dc403398973f84d1b60318';
-  var GOM_DRAWER_TAGLINE = 'Book direct for best availability · Fast support · No surprises';
+  var GOM_DRAWER_TAGLINE = 'Heated saltwater pool · Tropical gardens · Steps to Wilton Drive';
   var GOM_DRAWER_COPYRIGHT = 'All rights reserved ®';
 
   var GOM_DRAWER_WA_URL = 'https://wa.me/17863887255?text=Hello%20%E2%80%94%20I%27d%20like%20to%20inquire%20about%20Garden%20of%20Manors.';
@@ -195,6 +195,22 @@
         document.body.classList.remove('gom-prop-drawer-open');
       }
     }
+    // Expose minimal API for other scripts (e.g., mobile MENU overlay)
+    try {
+      window.GOMPropDrawer = window.GOMPropDrawer || {};
+      window.GOMPropDrawer.open = function () { setOpen(true); };
+      window.GOMPropDrawer.close = function () { setOpen(false); };
+      window.GOMPropDrawer.toggle = function () { setOpen(!drawer.classList.contains('is-open')); };
+    } catch (e) { }
+
+    // If the mobile MENU overlay opens, close the drawer to avoid layout/z-index conflicts
+    try {
+      var _gomDrawerMo = new MutationObserver(function () {
+        if (document.body.classList.contains('menu-open')) setOpen(false);
+      });
+      _gomDrawerMo.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+    } catch (e) { }
+
 
     toggle.addEventListener('click', function () {
       setOpen(!drawer.classList.contains('is-open'));
