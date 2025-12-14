@@ -12,7 +12,16 @@
 (function () {
   'use strict';
 
-  var ROOT = document.documentElement;
+  
+  // ---- Drawer footer (customize) ----
+  var GOM_DRAWER_HOME_URL = 'https://gardenofmanors.com';
+  var GOM_DRAWER_LOGO_URL = 'https://uc.orez.io/f/d75e4c3b34dc403398973f84d1b60318';
+  var GOM_DRAWER_TAGLINE  = 'Heated saltwater pool · Tropical gardens · Steps to Wilton Drive';
+  var GOM_DRAWER_COPYRIGHT = 'All rights reserved ®';
+
+  var GOM_DRAWER_WA_URL = 'https://wa.me/17863887255?text=Hello%20%E2%80%94%20I%27d%20like%20to%20inquire%20about%20Garden%20of%20Manors.';
+  var GOM_DRAWER_WA_LABEL = 'WhatsApp';
+var ROOT = document.documentElement;
   var MOBILE_MQ = '(max-width: 768px)';
   var drawerId = 'gom-prop-drawer';
   var enabled = false;
@@ -24,6 +33,22 @@
 
   function qs(sel, root) { return (root || document).querySelector(sel); }
   function qsa(sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); }
+
+  function closest(el, sel) {
+    if (!el) return null;
+    if (el.closest) return el.closest(sel);
+    while (el && el.nodeType === 1) {
+      if (matches(el, sel)) return el;
+      el = el.parentNode;
+    }
+    return null;
+  }
+
+  function matches(el, sel) {
+    var p = Element.prototype;
+    var fn = p.matches || p.webkitMatchesSelector || p.mozMatchesSelector || p.msMatchesSelector;
+    return fn ? fn.call(el, sel) : false;
+  }
 
   function isMobile() {
     return window.matchMedia && window.matchMedia(MOBILE_MQ).matches;
@@ -175,11 +200,15 @@
       setOpen(!drawer.classList.contains('is-open'));
     });
 
-    // Close on outside tap
+    // Close on outside tap (ignore datepickers/dropdowns that may be appended to <body>)
     document.addEventListener('click', function (e) {
       if (!isMobile()) return;
       if (!drawer.classList.contains('is-open')) return;
       if (drawer.contains(e.target)) return;
+
+      // Bootstrap Datepicker / dropdown menus often live outside the drawer
+      if (closest(e.target, '.datepicker, .datepicker-dropdown, .dropdown-menu, .ui-datepicker')) return;
+
       setOpen(false);
     }, true);
 
@@ -231,7 +260,26 @@
     moveIntoDrawer(targets.h2, 'h2', panelInner);
     moveIntoDrawer(targets.search, 'search', panelInner);
 
-    // Attach behavior
+    
+    // Footer block to avoid "empty" lower area and keep brand presence
+    try {
+      var year = (new Date()).getFullYear();
+      var footer = document.createElement('div');
+      footer.className = 'gom-prop-drawer__footer';
+      footer.innerHTML =
+        '<a class="gom-prop-drawer__brand" href="' + GOM_DRAWER_HOME_URL + '" aria-label="Garden of Manors Home">' +
+          '<img class="gom-prop-drawer__brand-img" src="' + GOM_DRAWER_LOGO_URL + '" alt="Garden of Manors">' +
+        '</a>' +
+        '<div class="gom-prop-drawer__tagline">' + GOM_DRAWER_TAGLINE + '</div>' +
+        '
+        <a class="gom-prop-drawer__wa" rel="noopener" target="_blank" href="' + GOM_DRAWER_WA_URL + '">' +
+          GOM_DRAWER_WA_LABEL +
+        '</a>' +
+        +
+        '<small class="gom-prop-drawer__copy">© ' + year + ' Garden of Manors · ' + GOM_DRAWER_COPYRIGHT + '</small>';
+      panelInner.appendChild(footer);
+    } catch(e) {}
+// Attach behavior
     attachBehavior(drawer);
 
     // Ensure header var updates on resize
