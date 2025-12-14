@@ -16,7 +16,7 @@
   // ---- Drawer footer (customize) ----
   var GOM_DRAWER_HOME_URL = 'https://gardenofmanors.com';
   var GOM_DRAWER_LOGO_URL = 'https://uc.orez.io/f/d75e4c3b34dc403398973f84d1b60318';
-  var GOM_DRAWER_TAGLINE = 'Heated saltwater pool · Tropical gardens · Steps to Wilton Drive';
+  var GOM_DRAWER_TAGLINE = 'Book direct for best availability · Fast support · No surprises';
   var GOM_DRAWER_COPYRIGHT = 'All rights reserved ®';
 
   var GOM_DRAWER_WA_URL = 'https://wa.me/17863887255?text=Hello%20%E2%80%94%20I%27d%20like%20to%20inquire%20about%20Garden%20of%20Manors.';
@@ -259,26 +259,28 @@
     // Move targets into drawer panel
     moveIntoDrawer(targets.h2, 'h2', panelInner);
     moveIntoDrawer(targets.search, 'search', panelInner);
-
-
     // Footer block to avoid "empty" lower area and keep brand presence
     try {
       var year = (new Date()).getFullYear();
-      var footer = document.createElement('div');
-      footer.className = 'gom-prop-drawer__footer';
-      footer.innerHTML =
-        '<a class="gom-prop-drawer__brand" href="' + GOM_DRAWER_HOME_URL + '" aria-label="Garden of Manors Home">' +
-        '<img class="gom-prop-drawer__brand-img" src="' + GOM_DRAWER_LOGO_URL + '" alt="Garden of Manors">' +
-        '</a>' +
-        '<div class="gom-prop-drawer__tagline">' + GOM_DRAWER_TAGLINE + '</div>' +
-        ' ';
-      <a class="gom-prop-drawer__wa" rel="noopener" target="_blank" href="' + GOM_DRAWER_WA_URL + '">' +
-        GOM_DRAWER_WA_LABEL +
-        '</a> + ' ' +
-        +
-        '<small class="gom-prop-drawer__copy">© ' + year + ' Garden of Manors · ' + GOM_DRAWER_COPYRIGHT + '</small>';
-      panelInner.appendChild(footer);
-    } catch (e) { }
+
+      // Avoid duplicating footer if enable() runs again
+      if (!panelInner.querySelector('.gom-prop-drawer__footer')) {
+        var footer = document.createElement('div');
+        footer.className = 'gom-prop-drawer__footer';
+
+        footer.innerHTML =
+          '<a class="gom-prop-drawer__brand" href="' + GOM_DRAWER_HOME_URL + '" aria-label="Garden of Manors Home">' +
+          '<img class="gom-prop-drawer__brand-img" src="' + GOM_DRAWER_LOGO_URL + '" alt="Garden of Manors">' +
+          '</a>' +
+          '<div class="gom-prop-drawer__tagline">' + GOM_DRAWER_TAGLINE + '</div>' +
+          '<a class="gom-prop-drawer__wa" rel="noopener" target="_blank" href="' + GOM_DRAWER_WA_URL + '">' +
+          GOM_DRAWER_WA_LABEL +
+          '</a>' +
+          '<small class="gom-prop-drawer__copy">© ' + year + ' Garden of Manors · ' + GOM_DRAWER_COPYRIGHT + '</small>';
+
+        panelInner.appendChild(footer);
+      }
+    } catch (e) { /* noop */ }
     // Attach behavior
     attachBehavior(drawer);
 
