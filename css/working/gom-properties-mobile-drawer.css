@@ -1,0 +1,154 @@
+/* =========================================================
+   Garden of Manors — Properties (Mobile Drawer styles)
+   Add this to gom-properties.css (or load as separate CSS).
+   ========================================================= */
+
+@media (max-width:768px){
+
+  html.multipropertyindex.gom-drawer-on{
+    /* Since h2/search are now inside the drawer, zero-out HUD heights */
+    --gom-prop-topbar-h: 0px;
+    --gom-prop-search-h: 0px;
+
+    /* Drawer bar height */
+    --gom-drawer-bar-h: 4.6rem;
+  }
+
+  /* Give the page content room below fixed header + drawer bar */
+  html.multipropertyindex.gom-drawer-on #content{
+    padding-top: calc(var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 4.6rem) + 0.8rem) !important;
+  }
+
+  /* Drawer container fixed under the header */
+  html.multipropertyindex .gom-prop-drawer{
+    position: fixed !important;
+    top: var(--gom-hdr-h, 9.6rem) !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 10040 !important;
+  }
+
+  /* Toggle bar (always visible) */
+  html.multipropertyindex .gom-prop-drawer__toggle{
+    width: 100% !important;
+    height: var(--gom-drawer-bar-h, 4.6rem) !important;
+
+    display: flex !important;
+    align-items: center !important;
+    gap: 1rem !important;
+
+    padding: 0 6% !important;
+
+    background: rgba(0,0,0,.72) !important;
+    border: 1px solid rgba(255,255,255,.22) !important;
+    border-left: 0 !important;
+    border-right: 0 !important;
+
+    -webkit-backdrop-filter: blur(1rem);
+    backdrop-filter: blur(1rem);
+
+    color: #fff !important;
+    text-transform: uppercase !important;
+    letter-spacing: .14em !important;
+    font-family: var(--main-font, system-ui) !important;
+
+    cursor: pointer !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__label{
+    opacity: .78 !important;
+    font-size: 1.05rem !important;
+    white-space: nowrap !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__summary{
+    flex: 1 1 auto !important;
+    text-align: left !important;
+    font-size: 1.15rem !important;
+    letter-spacing: .10em !important;
+    opacity: .95 !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__chev{
+    font-size: 1.4rem !important;
+    opacity: .9 !important;
+  }
+
+  /* Panel */
+  html.multipropertyindex .gom-prop-drawer__panel{
+    position: absolute !important;
+    top: var(--gom-drawer-bar-h, 4.6rem) !important;
+    left: 0 !important;
+    right: 0 !important;
+
+    max-height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 4.6rem)) !important;
+    overflow: auto !important;
+
+    background: rgba(0,0,0,.78) !important;
+    border-bottom: 1px solid rgba(255,255,255,.22) !important;
+
+    -webkit-backdrop-filter: blur(1.1rem);
+    backdrop-filter: blur(1.1rem);
+
+    display: none !important;
+  }
+  html.multipropertyindex .gom-prop-drawer.is-open .gom-prop-drawer__panel{
+    display: block !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__panel-inner{
+    padding: 1.2rem 6% 1.4rem !important;
+  }
+
+  /* Ensure moved H2 + Sort stack */
+  html.multipropertyindex .gom-prop-drawer__panel-inner h2{
+    position: static !important;
+    height: auto !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: .8rem !important;
+
+    padding: 0 !important;
+    margin: 0 0 1rem 0 !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__panel-inner .sort-selector,
+  html.multipropertyindex .gom-prop-drawer__panel-inner .sort-selector .btn-group,
+  html.multipropertyindex .gom-prop-drawer__panel-inner .sort-selector .btn{
+    width: 100% !important;
+  }
+
+  /* Search widget stacked: Arrival / Departure / Search */
+  html.multipropertyindex .gom-prop-drawer__panel-inner #search-bar-widget{
+    position: static !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__panel-inner #search-bar-widget.row.search-bar{
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: .85rem !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__panel-inner #search-bar-widget .search-bar-field,
+  html.multipropertyindex .gom-prop-drawer__panel-inner #search-bar-widget .search-bar-button{
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  html.multipropertyindex .gom-prop-drawer__panel-inner #search-bar-widget .search-bar-button .btn{
+    width: 100% !important;
+  }
+
+  /* When drawer open, lock body scroll (optional) */
+  body.gom-prop-drawer-open{
+    overflow: hidden !important;
+  }
+}

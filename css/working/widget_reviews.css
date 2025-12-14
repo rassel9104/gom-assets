@@ -1,0 +1,830 @@
+:root {
+    /* Tipografías base del widget, alineadas con el sitio */
+    --w-main-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --w-heading-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* Colores base, mapeando a tus tokens globales cuando existan */
+    --w-heading: #000;
+    --w-text: #111;
+
+    /* Fondos “glass” y tarjetas, igual que antes */
+    --w-glass-bg: rgba(255, 255, 255, 0.152);
+    --w-glass-bd: rgba(255, 255, 255, .45);
+    --w-field-bg: rgba(255, 255, 255, .60);
+    --w-field-bd: rgba(0, 0, 0, .20);
+    --w-card-bg: rgba(255, 255, 255, .85);
+    --w-card-bd: rgba(0, 0, 0, .08);
+
+    /* Escala de tamaños alineada con principal_v2.css
+       Base: 1rem = 10px
+       XS: 12px, Body: 14px, Subtitle: 24px, H4: 32px, H2: 56px, H1: 72px
+    */
+
+    /* Texto muy pequeño / meta */
+    --fs-min: 1.2rem;
+    /* ≈ 12px */
+
+    /* Body / texto principal de la reseña */
+    --fs-h5: 1.4rem;
+    /* ≈ 14px (BODY) */
+
+    /* Labels y botones (SUBTITLE) */
+    --fs-h4: 2.4rem;
+    /* ≈ 24px */
+
+    /* Sub-encabezados dentro del widget */
+    --fs-h3: 3.2rem;
+    /* ≈ 32px (H4 de la leyenda) */
+
+    /* Encabezados secundarios fuertes (si hicieras un título grande en widget) */
+    --fs-h2: 5.6rem;
+    /* ≈ 56px */
+
+    /* Tamaño máximo dentro del widget (no hace falta más grande) */
+    --fs-h1: 7.2rem;
+    /* ≈ 72px */
+
+    /* “Display” opcional: lo igualamos a H1 por consistencia */
+    --fs-display: 7.2rem;
+
+    /* Pesos tipográficos coherentes con el sitio */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+}
+
+/* No toco el scroll global de la página */
+html {
+    overflow: visible;
+    font-size: 62.5%;
+    height: auto;
+    /* deja que el contenido marque la altura total de la página interna */
+}
+
+body {
+    height: auto;
+    /* igual: sin forzar 100% del viewport interno */
+}
+
+/* CONTENEDOR GENERAL DEL WIDGET */
+.container-fluid {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 16px;
+    font-family: var(--w-main-font);
+    color: var(--w-text);
+    height: auto;
+    /* antes: 100% */
+}
+
+
+.page-header {
+    margin: 0 0 8px 0;
+    font-size: 1.15rem;
+    opacity: .8;
+}
+
+/* BLOQUE PROMEDIO DE ESTRELLAS (Base Mobile) */
+.review-average {
+    display: flex;
+    align-items: center;
+    gap: 0 1.6rem;
+    margin: 0;
+    padding: 0 0 3% 0;
+}
+
+.review-average-number {
+    width: 44px;
+    height: 44px;
+    border-radius: 0;
+    background: #eee;
+    border: 1px solid #ccc;
+    box-shadow: 0 0 3px rgba(0, 0, 0, .12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--fs-h3);
+    font-weight: 500;
+    color: #333;
+    margin-right: 0;
+}
+
+/*Reviews Form */
+
+/* =========================================
+   ESTRELLAS (cabecera + cards) + TEXTO 5.0
+   ========================================= */
+
+/* Aseguramos que los iconos de estrella se vean siempre */
+.review-average-stars .fas.fa-star,
+.review-item-stars .fas.fa-star {
+    display: inline-block;
+    line-height: 1;
+    color: #000;
+    font-size: var(--fs-h4);
+}
+
+/* Fallback: si por lo que sea Font Awesome no cargara,
+   usamos el carácter ★ como contenido del icono */
+.review-average-stars .fas.fa-star::before,
+.review-item-stars .fas.fa-star::before {
+    content: "★";
+    font-family: inherit;
+    font-weight: 400;
+}
+
+/* Ocultamos el texto accesible "5.0 stars"
+   tanto en la cabecera como en cada card */
+.review-average-stars .sr-only,
+.review-item-stars .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+}
+
+
+.review-average-detail {
+    opacity: .8;
+}
+
+/* BARRA DE FILTROS SUPERIOR (Base Mobile) */
+.container-fluid .reviews-filter-bar {
+    display: grid !important;
+    grid-template-columns: 1fr;
+    /* 1 columna en móvil */
+    gap: 0;
+    width: 100% !important;
+    margin: 0;
+    padding: 15px 15px 0 15px;
+    background: var(--w-glass-bg);
+    border: 1px solid var(--w-glass-bd);
+    border-radius: 0 !important;
+    -webkit-backdrop-filter: saturate(140%) blur(8px);
+    backdrop-filter: saturate(140%) blur(8px);
+    box-shadow: 0 8px 26px rgba(0, 0, 0, .12);
+}
+
+.container-fluid .reviews-filter-section,
+.container-fluid .reviews-filter-section .form-group,
+.container-fluid .reviews-filter-section-keyword {
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+.reviews-filter-section {
+    display: block;
+}
+
+/* Ocultando los strong originales (accesibilidad/diseño original) */
+.reviews-filter-section strong {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+    border: 0;
+}
+
+.reviews-filter-section-sort .reviews-filter-section-extra {
+    display: none;
+}
+
+.container-fluid .reviews-filter-section .btn-group {
+    width: 100% !important;
+    display: block !important;
+}
+
+.container-fluid .reviews-filter-section .btn-group>.btn {
+    width: 100% !important;
+    text-align: left;
+    border-radius: 0;
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, .82) 0%,
+            rgba(255, 255, 255, .70) 100%) !important;
+    border: 1px solid rgba(0, 0, 0, .16) !important;
+    color: #000 !important;
+    padding: 10px 12px;
+    line-height: 1;
+    box-shadow: none;
+    text-transform: uppercase;
+    font-size: var(--fs-h4);
+    letter-spacing: .05em;
+    transition: box-shadow .15s ease, filter .15s ease, border-color .15s ease;
+}
+
+.container-fluid .reviews-filter-section .btn-group>.btn:hover {
+    filter: brightness(1.03);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .14);
+}
+
+.container-fluid .reviews-filter-section .btn-group>.btn:focus {
+    outline: 0;
+    box-shadow: 0 0 0 3px rgba(10, 47, 53, .25);
+    border-color: rgba(10, 47, 53, .45);
+}
+
+.container-fluid .reviews-filter-section .btn-group>.btn .caret {
+    float: right;
+    margin-top: 6px;
+    border-top-color: #000;
+}
+
+.dropdown-menu {
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, .15);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, .12);
+    overflow: hidden;
+}
+
+.container-fluid .reviews-filter-bar .dropdown-menu {
+    min-width: 100%;
+    margin-top: .3rem;
+    border: 1px solid rgba(0, 0, 0, .12);
+    background: #e7e8ea;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .18);
+    padding: .5rem 0;
+    font-size: var(--fs-h5);
+    position: relative;
+    z-index: 9999;
+    border-radius: 0 !important;
+}
+
+/* Estado inicial: todos los dropdowns cerrados */
+.container-fluid .reviews-filter-bar .dropdown-menu {
+    display: none;
+}
+
+/* Se abren solo al interactuar con el botón */
+.container-fluid .reviews-filter-bar .btn-group.open>.dropdown-menu,
+.container-fluid .reviews-filter-bar .btn-group.show>.dropdown-menu,
+.container-fluid .reviews-filter-bar .btn-group:focus-within>.dropdown-menu {
+    display: block;
+}
+
+
+.dropdown-menu>li>a {
+    padding: 8px 12px;
+}
+
+.dropdown-menu>li.active>a,
+.dropdown-menu>li>a:focus,
+.dropdown-menu>li>a:hover {
+    background: rgba(0, 0, 0, .06);
+}
+
+/* KEYWORD y botón SEARCH */
+.container-fluid .reviews-filter-section-keyword .input-group {
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+}
+
+.container-fluid .reviews-filter-section-keyword .form-control {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 36px !important;
+    border-radius: 0 !important;
+    background: var(--w-field-bg) !important;
+    border: 1px solid var(--w-field-bd) !important;
+    color: #000 !important;
+    box-sizing: border-box !important;
+}
+
+.container-fluid .reviews-filter-section-keyword .input-group-btn,
+.container-fluid .reviews-filter-section-keyword .input-group-addon {
+    display: block !important;
+    width: auto !important;
+    max-width: 100% !important;
+}
+
+.container-fluid .reviews-filter-section-keyword .input-group .btn {
+    height: 3.6rem;
+    border-radius: 0;
+    background: #111 !important;
+    color: #fff !important;
+    border: 1px solid #111;
+
+    box-shadow: none !important;
+    text-transform: uppercase;
+}
+
+/* Ocultar elementos sobrantes */
+.reviews-showing-bar {
+    display: none !important;
+}
+
+.reviews-pager {
+    display: none;
+}
+
+/* GRID DE REVIEWS (Mobile base) */
+.review-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    height: auto;
+    max-width: 100%;
+}
+
+/* CARD DE REVIEW */
+.review-item {
+    margin: 0;
+    padding: 15px 15px 15px;
+    border-radius: 0;
+    background: var(--w-glass-bg);
+    border: 1px solid var(--w-card-bd);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .04);
+    display: flex;
+    flex-direction: column;
+    max-height: none;
+    /* sin techo */
+    min-height: 0;
+    /* sin mínimo en % */
+}
+
+.review-item-header {
+    margin: 0 0 8px 0;
+    line-height: 1.3;
+}
+
+.review-item-title {
+    display: block;
+    margin-top: 2px;
+}
+
+.review-item-title strong {
+    font-family: var(--w-heading-font);
+    letter-spacing: .01em;
+    font-weight: 600;
+    color: var(--w-heading);
+    display: block;
+    /* fuerza salto bajo estrellas */
+}
+
+.review-item-stars {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.review-item-stars .fas.fa-star {
+    color: #000;
+}
+
+.review-item-by-line {
+    margin-top: 2px;
+    font-size: var(--fs-min);
+    opacity: .8;
+}
+
+.review-item-body {
+    line-height: 1.41;
+    flex: 1 1 auto;
+    /* sin límite en %, se controla solo con el bloque interior */
+}
+
+.read-more {
+    cursor: pointer;
+    color: #000;
+    visibility: visible;
+    margin: 8px 10px 0;
+    position: relative;
+    top: 0;
+    align-self: flex-start;
+    font-size: var(--fs-min);
+}
+
+.read-more:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================================
+   MEDIA QUERY: DESKTOP (769px)
+   ========================================= */
+@media (min-width: 769px) {
+    .container-fluid {
+        padding: 0;
+    }
+
+    /* --- CABECERA REVIEWS --- */
+    .review-average {
+        /* se separa 5.6rem de la sección anterior y 5.6rem del bloque de filtros */
+        max-width: 100%;
+        background: #fff;
+        border-bottom: none;
+        box-shadow: 0 4px 1.4rem rgba(0, 0, 0, .08);
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: flex-start;
+    }
+
+
+
+    .review-average-number {
+        display: none;
+    }
+
+    .review-average-detail {
+        display: block !important;
+        opacity: .7;
+        font-size: var(--fs-min);
+    }
+
+    .review-average::before {
+        content: "REVIEWS";
+        font-family: var(--w-heading-font);
+        font-weight: 700;
+        letter-spacing: .05em;
+        line-height: 1;
+        color: #000;
+        margin-right: 4px;
+        font-size: var(--fs-h3);
+    }
+
+    .review-average::after {
+        content: "WHAT OUR GUESTS SAY \00B7 UNFILTERED \00B7 UNASHAMED";
+        display: block;
+        width: 100%;
+        margin-top: 5px;
+        font-size: var(--fs-h5) !important;
+        letter-spacing: .05em;
+        color: #666;
+        text-transform: uppercase;
+        font-weight: 500;
+    }
+
+    /* --- BARRA DE FILTROS: GRID 4 COLUMNAS --- */
+    .container-fluid .reviews-filter-bar {
+        margin: 0;
+        max-width: 100%;
+        background: transparent;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, .08);
+        /* mantenemos 3.6rem aquí y damos el resto en el margin-top de las cards */
+        padding: 0 0 3.6rem;
+        display: grid !important;
+        grid-template-columns: repeat(4, 1fr) !important;
+        column-gap: 1.6rem;
+        align-items: stretch;
+        /* <-- CLAVE: todas las columnas misma altura */
+    }
+
+
+    /* oculto los <strong> originales */
+    .reviews-filter-section strong {
+        display: none !important;
+    }
+
+    /* el bloque central se descompone en 2 columnas (rooms + stars) */
+    .reviews-filter-section-filter {
+        display: contents;
+    }
+
+    /* cada “celda” del grid se estira a la misma altura */
+    .reviews-filter-section-sort,
+    .reviews-filter-section-filter .form-group,
+    .reviews-filter-section-keyword {
+        align-self: stretch;
+        display: flex;
+        align-items: stretch;
+    }
+
+    .reviews-filter-section-sort .form-group,
+    .reviews-filter-section-keyword .form-group {
+        flex: 1 1 auto;
+        display: flex;
+    }
+
+    .container-fluid .reviews-filter-section,
+    .container-fluid .reviews-filter-section .form-group,
+    .container-fluid .reviews-filter-section-keyword {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    /* botones de los 3 primeros filtros */
+    .container-fluid .reviews-filter-section .btn-group {
+        width: 100% !important;
+        display: block !important;
+    }
+
+    .container-fluid .reviews-filter-section .btn-group>.btn {
+        position: relative;
+        width: 100% !important;
+        height: 4rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #e7e8ea !important;
+        border: none !important;
+        color: transparent !important;
+        /* oculto el texto real */
+        text-shadow: none;
+        white-space: nowrap;
+        font-size: var(--fs-h5);
+    }
+
+    /* textos falsos dentro de cada botón */
+    .reviews-filter-section-sort .btn-group>.btn::after,
+    .reviews-filter-section-filter .form-group:nth-of-type(1) .btn-group>.btn::after,
+    .reviews-filter-section-filter .form-group:nth-of-type(2) .btn-group>.btn::after {
+        position: absolute;
+        top: 50%;
+        left: .75rem;
+        transform: translateY(-50%);
+        color: #000;
+        font-size: var(--fs-h5);
+        letter-spacing: .05em;
+        text-transform: uppercase;
+        font-weight: 400;
+        pointer-events: none;
+    }
+
+    .reviews-filter-section-sort .btn-group>.btn::after {
+        content: "SORTED BY";
+    }
+
+    .reviews-filter-section-filter .form-group:nth-of-type(1) .btn-group>.btn::after {
+        content: "FILTERED BY";
+    }
+
+    .reviews-filter-section-filter .form-group:nth-of-type(2) .btn-group>.btn::after {
+        content: "ALL STARS";
+    }
+
+    .container-fluid .reviews-filter-section .btn-group>.btn .caret {
+        position: relative;
+        margin-left: auto;
+        margin-top: 0;
+        border-top-color: #000;
+    }
+
+    /* ORDEN de las 4 columnas */
+    .reviews-filter-section-sort {
+        order: 1;
+    }
+
+    .reviews-filter-section-filter .form-group:nth-of-type(2) {
+        order: 2;
+    }
+
+    .reviews-filter-section-filter .form-group:nth-of-type(1) {
+        order: 3;
+    }
+
+    .reviews-filter-section-keyword {
+        order: 4;
+    }
+
+    /* --- COLUMNA 4: KEYWORD + SEARCH --- */
+    .container-fluid .reviews-filter-section-keyword .input-group {
+        display: flex !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        gap: 0;
+        box-sizing: border-box;
+    }
+
+    .container-fluid .reviews-filter-section-keyword .form-control,
+    .container-fluid .reviews-filter-section-keyword .btn {
+        height: 4rem !important;
+        background: #e7e8ea !important;
+        border: none !important;
+        padding: 0 .75rem !important;
+        display: flex;
+        align-items: center;
+        box-sizing: border-box;
+        font-size: var(--fs-h5);
+    }
+
+    .container-fluid .reviews-filter-section-keyword .input-group .btn {
+        align-self: stretch !important;
+        justify-content: center;
+    }
+
+    #Keyword::placeholder {
+        color: #000;
+        font-weight: 400;
+        opacity: 1;
+        font-size: var(--fs-h5) !important;
+        text-transform: uppercase !important;
+        margin-left: 1rem;
+    }
+
+    /* --- GRID DE REVIEWS: 4 COLUMNAS --- */
+    .review-list {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.6rem
+    }
+
+    .review-item {
+        padding: 1.6rem;
+        background: #e7e8ea;
+        border: none;
+        font-size: var(--fs-h5);
+    }
+
+
+
+    /* dropdowns sobre las cards */
+    .container-fluid .reviews-filter-bar {
+        position: relative;
+        overflow: visible;
+        z-index: 1;
+        box-shadow: none !important;
+    }
+
+    .container-fluid .reviews-filter-bar .btn-group {
+        position: relative;
+    }
+
+    .container-fluid .reviews-filter-bar .dropdown-menu {
+        margin-top: .5rem !important;
+        position: absolute !important;
+    }
+
+    .container-fluid .reviews-filter-bar .dropdown-menu>li>a {
+        padding: 0.48rem 0.8rem;
+        white-space: normal;
+        color: #111;
+        text-decoration: none;
+    }
+
+    .container-fluid .reviews-filter-bar .dropdown-menu>li.active>a,
+    .container-fluid .reviews-filter-bar .dropdown-menu>li>a:focus,
+    .container-fluid .reviews-filter-bar .dropdown-menu>li>a:hover {
+        background: rgba(10, 47, 53, .06);
+        color: #000;
+    }
+
+    .container-fluid .reviews-filter-bar .dropdown-menu .divider {
+        margin: 0.25rem 0;
+        background-color: #e7e8ea;
+    }
+
+    .review-item-header {
+        margin: 0 0 1.6rem 0;
+    }
+}
+
+/* -----------------------------------------
+   HOME WIDGET: limitar a 4 reseñas visibles
+   ----------------------------------------- */
+
+/* Oculta todas las cards a partir de la 5ª */
+.review-list>.review-item:nth-of-type(n + 5) {
+    display: none !important;
+}
+
+/* Ocultamos el texto accesible "5.0 stars" tanto en la cabecera
+   como en cada review individual, dejando sólo los iconos visibles */
+.review-average-stars .sr-only,
+.review-item-stars .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    clip: rect(0 0 0 0) !important;
+    white-space: nowrap !important;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+}
+
+
+.validation-summary-valid.alert.alert-danger {
+    display: none !important;
+}
+
+/* === Layout del cuerpo de la reseña === */
+.review-item-body {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.45;
+    flex: 1 1 auto;
+    max-height: none;
+}
+
+
+/* El bloque que se recorta */
+.review-item-body .has-read-more {
+    flex: 1 1 auto;
+    /* recorta lo que no quepa */
+    overflow: hidden;
+}
+
+/* Botón “Read more” pegado al pie del body (que ya es parte de la card) */
+.review-item-body .read-more {
+    display: inline-block;
+    margin-top: auto;
+    /* CLAVE: empuja el botón al fondo del .review-item-body */
+    margin-right: 10px;
+    cursor: pointer;
+    color: #000;
+    font-size: var(--fs-min);
+    background: transparent;
+    border: 0;
+    text-decoration: none;
+}
+
+/* Efecto hover */
+.review-item-body .read-more:hover,
+.review-item-body .read-more:focus {
+    text-decoration: underline;
+}
+
+/* Si quieres asegurarte de que OwnerRez no lo oculte nunca por CSS viejo */
+.review-item-body .read-more {
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ============================================================
+   Ajustes de Reviews según ALTURA del viewport (desktop)
+   ============================================================ */
+
+/* 1) Desktop base: >= 769px (SI YA tienes un bloque genérico,
+      déjalo más arriba en el archivo, ANTES de estos dos) */
+
+/* 2) Altura media: entre 651px y 800px */
+@media (min-width: 769px) and (min-height: 651px) and (max-height: 800px) {
+
+    .review-average {
+        margin-top: 4rem;
+        padding-bottom: 4rem;
+    }
+
+    .container-fluid .reviews-filter-bar {
+        padding-bottom: 4.8rem;
+    }
+
+    .review-list {
+        margin-top: 2.8rem;
+        gap: 1.3rem;
+    }
+
+    .review-item {
+        min-height: 36rem;
+    }
+}
+
+/* 3) Altura baja: ≤ 650px  → este va ÚLTIMO para que gane
+      cuando coinciden varias condiciones */
+@media (min-width: 769px) and (max-height: 650px) {
+
+    .review-average {
+        margin-top: 1.5%rem;
+
+    }
+
+    .container-fluid .reviews-filter-bar {
+        padding-bottom: 3%;
+    }
+
+    .review-list {
+        margin-top: .4rem;
+        gap: 1.1rem;
+    }
+
+    .review-item {
+        min-height: 30rem;
+    }
+
+    /* Si quieres, puedes seguir usando max-height aquí,
+       pero sabiendo que cortarás el texto */
+    /* .has-read-more {
+        max-height: 20rem;
+    } */
+}
+
+@media (max-width: 768px) {
+    .container-fluid .reviews-filter-section .btn-group>.btn {
+        font-size: var(--fs-body) !important;
+    }
+
+    .container-fluid .reviews-form .reviews-filter-bar {
+        margin: 0 0 6%;
+        padding: 0;
+    }
+
+    .container-fluid {
+        padding: 0 !important;
+    }
+
+    .review-item {
+        padding: 14px 14px 10px;
+    }
+
+}
