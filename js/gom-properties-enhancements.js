@@ -84,3 +84,18 @@
     })();
   });
 })();
+
+(function () {
+  function unlockIfGhostOpen() {
+    var mc = document.querySelector('#header-menu-phone-container');
+    if (!mc) return;
+    var isActuallyOpen = mc.classList.contains('in');
+    if (!isActuallyOpen && document.body.classList.contains('menu-open')) {
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+    }
+  }
+  window.addEventListener('click', function () { setTimeout(unlockIfGhostOpen, 50); }, true);
+  window.addEventListener('resize', unlockIfGhostOpen);
+  document.addEventListener('DOMContentLoaded', unlockIfGhostOpen);
+})();
