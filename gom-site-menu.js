@@ -57,10 +57,64 @@
       #gom-desktop-overlay.is-open{ display:block; }
 
       /* Mobile menu brand footer (inside #header-menu-phone-container) */
-@media (max-width:768px){
-  ...
-}
+      @media (max-width:768px){
+        #header-menu-phone-container{
+          position: fixed !important;
+          inset: 0 !important;
+          width: 100vw !important;
+          height: 100svh !important;
+          overflow-y: auto !important;
+          -webkit-overflow-scrolling: touch;
+          /* safety: keep overlay hidden unless open */
+          display: none !important;
+        }
+        #header-menu-phone-container.in{ display: block !important; }
+          padding-bottom: 14.5rem !important;
+        }
+        #header-menu-phone-container::after{ content:none !important; background-image:none !important; }
 
+        #header-menu-phone-container .gom-menu-brand{
+          position: fixed;
+          left: 0; right: 0; bottom: 0;
+          padding: 1.4rem 1.8rem calc(env(safe-area-inset-bottom) + 1.2rem);
+          text-align: center;
+          background: linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.55), rgba(0,0,0,0));
+          z-index: 9991;
+          pointer-events: none;
+        }
+        #header-menu-phone-container .gom-menu-brand *{ pointer-events: auto; }
+        #header-menu-phone-container .gom-menu-brand img{
+          width: min(260px, 70vw);
+          height: auto;
+          display: block;
+          margin: 0 auto .8rem;
+          opacity: .92;
+        }
+        #header-menu-phone-container .gom-menu-brand .gom-tagline{
+          letter-spacing: .14em;
+          text-transform: uppercase;
+          font-size: 1.05rem;
+          color: rgba(255,255,255,.65);
+          margin-bottom: .8rem;
+        }
+        #header-menu-phone-container .gom-menu-brand .gom-wa{
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: .6rem;
+          border: 1px solid rgba(255,255,255,.35);
+          padding: .7rem 1.1rem;
+          color: rgba(255,255,255,.92) !important;
+          text-decoration: none !important;
+          text-transform: uppercase;
+          letter-spacing: .16em;
+          font-size: 1.05rem;
+          background: rgba(255,255,255,.06);
+        }
+        #header-menu-phone-container .gom-menu-brand .gom-wa:hover{
+          background: rgba(255,255,255,.10);
+        }
+      }
     `);
 
     // ---------------------------
@@ -85,7 +139,7 @@
         '<img src="' + MOBILE_BRAND.logo + '" alt="Garden of Manors">' +
         '<div class="gom-tagline">' + MOBILE_BRAND.tagline + '</div>' +
         '<a class="gom-wa" rel="noopener" target="_blank" href="' + MOBILE_BRAND.waUrl + '">' +
-        MOBILE_BRAND.waLabel +
+          MOBILE_BRAND.waLabel +
         '</a>';
 
       menuContainer.appendChild(brand);
