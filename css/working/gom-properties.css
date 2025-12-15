@@ -4,10 +4,21 @@
 */
 
 html.multipropertyindex {
-  /* altura útil: viewport - header - topbar de la lista */
+  /* =========================================================
+     Layout sizing (mobile-first)
+     - --gom-hdr-h can be overridden inline by JS (higher priority)
+     - --gom-drawer-bar-h is 0 by default and set by the Drawer CSS
+     ========================================================= */
+  --gom-hdr-h: var(--header-h, 9.6rem);
+  --gom-drawer-bar-h: 0px;
+
+  /* Legacy HUD heights (used only if you keep the old fixed H2/Search) */
   --gom-prop-topbar-h: 4.4rem;
   --gom-prop-search-h: 4.4rem;
-  --gom-prop-card-h: calc(100svh - var(--header-h, 9.6rem) - var(--gom-prop-topbar-h) - var(--gom-prop-search-h));
+
+  /* Card height = viewport - header - drawer bar - HUD */
+  --gom-prop-card-h: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px) - var(--gom-prop-topbar-h, 0px) - var(--gom-prop-search-h, 0px));
+
 
 
   /* spacing del overlay */
@@ -452,54 +463,65 @@ html.multipropertyindex .property-result-list .btn-group .btn:hover {
    ========================= */
 @media (max-width:768px) {
 
-  /* Snap en el scroll principal */
+  /* =========================================================
+     /properties (mobile) — Single viewport cards + fixed header/drawer
+     Scroll container: .property-result-list (not <body>)
+     ========================================================= */
+
   html.multipropertyindex,
   html.multipropertyindex body {
-    scroll-snap-type: y mandatory;
-    scroll-padding-top: calc(var(--header-h, 9.6rem) + var(--gom-prop-topbar-h) + var(--gom-prop-search-h));
+    height: 100svh !important;
+    overflow: hidden !important;
   }
 
-  html.multipropertyindex .property-result-list .row {
+  /* If the drawer is enabled, push the page content below the drawer bar */
+  html.multipropertyindex.gom-drawer-on #content {
+    padding-top: var(--gom-drawer-bar-h, 0px) !important;
+  }
+
+  /* The list is the snap/scroll container */
+  html.multipropertyindex .property-result-list {
+    height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)) !important;
+    overflow-y: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    scroll-snap-type: y mandatory;
+  }
+
+  /* Each card (row) fills the available viewport */
+  html.multipropertyindex .property-result-list>.row {
+    height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)) !important;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
 
-  /* En móvil, el título hidden-xs debe verse (lo usamos como único título) */
+  /* Freeze the list scroll while the site menu is open */
+  html.multipropertyindex body.menu-open .property-result-list {
+    overflow: hidden !important;
+  }
+
+  /* Mobile: show title in card, hide long descriptions */
   html.multipropertyindex .property-result-list h2.media-heading.hidden-xs {
     display: block !important;
   }
-
 
   html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(n+3) {
     display: none !important;
   }
 
-  /* Botones: 4 en línea; solo wrap en pantallas ultra pequeñas */
-  html.multipropertyindex .property-result-list .btn-group {
-    gap: .55rem !important;
-  }
-
-  html.multipropertyindex .property-result-list .btn-group .btn {
-    height: 3.8rem !important;
-    padding: 0 .75rem !important;
-    font-size: clamp(.78rem, 2.4vw, .95rem) !important;
-    line-height: 1 !important;
-  }
-
-  html.multipropertyindex .property-result-list .btn-group .btn i {
-    margin-right: .35rem !important;
-  }
-
+  /* Small screen: stack the sort button group (when visible) */
   @media (max-width:360px) {
-    html.multipropertyindex .property-result-list .btn-group {
-      flex-wrap: wrap !important;
+    .multipropertyindex .sort-selector .btn-group {
+      display: block !important;
     }
 
-    html.multipropertyindex .property-result-list .btn-group .btn {
-      flex: 1 0 calc(50% - .55rem) !important;
+    .multipropertyindex .sort-selector .btn-group .btn {
+      display: block !important;
+      width: 100% !important;
+      text-align: left !important;
     }
   }
 }
+
 
 /* Reduced motion: snap “suave” */
 @media (prefers-reduced-motion: reduce) {

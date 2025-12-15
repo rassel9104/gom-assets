@@ -5,6 +5,18 @@
 
 @media (max-width:768px) {
 
+  /* ---------------------------------------------------------
+     Site mobile MENU overlay vs Drawer (z-index order)
+     Goal: when Menu opens, it must sit ABOVE the /properties drawer.
+     --------------------------------------------------------- */
+  html.multipropertyindex #header-menu-phone-container {
+    z-index: 20050 !important;
+  }
+
+  html.multipropertyindex #header-bar .header-phone a.header-menu-toggle.menu-is-active {
+    z-index: 20060 !important;
+  }
+
   html.multipropertyindex.gom-drawer-on {
     /* Since h2/search are now inside the drawer, zero-out HUD heights */
     --gom-prop-topbar-h: 0px;
