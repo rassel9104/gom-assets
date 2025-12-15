@@ -230,11 +230,13 @@
     var menuOpen = document.body.classList.contains('menu-open');
 
     if (menuOpen) {
-      // Force drawer out of the stacking/click path
+      // Force drawer out of the stacking/click path COMPLETELY
       setOpen(false);
-      drawer.style.visibility = 'hidden';
-      drawer.style.pointerEvents = 'none';
+      // CAMBIO: Usar display none en lugar de visibility hidden para evitar bloqueos fantasma
+      drawer.style.display = 'none';
     } else {
+      // CAMBIO: Restaurar display
+      drawer.style.display = 'block';
       drawer.style.visibility = '';
       drawer.style.pointerEvents = '';
     }

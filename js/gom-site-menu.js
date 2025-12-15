@@ -11,13 +11,33 @@
     else fn();
   }
 
-  function injectStyleOnce(id, cssText) {
-    if (document.getElementById(id)) return;
-    var style = document.createElement('style');
-    style.id = id;
-    style.textContent = cssText;
-    document.head.appendChild(style);
-  }
+  // Minimal CSS required for the desktop overlay container AND to fix Mobile Menu Z-Index
+  injectStyleOnce('gom-site-menu-css', `
+      /* Desktop overlay container (desktop menu) */
+      #gom-desktop-overlay{
+        position:fixed;
+        inset:0;
+        width:100vw;
+        height:100svh;
+        background: rgba(0,0,0,.94);
+        z-index: 50000;
+        display:none;
+        overflow:auto;
+        -webkit-overflow-scrolling: touch;
+      }
+      #gom-desktop-overlay.is-open{ display:block; }
+
+      /* FIX: Forzar que el menú móvil de OwnerRez esté siempre encima del Drawer */
+      #header-menu-phone-container {
+        z-index: 2147483647 !important; /* Máximo valor posible */
+        position: relative;
+      }
+      /* Asegurar que el botón de menú también esté visible */
+      .header-menu-toggle {
+        z-index: 2147483647 !important;
+        position: relative;
+      }
+    `);
 
   onReady(function () {
     // ---------------------------
