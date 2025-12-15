@@ -77,10 +77,14 @@
     // ---------------------------
     function ensureMobileMenuBrand() {
       if (!menuContainer) return;
-      if (menuContainer.querySelector('.gom-menu-brand')) return;
 
-      var brand = document.createElement('div');
-      brand.className = 'gom-menu-brand';
+      var brand = menuContainer.querySelector('.gom-menu-brand');
+      if (!brand) {
+        brand = document.createElement('div');
+        brand.className = 'gom-menu-brand';
+      }
+
+      // SIEMPRE reescribe el contenido (evita persistencia de “viejo”)
       brand.innerHTML =
         '<img src="' + MOBILE_BRAND.logo + '" alt="Garden of Manors">' +
         '<div class="gom-tagline">' + MOBILE_BRAND.tagline + '</div>' +
@@ -88,21 +92,27 @@
         MOBILE_BRAND.waLabel +
         '</a>';
 
-      menuContainer.appendChild(brand);
+      // Asegura que esté dentro y al final
+      if (brand.parentNode !== menuContainer) menuContainer.appendChild(brand);
+      if (brand !== menuContainer.lastElementChild) menuContainer.appendChild(brand);
     }
+
 
     if (menuContainer) {
       function syncMobileState() {
         var isOpen = menuContainer.classList.contains('in');
         if (isOpen) {
           body.style.overflow = 'hidden';
+          document.documentElement.style.overflow = 'hidden';
           body.classList.add('menu-open');
           if (menuBtn) menuBtn.classList.add('menu-is-active');
         } else {
           body.style.overflow = '';
+          document.documentElement.style.overflow = '';
           body.classList.remove('menu-open');
           if (menuBtn) menuBtn.classList.remove('menu-is-active');
         }
+
       }
 
       try {
