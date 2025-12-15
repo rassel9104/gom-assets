@@ -1,8 +1,8 @@
 /* GOM layering vars */
-:root {
-    --gom-z-mobile-menu: 60000;
-    --gom-z-mobile-menu-brand: 60005;
-    --gom-z-mobile-menu-ui: 60010;
+:root{
+  --gom-z-mobile-menu: 60000;
+  --gom-z-mobile-menu-brand: 60005;
+  --gom-z-mobile-menu-ui: 60010;
 }
 
 /*
