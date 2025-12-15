@@ -544,42 +544,6 @@
         /* visual solamente */
     }
 
-    /* Copy + logo abajo: fijo al viewport (no al scroll) */
-    #header-menu-phone-container::after {
-        position: fixed !important;
-        left: 6% !important;
-        right: 6% !important;
-        bottom: calc(env(safe-area-inset-bottom) + 2.6rem) !important;
-
-        background: none !important;
-        background-image: none !important;
-
-        /* reserva espacio para que el texto no se monte sobre el logo */
-        padding-right: calc(var(--gom-menu-bottom-logo-w) + var(--gom-menu-bottom-gap)) !important;
-
-        pointer-events: none !important;
-        z-index: 9991 !important;
-    }
-
-    #header-menu-phone-container>ul::after {
-        content: "" !important;
-        position: fixed !important;
-
-        right: 6% !important;
-        bottom: calc(env(safe-area-inset-bottom) + 2.0rem) !important;
-
-        width: var(--gom-menu-bottom-logo-w) !important;
-        height: var(--gom-menu-bottom-logo-h) !important;
-
-        background-image: url("https://uc.orez.io/f/5d5c770f7f9f40d294e861812e2e1a74") !important;
-        background-repeat: no-repeat !important;
-        background-position: right center !important;
-        background-size: contain !important;
-
-        pointer-events: none !important;
-        z-index: 9991 !important;
-    }
-
     /* Grid interno un poco más “desktop” */
     #header-menu-phone-container>ul {
         column-gap: 10% !important;
@@ -653,5 +617,25 @@
         :root {
             --gom-menu-pill-w: 8.4rem;
         }
+    }
+}
+
+/* ===== MENU TOGGLE: fuente única de estado usando body.menu-open ===== */
+@media (max-width:768px) {
+
+    /* Estado normal */
+    #header-bar .header-phone a.header-menu-toggle::after {
+        content: "MENU";
+        display: inline-block;
+    }
+
+    /* Estado abierto: siempre muestra CLOSE aunque .menu-is-active falle */
+    body.menu-open #header-bar .header-phone a.header-menu-toggle::after {
+        content: "CLOSE ▲" !important;
+    }
+
+    /* Si estabas ocultando el texto con color:transparent en .menu-is-active, neutralízalo */
+    body.menu-open #header-bar .header-phone a.header-menu-toggle {
+        color: #fff !important;
     }
 }
