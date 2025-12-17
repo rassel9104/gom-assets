@@ -127,19 +127,19 @@
     }
 
     /*INTRO*/
-    html.multihome .row {
+    .page-574042112 .row {
         margin-right: 0;
         margin-left: 0;
 
     }
 
-    html.multihome .col-xs-12 {
+    .page-574042112 .col-xs-12 {
         padding-bottom: 6rem;
         padding-left: 6%;
         padding-right: 6%;
     }
 
-    html.multihome .property-count {
+    .page-574042112 .property-count {
         font-size: calc(1.4*var(--fs-body));
         font-weight: var(--fw-regular);
     }
@@ -165,31 +165,31 @@
        ============================================================ */
 
     /* En /properties queremos imagen edge-to-edge (sin márgenes laterales del tema) */
-    html.multihome #content {
+    .page-574042112 #content {
         margin: 0 !important;
     }
 
     /* ===== Full-bleed containers (solo /properties) ===== */
-    html.multihome #content {
+    .page-574042112 #content {
         padding: 0 !important;
         /* evita gutters internos del tema */
     }
 
-    html.multihome #content .container,
-    html.multihome #content .container-fluid {
+    .page-574042112 #content .container,
+    .page-574042112 #content .container-fluid {
         padding-left: 0 !important;
         padding-right: 0 !important;
         width: 100% !important;
         max-width: 100% !important;
     }
 
-    html.multihome form[action="/properties"]>.row {
+    .page-574042112 form[action="/properties"]>.row {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
 
     /* ===== “Padding interno” (textos/botones), pero NO la imagen ===== */
-    html.multihome form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
+    .page-574042112 form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
         padding-left: 6% !important;
         padding-right: 6% !important;
         margin: 0 0 1rem 0 !important;
@@ -202,17 +202,17 @@
         gap: .75rem !important;
     }
 
-    html.multihome .property-result-list>hr {
+    .page-574042112 .property-result-list>hr {
         display: none !important;
     }
 
     /* Solo afecta el bloque del listado (no el resto del contenido de la Home) */
-    html.multihome form[action="/properties"]>.row>.col-xs-12.col-12 {
+    .page-574042112 form[action="/properties"]>.row>.col-xs-12.col-12 {
         padding-left: 0 !important;
         padding-right: 0 !important;
     }
 
-    html.multihome .property-result-list {
+    .page-574042112 .property-result-list {
         display: grid !important;
         grid-template-columns: 1fr !important;
         gap: 0 !important;
@@ -220,17 +220,17 @@
         margin: 0 !important;
     }
 
-    html.multihome .sort-selector {
+    .page-574042112 .sort-selector {
         padding-bottom: 10% !important;
     }
 
-    html.multihome .sort-selector .btn {
+    .page-574042112 .sort-selector .btn {
         width: 24rem;
         height: 3rem;
     }
 
     /* Cada .row = 1 card full-height */
-    html.multihome .property-result-list .row {
+    .page-574042112 .property-result-list .row {
         position: relative;
         margin: 0 !important;
         padding: 0 !important;
@@ -240,8 +240,8 @@
     }
 
     /* Imagen y overlay ocupan SIEMPRE el 100% del alto */
-    html.multihome .property-result-list .col-sm-4,
-    html.multihome .property-result-list .col-sm-8 {
+    .page-574042112 .property-result-list .col-sm-4,
+    .page-574042112 .property-result-list .col-sm-8 {
         float: none !important;
         width: 100% !important;
         max-width: 100% !important;
@@ -252,14 +252,14 @@
     }
 
     /* Columna de imagen sirve de referencia al <a.thumbnail> absoluto */
-    html.multihome .property-result-list .col-sm-4 {
+    .page-574042112 .property-result-list .col-sm-4 {
         position: relative !important;
     }
 
     /* FIX thumbnails en móvil:
        En tu base el <img> es position:absolute (bien), pero el <a.thumbnail> no tenía alto/posicionamiento,
        así que en móvil colapsaba y “desaparecía”. */
-    html.multihome .property-result-list a.thumbnail {
+    .page-574042112 .property-result-list a.thumbnail {
         display: block !important;
         margin: 0 !important;
         border: 0 !important;
@@ -275,18 +275,18 @@
     }
 
     /* Overlay: ajusto padding para móvil (menos “aire” lateral) */
-    html.multihome .property-result-list .col-sm-8 {
+    .page-574042112 .property-result-list .col-sm-8 {
         padding: 0 6% 6% !important;
     }
 
     /* Mostrar el botón "Availability" aunque venga con hidden-xs en el HTML */
-    html.multihome .property-result-list .btn-group a.hidden-xs,
-    html.multihome .property-result-list .btn-group .btn.hidden-xs {
+    .page-574042112 .property-result-list .btn-group a.hidden-xs,
+    .page-574042112 .property-result-list .btn-group .btn.hidden-xs {
         display: inline-flex !important;
     }
 
     /* Botonera: 2x2 en pantallas pequeñas (más usable que 4 apretados) */
-    html.multihome .property-result-list .btn-group {
+    .page-574042112 .property-result-list .btn-group {
         display: flex !important;
         flex-wrap: wrap !important;
         gap: .6rem !important;
@@ -313,12 +313,12 @@
         font-size: var(--fs-body);
     }
 
-    html.multihome .amenity-summary-size,
+    .page-574042112 .amenity-summary-size,
     .property-result-list .amenity-summary-amenities .amenity-list-item {
         color: #eeeeeeed;
     }
 
-    html.multihome .property-result-list .btn-group .btn {
+    .page-574042112 .property-result-list .btn-group .btn {
         flex: 1 1 calc(50% - .6rem) !important;
         min-width: calc(50% - .6rem) !important;
     }
@@ -378,7 +378,7 @@
     }
 
     /* ---- CTA buttons: 4 en una línea (wrap solo si la pantalla es muy estrecha) ---- */
-    html.multihome .property-result-list .btn-group {
+    .page-574042112 .property-result-list .btn-group {
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: .55rem !important;
@@ -388,7 +388,7 @@
         align-items: stretch !important;
     }
 
-    html.multihome .property-result-list .btn-group .btn {
+    .page-574042112 .property-result-list .btn-group .btn {
         flex: 1 1 0 !important;
         min-width: 0 !important;
         padding: .85rem .55rem !important;
@@ -404,18 +404,18 @@
     }
 
     /* Evita que el icono ocupe demasiado; si necesita más aire, subimos margin */
-    html.multihome .property-result-list .btn-group .btn i {
+    .page-574042112 .property-result-list .btn-group .btn i {
         margin-right: .35rem !important;
         flex: 0 0 auto !important;
     }
 
     /* En pantallas muy estrechas, permite 2×2 para que no se rompa */
     @media (max-width: 360px) {
-        html.multihome .property-result-list .btn-group {
+        .page-574042112 .property-result-list .btn-group {
             flex-wrap: wrap !important;
         }
 
-        html.multihome .property-result-list .btn-group .btn {
+        .page-574042112 .property-result-list .btn-group .btn {
             flex: 1 0 calc(50% - .55rem) !important;
         }
     }

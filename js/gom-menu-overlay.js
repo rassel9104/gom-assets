@@ -2,7 +2,6 @@
  * Garden of Manors — Unified Menu Overlay (Desktop + Mobile)
  * v2.1.1
  * Changes:
- *  1) CSS moved to external file: /css/gom-menu-overlay.css (auto-loaded)
  *  2) Desktop footer "signature": logo bottom-right only; rest centered
  *  3) Titles clickable WITHOUT "open" hint
  *  4) Mobile: 2 columns + smaller typography (handled in CSS)
@@ -44,39 +43,6 @@
         }
         return '';
     }
-
-    function cssUrlFromJs(jsSrc) {
-        // Expected: .../js/gom-menu-overlay.js  -> .../dist/gom-menu-overlay.min.css
-        if (!jsSrc) return '';
-        return jsSrc.replace(
-            /\/js\/gom-menu-overlay\.js(\?.*)?$/,
-            '/dist/gom-menu-overlay.min.css$1'
-        );
-    }
-
-    function ensureCssLinkOnce() {
-        if (document.getElementById(CSS_LINK_ID)) return;
-
-        var jsSrc = getSelfSrc();
-        var cssHref = cssUrlFromJs(jsSrc);
-
-        // Fallback robusto: usa el MISMO ref del JS (tag/SHA/main) y cambia solo a dist
-        if (!cssHref || cssHref === jsSrc) {
-            // intenta derivar raíz "https://cdn.jsdelivr.net/gh/<owner>/<repo>@<ref>"
-            var m = (jsSrc || '').match(/^(https:\/\/cdn\.jsdelivr\.net\/gh\/[^\/]+\/[^@]+@[^\/]+)\//);
-            if (m) cssHref = m[1] + '/dist/gom-menu-overlay.min.css';
-        }
-
-        if (!cssHref) return;
-
-        var link = document.createElement('link');
-        link.id = CSS_LINK_ID;
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-
-        document.head.appendChild(link);
-    }
-
 
     function getSourceRoot() {
         var desktop = document.querySelector('.header.header-desktop .header-links > ul.list-inline');
@@ -244,7 +210,6 @@
     }
 
     function openOverlay() {
-        ensureCssLinkOnce();
         closePropertiesDrawerIfAny();
 
         renderOverlay();
@@ -315,8 +280,7 @@
         });
     }
 
-    onReady(function () {
-        ensureCssLinkOnce(); // preload CSS for less flicker on first open
+    onReady(function () { // preload CSS for less flicker on first open
         bindTriggers();
     });
 })();
