@@ -1,8 +1,5 @@
 /*
   Garden of Manors (OwnerRez)
-  File: gom-pages.css
-  Purpose: Late overrides + page-specific sections (e.g., ROOMS list) and other blocks that
-           originally appeared after components in principal_v2.css.
   Load order: base -> components -> pages -> mobile.
 */
 
