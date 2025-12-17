@@ -5,7 +5,7 @@
         "build:css": "postcss src/css/gom-global.css -o dist/gom-global.min.css && postcss src/css/gom-home.css -o dist/gom-home.min.css && postcss src/css/gom-properties.css -o dist/gom-properties.min.css",
         "watch:css": "chokidar \"src/css//*.css\" -c \"npm run build:css\"",
         "build": "npm run build:css",
-        "dev:push": "npm run build && git add -A && git commit -m \"dev\" && git push origin main && powershell -ExecutionPolicy Bypass -File tools/purge-jsdelivr.ps1 -Ref main"
+        "dev:push": "npm run build && git add -A && (git diff --cached --quiet || git commit -m \"dev\") && git push origin main && powershell -NoProfile -ExecutionPolicy Bypass -File tools/purge-jsdelivr.ps1 -Ref main"
     },
     "devDependencies": {
         "autoprefixer": "^10.4.20",
