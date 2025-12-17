@@ -1,0 +1,297 @@
+/*
+  Garden of Manors (OwnerRez)
+  File: gom-base.css
+  Purpose: Global base (variables, typography, global elements, shared helpers).
+  Load order: base -> components -> pages -> mobile.
+*/
+
+/* ============================================================
+   GRUPO A — BASE GLOBAL (Tipografía + Variables + Escala)
+   Garden of Manors  —  compatible con Bay Grande / Bootstrap 3
+   ============================================================ */
+
+:root {
+    /* Tipografía base */
+    --main-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --heading-font: var(--main-font);
+
+    /* Colores base (ajustables luego) */
+    --color-text: #111;
+    --color-bg: #fff;
+    --color-primary: #000;
+    /* Alias usado en h1, h2, h3 */
+    --pri-color: var(--color-primary);
+    --mtd: #ffffffbf;
+
+    /* Escala tipográfica (diseño 1440×900) */
+    --fs-xs: 1.2rem;
+    --fs-xsm: calc(var(--fs-xs)*.8);
+    /* 12px - labels muy pequeños */
+    /* alias por compatibilidad */
+    --fs-body: 1.4rem;
+    /* 14px - párrafos y texto normal */
+    --fs-sub: 2.4rem;
+    /* 24px - títulos pequeños como CHOOSE A DATE */
+    --fs-h4: 3.2rem;
+    /* 32px - subtítulos fuertes / labels hero */
+    --fs-h3: 3.2rem;
+    /* alias para headings medios */
+    --fs-h2: 5.6rem;
+    /* 56px - títulos grandes de sección */
+    --fs-h1: 7.2rem;
+    /* 72px - display / hero muy grande */
+
+    /* Pesos */
+    --fw-regular: 400;
+    --fw-medium: 500;
+    --fw-semibold: 600;
+    --fw-bold: 700;
+
+    /* Espaciados verticales según tu rejilla */
+    --space-40: 4rem;
+    /* 40px */
+    --space-80: 8rem;
+    /* 80px */
+
+    /* Header + alto visible de hero */
+    --header-h: 8.8rem;
+    /* 88px según artboard */
+    --full-h: calc(100vh - var(--header-h));
+
+    /* Tamaños base del HEADER (desktop) */
+    --header-logo-w: 24rem;
+    /* ~240px */
+    --header-logo-h: 6.4rem;
+    /* ~64px */
+    --header-btn-minw: 15.2rem;
+    /* ~152px */
+    --header-btn-h: 4rem;
+    /* ~40px */
+    --header-btn-fs: var(--fs-body);
+    /* 14px */
+
+    /* Hero desktop (altura dinámica por viewport) */
+    --hero-top-fs: var(--fs-body);
+    /* etiquetas superiores */
+    --hero-search-h: 22.2rem;
+    /* altura del bloque de búsqueda */
+    --hero-21-fs: calc(var(--fs-body) * 4);
+    /* tamaño inicial del "21+" */
+
+    /* Intro Home (separaciones verticales) */
+    --intro-top-padding: 8.8rem;
+    /* espacio superior dentro de la sección */
+    --intro-logo-gap: 6rem;
+    /* distancia logo → título */
+    --intro-title-gap: 5.6rem;
+    /* distancia título → texto (≈56px) */
+
+    /* ROOMS – sección propiedades en Home */
+    --rooms-section-top: var(--space-80);
+    /* separación desde la intro */
+    --rooms-header-gap: var(--space-40);
+    /* espacio h2 → grid de rooms */
+    --rooms-card-h: 63.6rem;
+    /* altura base de cada card (~636px) */
+    --rooms-btn-h: 4rem;
+    /* altura de botones Photos/Details/etc. */
+}
+
+html {
+    box-sizing: border-box;
+    /* 1rem = 10px -> facilita mapear 12, 14, 24, 32, 56, 72 */
+    font-size: 62.5%;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+/* Mantiene coherencia con Bootstrap / OwnerRez
+/*body {
+    font-size: 1.6rem;
+    /* Restaura 16px como tamaño base real
+}*/
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--main-font);
+    font-size: var(--fs-body);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    /* Opcional: suavizado y ligaduras avanzadas */
+    font-variant-ligatures: common-ligatures;
+    font-optical-sizing: auto;
+}
+
+/* Control de desbordamiento solo cuando sea necesario */
+html.no-overflow,
+body.no-overflow {
+    overflow-x: hidden;
+}
+
+/* TITULARES Y TEXTO GLOBAL*/
+
+h1 {
+    font-family: var(--heading-font);
+    font-size: var(--fs-h1);
+    color: var(--pri-color);
+    font-weight: var(--fw-semibold);
+
+}
+
+h2 {
+    font-family: var(--heading-font);
+    font-size: var(--fs-h2);
+    color: var(--pri-color);
+    font-weight: var(--fw-semibold);
+
+}
+
+h3 {
+    font-family: var(--heading-font);
+    font-size: var(--fs-h3);
+    color: var(--pri-color);
+    font-weight: var(--fw-medium);
+
+}
+
+input,
+button,
+.btn,
+p,
+a {
+    font-size: var(--fs-body) !important;
+    font-weight: var(--fw-regular) !important;
+}
+
+
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.842) !important;
+    font-weight: 500 !important;
+}
+
+.small,
+small {
+    font-size: var(--fs-xs)
+}
+
+/* ============================================================
+   MÁRGENES Y ESPACIADOS
+   ============================================================ */
+/* Helpers básicos para ajustes verticales menores */
+.mt-0 {
+    margin-top: 0 !important;
+}
+
+.mb-0 {
+    margin-bottom: 0 !important;
+}
+
+.mt-1 {
+    margin-top: 1rem !important;
+}
+
+.mb-1 {
+    margin-bottom: 1rem !important;
+}
+
+.mt-2 {
+    margin-top: 2rem !important;
+}
+
+.mb-2 {
+    margin-bottom: 2rem !important;
+}
+
+/* ============================================================
+   SECCIONES GENERALES
+   ============================================================ */
+.section {
+    width: 100%;
+    padding: 4rem 1rem;
+}
+
+.section-light {
+    background-color: #fff;
+    color: var(--color-text);
+}
+
+.section-dark {
+    background-color: #000;
+    color: #fff;
+}
+
+.section-padding {
+    padding: 6rem 1rem;
+}
+
+/* ============================================================
+   Helpers y utilidades globales
+   ============================================================ */
+
+/* COMPORTAMIENTO GLOBAL */
+
+/* Controla scroll durante apertura de menús o overlays */
+body.menu-open,
+body.no-overflow {
+    overflow: hidden !important;
+}
+
+/* Corrige posibles espacios blancos laterales */
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+/* ============================================================
+   TEXTOS Y ALINEACIÓN
+   ============================================================ */
+.text-center {
+    text-align: center !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+/* Uppercase rápido (sin duplicar transformaciones) */
+.text-upper {
+    text-transform: uppercase !important;
+}
+
+/* Color de texto claro (sobre fondos oscuros) */
+.text-light {
+    color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* Color de texto oscuro */
+.text-dark {
+    color: rgba(0, 0, 0, 0.9) !important;
+}
+
+/* ============================================================
+   OTROS ESTADOS / FIXES MENORES
+   ============================================================ */
+/* Mejora de contraste para focus visible */
+:focus {
+    outline: 2px solid rgba(59, 125, 221, 0.6);
+    outline-offset: 2px;
+}
+
+/* Imágenes sin borde en links */
+a img {
+    border: 0;
+}
