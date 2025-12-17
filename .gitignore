@@ -16,3 +16,5 @@ pnpm-debug.log*
 # build cache (opcional)
 .cache/
 .dist-cache/
+
+_local_prebase.patch
