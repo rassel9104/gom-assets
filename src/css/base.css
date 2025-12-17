@@ -298,5 +298,5 @@ a img {
 
 /* DEV TEST (quitar luego) */
 html {
-    outline: 6px solid rgba(255, 0, 0, .35) !important;
+    outline: 60px solid rgba(255, 0, 0, .35) !important;
 }
