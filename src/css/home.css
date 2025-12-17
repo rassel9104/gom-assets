@@ -1117,7 +1117,7 @@ footer {
     font-size: clamp(1.6rem, 2.2vh, var(--fs-h4));
     font-weight: var(--fw-medium);
     line-height: 1.4;
-    color: rgba(177, 31, 31, 0.9);
+    color: rgba(255, 255, 255, 0.9);
     margin: 0 auto;
     max-width: 72rem;
 }
