@@ -295,8 +295,3 @@ body {
 a img {
     border: 0;
 }
-
-/* DEV TEST (quitar luego) */
-html {
-    outline: 60px solid rgba(255, 0, 0, .35) !important;
-}
