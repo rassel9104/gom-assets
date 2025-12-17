@@ -2,7 +2,7 @@
     "name": "gom-assets",
     "private": true,
     "scripts": {
-        "build:css": "postcss src/css/gom-global.css -o dist/gom-global.min.css && postcss src/css/gom-home.css -o dist/gom-home.min.css && postcss src/css/gom-properties.css -o dist/gom-properties.min.css",
+        "build:css": "postcss src/css/gom-global.css -o dist/gom-global.min.css && postcss src/css/gom-home.css -o dist/gom-home.min.css && postcss src/css/gom-properties.css -o dist/gom-properties.min.css && postcss src/css/gom-menu-overlay.css -o dist/gom-menu-overlay.min.css",
         "watch:css": "chokidar \"src/css/**/*.css\" -c \"npm run build:css\"",
         "build": "npm run build:css"
     },

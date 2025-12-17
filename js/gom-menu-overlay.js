@@ -46,9 +46,20 @@
     }
 
     function cssUrlFromJs(jsSrc) {
-        // Expected: .../js/gom-menu-overlay.js  -> .../css/gom-menu-overlay.css
         if (!jsSrc) return '';
-        return jsSrc.replace(/\/js\/gom-menu-overlay\.js(\?.*)?$/, '/css/gom-menu-overlay.css');
+
+        // conserva query (?v=...) si existe, para DEV cache-busting
+        var q = '';
+        var qi = jsSrc.indexOf('?');
+        if (qi !== -1) { q = jsSrc.slice(qi); jsSrc = jsSrc.slice(0, qi); }
+
+        // /js/gom-menu-overlay.js  -> /dist/gom-menu-overlay.min.css
+        // (y si algún día lo mueves, también soporta /dist/gom-menu-overlay.js)
+        var out = jsSrc
+            .replace(/\/js\/gom-menu-overlay\.js$/, '/dist/gom-menu-overlay.min.css')
+            .replace(/\/dist\/gom-menu-overlay\.js$/, '/dist/gom-menu-overlay.min.css');
+
+        return out + q;
     }
 
     function ensureCssLinkOnce() {
@@ -57,15 +68,21 @@
         var jsSrc = getSelfSrc();
         var cssHref = cssUrlFromJs(jsSrc);
 
-        // Fallback (only if replace failed)
+        // Fallback: mismo ref, pero a dist (no “hardcodees” tags aquí)
         if (!cssHref || cssHref === jsSrc) {
-            cssHref = 'https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v2.1.1/css/gom-menu-overlay.css';
+            // intenta derivar por si getSelfSrc viene raro
+            cssHref = (jsSrc || '').replace(/\/js\/gom-menu-overlay\.js(\?.*)?$/, '/dist/gom-menu-overlay.min.css$1');
         }
 
         var link = document.createElement('link');
         link.id = CSS_LINK_ID;
         link.rel = 'stylesheet';
         link.href = cssHref;
+
+        // útil para depurar cuando algo vuelva a romper
+        link.onerror = function () {
+            console.error('[GOM] gom-menu-overlay CSS failed to load:', cssHref);
+        };
 
         document.head.appendChild(link);
     }
