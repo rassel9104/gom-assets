@@ -177,11 +177,6 @@ hr {
     flex-wrap: nowrap;
 }
 
-.incarousel-search-bar.container form {
-    margin-left: 6%;
-    margin-right: 6%;
-}
-
 /* Título "2 ROOMS AT GARDEN OF MANORS" */
 .multihome .property-count {
     display: inline-block;
