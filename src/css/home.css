@@ -186,7 +186,7 @@ hr {
     letter-spacing: .01em;
     font-size: var(--fs-sub);
     /* texto en una sola línea aprox */
-    white-space: nowrap;
+    white-space: wrap;
 }
 
 /* Contenedor del selector "Sorted Random" */
