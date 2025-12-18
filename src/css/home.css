@@ -167,7 +167,7 @@ hr {
    ROOMS – Cabecera de sección (Home)
    ========================================================= */
 
-.page-574042112 form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
+.multihome form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
     margin: 0 0 0 7.2rem;
     display: flex !important;
     align-items: flex-start;
@@ -178,7 +178,7 @@ hr {
 }
 
 /* Título "2 ROOMS AT GARDEN OF MANORS" */
-.page-574042112 .property-count {
+.multihome .property-count {
     display: inline-block;
     font-family: var(--heading-font);
     font-weight: var(--fw-medium);
@@ -190,7 +190,7 @@ hr {
 }
 
 /* Contenedor del selector "Sorted Random" */
-.page-574042112 .sort-selector {
+.multihome .sort-selector {
     display: inline-flex;
     align-items: center;
     margin: 0 !important;
@@ -198,7 +198,7 @@ hr {
 }
 
 /* Botón de ordenado */
-.page-574042112 .sort-selector .btn {
+.multihome .sort-selector .btn {
     border-radius: 0;
     border: none;
     background: #000 !important;
@@ -213,13 +213,13 @@ hr {
 }
 
 /* Lista desplegable del sort */
-.page-574042112 .sort-selector .dropdown-menu {
+.multihome .sort-selector .dropdown-menu {
     border-radius: 0;
     border: 1px solid #000;
     font-size: var(--fs-body);
 }
 
-.page-574042112 .property-result-list {
+.multihome .property-result-list {
     margin-top: var(--rooms-header-gap);
 }
 
@@ -606,7 +606,7 @@ hr {
 
     /*===============ROOMS========================/*
     /* El listado de propiedades se comporta como grid 2 columnas */
-    .page-574042112 .property-result-list {
+    .multihome .property-result-list {
         display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 0;
@@ -614,7 +614,7 @@ hr {
     }
 
     /* Cada .row es una card ocupando toda la celda del grid */
-    .page-574042112 .property-result-list .row {
+    .multihome .property-result-list .row {
         position: relative;
         margin: 0;
         padding: 0;
@@ -623,8 +623,8 @@ hr {
     }
 
     /* Dentro de la card, imagen y overlay ocupan SIEMPRE el 100% del alto de la fila */
-    .page-574042112 .property-result-list .col-sm-4,
-    .page-574042112 .property-result-list .col-sm-8 {
+    .multihome .property-result-list .col-sm-4,
+    .multihome .property-result-list .col-sm-8 {
         float: none !important;
         width: 100% !important;
         max-width: 100% !important;
@@ -637,12 +637,12 @@ hr {
     }
 
     /* La columna de imagen sirve de referencia para la thumbnail absoluta */
-    .page-574042112 .property-result-list .col-sm-4 {
+    .multihome .property-result-list .col-sm-4 {
         position: relative !important;
     }
 
 
-    .page-574042112 .property-result-list .thumbnail {
+    .multihome .property-result-list .thumbnail {
         display: block;
         margin: 0 !important;
         border: 0 !important;
@@ -663,7 +663,7 @@ hr {
         /* fallback mientras carga */
     }
 
-    .page-574042112 .property-result-list .thumbnail img {
+    .multihome .property-result-list .thumbnail img {
         position: absolute;
         inset: 0;
         width: 100% !important;
@@ -676,7 +676,7 @@ hr {
 
 
     /* Gradiente inferior común para legibilidad */
-    .page-574042112 .property-result-list .thumbnail::after {
+    .multihome .property-result-list .thumbnail::after {
         content: "";
         position: absolute;
         left: 0;
@@ -693,7 +693,7 @@ hr {
 
 
     /* Columna de contenido superpuesto */
-    .page-574042112 .property-result-list .col-sm-8 {
+    .multihome .property-result-list .col-sm-8 {
         position: absolute !important;
         left: 0;
         right: 0;
@@ -710,16 +710,16 @@ hr {
     }
 
     /* Título (overlay) – usamos el hidden-xs como principal en desktop */
-    .page-574042112 .property-result-list h2.visible-xs.media-heading {
+    .multihome .property-result-list h2.visible-xs.media-heading {
         display: none !important;
     }
 
-    .page-574042112 .property-result-list h2.hidden-xs.media-heading {
+    .multihome .property-result-list h2.hidden-xs.media-heading {
         display: block !important;
         margin: 0 0 .8rem 0;
     }
 
-    .page-574042112 .property-result-list .media-heading a {
+    .multihome .property-result-list .media-heading a {
         color: #ffffffde !important;
         text-decoration: none !important;
         text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
@@ -730,16 +730,16 @@ hr {
     }
 
     /* Size + Amenities (líneas de tamaño y amenities) */
-    .page-574042112 .property-result-list .amenity-summary-size,
-    .page-574042112 .property-result-list .amenity-summary-amenities {
+    .multihome .property-result-list .amenity-summary-size,
+    .multihome .property-result-list .amenity-summary-amenities {
         margin: 1px 0 !important;
         font-size: var(--fs-body);
         color: var(--mtd) !important;
         text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
     }
 
-    .page-574042112 .property-result-list .amenity-summary-size h4,
-    .page-574042112 .property-result-list .amenity-summary-amenities .h4 {
+    .multihome .property-result-list .amenity-summary-size h4,
+    .multihome .property-result-list .amenity-summary-amenities .h4 {
         display: inline !important;
         color: var(--mtd) !important;
         text-shadow: 0 1px 3px rgba(0, 0, 0, .30);
@@ -747,22 +747,22 @@ hr {
     }
 
     /* Pills de amenities */
-    .page-574042112 .property-result-list .amenity-summary-amenities .amenity-list-item {
+    .multihome .property-result-list .amenity-summary-amenities .amenity-list-item {
         font-size: var(--fs-body);
         color: var(--mtd);
     }
 
-    .page-574042112 .property-result-list .amenity-summary-amenities .amenity-list-item i {
+    .multihome .property-result-list .amenity-summary-amenities .amenity-list-item i {
         margin-right: 4px;
     }
 
     /* Ocultamos párrafos largos de descripción en la card (ya en tu CSS) */
-    .page-574042112 .property-result-list .col-sm-8 p:not(.btn-group) {
+    .multihome .property-result-list .col-sm-8 p:not(.btn-group) {
         display: none !important;
     }
 
     /* Botonera superpuesta al borde inferior */
-    .page-574042112 .property-result-list .btn-group {
+    .multihome .property-result-list .btn-group {
         display: flex !important;
         flex-wrap: nowrap !important;
         gap: 0 .8rem !important;
@@ -771,7 +771,7 @@ hr {
         padding: 0;
     }
 
-    .page-574042112 .property-result-list .btn-group .btn {
+    .multihome .property-result-list .btn-group .btn {
         flex: 1 1 0;
         display: inline-flex;
         align-items: center;
@@ -791,8 +791,8 @@ hr {
         padding: 0 .8rem !important;
     }
 
-    .page-574042112 .property-result-list .btn-group .btn:hover,
-    .page-574042112 .property-result-list .btn-group .btn:focus {
+    .multihome .property-result-list .btn-group .btn:hover,
+    .multihome .property-result-list .btn-group .btn:focus {
         background: rgba(0, 0, 0, 0.9) !important;
         outline: none !important;
     }
