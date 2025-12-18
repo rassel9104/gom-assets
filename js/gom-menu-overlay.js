@@ -172,13 +172,13 @@
             }).join('');
 
             return `
-          <div class="gom-ov-sec">
-            <div class="gom-ov-h3" data-href="${sec.mainHref || '#'}" role="link" tabindex="0">
-              ${sec.title || ''}
-            </div>
-            <div class="gom-ov-links">${links}</div>
-          </div>
-        `;
+      <div class="gom-ov-sec">
+        <div class="gom-ov-h3" data-href="${sec.mainHref || '#'}" role="link" tabindex="0">
+          ${sec.title}
+        </div>
+        <div class="gom-ov-links">${links}</div>
+      </div>
+    `;
         }).join('');
     }
 
