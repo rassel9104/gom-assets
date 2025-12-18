@@ -164,32 +164,24 @@
 
         var data = parseMenu();
 
-        // Desktop 3 cols, Mobile 2 cols, Tablets 1 col
-        var colCount = (window.innerWidth >= 992) ? 3 : (isMobile() ? 2 : 1);
-        var cols = distributeIntoColumns(data, colCount);
+        grid.innerHTML = data.map(function (sec) {
+            var links = (sec.links || []).map(function (l) {
+                var href = l.href || '#';
+                var text = l.text || href;
+                return `<a href="${href}">${text}</a>`;
+            }).join('');
 
-        grid.innerHTML = cols.map(function (col) {
-            var html = col.map(function (sec) {
-                var links = (sec.links || []).map(function (l) {
-                    var href = l.href || '#';
-                    var text = l.text || href;
-                    return `<a href="${href}">${text}</a>`;
-                }).join('');
-
-                // Titles clickable; no "open" indicator
-                return `
+            return `
           <div class="gom-ov-sec">
             <div class="gom-ov-h3" data-href="${sec.mainHref || '#'}" role="link" tabindex="0">
-              ${sec.title}
+              ${sec.title || ''}
             </div>
             <div class="gom-ov-links">${links}</div>
           </div>
         `;
-            }).join('');
-
-            return `<div class="gom-ov-col">${html}</div>`;
         }).join('');
     }
+
 
     function closePropertiesDrawerIfAny() {
         try {
