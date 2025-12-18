@@ -164,6 +164,7 @@
 
         var data = parseMenu();
 
+        // Let CSS Grid handle 2 cols (<=768) and 3 cols (>=769)
         grid.innerHTML = data.map(function (sec) {
             var links = (sec.links || []).map(function (l) {
                 var href = l.href || '#';
@@ -181,6 +182,7 @@
     `;
         }).join('');
     }
+
 
 
     function closePropertiesDrawerIfAny() {
