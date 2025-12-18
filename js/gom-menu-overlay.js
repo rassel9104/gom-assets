@@ -205,6 +205,10 @@
         if (ov) ov.classList.remove('is-open');
         document.documentElement.classList.remove('gom-ov-open');
         document.body.classList.remove('gom-ov-open');
+
+        // Compatibility: legacy "open" state used by existing CSS
+        document.body.classList.remove('menu-open');
+
         var btn = document.querySelector('.header-menu-toggle');
         if (btn) btn.classList.remove('menu-is-active');
     }
@@ -218,6 +222,9 @@
 
         document.documentElement.classList.add('gom-ov-open');
         document.body.classList.add('gom-ov-open');
+
+        // Compatibility: legacy "open" state used by existing CSS
+        document.body.classList.add('menu-open');
 
         var btn = document.querySelector('.header-menu-toggle');
         if (btn) btn.classList.add('menu-is-active');
@@ -241,9 +248,13 @@
         document.documentElement.classList.remove('gom-ov-open');
         document.body.classList.remove('gom-ov-open');
 
+        // Compatibility: legacy "open" state used by existing CSS
+        document.body.classList.remove('menu-open');
+
         var btn = document.querySelector('.header-menu-toggle');
         if (btn) btn.classList.remove('menu-is-active');
     }
+
 
     function safeOpenOverlay() {
         try { openOverlay(); } catch (e) { hardUnlock(); }
