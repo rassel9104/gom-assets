@@ -374,7 +374,7 @@ HERO / CARRUSEL PRINCIPAL
     width: 100% !important;
     max-width: 100%;
     margin: 0;
-    padding: 8.8rem 7.2rem 0;
+    padding: 8.8rem var(--gom-pad-x, 7.2rem) 0;
     box-sizing: border-box;
 }
 
@@ -385,7 +385,7 @@ HERO / CARRUSEL PRINCIPAL
 .carousel-includes-search #search-bar-widget::before {
     content: "CHOOSE A DATE";
     position: absolute;
-    left: 7.2rem;
+    left: var(--gom-pad-x, 7.2rem);
     top: .01rem;
     /* 1px */
     font-family: var(--heading-font);
@@ -398,7 +398,7 @@ HERO / CARRUSEL PRINCIPAL
 .carousel-includes-search #search-bar-widget::after {
     content: "Because every getaway deserves a little spark.";
     position: absolute;
-    left: 7.2rem;
+    left: var(--gom-pad-x, 7.2rem);
     top: 32%;
     font-family: var(--main-font);
     font-size: var(--fs-body);
@@ -485,19 +485,5 @@ html.has-fullpage-background #content {
 
     #header-menu-phone-container .gom-menu-brand .gom-wa:hover {
         background: rgba(255, 255, 255, .10);
-    }
-}
-
-/* Home – Search bar gutters desktop (match ~6% site margins) */
-@media (min-width: 769px) {
-    .carousel-includes-search #search-bar-widget .row .search-bar {
-        padding-left: 6% !important;
-        padding-right: 6% !important;
-    }
-
-    /* Keep overlay texts aligned with the same gutter */
-    .carousel-includes-search #search-bar-widget::before,
-    .carousel-includes-search #search-bar-widget::after {
-        left: 6% !important;
     }
 }

@@ -57,6 +57,8 @@
     --header-h: 8.8rem;
     /* 88px según artboard */
     --full-h: calc(100vh - var(--header-h));
+    /* Gutter global del sitio (Home / componentes) */
+    --gom-pad-x: 6%;
 
     /* Tamaños base del HEADER (desktop) */
     --header-logo-w: 24rem;
