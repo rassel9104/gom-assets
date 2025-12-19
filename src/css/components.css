@@ -490,7 +490,7 @@ html.has-fullpage-background #content {
 
 /* Home – Search bar gutters desktop (match ~6% site margins) */
 @media (min-width: 769px) {
-    .carousel-includes-search #search-bar-widget.row.search-bar {
+    .carousel-includes-search #search-bar-widget .row.search-bar {
         padding-left: 6% !important;
         padding-right: 6% !important;
     }
