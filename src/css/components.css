@@ -487,3 +487,17 @@ html.has-fullpage-background #content {
         background: rgba(255, 255, 255, .10);
     }
 }
+
+/* Home – Search bar gutters desktop (match ~6% site margins) */
+@media (min-width: 769px) {
+    .carousel-includes-search #search-bar-widget.row.search-bar {
+        padding-left: 6% !important;
+        padding-right: 6% !important;
+    }
+
+    /* Keep overlay texts aligned with the same gutter */
+    .carousel-includes-search #search-bar-widget::before,
+    .carousel-includes-search #search-bar-widget::after {
+        left: 6% !important;
+    }
+}
