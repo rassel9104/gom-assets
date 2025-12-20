@@ -247,9 +247,9 @@ hr {
     #header-bar .container {
         width: 100% !important;
         max-width: none !important;
-        padding-left: 7.2rem !important;
+        padding-left: var(--gom-pad-x) !important;
         /* 72px */
-        padding-right: 7.2rem !important;
+        padding-right: var(--gom-pad-x) !important;
         /* 72px */
         margin-left: 0;
         margin-right: 0;
