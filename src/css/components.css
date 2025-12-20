@@ -374,18 +374,20 @@ HERO / CARRUSEL PRINCIPAL
     width: 100% !important;
     max-width: 100%;
     margin: 0;
-    padding: 8.8rem var(--gom-pad-x, 7.2rem) 0;
+    padding: 8.8rem .5rem 0;
     box-sizing: border-box;
 }
 
 .carousel-includes-search #search-bar-widget {
     position: relative;
+    width: 89.72%;
+    margin-left: 4.7%;
 }
 
 .carousel-includes-search #search-bar-widget::before {
     content: "CHOOSE A DATE";
     position: absolute;
-    left: var(--gom-pad-x, 7.2rem);
+    left: .5rem;
     top: .01rem;
     /* 1px */
     font-family: var(--heading-font);
@@ -398,7 +400,7 @@ HERO / CARRUSEL PRINCIPAL
 .carousel-includes-search #search-bar-widget::after {
     content: "Because every getaway deserves a little spark.";
     position: absolute;
-    left: var(--gom-pad-x, 7.2rem);
+    left: .5rem;
     top: 32%;
     font-family: var(--main-font);
     font-size: var(--fs-body);
