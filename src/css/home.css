@@ -539,7 +539,7 @@ hr {
 
     /* 21+ derecha */
     #carousel-hero .carousel-inner::before {
-        content: "21+";
+        content: "30+";
         left: 88.6%;
         font-size: var(--hero-21-fs);
         top: calc(var(--full-h)*0.19);
