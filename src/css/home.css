@@ -845,7 +845,7 @@ hr {
 /*Reviews: contenedor en Home */
 #gom-testimonials.container {
     width: 100%;
-    padding: 6% !important;
+    padding: var(--gom-pad-x) !important;
 }
 
 #gom-testimonials.container .gom-reviews {

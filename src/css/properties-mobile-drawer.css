@@ -51,7 +51,7 @@
     align-items: center !important;
     gap: 1rem !important;
 
-    padding: 0 6% !important;
+    padding: 0 var(--gom-pad-x) !important;
 
     background: rgba(0, 0, 0, .72) !important;
     border: 1px solid rgba(255, 255, 255, .22) !important;
@@ -121,7 +121,7 @@
 
 
   html.multipropertyindex .gom-prop-drawer__panel-inner {
-    padding: 1.2rem 6% 1.4rem !important;
+    padding: 1.2rem var(--gom-pad-x) 1.4rem !important;
   }
 
   /* Ensure moved H2 + Sort stack */

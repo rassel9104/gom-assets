@@ -22,8 +22,8 @@ html.multipropertyindex {
 
 
   /* spacing del overlay */
-  --gom-prop-pad-x: 6%;
-  --gom-prop-pad-b: 6%;
+  --gom-prop-pad-x: 5.14%;
+  --gom-prop-pad-b: 5.14%;
 
   /* UI */
   --gom-prop-border: 1px solid rgba(255, 255, 255, .14);
@@ -1000,7 +1000,9 @@ html.multipropertyindex .datepicker th,
 html.multipropertyindex .datepicker td {
   text-align: center !important;
   border-radius: 0 !important;
-  user-select: none;
+  -webkit-user-select: none !important;
+  -ms-user-select: none !important;
+  user-select: none !important;
 }
 
 /* Header (mes/año + prev/next) */

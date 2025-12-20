@@ -135,8 +135,8 @@
 
     .multihome .col-xs-12 {
         padding-bottom: 6rem;
-        padding-left: 6%;
-        padding-right: 6%;
+        padding-left: var(--gom-pad-x);
+        padding-right: var(--gom-pad-x);
     }
 
     .multihome .property-count {
@@ -190,8 +190,8 @@
 
     /* ===== “Padding interno” (textos/botones), pero NO la imagen ===== */
     .multihome form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
-        padding-left: 6% !important;
-        padding-right: 6% !important;
+        padding-left: var(--gom-pad-x) !important;
+        padding-right: var(--gom-pad-x) !important;
         margin: 0 0 1rem 0 !important;
 
         /* opcional pero útil: evita que el sort se desborde */
@@ -276,7 +276,7 @@
 
     /* Overlay: ajusto padding para móvil (menos “aire” lateral) */
     .multihome .property-result-list .col-sm-8 {
-        padding: 0 6% 6% !important;
+        padding: 0 var(--gom-pad-x) var(--gom-pad-x) !important;
     }
 
     /* Mostrar el botón "Availability" aunque venga con hidden-xs en el HTML */
@@ -438,13 +438,13 @@
         min-height: var(--full-hm) !important;
     }
 
-    /* full-bleed (rompe el container/paddings del theme) + padding interno 6% */
+    /* full-bleed (rompe el container/paddings del theme) + padding interno var(--gom-pad-x) */
     .gomf-wrap {
         min-height: var(--full-hm) !important;
         width: 100vw !important;
         margin-left: calc(50% - 50vw) !important;
-        padding-left: 6% !important;
-        padding-right: 6% !important;
+        padding-left: var(--gom-pad-x) !important;
+        padding-right: var(--gom-pad-x) !important;
         padding-top: clamp(4.8rem, 12vh, 8.8rem) !important;
         padding-bottom: 3.2rem !important;
     }
@@ -520,7 +520,7 @@
 
     /* Overlay: full-bleed + padding interno */
     #header-menu-phone-container {
-        padding: 9.6rem 6% calc(9.6rem + var(--gom-menu-bottom-logo-h)) !important;
+        padding: 9.6rem var(--gom-pad-x) calc(9.6rem + var(--gom-menu-bottom-logo-h)) !important;
     }
 
 
@@ -529,7 +529,7 @@
         content: "" !important;
         position: fixed !important;
         top: calc(env(safe-area-inset-top) + 1.2rem) !important;
-        left: 6% !important;
+        left: var(--gom-pad-x) !important;
         right: auto !important;
 
         width: clamp(18rem, 40vw, 20rem) !important;
@@ -559,7 +559,7 @@
     /* CLOSE pill (reemplaza el CLOSE flotante raro) */
     #header-bar .header-phone a.header-menu-toggle.menu-is-active {
         top: calc(env(safe-area-inset-top) + 1.2rem) !important;
-        right: 6% !important;
+        right: var(--gom-pad-x) !important;
         color: transparent !important;
     }
 
@@ -590,7 +590,7 @@
     /*body.menu-open #header-bar .header-phone .header-links-page .btn {
         position: fixed !important;
         top: calc(env(safe-area-inset-top) + 1.2rem) !important;
-        right: calc(6% + var(--gom-menu-pill-w) + var(--gom-menu-pill-gap)) !important;
+        right: calc(var(--gom-pad-x) + var(--gom-menu-pill-w) + var(--gom-menu-pill-gap)) !important;
 
         z-index: 9995 !important;
 

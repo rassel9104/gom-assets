@@ -147,7 +147,7 @@ body.gom-ov-open {
 /* Desktop layout */
 @media (min-width: 769px) {
     #gom-menu-overlay .gom-ov-wrap {
-        padding: 26px 6% 165px;
+        padding: 26px 5.14% 165px;
     }
 
     #gom-menu-overlay .gom-ov-grid {
