@@ -15,7 +15,7 @@
     --main-font: "Montserrat", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
     --heading-font: var(--main-font);
 
-    --gom-build: "f1122df";
+    --gom-build: "test.1";
 
     /* Colores base (ajustables luego) */
     --color-text: #111;
