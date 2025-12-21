@@ -373,7 +373,7 @@ HERO / CARRUSEL PRINCIPAL
     background: rgba(255, 255, 255, .4) !important;
     width: 100% !important;
     max-width: 100%;
-    margin: 0;
+    margin: 0 var(--gom-pad-x);
     padding: 8.8rem .5rem 0;
     box-sizing: border-box;
 }
