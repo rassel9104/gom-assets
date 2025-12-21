@@ -297,7 +297,7 @@ hr {
 
     #header-bar .header-desktop .header-links .list-inline>li {
         float: none;
-        padding: 0 .8rem;
+        padding: 0;
     }
 
     /* Ocultamos la navegación clásica: los links viven en el overlay */
@@ -376,7 +376,8 @@ hr {
     }
 
     .search-bar .search-bar-button {
-        width: 26.85%;
+        width: 24.4%;
+        padding: 0;
     }
 
     .carousel-includes-search .search-bar .search-bar-button .btn-default {
@@ -537,16 +538,15 @@ hr {
     /* columna 5 */
     #carousel-hero .carousel-inner::after {
         content: "Clothing\A Optional\A Exclusive vibe";
-        left: 71.2%;
+        left: 72.6dvw;
 
     }
 
     /* 21+ derecha */
     #carousel-hero .carousel-inner::before {
         content: "21+";
-        left: 88.6%;
+        right: var(--gom-pad-x);
         font-size: var(--hero-21-fs);
-        top: calc(var(--full-h)*0.19);
         padding: .1rem;
         top: 8dvh;
     }
@@ -904,7 +904,6 @@ hr {
     }
 
     #gom-testimonials.container .gom-reviews {
-        padding: 2.8rem var(--gom-pad-x);
         min-height: var(--full-h);
     }
 
@@ -939,7 +938,6 @@ hr {
     }
 
     #gom-testimonials.container .gom-reviews {
-        padding: 3% var(--gom-pad-x);
         min-height: var(--full-h);
     }
 }
@@ -1022,8 +1020,16 @@ footer {
 
 .gomf-cols a:hover,
 .gomf-cols a:focus {
+    color: var(--mtd) !important;
+    /* evita que OwnerRez/Bootstrap lo oscurezca */
     text-decoration: underline;
 }
+
+.gomf-cols a:visited {
+    color: var(--mtd) !important;
+    /* evita morados/oscurecidos en enlaces visitados */
+}
+
 
 /* Iconos delante de los enlaces (Airbnb, WhatsApp, etc.) */
 .gomf-icon {
@@ -1069,9 +1075,10 @@ footer {
     }
 
     .gomf-cols {
-        grid-template-columns: repeat(3, minmax(33%, 1fr));
-        column-gap: 10%;
-        row-gap: 8.8rem;
+        /* antes: repeat(3, minmax(33%, 1fr)) */
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        column-gap: 1.12dvw;
+        row-gap: 16dvh;
     }
 
     .gomf-cols h4 {
@@ -1090,9 +1097,9 @@ footer {
     }
 
     .gomf-cols {
-        grid-template-columns: repeat(3, minmax(33%, 1fr));
+        grid-template-columns: repeat(4, minmax(18%, 1fr));
         column-gap: 8%;
-        row-gap: 4.0rem;
+        row-gap: 3.6rem;
     }
 
     .gomf-cols h4 {
@@ -1170,5 +1177,26 @@ footer {
     .multihome .carousel-includes-search #search-bar-widget::before,
     .multihome .carousel-includes-search #search-bar-widget::after {
         left: 1.5rem !important;
+    }
+}
+
+/* ================= INTRO HOME — ultrawide only (>=1600px) ================= */
+@media (min-width: 1600px) {
+
+    /* Mantén el diseño actual en pantallas normales; aquí solo controlamos el “estiramiento” */
+    .multihome #gom-intro .col-xs-12.col-sm-11.col-md-10 {
+        /* Evita que el bloque interior se vaya a ~1700px en 1920+ */
+        max-width: 128rem;
+        /* ~1280px */
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .multihome #gom-intro .gom-intro-text {
+        /* Controla el ancho del texto multi-columna para que envuelva más */
+        max-width: 110rem;
+        /* ~1100px */
+        width: 100%;
+        column-fill: balance;
     }
 }

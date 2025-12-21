@@ -51,11 +51,11 @@ body.gom-ov-open {
 
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     gap: 12px;
 
     padding: 10px 0 12px;
-    background: linear-gradient(to bottom, rgba(0, 0, 0, .96), rgba(0, 0, 0, .72), rgba(0, 0, 0, 0));
+    background: transparent;
 }
 
 #gom-menu-overlay .gom-ov-mark {
@@ -64,26 +64,52 @@ body.gom-ov-open {
     font-size: 12px;
     opacity: .85;
     white-space: nowrap;
+    display: none;
 }
 
-#gom-menu-overlay .gom-ov-close {
-    appearance: none;
-    border: 1px solid rgba(255, 255, 255, .35);
-    background: rgba(255, 255, 255, .06);
-    color: rgba(255, 255, 255, .92);
+#gom-menu-overlay .gom-ov-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-    padding: 6px 12px;
+#gom-menu-overlay .gom-ov-action {
+    appearance: none;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+
+    padding: 0 1.6rem;
     border-radius: 0;
+    min-width: var(--header-btn-minw);
+    height: var(--header-btn-h);
 
     letter-spacing: .16em;
     text-transform: uppercase;
-    font-size: 12px !important;
+    font-size: var(--header-btn-fs) !important;
+    font-weight: var(--fw-semibold);
+    font-family: var(--main-font);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    line-height: 1;
     cursor: pointer;
+    white-space: nowrap;
+    box-sizing: border-box;
 }
 
-#gom-menu-overlay .gom-ov-close:hover {
+#gom-menu-overlay .gom-ov-action:hover {
     background: rgba(255, 255, 255, .10);
-    border-color: rgba(255, 255, 255, .45);
+}
+
+#gom-menu-overlay .gom-ov-book {
+    background: #fff;
+    color: #000;
+}
+
+#gom-menu-overlay .gom-ov-book:hover {
+    background: #f2f2f2;
 }
 
 /* Grid */
@@ -101,7 +127,7 @@ body.gom-ov-open {
 /* Sections */
 #gom-menu-overlay .gom-ov-sec {
     padding-top: 14px;
-    border-top: 1px solid rgba(255, 255, 255, .14);
+    border-top: 0;
 }
 
 #gom-menu-overlay .gom-ov-h3 {
@@ -125,7 +151,7 @@ body.gom-ov-open {
     letter-spacing: .06em;
     font-size: 1.1rem !important;
 
-    border-bottom: 1px solid rgba(255, 255, 255, .06);
+    border-bottom: 0;
 }
 
 #gom-menu-overlay .gom-ov-links a:last-child {
@@ -151,7 +177,7 @@ body.gom-ov-open {
     }
 
     #gom-menu-overlay .gom-ov-grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 44px;
         padding-top: .8rem;
     }

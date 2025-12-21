@@ -957,6 +957,12 @@ html.multipropertyindex .amenity-summary-size span:not(.gom-pill) {
   }
 }
 
+/*@media (min-width: 1600px) {
+  html.multipropertyindex {
+    font-size: 80%;
+  }
+}*/
+
 /* =========================================================
    DATEPICKER (bootstrap-datepicker) — premium glass theme
    ========================================================= */

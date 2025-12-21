@@ -52,6 +52,31 @@
         return mobile || null;
     }
 
+    function getBookNowHref() {
+        var root = document.getElementById('header-bar') || document;
+        var direct = root.querySelector('.header-links-page a, .header-links-page .btn');
+        if (direct && direct.getAttribute('href')) return direct.getAttribute('href');
+
+        var links = root.querySelectorAll('a');
+        for (var i = 0; i < links.length; i++) {
+            var text = (links[i].textContent || '').trim().toUpperCase();
+            if (text.indexOf('BOOK') > -1) {
+                var href = links[i].getAttribute('href');
+                if (href) return href;
+            }
+        }
+
+        return '#';
+    }
+
+    function syncBookNowHref(ov) {
+        if (!ov) return;
+        var link = ov.querySelector('.gom-ov-book');
+        if (!link) return;
+        var href = getBookNowHref();
+        if (href) link.setAttribute('href', href);
+    }
+
     function parseMenu() {
         var root = getSourceRoot();
         if (!root) return [];
@@ -88,6 +113,7 @@
         ov.setAttribute('aria-label', 'Menu');
 
         var year = (new Date()).getFullYear();
+        var bookHref = getBookNowHref();
 
         ov.innerHTML = `
       <div class="gom-ov-wrap">
@@ -114,6 +140,27 @@
         <img src="${BRAND.logo}" alt="${BRAND.brandName}">
       </a>
     `;
+
+        var top = ov.querySelector('.gom-ov-top');
+        if (top) {
+            var actions = document.createElement('div');
+            actions.className = 'gom-ov-actions';
+
+            var book = document.createElement('a');
+            book.className = 'gom-ov-action gom-ov-book';
+            book.setAttribute('href', bookHref);
+            book.textContent = 'BOOK NOW';
+
+            var close = document.createElement('button');
+            close.type = 'button';
+            close.className = 'gom-ov-action gom-ov-close';
+            close.textContent = 'CLOSE';
+
+            actions.appendChild(book);
+            actions.appendChild(close);
+            top.innerHTML = '';
+            top.appendChild(actions);
+        }
 
         // Click outside closes
         ov.addEventListener('click', function (e) {
@@ -147,6 +194,7 @@
         });
 
         document.body.appendChild(ov);
+        syncBookNowHref(ov);
         return ov;
     }
 
@@ -163,6 +211,7 @@
         if (!grid) return;
 
         var data = parseMenu();
+        syncBookNowHref(ov);
 
         // Let CSS Grid handle 2 cols (<=768) and 3 cols (>=769)
         grid.innerHTML = data.map(function (sec) {

@@ -447,6 +447,7 @@
         padding-right: var(--gom-pad-x) !important;
         padding-top: clamp(4.8rem, 12vh, 8.8rem) !important;
         padding-bottom: 3.2rem !important;
+        background-image: none !important;
     }
 
     /* 2 columnas en móvil (ya no 1) */
@@ -456,10 +457,10 @@
         row-gap: 16% !important;
     }
 
-    /* Ocultar Bloque Also Present in */
+    /* Ocultar Bloque Also Present in
     .gomf-cols>div:nth-child(4) {
         display: none;
-    }
+    } */
 
     .gomf-cols li+li {
         margin-top: 0;
