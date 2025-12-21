@@ -1,17 +1,1 @@
 @import "./home.css";
-/* HOME (multihome) — Search bar gutters desktop (match ~6% site margins) */
-@media (min-width: 769px) {
-    html.multihome .carousel-includes-search #search-bar-widget.row.search-bar {
-        /* mantiene tu top padding, cambia solo gutters */
-        padding: 8.8rem var(--gom-pad-x) 0 !important;
-
-        /* neutraliza hacks previos que puedan existir en otros archivos */
-        width: 100% !important;
-        margin-left: 0 !important;
-    }
-
-    html.multihome .carousel-includes-search #search-bar-widget::before,
-    html.multihome .carousel-includes-search #search-bar-widget::after {
-        left: var(--gom-pad-x) !important;
-    }
-}

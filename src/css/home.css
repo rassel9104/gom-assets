@@ -539,7 +539,7 @@ hr {
 
     /* 21+ derecha */
     #carousel-hero .carousel-inner::before {
-        content: "30+";
+        content: "21+";
         left: 88.6%;
         font-size: var(--hero-21-fs);
         top: calc(var(--full-h)*0.19);
@@ -1119,4 +1119,33 @@ footer {
     color: rgba(255, 255, 255, 0.9);
     margin: 0 auto;
     max-width: 72rem;
+}
+
+/* =========================================================
+   HOME (desktop >= 769px) — Search bar con gutter consistente
+   Objetivo: que la “caja” del widget (fondo glass) NO sea 100vw
+   sin romper el layout interno (Arrival/Departure/Search).
+   ========================================================= */
+@media (min-width: 769px) {
+    html.multihome .carousel-includes-search #search-bar-widget.row.search-bar {
+        /* La caja completa respeta el gutter del sitio */
+        width: calc(100% - (var(--gom-pad-x) * 2)) !important;
+        margin: 0 var(--gom-pad-x) !important;
+
+        /* Evita “doble offset” por padding lateral grande */
+        padding-left: 0.5rem !important;
+        padding-right: 0.5rem !important;
+
+        /* Mantén tu padding-top actual (si tu diseño depende de él) */
+        /* Si ya tienes otro padding-top en cascada, no lo peleo aquí */
+        box-sizing: border-box !important;
+    }
+
+    /* Los textos "CHOOSE A DATE" / subtítulo deben alinearse con el contenido,
+     no con el gutter (no uses var(--gom-pad-x) aquí). */
+    html.multihome .carousel-includes-search #search-bar-widget::before,
+    html.multihome .carousel-includes-search #search-bar-widget::after {
+        left: 1.5rem !important;
+        /* ~15px: coincide mejor con padding bootstrap */
+    }
 }
