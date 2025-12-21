@@ -381,7 +381,7 @@ HERO / CARRUSEL PRINCIPAL
 .carousel-includes-search #search-bar-widget {
     position: relative;
     width: 89.72% !important;
-    margin-left: 4.2%;
+    margin-left: var(--gom-pad-x);
 }
 
 .carousel-includes-search #search-bar-widget::before {
