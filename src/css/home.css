@@ -1122,8 +1122,8 @@ footer {
 }
 
 /* =========================================================
-   HOME (desktop >= 769px) — Search bar con gutter consistente
-   Objetivo: que la “caja” del widget (fondo glass) NO sea 100vw
+   HOME (desktop >= 769px) - Search bar con gutter consistente
+   Objetivo: que la "caja" del widget (fondo glass) NO sea 100vw
    sin romper el layout interno (Arrival/Departure/Search).
    ========================================================= */
 @media (min-width: 769px) {
@@ -1132,7 +1132,7 @@ footer {
         width: calc(100% - (var(--gom-pad-x) * 2)) !important;
         margin: 0 var(--gom-pad-x) !important;
 
-        /* Evita “doble offset” por padding lateral grande */
+        /* Evita "doble offset" por padding lateral grande */
         padding-left: 0.5rem !important;
         padding-right: 0.5rem !important;
 
