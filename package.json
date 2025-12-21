@@ -2,7 +2,8 @@
     "name": "gom-assets",
     "private": true,
     "scripts": {
-        "build:css": "postcss src/css/gom-global.css -o dist/gom-global.min.css && postcss src/css/gom-home.css -o dist/gom-home.min.css && postcss src/css/gom-properties.css -o dist/gom-properties.min.css && postcss src/css/gom-menu-overlay.css -o dist/gom-menu-overlay.min.css",
+        "build:css": "postcss src/css/gom-global.css -o dist/gom-global.min.css && postcss src/css/gom-home.css -o dist/gom-home.min.css && postcss src/css/gom-properties.css -o dist/gom-properties.min.css && postcss src/css/gom-menu-overlay.css -o dist/gom-menu-overlay.min.css && postcss src/css/widget_reviews.css -o dist/gom-widget_reviews.min.css",
+        "build:ovr": "postcss src/css/gom-global.css -o src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@main/dist/gom-global.min.css && postcss src/css/gom-home.css -o src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@main/dist/gom-home.min.css && postcss src/css/gom-properties.css -o src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@main/dist/gom-properties.min.css && postcss src/css/gom-menu-overlay.css -o src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@main/dist/gom-menu-overlay.min.css",
         "watch:css": "chokidar \"src/css//*.css\" -c \"npm run build:css\"",
         "build": "npm run build:css",
         "dev:push": "npm run build && git add -A && (git diff --cached --quiet || git commit -m \"dev\") && git push origin main && powershell -NoProfile -ExecutionPolicy Bypass -File tools/purge-jsdelivr.ps1 -Ref main",

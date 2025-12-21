@@ -380,7 +380,7 @@ HERO / CARRUSEL PRINCIPAL
 
 .carousel-includes-search #search-bar-widget {
     position: relative;
-    width: 89.72% !important;
+    width: calc(100 - var(--gom-pad-x)*2) !important;
     margin-left: var(--gom-pad-x);
 }
 

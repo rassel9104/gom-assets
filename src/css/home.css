@@ -375,8 +375,12 @@ hr {
         font-size: 1em;
     }
 
+    .search-bar .search-bar-button {
+        width: 26.85%;
+    }
+
     .carousel-includes-search .search-bar .search-bar-button .btn-default {
-        width: 32rem !important;
+        width: 100% !important;
     }
 
 
@@ -489,7 +493,7 @@ hr {
     #carousel-hero .carousel-inner::before,
     #carousel-hero .carousel-inner::after {
         position: absolute;
-        top: calc(var(--full-h)*0.2);
+        top: calc(var(--full-h)*.1);
         /* header 72px */
         font-family: var(--heading-font);
         font-weight: var(--fw-regular);
@@ -533,7 +537,7 @@ hr {
     /* columna 5 */
     #carousel-hero .carousel-inner::after {
         content: "Clothing\A Optional\A Exclusive vibe";
-        left: 72.3%;
+        left: 71.2%;
 
     }
 
@@ -543,6 +547,8 @@ hr {
         left: 88.6%;
         font-size: var(--hero-21-fs);
         top: calc(var(--full-h)*0.19);
+        padding: .1rem;
+        top: 8dvh;
     }
 
 
