@@ -1149,3 +1149,20 @@ footer {
         /* ~15px: coincide mejor con padding bootstrap */
     }
 }
+
+@media (min-width: 769px) {
+    .multihome .carousel-includes-search #search-bar-widget.row.search-bar {
+        box-sizing: border-box !important;
+        margin: 0 var(--gom-pad-x) !important;
+        width: calc(100% - (var(--gom-pad-x) * 2)) !important;
+
+        /* gutter interno del row (puedes ajustar si quieres) */
+        padding-left: .5rem !important;
+        padding-right: .5rem !important;
+    }
+
+    .multihome .carousel-includes-search #search-bar-widget::before,
+    .multihome .carousel-includes-search #search-bar-widget::after {
+        left: 1.5rem !important;
+    }
+}
