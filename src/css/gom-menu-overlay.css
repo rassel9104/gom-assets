@@ -45,32 +45,39 @@ body.gom-ov-open {
 
 /* Top bar */
 #gom-menu-overlay .gom-ov-top {
+    display: flex;
+    justify-content: space-between;
+    /* antes: flex-end */
+    gap: 12px;
+    padding: 10px 0 12px;
     position: sticky;
     top: 0;
     z-index: 3;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    gap: 12px;
-
-    padding: clamp(1.6rem, 2vh, 2.4rem) 0;
-    background: transparent;
 }
 
 #gom-menu-overlay .gom-ov-mark {
+    display: block;
+    /* antes: none */
+    font-size: var(--fs-body);
     letter-spacing: .18em;
-    text-transform: uppercase;
-    font-size: 12px;
     opacity: .85;
+    text-transform: uppercase;
     white-space: nowrap;
-    display: none;
 }
 
-#gom-menu-overlay .gom-ov-action {
+#gom-menu-overlay .gom-ov-mark .gom-ov-mark-sub {
+    display: block;
+    margin-top: 4px;
+    letter-spacing: .12em;
+    opacity: .75;
+    font-size: calc(var(--fs-body)-.1rem);
+    text-transform: uppercase;
+}
+
+#gom-menu-overlay .gom-ov-actions {
     display: flex;
     align-items: center;
-    gap: .8rem;
+    gap: 1.2rem;
 }
 
 #gom-menu-overlay .gom-ov-action {
@@ -165,7 +172,7 @@ body.gom-ov-open {
 /* Desktop layout */
 @media (min-width: 769px) {
     #gom-menu-overlay .gom-ov-wrap {
-        padding: 5px 5.14% 165px;
+        padding: 1.6rem 5.14% 165px;
     }
 
     #gom-menu-overlay .gom-ov-grid {
@@ -269,7 +276,7 @@ body.gom-ov-open {
     }
 
     #gom-menu-overlay .gom-ov-sig img {
-        width: 24rem;
+        width: 32rem;
         height: auto;
         display: block;
         filter: drop-shadow(0 10px 22px rgba(0, 0, 0, .55));
@@ -290,20 +297,37 @@ body.gom-ov-open {
         gap: 16px;
     }
 
-    #gom-menu-overlay .gom-ov-action {
-        align-items: flex-end !important;
-        gap: .8rem;
+    #gom-menu-overlay .gom-ov-actions {
+        display: flex;
         flex-direction: column-reverse;
+        align-items: center;
+        gap: .8rem;
+        align-items: center;
+    }
+
+    #gom-menu-overlay .gom-ov-action {
         height: 3rem;
         width: 11.8rem !important;
         min-width: 11.8rem !important;
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: center;
     }
 
     #gom-menu-overlay .gom-ov-wrap {
         padding: 0.5rem 5.5% 150px !important;
     }
 
-    #gom-menu-overlay .gom-ov-logo {
+    #gom-menu-overlay .gom-ov-logo,
+    #gom-menu-overlay .gom-ov-sig img {
         width: 24dvh !important;
+    }
+
+    #gom-menu-overlay .gom-ov-top {
+        padding: clamp(.8rem, 1vh, 1.6rem) 0;
+    }
+
+    #gom-menu-overlay .gom-ov-mark {
+        margin-top: 1.2rem;
     }
 }
