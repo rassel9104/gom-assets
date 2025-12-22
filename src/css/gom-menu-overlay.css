@@ -67,10 +67,10 @@ body.gom-ov-open {
     display: none;
 }
 
-#gom-menu-overlay .gom-ov-actions {
+#gom-menu-overlay .gom-ov-action {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: .8rem;
 }
 
 #gom-menu-overlay .gom-ov-action {
@@ -290,7 +290,7 @@ body.gom-ov-open {
         gap: 16px;
     }
 
-    #gom-menu-overlay .gom-ov-actions {
+    #gom-menu-overlay .gom-ov-action {
         align-items: flex-end !important;
         gap: .8rem;
         flex-direction: column-reverse;
