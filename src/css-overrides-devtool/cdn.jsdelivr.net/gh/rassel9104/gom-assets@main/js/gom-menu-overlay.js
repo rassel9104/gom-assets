@@ -7,6 +7,7 @@
  *  4) Mobile: 2 columns + smaller typography (handled in CSS)
  *  5) Keeps /properties drawer compatibility (stopImmediatePropagation + close drawer)
  */
+console.log("[GOM OVERRIDE] gom-menu-overlay.js active", new Date().toISOString());
 (function () {
     'use strict';
 
@@ -146,18 +147,18 @@
             var actions = document.createElement('div');
             actions.className = 'gom-ov-actions';
 
-            var book = document.createElement('a');
-            book.className = 'gom-ov-action gom-ov-book';
-            book.setAttribute('href', bookHref);
-            book.textContent = 'BOOK NOW';
-
             var close = document.createElement('button');
             close.type = 'button';
             close.className = 'gom-ov-action gom-ov-close';
             close.textContent = 'CLOSE';
 
-            actions.appendChild(book);
+            var book = document.createElement('a');
+            book.className = 'gom-ov-action gom-ov-book';
+            book.setAttribute('href', bookHref);
+            book.textContent = 'BOOK NOW';
+
             actions.appendChild(close);
+            actions.appendChild(book);
             top.innerHTML = '';
             top.appendChild(actions);
         }
@@ -327,3 +328,4 @@
         bindTriggers();
     });
 })();
+
