@@ -100,6 +100,14 @@
     /* altura base de cada card (~636px) */
     --rooms-btn-h: 4rem;
     /* altura de botones Photos/Details/etc. */
+
+    /* Dropdown (global) — “glass” */
+    --gom-dd-glass: rgba(0, 0, 0, .58);
+    --gom-dd-border: 1px solid rgba(255, 255, 255, .22);
+    --gom-dd-text: rgba(255, 255, 255, .86);
+    --gom-dd-hover-bg: rgba(255, 255, 255, .12);
+    --gom-dd-blur: 1rem;
+
 }
 
 html {

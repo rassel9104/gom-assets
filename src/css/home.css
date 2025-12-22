@@ -214,8 +214,6 @@ hr {
 
 /* Lista desplegable del sort */
 .multihome .sort-selector .dropdown-menu {
-    border-radius: 0;
-    border: 1px solid #000;
     font-size: var(--fs-body);
 }
 

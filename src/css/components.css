@@ -380,7 +380,7 @@ HERO / CARRUSEL PRINCIPAL
 
 .carousel-includes-search #search-bar-widget {
     position: relative;
-    width: calc(100 - var(--gom-pad-x)*2) !important;
+    width: calc(100% - var(--gom-pad-x)*2) !important;
     margin-left: var(--gom-pad-x);
 }
 
@@ -487,5 +487,261 @@ html.has-fullpage-background #content {
 
     #header-menu-phone-container .gom-menu-brand .gom-wa:hover {
         background: rgba(255, 255, 255, .10);
+    }
+}
+
+
+/* =========================================================
+   DROPDOWN (GLOBAL) — consistente con el look “glass”
+   Aplica SOLO a dropdowns reales abiertos (Bootstrap 3)
+   y evita afectar el menú móvil inyectado de OwnerRez.
+   ========================================================= */
+
+/* Dropdowns normales (cuando están abiertos) */
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) {
+    background: var(--gom-dd-glass) !important;
+    border: var(--gom-dd-border) !important;
+    border-radius: 0 !important;
+    padding: .45rem 0 !important;
+
+    -webkit-backdrop-filter: blur(var(--gom-dd-blur));
+    backdrop-filter: blur(var(--gom-dd-blur));
+
+    margin-top: .4rem !important;
+    min-width: 100% !important;
+    right: auto !important;
+    width: 100% !important;
+
+    box-shadow: none !important;
+    z-index: 1000 !important;
+}
+
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li>a,
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) .dropdown-item {
+    color: var(--gom-dd-text) !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    font-size: 1.15rem !important;
+}
+
+/* Hover/active */
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li>a:hover,
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li.active>a,
+.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) .dropdown-item:hover {
+    background: var(--gom-dd-hover-bg) !important;
+    color: #fff !important;
+}
+
+/* Reset explícito para el menú móvil inyectado (NO lo queremos “glass”) */
+#header-menu-phone-container .dropdown-menu {
+    background: transparent !important;
+    border: 0 !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+}
+
+@media (max-width:768px) {
+    .multihome .open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) {
+        margin-top: -3.6rem !important;
+    }
+}
+
+/* =========================================================
+   DATEPICKER (bootstrap-datepicker) — GOM “glass” skin
+   Afecta solo a .datepicker* (no toca otras tablas/dropdowns)
+   ========================================================= */
+
+:root {
+    --gom-dp-bg: rgba(0, 0, 0, .72);
+    --gom-dp-border: 1px solid rgba(255, 255, 255, .22);
+    --gom-dp-text: rgba(255, 255, 255, .88);
+    --gom-dp-muted: rgba(255, 255, 255, .55);
+    --gom-dp-hover: rgba(255, 255, 255, .12);
+    --gom-dp-active: rgba(255, 255, 255, .18);
+    --gom-dp-blur: 1rem;
+    --gom-dp-radius: 0px;
+    --gom-dp-cell: 3.2rem;
+}
+
+.datepicker.datepicker-dropdown {
+    background: var(--gom-dp-bg) !important;
+    border: var(--gom-dp-border) !important;
+    border-radius: var(--gom-dp-radius) !important;
+
+    -webkit-backdrop-filter: blur(var(--gom-dp-blur));
+    backdrop-filter: blur(var(--gom-dp-blur));
+
+    box-shadow: none !important;
+    padding: .6rem .8rem !important;
+    left: 0 !important;
+    right: auto !important;
+
+    /* sube por encima de cosas del layout; si se te va “muy arriba”, lo bajamos en Paso 2 */
+    z-index: 3000 !important;
+}
+
+/* Triangulito (si el plugin lo usa) */
+.datepicker-dropdown:before,
+.datepicker-dropdown:after {
+    border-bottom-color: rgba(255, 255, 255, .22) !important;
+}
+
+.datepicker-dropdown:after {
+    border-bottom-color: rgba(0, 0, 0, .72) !important;
+}
+
+/* Tabla base */
+.datepicker table.table-condensed {
+    width: 100%;
+}
+
+.datepicker th,
+.datepicker td {
+    color: var(--gom-dp-text) !important;
+    border-radius: 0 !important;
+    text-shadow: none !important;
+}
+
+.datepicker .dow {
+    color: var(--gom-dp-muted) !important;
+    font-weight: 500 !important;
+    letter-spacing: .12em !important;
+    text-transform: uppercase !important;
+    font-size: 1.05rem !important;
+}
+
+/* Header: mes/año + flechas */
+.datepicker .datepicker-switch {
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    font-weight: 600 !important;
+    font-size: 1.15rem !important;
+}
+
+.datepicker .prev,
+.datepicker .next {
+    width: var(--gom-dp-cell) !important;
+    height: var(--gom-dp-cell) !important;
+    line-height: var(--gom-dp-cell) !important;
+    font-size: 1.6rem !important;
+    color: var(--gom-dp-text) !important;
+}
+
+.datepicker .prev:hover,
+.datepicker .next:hover,
+.datepicker .datepicker-switch:hover {
+    background: var(--gom-dp-hover) !important;
+}
+
+/* Días */
+.datepicker td.day {
+    width: var(--gom-dp-cell) !important;
+    height: var(--gom-dp-cell) !important;
+    line-height: var(--gom-dp-cell) !important;
+    font-size: 1.15rem !important;
+    letter-spacing: .02em !important;
+}
+
+.datepicker td.day:hover {
+    background: var(--gom-dp-hover) !important;
+}
+
+/* Disabled / old / new */
+.datepicker td.disabled,
+.datepicker td.disabled:hover {
+    opacity: .35 !important;
+    cursor: not-allowed !important;
+    background: transparent !important;
+}
+
+.datepicker td.old,
+.datepicker td.new {
+    color: rgba(255, 255, 255, .45) !important;
+}
+
+/* Today */
+.datepicker td.today {
+    outline: 1px solid rgba(255, 255, 255, .35) !important;
+    background: transparent !important;
+}
+
+/* Selected (active) */
+.datepicker td.active,
+.datepicker td.active:hover,
+.datepicker td.day.active {
+    background: var(--gom-dp-active) !important;
+    outline: 1px solid rgba(255, 255, 255, .55) !important;
+    color: #fff !important;
+}
+
+/* Footer buttons (Clear / Today si aparece) */
+.datepicker tfoot th.clear,
+.datepicker tfoot th.today {
+    color: var(--gom-dp-text) !important;
+    letter-spacing: .14em !important;
+    text-transform: uppercase !important;
+    font-size: 1.05rem !important;
+    padding: .9rem 0 .2rem !important;
+}
+
+.datepicker tfoot th.clear:hover,
+.datepicker tfoot th.today:hover {
+    background: var(--gom-dp-hover) !important;
+}
+
+
+
+/* ===== Datepicker — mínimos solicitados ===== */
+
+/* 1) Ancho 100% del popup y de su tabla */
+.datepicker.datepicker-dropdown {
+    width: 94% !important;
+    min-width: 94% !important;
+    left: 0 !important;
+    right: auto !important;
+    box-sizing: border-box !important;
+}
+
+.datepicker.datepicker-dropdown .table-condensed {
+    width: 100% !important;
+}
+
+/* 2) “Hoy” más visible (sin llenar el fondo) */
+.datepicker td.today {
+    outline: 2px solid rgba(255, 255, 255, .70) !important;
+    outline-offset: -2px !important;
+    background: rgba(255, 255, 255, .08) !important;
+    font-weight: 600 !important;
+}
+
+/* 3) Fechas no disponibles (disabled) más claras */
+.datepicker td.disabled,
+.datepicker td.disabled:hover {
+    opacity: .25 !important;
+    text-decoration: line-through !important;
+    background: transparent !important;
+}
+
+/* 4) Mes anterior/siguiente (old/new) más sutil */
+.datepicker td.old,
+.datepicker td.new {
+    color: rgba(255, 255, 255, .38) !important;
+}
+
+/* 5) Selección activa bien definida */
+.datepicker td.active,
+.datepicker td.active:hover {
+    background: rgba(255, 255, 255, .20) !important;
+    outline: 2px solid rgba(255, 255, 255, .85) !important;
+    outline-offset: -2px !important;
+    font-weight: 700 !important;
+}
+
+@media (min-width:769px) {
+    .datepicker.datepicker-dropdown {
+        min-width: 25% !important;
+        width: 73% !important;
     }
 }
