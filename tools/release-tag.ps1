@@ -57,6 +57,7 @@ $paths = @(
   "dist/gom-home.min.css",
   "dist/gom-properties.min.css",
   "dist/gom-menu-overlay.min.css",
+  "dist/gom-book.min.css",
   "js/gom-menu-overlay.js",
   "js/gom-properties-mobile-drawer.js"
 )
