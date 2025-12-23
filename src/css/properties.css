@@ -230,6 +230,7 @@ html.multipropertyindex #search-bar-widget .search-bar-button .btn {
   color: #fff !important;
   letter-spacing: .14em !important;
   text-transform: uppercase !important;
+  margin-left: auto !important;
 }
 
 html.multipropertyindex #search-bar-widget .search-bar-button .btn:hover {
