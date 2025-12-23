@@ -141,6 +141,7 @@
       </a>
     `;
 
+        // ...dentro de buildOverlayOnce(), en el bloque:  var top = ov.querySelector('.gom-ov-top');
         var top = ov.querySelector('.gom-ov-top');
         if (top) {
             var actions = document.createElement('div');
@@ -158,7 +159,19 @@
 
             actions.appendChild(close);
             actions.appendChild(book);
+
+            // 👇 NUEVO: marca/“welcome” a la izquierda
+            var mark = document.createElement('div');
+            mark.className = 'gom-ov-mark';
+            mark.textContent = 'WELCOME';
+
+            var sub = document.createElement('span');
+            sub.className = 'gom-ov-mark-sub';
+            sub.textContent = BRAND.brandName; // "Garden of Manors"
+            mark.appendChild(sub);
+
             top.innerHTML = '';
+            top.appendChild(mark);
             top.appendChild(actions);
         }
 
