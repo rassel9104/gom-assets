@@ -1,108 +1,131 @@
 /* =========================================================
-   BOOK PAGE (html.multibook) — HERO + overlay widget
+   BOOK (html.multibook) — Background fijo + overlay base
+   Objetivo: el fondo vive “siempre”, el contenido crece sin romper.
    ========================================================= */
 
 html.multibook {
-    --gom-book-hero-h: var(--full-h);
-    --gom-book-copy-top: clamp(6rem, 9vh, 11rem);
-    --gom-book-card-w: 64rem;
-
-    --gom-book-card-bg: rgba(255, 255, 255, .86);
-    --gom-book-card-bd: 1px solid rgba(0, 0, 0, .10);
-    --gom-book-card-shadow: 0 18px 48px rgba(0, 0, 0, .22);
+    --gom-book-bg: url("https://uc.orez.io/f/d3c52909359543bcbba9406f36302e70");
 }
 
-/* En /book, el container de OR no debe limitar el full-bleed del hero */
+/* Fuerza el fondo aunque exista inline background (lo pisa con !important) */
+html.multibook body {
+    background: var(--gom-book-bg) center / cover no-repeat fixed !important;
+}
+
+/* En mobile iOS, fixed suele dar glitches: usamos scroll */
+@media (max-width: 768px) {
+    html.multibook body {
+        background-attachment: scroll !important;
+    }
+}
+
+/* Overlay para legibilidad (no toca header/footer; queda detrás) */
+html.multibook body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+
+    background:
+        radial-gradient(1200px 700px at 15% 20%, rgba(0, 0, 0, .55), rgba(0, 0, 0, .20) 55%, rgba(0, 0, 0, .10) 100%),
+        linear-gradient(180deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .15));
+}
+
+/* Asegura que el contenido quede por encima del overlay */
+html.multibook #header-bar,
+html.multibook #content,
+html.multibook footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* El contenido no debe traer fondos por defecto */
+html.multibook #content {
+    background: transparent !important;
+}
+
+/* =========================================================
+   BOOK — Content rail (gom-pad-x) + hero copy + widget card
+   ========================================================= */
+
+html.multibook {
+    --gom-book-top-pad: clamp(5.6rem, 7vh, 9.2rem);
+    --gom-book-gap-1: 1.2rem;
+    --gom-book-gap-2: 2.4rem;
+
+    --gom-book-card-w: 78rem;
+    /* ajustable luego */
+    --gom-book-card-bg: rgba(255, 255, 255, .86);
+    --gom-book-card-bd: 1px solid rgba(255, 255, 255, .22);
+    --gom-book-card-shadow: 0 18px 48px rgba(0, 0, 0, .28);
+}
+
+/* No dejes que #content cree “caja blanca” */
 html.multibook #content.container {
+    background: transparent !important;
     max-width: 100% !important;
     width: 100% !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
 }
 
+/* Rail general: todo lo que sea body-content, alineado a gom-pad-x */
 html.multibook #content .body-content {
-    position: relative;
-}
-
-/* HERO full-bleed (la imagen viene del inline var --gom-book-hero-img) */
-html.multibook #gom-book-hero {
-    position: relative;
-    min-height: var(--gom-book-hero-h);
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-
-    background-image: var(--gom-book-hero-img);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-}
-
-html.multibook #gom-book-hero::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(90deg,
-            rgba(0, 0, 0, .58),
-            rgba(0, 0, 0, .22) 55%,
-            rgba(0, 0, 0, .06));
-    pointer-events: none;
-}
-
-/* Sube el primer bloque de contenido (donde OR imprime H1/Lead) encima del hero */
-html.multibook #gom-book-hero+.row {
-    margin-top: calc(var(--gom-book-hero-h) * -1) !important;
-    padding-top: var(--gom-book-copy-top) !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    position: relative;
-    z-index: 2;
-}
-
-/* Asegura padding lateral consistente (gom-pad-x) */
-html.multibook #gom-book-hero+.row>[class*="col-"] {
     padding-left: var(--gom-pad-x) !important;
     padding-right: var(--gom-pad-x) !important;
+    padding-top: var(--gom-book-top-pad) !important;
+    padding-bottom: clamp(6rem, 10vh, 12rem) !important;
 }
 
-/* Title/Lead nativos de OR */
+/* Evita márgenes bootstrap “raros” en este rail */
+html.multibook #content .body-content>.row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+html.multibook #content .body-content>.row>[class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+
+/* H1/Lead: premium sobre fondo */
 html.multibook #content h1.page-header {
-    color: #fff !important;
-    text-transform: uppercase;
-    letter-spacing: .08em;
-    font-weight: 400;
-    font-size: clamp(4.2rem, 5vw, 7.2rem) !important;
-    line-height: .95;
     margin: 0 !important;
     border: 0 !important;
+    padding: 0 !important;
+
+    color: #fff !important;
+    text-transform: uppercase;
+    letter-spacing: .10em;
+    font-weight: 400;
+    line-height: .95;
+    font-size: clamp(4.2rem, 5.2vw, 7.2rem) !important;
+    text-shadow: 0 14px 34px rgba(0, 0, 0, .38);
 }
 
 html.multibook #content .lead {
+    margin: var(--gom-book-gap-1) 0 0 !important;
+    padding: 0 !important;
+
     color: rgba(255, 255, 255, .86) !important;
-    text-shadow: 0 10px 28px rgba(0, 0, 0, .35);
-    max-width: 70ch;
-    margin: 1.2rem 0 0 !important;
-    padding-left: var(--gom-pad-x) !important;
-    padding-right: var(--gom-pad-x) !important;
+    max-width: 72ch;
+    text-shadow: 0 14px 34px rgba(0, 0, 0, .32);
 }
 
-/* WIDGET encima del hero (card externa, aún sin skin interno del iframe) */
+/* Widget card (solo contenedor externo, el iframe aún intacto) */
 html.multibook #content .ownerrez-widget {
+    margin-top: var(--gom-book-gap-2) !important;
     max-width: var(--gom-book-card-w);
-    margin-left: var(--gom-pad-x) !important;
-    margin-right: auto !important;
-    margin-top: 2.4rem !important;
-
-    position: relative;
-    z-index: 3;
+    width: 100%;
 
     background: var(--gom-book-card-bg);
     border: var(--gom-book-card-bd);
     border-radius: 0;
     box-shadow: var(--gom-book-card-shadow);
 
-    -webkit-backdrop-filter: blur(12px);
-    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
 
     padding: 1.6rem;
     overflow: hidden;
@@ -117,19 +140,16 @@ html.multibook #content .ownerrez-widget iframe {
 /* Mobile */
 @media (max-width: 768px) {
     html.multibook {
-        --gom-book-hero-h: 72svh;
-        --gom-book-copy-top: clamp(5.2rem, 7vh, 8.2rem);
-    }
-
-    html.multibook #content .ownerrez-widget {
-        max-width: calc(100% - (var(--gom-pad-x) * 2));
-        margin-left: var(--gom-pad-x) !important;
-        margin-right: var(--gom-pad-x) !important;
-        padding: 1.2rem;
-        margin-top: 1.6rem !important;
+        --gom-book-top-pad: clamp(4.4rem, 6vh, 6.6rem);
+        --gom-book-card-w: 100%;
     }
 
     html.multibook #content h1.page-header {
         font-size: clamp(3.2rem, 9vw, 4.8rem) !important;
+        letter-spacing: .08em;
+    }
+
+    html.multibook #content .ownerrez-widget {
+        padding: 1.2rem;
     }
 }
