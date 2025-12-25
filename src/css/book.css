@@ -4,45 +4,51 @@
    ========================================================= */
 
 html.multibook {
-    --gom-book-bg: url("https://uc.orez.io/f/d3c52909359543bcbba9406f36302e70");
+  --gom-book-bg: url("https://uc.orez.io/f/d3c52909359543bcbba9406f36302e70");
 }
 
 /* Fuerza el fondo aunque exista inline background (lo pisa con !important) */
 html.multibook body {
-    background: var(--gom-book-bg) center / cover no-repeat fixed !important;
+  background: var(--gom-book-bg) center / cover no-repeat fixed !important;
+  padding-top: 0 !important;
 }
 
 /* En mobile iOS, fixed suele dar glitches: usamos scroll */
 @media (max-width: 768px) {
-    html.multibook body {
-        background-attachment: scroll !important;
-    }
+  html.multibook body {
+    background-attachment: scroll !important;
+  }
 }
 
 /* Overlay para legibilidad (no toca header/footer; queda detrás) */
 html.multibook body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 0;
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
 
-    background:
-        radial-gradient(1200px 700px at 15% 20%, rgba(0, 0, 0, .55), rgba(0, 0, 0, .20) 55%, rgba(0, 0, 0, .10) 100%),
-        linear-gradient(180deg, rgba(0, 0, 0, .25), rgba(0, 0, 0, .15));
+  background:
+    radial-gradient(
+      1200px 700px at 15% 20%,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0.2) 55%,
+      rgba(0, 0, 0, 0.1) 100%
+    ),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15));
 }
 
 /* Asegura que el contenido quede por encima del overlay */
 html.multibook #header-bar,
 html.multibook #content,
 html.multibook footer {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 /* El contenido no debe traer fondos por defecto */
 html.multibook #content {
-    background: transparent !important;
+  background: transparent !important;
 }
 
 /* =========================================================
@@ -50,106 +56,231 @@ html.multibook #content {
    ========================================================= */
 
 html.multibook {
-    --gom-book-top-pad: clamp(5.6rem, 7vh, 9.2rem);
-    --gom-book-gap-1: 1.2rem;
-    --gom-book-gap-2: 2.4rem;
+  --gom-book-top-pad: clamp(5.6rem, 7vh, 9.2rem);
+  --gom-book-gap-1: 1.2rem;
+  --gom-book-gap-2: 2.4rem;
 
-    --gom-book-card-w: 78rem;
-    /* ajustable luego */
-    --gom-book-card-bg: rgba(255, 255, 255, .86);
-    --gom-book-card-bd: 1px solid rgba(255, 255, 255, .22);
-    --gom-book-card-shadow: 0 18px 48px rgba(0, 0, 0, .28);
+  --gom-book-card-w: 72dvh;
+  /* ajustable luego */
+  --gom-book-card-bg: rgba(255, 255, 255, 0.86);
+  --gom-book-card-bd: 1px solid rgba(255, 255, 255, 0.22);
+  --gom-book-card-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
 }
 
 /* No dejes que #content cree “caja blanca” */
 html.multibook #content.container {
-    background: transparent !important;
-    max-width: 100% !important;
-    width: 100% !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+  background: transparent !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 /* Rail general: todo lo que sea body-content, alineado a gom-pad-x */
 html.multibook #content .body-content {
-    padding-left: var(--gom-pad-x) !important;
-    padding-right: var(--gom-pad-x) !important;
-    padding-top: var(--gom-book-top-pad) !important;
-    padding-bottom: clamp(6rem, 10vh, 12rem) !important;
+  padding-left: var(--gom-pad-x) !important;
+  padding-right: var(--gom-pad-x) !important;
+  padding-top: var(--gom-book-top-pad) !important;
+  padding-bottom: 0 !important;
 }
 
 /* Evita márgenes bootstrap “raros” en este rail */
-html.multibook #content .body-content>.row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+html.multibook #content .body-content > .row {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
 }
 
-html.multibook #content .body-content>.row>[class*="col-"] {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+html.multibook #content .body-content > .row > [class*="col-"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }
 
 /* H1/Lead: premium sobre fondo */
 html.multibook #content h1.page-header {
-    margin: 0 !important;
-    border: 0 !important;
-    padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  padding: 0 !important;
 
-    color: #fff !important;
-    text-transform: uppercase;
-    letter-spacing: .10em;
-    font-weight: 400;
-    line-height: .95;
-    font-size: clamp(4.2rem, 5.2vw, 7.2rem) !important;
-    text-shadow: 0 14px 34px rgba(0, 0, 0, .38);
+  color: #fff !important;
+  text-transform: uppercase;
+  letter-spacing: normal;
+  font-weight: 400;
+  line-height: 0.95;
+  font-size: 8dvh !important;
+  text-shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
 }
 
 html.multibook #content .lead {
-    margin: var(--gom-book-gap-1) 0 0 !important;
-    padding: 0 !important;
+  margin: var(--gom-book-gap-1) 0 0 !important;
+  padding: 0 !important;
 
-    color: rgba(255, 255, 255, .86) !important;
-    max-width: 72ch;
-    text-shadow: 0 14px 34px rgba(0, 0, 0, .32);
+  color: rgba(255, 255, 255, 0.86) !important;
+  max-width: 63ch;
+  text-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
 }
 
 /* Widget card (solo contenedor externo, el iframe aún intacto) */
 html.multibook #content .ownerrez-widget {
-    margin-top: var(--gom-book-gap-2) !important;
-    max-width: var(--gom-book-card-w);
-    width: 100%;
+  margin-top: var(--gom-book-gap-2) !important;
+  max-width: 50%;
+  width: 100%;
 
-    background: var(--gom-book-card-bg);
-    border: var(--gom-book-card-bd);
-    border-radius: 0;
-    box-shadow: var(--gom-book-card-shadow);
+  background: var(--gom-book-card-bg);
+  border: var(--gom-book-card-bd);
+  border-radius: 0;
+  box-shadow: var(--gom-book-card-shadow);
 
-    -webkit-backdrop-filter: blur(14px);
-    backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 
-    padding: 1.6rem;
-    overflow: hidden;
+  padding: 1.6rem;
+  overflow: hidden;
 }
 
 html.multibook #content .ownerrez-widget iframe {
-    display: block;
-    width: 100% !important;
-    border: 0 !important;
+  display: block;
+  width: 100% !important;
+  border: 0 !important;
 }
 
 /* Mobile */
 @media (max-width: 768px) {
-    html.multibook {
-        --gom-book-top-pad: clamp(4.4rem, 6vh, 6.6rem);
-        --gom-book-card-w: 100%;
-    }
+  html.multibook {
+    --gom-book-top-pad: clamp(4.4rem, 6vh, 6.6rem);
+    --gom-book-card-w: 100%;
+  }
 
-    html.multibook #content h1.page-header {
-        font-size: clamp(3.2rem, 9vw, 4.8rem) !important;
-        letter-spacing: .08em;
-    }
+  html.multibook #content h1.page-header {
+    font-size: clamp(3.2rem, 9vw, 4.8rem) !important;
+    letter-spacing: 0.08em;
+  }
 
-    html.multibook #content .ownerrez-widget {
-        padding: 1.2rem;
-    }
+  html.multibook #content .ownerrez-widget {
+    padding: 1.2rem;
+  }
+}
+
+/* =========================================================
+   BOOK (/book) – Conclusion block (scoped)
+   ========================================================= */
+html.multibook .gom-book-conclusion {
+  margin: var(--gom-book-top-pad) 0;
+  /* Fallback por si OwnerRez coloca Conclusion fuera de #content */
+  padding-left: var(--gom-pad-x);
+  padding-right: var(--gom-pad-x);
+}
+
+/* Si Conclusion cae DENTRO de #content .body-content, evitamos doble padding */
+html.multibook #content .body-content .gom-book-conclusion {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+html.multibook .gom-book-conclusion__grid {
+  display: grid;
+  gap: var(--gom-book-gap-2, 2.4rem);
+  grid-template-columns: 1fr;
+  align-items: stretch;
+}
+
+/* 2 columnas en desktop */
+@media (min-width: 769px) {
+  html.multibook .gom-book-conclusion__grid {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+}
+
+html.multibook .gom-book-conclusion__card {
+  color: rgb(255, 255, 255);
+}
+
+html.multibook .gom-book-conclusion__title {
+  margin: 0 0 1rem 0;
+  font-family: var(--heading-font);
+  font-weight: var(--fw-regular, 400);
+  font-size: var(--fs-sub);
+  letter-spacing: normal;
+  text-transform: uppercase;
+  line-height: normal;
+  color: rgb(255, 255, 255);
+}
+
+html.multibook .gom-book-conclusion__text {
+  margin: 0 0 1.2rem 0;
+  font-size: var(--fs-xs);
+  line-height: 1.55;
+}
+
+html.multibook .gom-book-conclusion__meta {
+  margin: 0;
+  font-size: var(--fs-xs);
+  opacity: 0.95;
+}
+
+html.multibook .gom-book-link {
+  color: var(--mtd);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+html.multibook .gom-book-link:hover {
+  opacity: 0.8;
+}
+
+html.multibook .gom-book-sep {
+  margin: 0 0.6rem;
+  opacity: 0.7;
+}
+
+html.multibook .gom-book-cta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 0.6rem;
+  justify-content: center;
+  align-items: center;
+}
+
+html.multibook .gom-book-btn {
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  padding: 0 6.4rem;
+  min-width: 12.8rem;
+
+  font-family: var(--main-font);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  text-decoration: none;
+
+  border-radius: 0;
+  border: 1px solid rgba(0, 0, 0, 0.28);
+  background: hsla(0, 0%, 100%, 0.4) !important;
+  color: var(--pri-color);
+  transition:
+    filter 0.18s ease,
+    background 0.18s ease,
+    opacity 0.18s ease;
+}
+
+html.multibook .gom-book-btn:hover {
+  filter: brightness(1.05);
+}
+
+html.multibook .gom-book-fineprint {
+  display: block;
+  margin-top: 1.2rem;
+  font-size: calc(var(--fs-xs) * 0.95);
+  opacity: 0.78;
+}
+
+/* Mobile: CTAs full width */
+@media (max-width: 768px) {
+  html.multibook .gom-book-btn {
+    width: 100%;
+    min-width: 0;
+  }
 }
