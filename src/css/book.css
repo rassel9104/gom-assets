@@ -1,33 +1,65 @@
 /* =========================================================
-   BOOK (html.multibook) — Background fijo + overlay base
-   Objetivo: el fondo vive “siempre”, el contenido crece sin romper.
+   BOOK (html.multibook) — Configuración Base
    ========================================================= */
 
 html.multibook {
   --gom-book-bg: url("https://uc.orez.io/f/d3c52909359543bcbba9406f36302e70");
+  --gom-book-top-pad: clamp(5.6rem, 7vh, 9.2rem);
+  --gom-book-gap-1: 1.2rem;
+  --gom-book-gap-2: 2.4rem;
+  --gom-book-card-bg: hsla(0, 0%, 100%, 0.6);
+  --header-h: 88px;
 }
 
-/* Fuerza el fondo aunque exista inline background (lo pisa con !important) */
+/* FIX ESTRUCTURAL (Sticky Footer):
+   Flexbox vertical para que el footer baje siempre
+*/
 html.multibook body {
-  background: var(--gom-book-bg) center / cover no-repeat fixed !important;
-  padding-top: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+  background: transparent !important;
+  /* Padding top igual al header para evitar saltos */
+  padding-top: var(--header-h) !important;
+  box-sizing: border-box;
 }
 
-/* En mobile iOS, fixed suele dar glitches: usamos scroll */
-@media (max-width: 768px) {
-  html.multibook body {
-    background-attachment: scroll !important;
-  }
+html.multibook #content {
+  flex: 1 0 auto !important;
+  position: relative;
+  z-index: 1;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  background: transparent !important;
 }
 
-/* Overlay para legibilidad (no toca header/footer; queda detrás) */
-html.multibook body::before {
+html.multibook footer {
+  flex-shrink: 0 !important;
+  position: relative;
+  z-index: 1;
+  height: auto !important;
+  min-height: 0 !important;
+}
+
+/* =========================================================
+   FONDO FIJO (Performance Friendly)
+   ========================================================= */
+
+html.multibook::before {
   content: "";
   position: fixed;
   inset: 0;
-  pointer-events: none;
-  z-index: 0;
+  z-index: -2;
+  background: var(--gom-book-bg) center / cover no-repeat;
+  transform: translateZ(0);
+}
 
+html.multibook::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
   background:
     radial-gradient(
       1200px 700px at 15% 20%,
@@ -35,106 +67,107 @@ html.multibook body::before {
       rgba(0, 0, 0, 0.2) 55%,
       rgba(0, 0, 0, 0.1) 100%
     ),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.15));
+    linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.25) 0%,
+      rgba(0, 0, 0, 0.5) 80%,
+      rgba(0, 0, 0, 0.85) 100%
+    );
+  pointer-events: none;
 }
 
-/* Asegura que el contenido quede por encima del overlay */
-html.multibook #header-bar,
-html.multibook #content,
-html.multibook footer {
-  position: relative;
-  z-index: 1;
-}
-
-/* El contenido no debe traer fondos por defecto */
-html.multibook #content {
-  background: transparent !important;
+/* Limpieza de fondos antiguos */
+html.multibook body::before,
+html.multibook body::after {
+  display: none !important;
 }
 
 /* =========================================================
-   BOOK — Content rail (gom-pad-x) + hero copy + widget card
+   HEADER — FIX CRÍTICO (Desktop & Mobile)
    ========================================================= */
 
-html.multibook {
-  --gom-book-top-pad: clamp(5.6rem, 7vh, 9.2rem);
-  --gom-book-gap-1: 1.2rem;
-  --gom-book-gap-2: 2.4rem;
-
-  --gom-book-card-w: 72dvh;
-  /* ajustable luego */
-  --gom-book-card-bg: rgba(255, 255, 255, 0.86);
-  --gom-book-card-bd: 1px solid rgba(255, 255, 255, 0.22);
-  --gom-book-card-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
-}
-
-/* No dejes que #content cree “caja blanca” */
-html.multibook #content.container {
-  background: transparent !important;
-  max-width: 100% !important;
+/* 1. Forzar posición fija siempre */
+html.multibook #header-bar,
+html.multibook #header-bar.navbar-fixed-top,
+html.multibook #header-bar.navbar-fixed-top.sticky-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
   width: 100% !important;
-  padding-left: 0 !important;
-  padding-right: 0 !important;
+  z-index: 99999 !important;
+  margin-top: 0 !important;
+  transform: none !important;
+  /* Diseño propuesto: Glassmorphism para el header */
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Rail general: todo lo que sea body-content, alineado a gom-pad-x */
+/* 2. EL PARCHE MÁGICO PARA MÓVIL:
+   El CSS original oculta .not-sticky-top cuando el padre es .sticky-top.
+   Aquí lo revertimos forzosamente.
+*/
+html.multibook
+  #header-bar.sticky-top
+  .header
+  .header-line-container.not-sticky-top,
+#header-bar.sticky-top
+  .header
+  .header-line-container.not-sticky-top
+  .navbar-brand {
+  max-height: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
+/* Ajustes visuales para que el logo no se mueva */
+html.multibook .header-line-container {
+  transition: none !important;
+}
+
+/* =========================================================
+   CONTENIDO (Booking Layout)
+   ========================================================= */
+
 html.multibook #content .body-content {
   padding-left: var(--gom-pad-x) !important;
   padding-right: var(--gom-pad-x) !important;
-  padding-top: var(--gom-book-top-pad) !important;
-  padding-bottom: 0 !important;
+  padding-top: 2rem !important;
 }
 
-/* Evita márgenes bootstrap “raros” en este rail */
-html.multibook #content .body-content > .row {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-html.multibook #content .body-content > .row > [class*="col-"] {
-  padding-left: 0 !important;
-  padding-right: 0 !important;
-}
-
-/* H1/Lead: premium sobre fondo */
+/* Títulos */
 html.multibook #content h1.page-header {
   margin: 0 !important;
   border: 0 !important;
-  padding: 0 !important;
-
   color: #fff !important;
   text-transform: uppercase;
-  letter-spacing: normal;
   font-weight: 400;
   line-height: 0.95;
   font-size: 8dvh !important;
   text-shadow: 0 14px 34px rgba(0, 0, 0, 0.38);
+  margin-top: 4dvh !important;
 }
 
 html.multibook #content .lead {
   margin: var(--gom-book-gap-1) 0 0 !important;
-  padding: 0 !important;
-
-  color: rgba(255, 255, 255, 0.86) !important;
+  color: rgba(255, 255, 255, 0.9) !important;
   max-width: 63ch;
   text-shadow: 0 14px 34px rgba(0, 0, 0, 0.32);
 }
 
-/* Widget card (solo contenedor externo, el iframe aún intacto) */
+/* Widget Card */
 html.multibook #content .ownerrez-widget {
   margin-top: var(--gom-book-gap-2) !important;
   max-width: 50%;
   width: 100%;
-
   background: var(--gom-book-card-bg);
-  border: var(--gom-book-card-bd);
-  border-radius: 0;
-  box-shadow: var(--gom-book-card-shadow);
-
-  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
-
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
   padding: 1.6rem;
-  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 html.multibook #content .ownerrez-widget iframe {
@@ -143,56 +176,24 @@ html.multibook #content .ownerrez-widget iframe {
   border: 0 !important;
 }
 
-/* Mobile */
-@media (max-width: 768px) {
-  html.multibook {
-    --gom-book-top-pad: clamp(4.4rem, 6vh, 6.6rem);
-    --gom-book-card-w: 100%;
-  }
-
-  html.multibook #content h1.page-header {
-    font-size: clamp(3.2rem, 9vw, 4.8rem) !important;
-    letter-spacing: 0.08em;
-  }
-
-  html.multibook #content .ownerrez-widget {
-    padding: 1.2rem;
-  }
-}
-
 /* =========================================================
-   BOOK (/book) – Conclusion block (scoped)
+   SECCIÓN DE CONCLUSIÓN
    ========================================================= */
+
 html.multibook .gom-book-conclusion {
   margin: var(--gom-book-top-pad) 0;
-  /* Fallback por si OwnerRez coloca Conclusion fuera de #content */
-  padding-left: var(--gom-pad-x);
-  padding-right: var(--gom-pad-x);
-}
-
-/* Si Conclusion cae DENTRO de #content .body-content, evitamos doble padding */
-html.multibook #content .body-content .gom-book-conclusion {
-  padding-left: 0;
-  padding-right: 0;
 }
 
 html.multibook .gom-book-conclusion__grid {
   display: grid;
-  gap: var(--gom-book-gap-2, 2.4rem);
+  gap: 2.4rem;
   grid-template-columns: 1fr;
-  align-items: stretch;
 }
 
-/* 2 columnas en desktop */
 @media (min-width: 769px) {
   html.multibook .gom-book-conclusion__grid {
-    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.95fr);
-    align-items: start;
+    grid-template-columns: 1.25fr 0.95fr;
   }
-}
-
-html.multibook .gom-book-conclusion__card {
-  color: rgb(255, 255, 255);
 }
 
 html.multibook .gom-book-conclusion__title {
@@ -206,31 +207,11 @@ html.multibook .gom-book-conclusion__title {
   color: rgb(255, 255, 255);
 }
 
-html.multibook .gom-book-conclusion__text {
-  margin: 0 0 1.2rem 0;
-  font-size: var(--fs-xs);
-  line-height: 1.55;
-}
-
+html.multibook .gom-book-conclusion__text,
 html.multibook .gom-book-conclusion__meta {
-  margin: 0;
-  font-size: var(--fs-xs);
-  opacity: 0.95;
-}
-
-html.multibook .gom-book-link {
-  color: var(--mtd);
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
-}
-
-html.multibook .gom-book-link:hover {
-  opacity: 0.8;
-}
-
-html.multibook .gom-book-sep {
-  margin: 0 0.6rem;
-  opacity: 0.7;
+  color: #fff;
+  font-size: 1.4rem;
+  line-height: 1.6;
 }
 
 html.multibook .gom-book-cta {
@@ -243,44 +224,81 @@ html.multibook .gom-book-cta {
 }
 
 html.multibook .gom-book-btn {
-  appearance: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   height: 4rem;
-  padding: 0 6.4rem;
-  min-width: 12.8rem;
-
-  font-family: var(--main-font);
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  text-decoration: none;
-
-  border-radius: 0;
-  border: 1px solid rgba(0, 0, 0, 0.28);
+  padding: 0 4rem;
   background: hsla(0, 0%, 100%, 0.4) !important;
-  color: var(--pri-color);
-  transition:
-    filter 0.18s ease,
-    background 0.18s ease,
-    opacity 0.18s ease;
+  color: #000;
+  text-transform: uppercase;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  margin-top: 1rem;
+  border: 0;
 }
 
-html.multibook .gom-book-btn:hover {
-  filter: brightness(1.05);
+html.multibook .gom-book-link {
+  color: var(--mtd);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
-html.multibook .gom-book-fineprint {
-  display: block;
-  margin-top: 1.2rem;
-  font-size: calc(var(--fs-xs) * 0.95);
-  opacity: 0.78;
+html.multibook .gom-book-link:hover {
+  color: #fff;
+  opacity: 0.8;
 }
 
-/* Mobile: CTAs full width */
+/* =========================================================
+   DISEÑO MÓVIL (Max-width: 768px)
+   Propuesta: Header "Glass", Título compacto y Widget limpio
+   ========================================================= */
+
 @media (max-width: 768px) {
+  /* Header ligeramente más compacto en móvil */
+  html.multibook {
+    --gom-book-top-pad: 3rem;
+  }
+  html.multibook .col-md-12 {
+    padding-left: var(--gom-pad-x) !important;
+    padding-right: var(--gom-pad-x) !important;
+  }
+
+  html.multibook #header-bar .header-line {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+  }
+
+  /* Ajuste de tipografía móvil */
+  html.multibook #content h1.page-header {
+    font-size: 3.6rem !important; /* Más controlado */
+    letter-spacing: 0.05em;
+  }
+
+  html.multibook #content .lead {
+    font-size: 1.6rem !important;
+    line-height: 1.4;
+    max-width: 100%;
+  }
+
+  /* Widget ocupa todo el ancho, sin bordes raros */
+  html.multibook #content .ownerrez-widget {
+    max-width: 100% !important;
+    padding: 1rem;
+    margin-top: 4dvh !important;
+    border-radius: 4px;
+  }
+
+  /* Botones full width para fácil click */
   html.multibook .gom-book-btn {
     width: 100%;
-    min-width: 0;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Alineación de conclusión */
+  html.multibook .gom-book-conclusion {
+    margin-top: 4rem;
+    padding: 0; /* Pequeño respiro lateral si es necesario */
   }
 }

@@ -1,0 +1,354 @@
+/* =========================================================
+   GOM — Booking/Inquiry Widget (Custom CSS inside iframe)
+   Objetivo: fondo transparente + controles “glass/premium”
+   ========================================================= */
+
+/* Base + variables */
+:root {
+  --gom-font:
+    "Montserrat", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  --gom-text: rgba(0, 0, 0, 0.88);
+  --gom-muted: rgba(0, 0, 0, 0.6);
+
+  --gom-bd: rgba(0, 0, 0, 0.18);
+  --gom-bd-strong: rgba(0, 0, 0, 0.28);
+
+  --gom-glass: rgba(255, 255, 255, 0.55);
+  --gom-glass-2: rgba(255, 255, 255, 0.72);
+
+  --gom-shadow: 0 18px 48px rgba(0, 0, 0, 0.18);
+  --gom-shadow-soft: 0 10px 24px rgba(0, 0, 0, 0.1);
+
+  --gom-primary: #0b0b0b;
+  --gom-primary-text: #fff;
+
+  --gom-focus: rgba(0, 0, 0, 0.55);
+
+  --gom-radius: 0px; /* tu arquetipo es “sharp” */
+  --gom-h: 44px;
+}
+
+/* 1) El “truco” clave: que el widget no pinte fondo propio */
+html,
+body {
+  background: transparent !important;
+  font-family: var(--gom-font) !important;
+  color: var(--gom-text) !important;
+}
+
+body {
+  padding: 0 !important; /* evita doble padding: el card externo ya da padding */
+  margin: 0 !important;
+}
+
+/* 2) Contenedores bootstrap del widget: quita “caja blanca” interna */
+.container,
+.container-fluid {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Panels / wells / wrappers típicos (OwnerRez + Bootstrap) */
+.panel,
+.panel-heading,
+.panel-body,
+.well {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* 3) Tipografía de labels + spacing */
+label,
+.control-label {
+  font-size: 1.4rem !important;
+  letter-spacing: normal !important;
+  text-transform: uppercase !important;
+  color: var(--gom-muted) !important;
+  margin-bottom: 6px !important;
+}
+
+.form-group {
+  margin-bottom: 12px !important;
+}
+
+/* 4) Inputs / selects / textarea (glass) */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="number"],
+input[type="password"],
+select,
+textarea,
+.form-control {
+  height: var(--gom-h) !important;
+  border-radius: var(--gom-radius) !important;
+
+  background: var(--gom-glass-2) !important;
+  border: 1px solid var(--gom-bd) !important;
+  box-shadow: var(--gom-shadow-soft) !important;
+
+  color: var(--gom-text) !important;
+  font-size: 14px !important;
+}
+
+textarea,
+textarea.form-control {
+  height: auto !important;
+  min-height: 96px !important;
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+/* Placeholder */
+::placeholder {
+  color: rgba(0, 0, 0, 0.42) !important;
+}
+
+/* Focus */
+input:focus,
+select:focus,
+textarea:focus,
+.form-control:focus {
+  outline: none !important;
+  border-color: var(--gom-focus) !important;
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.1),
+    var(--gom-shadow-soft) !important;
+}
+
+/* Select chevron “clean” */
+select,
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.55) 50%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.55) 50%, transparent 50%);
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50%;
+  background-size:
+    6px 6px,
+    6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 34px !important;
+}
+
+/* 5) Input groups (calendario / addons) */
+.input-group-addon,
+.input-group-text {
+  background: rgba(255, 255, 255, 0.6) !important;
+  border: 1px solid var(--gom-bd) !important;
+  border-radius: var(--gom-radius) !important;
+  color: rgba(0, 0, 0, 0.7) !important;
+}
+
+.input-group .form-control {
+  box-shadow: var(--gom-shadow-soft) !important;
+}
+
+/* 6) Botones (Book Now / Send Inquiry) */
+.btn,
+button,
+input[type="submit"],
+input[type="button"] {
+  height: var(--gom-h) !important;
+  border-radius: var(--gom-radius) !important;
+  font-family: var(--gom-font) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+}
+
+/* Primarios */
+.btn-primary,
+.btn-success,
+button.btn-primary,
+button.btn-success,
+input[type="submit"].btn-primary,
+input[type="submit"].btn-success {
+  background: var(--gom-primary) !important;
+  border: 1px solid var(--gom-primary) !important;
+  color: var(--gom-primary-text) !important;
+}
+
+/* Ghost / secundarios */
+.btn-default,
+.btn-secondary,
+button.btn-default,
+button.btn-secondary {
+  background: var(--gom-primary) !important;
+  border: 1px solid var(--gom-bd-strong) !important;
+  color: var(--gom-primary-text) !important;
+}
+
+.btn:hover,
+button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover {
+  filter: brightness(1.03);
+}
+
+/* 7) Alerts (quote / mensajes) */
+.alert {
+  border-radius: var(--gom-radius) !important;
+  border: 1px solid var(--gom-bd) !important;
+  box-shadow: var(--gom-shadow-soft) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+  color: var(--gom-text) !important;
+}
+
+.alert-danger {
+  background: rgba(255, 230, 230, 0.75) !important;
+  border-color: rgba(160, 0, 0, 0.25) !important;
+}
+
+/* 8) Checkboxes + fineprint */
+.checkbox label,
+.radio label,
+small,
+.help-block {
+  color: rgba(0, 0, 0, 0.62) !important;
+  font-size: 12px !important;
+  line-height: 1.45 !important;
+}
+
+/* 9) Phone input (intl-tel-input) */
+.iti {
+  width: 100% !important;
+}
+.iti__selected-flag {
+  border-right: 1px solid var(--gom-bd) !important;
+}
+.iti__country-list {
+  border-radius: var(--gom-radius) !important;
+  border: 1px solid var(--gom-bd) !important;
+  box-shadow: var(--gom-shadow) !important;
+}
+
+/* 10) Datepicker (bootstrap-datepicker) */
+.datepicker,
+.datepicker-dropdown,
+.datepicker.dropdown-menu {
+  border-radius: var(--gom-radius) !important;
+  border: 1px solid var(--gom-bd) !important;
+  box-shadow: var(--gom-shadow) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  padding: 10px !important;
+  z-index: 99999 !important;
+}
+
+.datepicker table {
+  width: 100% !important;
+}
+
+.datepicker table tr td,
+.datepicker table tr th {
+  border-radius: 0 !important;
+}
+
+.datepicker table tr td.day {
+  transition:
+    filter 0.15s ease,
+    background 0.15s ease;
+}
+
+.datepicker table tr td.day:hover {
+  background: rgba(0, 0, 0, 0.06) !important;
+  filter: brightness(1.02);
+}
+
+.datepicker table tr td.disabled,
+.datepicker table tr td.disabled:hover {
+  opacity: 0.35 !important;
+  background: transparent !important;
+}
+
+/* “Today” si el widget lo marca con .today */
+.datepicker table tr td.today,
+.datepicker table tr td.today:hover {
+  outline: 1px solid rgba(0, 0, 0, 0.35) !important;
+  outline-offset: -2px;
+}
+
+/* Selected */
+.datepicker table tr td.active,
+.datepicker table tr td.active:hover,
+.datepicker table tr td.active:focus {
+  background: var(--gom-primary) !important;
+  color: #fff !important;
+}
+
+/* 11) Mobile tweaks dentro del iframe */
+@media (max-width: 480px) {
+  .form-group {
+    margin-bottom: 10px !important;
+  }
+
+  /* botones full width en móvil */
+  .btn,
+  button,
+  input[type="submit"],
+  input[type="button"] {
+    width: 100% !important;
+  }
+  .btn + .btn,
+  button + button,
+  input[type="submit"] + input[type="button"] {
+    margin-top: 8px !important;
+  }
+}
+
+/* === PATCH: Select de Property / Room (PropertyKeyx) === */
+select#PropertyKeyx.form-control,
+#PropertyKeyx.form-control {
+  width: 100% !important;
+  height: var(--gom-h) !important;
+  line-height: calc(var(--gom-h) - 2px) !important;
+
+  font-family: var(--gom-font) !important;
+  font-size: 14px !important;
+  color: var(--gom-text) !important;
+
+  background-color: var(--gom-glass-2) !important;
+  border: 1px solid var(--gom-bd) !important;
+  border-radius: var(--gom-radius) !important;
+  box-shadow: var(--gom-shadow-soft) !important;
+
+  padding: 0 38px 0 12px !important;
+
+  /* Fuerza “select premium” (muchas veces OR lo pisa) */
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+
+  /* Chevron (por si Bootstrap/OR lo elimina) */
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(0, 0, 0, 0.55) 50%),
+    linear-gradient(135deg, rgba(0, 0, 0, 0.55) 50%, transparent 50%) !important;
+  background-position:
+    calc(100% - 18px) 50%,
+    calc(100% - 12px) 50% !important;
+  background-size:
+    6px 6px,
+    6px 6px !important;
+  background-repeat: no-repeat !important;
+}
+
+/* Hover/Focus (por si el select queda “plano”) */
+select#PropertyKeyx.form-control:focus,
+#PropertyKeyx.form-control:focus {
+  outline: none !important;
+  border-color: var(--gom-focus) !important;
+  box-shadow:
+    0 0 0 3px rgba(0, 0, 0, 0.1),
+    var(--gom-shadow-soft) !important;
+}
+
+/* (Opcional) Si el dropdown se ve “demasiado blanco” en desktop browsers compatibles */
+select#PropertyKeyx option {
+  color: #111;
+}
