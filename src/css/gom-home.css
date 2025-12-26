@@ -1,6 +1,1 @@
 @import "./home.css";
-
-/* Build stamp for cache/debug (update value when needed) */
-:root {
-    --gom-build-home: "dev";
-}

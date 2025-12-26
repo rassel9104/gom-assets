@@ -1,0 +1,48 @@
+/* ============================================================
+   Garden of Manors — MULTIPROPERTY (Property Detail Pages)
+   Scope: html.multiproperty  (estable DEV/PROD)
+   Propósito:
+   - Tokens + “shell” común para TODAS las páginas de propiedad
+   - Sin depender de page-xxxx ni property-xxxx
+   - Sin romper el layout actual (todavía NO hero)
+   ============================================================ */
+
+html.multiproperty {
+  /* Anchos y gutters */
+  --gom-prop-maxw: 1180px;
+  --gom-prop-pad-x: var(--gom-pad-x, 5%);
+  --gom-prop-section-gap: clamp(3.2rem, 4vw, 6rem);
+
+  /* Hero (lo usaremos en el siguiente paso) */
+  --gom-prop-hero-h: clamp(360px, 58vh, 680px);
+  --gom-prop-hero-overlay: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 0%,
+    rgba(0, 0, 0, 0.36) 42%,
+    rgba(0, 0, 0, 0.14) 70%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+}
+
+/* Mejor anclaje al navegar por tabs (Details/Availability/etc) */
+html.multiproperty .linktarget {
+  scroll-margin-top: calc(var(--header-h, 88px) + 16px);
+}
+
+/* Mantener lectura consistente (sin “full-bleed” global todavía) */
+html.multiproperty #content .body-content {
+  max-width: var(--gom-prop-maxw);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gom-prop-pad-x);
+  padding-right: var(--gom-prop-pad-x);
+}
+
+/* Separación visual entre secciones grandes (light touch) */
+html.multiproperty #details,
+html.multiproperty #availability,
+html.multiproperty #location,
+html.multiproperty #amenities,
+html.multiproperty #reviews {
+  margin-top: var(--gom-prop-section-gap);
+}

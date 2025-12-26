@@ -1,7 +1,2 @@
 @import "./properties.css";
 @import "./properties-mobile-drawer.css";
-
-/* Build stamp for cache/debug (update value when needed) */
-:root {
-    --gom-build-properties: "dev";
-}

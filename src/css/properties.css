@@ -17,22 +17,25 @@ html.multipropertyindex {
   --gom-prop-search-h: 4.4rem;
 
   /* Card height = viewport - header - drawer bar - HUD */
-  --gom-prop-card-h: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px) - var(--gom-prop-topbar-h, 0px) - var(--gom-prop-search-h, 0px));
-
-
+  --gom-prop-card-h: calc(
+    100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px) -
+      var(--gom-prop-topbar-h, 0px) - var(--gom-prop-search-h, 0px)
+  );
 
   /* spacing del overlay */
   --gom-prop-pad-x: 5.14%;
   --gom-prop-pad-b: 5.14%;
 
   /* UI */
-  --gom-prop-border: 1px solid rgba(255, 255, 255, .14);
-  --gom-prop-glass: rgba(0, 0, 0, .58);
-  --gom-prop-grad: linear-gradient(to top,
-      rgba(0, 0, 0, .92) 0%,
-      rgba(0, 0, 0, .55) 38%,
-      rgba(0, 0, 0, .20) 70%,
-      rgba(0, 0, 0, .10) 100%);
+  --gom-prop-border: 1px solid rgba(255, 255, 255, 0.14);
+  --gom-prop-glass: rgba(0, 0, 0, 0.58);
+  --gom-prop-grad: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.55) 38%,
+    rgba(0, 0, 0, 0.2) 70%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
 }
 
 html.multipropertyindex body {
@@ -62,21 +65,20 @@ html.multipropertyindex #content .page-header h2 {
   display: none !important;
 }
 
-
 /* Quita gutters bootstrap alrededor del form */
 html.multipropertyindex form[action="/properties"] {
   margin: 0 !important;
 }
 
-html.multipropertyindex form[action="/properties"]>.row {
+html.multipropertyindex form[action="/properties"] > .row {
   margin-left: 0 !important;
   margin-right: 0 !important;
   margin-top: 0 !important;
   margin-bottom: 0 !important;
 }
 
-html.multipropertyindex form[action="/properties"]>.row>.col-xs-12,
-html.multipropertyindex form[action="/properties"]>.row>.col-12 {
+html.multipropertyindex form[action="/properties"] > .row > .col-xs-12,
+html.multipropertyindex form[action="/properties"] > .row > .col-12 {
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
@@ -84,8 +86,8 @@ html.multipropertyindex form[action="/properties"]>.row>.col-12 {
 /* =========================
    TOPBAR (count + sort)
    ========================= */
-html.multipropertyindex form[action="/properties"]>.row>.col-xs-12>h2,
-html.multipropertyindex form[action="/properties"]>.row>.col-12>h2 {
+html.multipropertyindex form[action="/properties"] > .row > .col-xs-12 > h2,
+html.multipropertyindex form[action="/properties"] > .row > .col-12 > h2 {
   position: fixed !important;
   top: var(--header-h, 9.6rem) !important;
   left: 0 !important;
@@ -112,15 +114,15 @@ html.multipropertyindex form[action="/properties"]>.row>.col-12>h2 {
 html.multipropertyindex .property-count {
   display: inline-flex !important;
   align-items: center !important;
-  gap: .6rem !important;
+  gap: 0.6rem !important;
 
   font-family: var(--main-font, system-ui) !important;
   font-weight: var(--fw-semibold, 600) !important;
-  letter-spacing: .14em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
 
-  font-size: clamp(1.6rem, .8vw + 2rem, 2.4rem) !important;
-  opacity: .96 !important;
+  font-size: clamp(1.6rem, 0.8vw + 2rem, 2.4rem) !important;
+  opacity: 0.96 !important;
   color: #eee;
 }
 
@@ -129,17 +131,17 @@ html.multipropertyindex .sort-selector {
 }
 
 html.multipropertyindex .sort-selector .btn {
-  border: 1px solid rgba(255, 255, 255, .70) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
   background: transparent !important;
   color: #fff !important;
 
   height: 3.2rem !important;
   padding: 0 1.2rem !important;
 
-  letter-spacing: .12em !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-weight: var(--fw-semibold, 600) !important;
-  width: calc(var(--header-btn-minw)*2 + 3rem) !important;
+  width: calc(var(--header-btn-minw) * 2 + 3rem) !important;
 }
 
 /* SEARCH BAR fijo debajo del topbar */
@@ -197,16 +199,16 @@ html.multipropertyindex #search-bar-widget .search-bar-button {
 html.multipropertyindex #ArrivalDate,
 html.multipropertyindex #DepartureDate,
 html.multipropertyindex .search-bar .form-control {
-  background: rgba(0, 0, 0, .35) !important;
+  background: rgba(0, 0, 0, 0.35) !important;
   color: #fff !important;
-  border: 1px solid rgba(255, 255, 255, .22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 0 !important;
   height: 3.2rem !important;
 }
 
 html.multipropertyindex #ArrivalDate::placeholder,
 html.multipropertyindex #DepartureDate::placeholder {
-  color: rgba(255, 255, 255, .75) !important;
+  color: rgba(255, 255, 255, 0.75) !important;
 }
 
 html.multipropertyindex .search-bar .input-group.date .input-group-btn .btn {
@@ -217,30 +219,34 @@ html.multipropertyindex .search-bar .input-group.date .input-group-btn .btn {
 
 html.multipropertyindex i.fa.fa-calendar {
   color: #fff !important;
-  opacity: .92 !important;
+  opacity: 0.92 !important;
 }
 
 /*Rev*/
 html.multipropertyindex #search-bar-widget .search-bar-button .btn {
   height: 3.2rem !important;
-  width: calc(var(--header-btn-minw)*2 + 3rem) !important;
+  width: calc(var(--header-btn-minw) * 2 + 3rem) !important;
   border-radius: 0 !important;
-  border: 1px solid rgba(255, 255, 255, .78) !important;
-  background: rgba(0, 0, 0, .25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
   color: #fff !important;
-  letter-spacing: .14em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
   margin-left: auto !important;
 }
 
 html.multipropertyindex #search-bar-widget .search-bar-button .btn:hover {
-  background: rgba(255, 255, 255, .92) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   color: #000 !important;
 }
 
 /*end rev*/
-html.multipropertyindex .search-bar .search-bar-field .input-group.date .input-group-btn {
-  padding-right: .3rem;
+html.multipropertyindex
+  .search-bar
+  .search-bar-field
+  .input-group.date
+  .input-group-btn {
+  padding-right: 0.3rem;
 }
 
 /* =========================
@@ -251,7 +257,7 @@ html.multipropertyindex .property-result-list {
 }
 
 /* <hr> rompe el layout full-screen: fuera */
-html.multipropertyindex .property-result-list>hr {
+html.multipropertyindex .property-result-list > hr {
   display: none !important;
 }
 
@@ -346,7 +352,7 @@ html.multipropertyindex .property-result-list h2.media-heading {
   margin: 0 0 1.6rem 0 !important;
   font-family: var(--heading-font, var(--main-font, system-ui)) !important;
   font-weight: var(--fw-semibold, 600) !important;
-  letter-spacing: .03em !important;
+  letter-spacing: 0.03em !important;
 
   font-size: clamp(2.4rem, 1.8vw + 1.4rem, 4.2rem) !important;
   line-height: 1.05 !important;
@@ -357,7 +363,7 @@ html.multipropertyindex .property-result-list h2.media-heading a {
   text-decoration: none !important;
   font-size: var(--fs-h3) !important;
   margin-top: 1.6rem !important;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
 }
 
 html.multipropertyindex .property-result-list h2.media-heading a:hover {
@@ -370,17 +376,16 @@ html.multipropertyindex .amenity-summary-amenities .h4 {
   font-size: var(--fs-body);
   margin-bottom: 0 !important;
   font-weight: var(--fw-semibold);
-
 }
 
 /* Meta / amenities: estilo “pills” */
 html.multipropertyindex .amenity-summary-size,
 html.multipropertyindex .amenity-summary-amenities {
-  margin: .8rem 0 0 0 !important;
+  margin: 0.8rem 0 0 0 !important;
   line-height: normal !important;
-  font-size: clamp(.9rem, .35vw + 1.1rem, 1.4rem) !important;
-  opacity: .96 !important;
-  color: rgba(255, 255, 255, .75);
+  font-size: clamp(0.9rem, 0.35vw + 1.1rem, 1.4rem) !important;
+  opacity: 0.96 !important;
+  color: rgba(255, 255, 255, 0.75);
 }
 
 html.multipropertyindex .amenity-summary-size span {
@@ -391,38 +396,38 @@ html.multipropertyindex .amenity-summary-size span {
 html.multipropertyindex .amenity-summary-amenities .amenity-list-item {
   display: inline-flex !important;
   align-items: center !important;
-  gap: .55rem !important;
+  gap: 0.55rem !important;
 
-  padding: .35rem .75rem !important;
-  margin: 0 .55rem .55rem 0 !important;
+  padding: 0.35rem 0.75rem !important;
+  margin: 0 0.55rem 0.55rem 0 !important;
 
   border: 1px solid var(--gom-prop-border) !important;
   border-radius: 0 !important;
 
   background: var(--gom-prop-glass) !important;
-  -webkit-backdrop-filter: blur(.8rem);
-  backdrop-filter: blur(.8rem);
+  -webkit-backdrop-filter: blur(0.8rem);
+  backdrop-filter: blur(0.8rem);
 
-  color: rgba(255, 255, 255, .75);
+  color: rgba(255, 255, 255, 0.75);
 }
 
 html.multipropertyindex .amenity-summary-amenities .amenity-list-item i {
-  opacity: .92 !important;
+  opacity: 0.92 !important;
 }
 
 /* Descripción */
-html.multipropertyindex .property-result-list .col-sm-8>p {
-  margin: 0 0 0 .8rem !important;
+html.multipropertyindex .property-result-list .col-sm-8 > p {
+  margin: 0 0 0 0.8rem !important;
   max-width: 78ch !important;
-  font-size: clamp(.9rem, .35vw + .9rem, 1.2rem) !important;
-  opacity: .96 !important;
+  font-size: clamp(0.9rem, 0.35vw + 0.9rem, 1.2rem) !important;
+  opacity: 0.96 !important;
 }
 
 /* CTA buttons */
 html.multipropertyindex .property-result-list .btn-group {
   display: flex !important;
   flex-wrap: nowrap !important;
-  gap: .8rem !important;
+  gap: 0.8rem !important;
   width: 100% !important;
   margin: 1.2rem 0 0 0 !important;
 }
@@ -432,16 +437,16 @@ html.multipropertyindex .property-result-list .btn-group .btn {
   min-width: 0 !important;
 
   height: 3.6rem !important;
-  padding: 0 .8rem !important;
+  padding: 0 0.8rem !important;
 
-  border: 1px solid rgba(255, 255, 255, .78) !important;
-  background: rgba(0, 0, 0, .25) !important;
+  border: 1px solid rgba(255, 255, 255, 0.78) !important;
+  background: rgba(0, 0, 0, 0.25) !important;
   color: #fff !important;
 
   letter-spacing: normal !important;
   text-transform: uppercase !important;
   font-weight: var(--fw-regular, 400) !important;
-  font-size: clamp(.9rem, 2.5vw, 1.2rem) !important;
+  font-size: clamp(0.9rem, 2.5vw, 1.2rem) !important;
 
   display: inline-flex !important;
   align-items: center !important;
@@ -456,15 +461,14 @@ html.multipropertyindex .property-result-list .btn-group .btn {
 }
 
 html.multipropertyindex .property-result-list .btn-group .btn:hover {
-  background: rgba(255, 255, 255, .92) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
   color: #000 !important;
 }
 
 /* =========================
    MOBILE — scroll-snap story mode
    ========================= */
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
   /* =========================================================
      /properties (mobile) — Single viewport cards + fixed header/drawer
      Scroll container: .property-result-list (not <body>)
@@ -483,15 +487,19 @@ html.multipropertyindex .property-result-list .btn-group .btn:hover {
 
   /* The list is the snap/scroll container */
   html.multipropertyindex .property-result-list {
-    height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)) !important;
+    height: calc(
+      100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)
+    ) !important;
     overflow-y: auto !important;
     -webkit-overflow-scrolling: touch !important;
     scroll-snap-type: y mandatory;
   }
 
   /* Each card (row) fills the available viewport */
-  html.multipropertyindex .property-result-list>.row {
-    height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)) !important;
+  html.multipropertyindex .property-result-list > .row {
+    height: calc(
+      100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)
+    ) !important;
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
@@ -506,13 +514,16 @@ html.multipropertyindex .property-result-list .btn-group .btn:hover {
     display: block !important;
   }
 
-  html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(n+3) {
+  html.multipropertyindex
+    .property-result-list
+    .col-sm-8
+    > p:nth-of-type(n + 3) {
     display: none !important;
     padding-bottom: 10% !important;
   }
 
   /* Small screen: stack the sort button group (when visible) */
-  @media (max-width:360px) {
+  @media (max-width: 360px) {
     .multipropertyindex .sort-selector .btn-group {
       display: block !important;
     }
@@ -525,29 +536,25 @@ html.multipropertyindex .property-result-list .btn-group .btn:hover {
   }
 }
 
-
 /* Reduced motion: snap “suave” */
 @media (prefers-reduced-motion: reduce) {
-
   html.multipropertyindex,
   html.multipropertyindex body {
     scroll-snap-type: y proximity;
   }
 }
 
-
 /* Override duro por si gom-pages está ocultando textos */
 html.multipropertyindex .property-result-list .col-sm-8 p:not(.btn-group) {
   display: block !important;
 }
 
-
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(1) {
+html.multipropertyindex .property-result-list .col-sm-8 > p:nth-of-type(1) {
   display: none !important;
 }
 
 /* Opcional premium, recorta a pocas líneas sin romper layout */
-html.multipropertyindex .property-result-list .col-sm-8>p {
+html.multipropertyindex .property-result-list .col-sm-8 > p {
   overflow: hidden !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
@@ -617,7 +624,7 @@ html.multipropertyindex .search-bar .input-group.date .input-group-btn .btn {
   align-items: center !important;
   justify-content: center !important;
   height: 3.2rem !important;
-  padding: 0 .9rem !important;
+  padding: 0 0.9rem !important;
 }
 
 html.multipropertyindex i.fa.fa-calendar {
@@ -634,31 +641,46 @@ html.multipropertyindex .amenity-summary-size span {
 }
 
 /* 4) PÁRRAFOS: ocultar 1, mostrar 2 y 3; NUNCA ocultar btn-group */
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group {
   display: flex !important;
 }
 
 /* Si hay 2 btn-group (a veces el tema duplica uno vacío), nos quedamos con el último */
 /* Reglas exactas para descripciones */
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(1):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(1):not(.btn-group) {
   display: none !important;
 }
 
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(2):not(.btn-group),
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(3):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(2):not(.btn-group),
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(3):not(.btn-group) {
   display: block !important;
 }
 
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(2):not(.btn-group) {
-  padding-top: 2.4rem
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(2):not(.btn-group) {
+  padding-top: 2.4rem;
 }
 
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(n+4):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(n + 4):not(.btn-group) {
   display: none !important;
 }
 
 /* Clamp SOLO para descripciones visibles, nunca para btn-group */
-html.multipropertyindex .property-result-list .col-sm-8>p:not(.btn-group) {
+html.multipropertyindex .property-result-list .col-sm-8 > p:not(.btn-group) {
   overflow: hidden !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
@@ -671,7 +693,10 @@ html.multipropertyindex .property-result-list .col-sm-8 {
   /* reserva espacio */
 }
 
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:last-of-type {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p.btn-group:last-of-type {
   position: absolute !important;
   left: var(--gom-prop-pad-x) !important;
   right: var(--gom-prop-pad-x) !important;
@@ -691,30 +716,42 @@ html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:last-of-type
    - NUNCA ocultar p.btn-group
    ========================================================= */
 
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group {
   display: flex !important;
   -webkit-line-clamp: unset !important;
   overflow: visible !important;
 }
 
 /* Oculta SOLO el 1er párrafo si NO es btn-group */
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(1):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(1):not(.btn-group) {
   display: none !important;
 }
 
 /* Asegura que el 2do y 3ro se vean (siempre que no sean btn-group) */
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(2):not(.btn-group),
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(3):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(2):not(.btn-group),
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(3):not(.btn-group) {
   display: block !important;
 }
 
 /* Oculta del 4to en adelante (solo descriptivos) */
-html.multipropertyindex .property-result-list .col-sm-8>p:nth-of-type(n+4):not(.btn-group) {
+html.multipropertyindex
+  .property-result-list
+  .col-sm-8
+  > p:nth-of-type(n + 4):not(.btn-group) {
   display: none !important;
 }
 
 /* Clamp solo para párrafos descriptivos (no botones) */
-html.multipropertyindex .property-result-list .col-sm-8>p:not(.btn-group) {
+html.multipropertyindex .property-result-list .col-sm-8 > p:not(.btn-group) {
   overflow: hidden !important;
   display: -webkit-box !important;
   -webkit-box-orient: vertical !important;
@@ -722,13 +759,16 @@ html.multipropertyindex .property-result-list .col-sm-8>p:not(.btn-group) {
 }
 
 /* Esconde el btn-group vacío sin depender de last-of-type */
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:empty {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group:empty {
   display: none !important;
 }
 
 /* Mejora: si el browser soporta :has, elimina cualquier btn-group sin botones */
 @supports selector(p:has(a)) {
-  html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:not(:has(a.btn)) {
+  html.multipropertyindex
+    .property-result-list
+    .col-sm-8
+    > p.btn-group:not(:has(a.btn)) {
     display: none !important;
   }
 }
@@ -739,11 +779,12 @@ html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:empty {
 
 /* Importante: deja espacio abajo para que el texto no choque con la botonera */
 html.multipropertyindex .property-result-list .col-sm-8 {
-  padding: 0 var(--gom-prop-pad-x) calc(var(--gom-prop-pad-b) + 5.4rem) var(--gom-prop-pad-x) !important;
+  padding: 0 var(--gom-prop-pad-x) calc(var(--gom-prop-pad-b) + 5.4rem)
+    var(--gom-prop-pad-x) !important;
 }
 
 /* Botonera absoluta al bottom, a todo el ancho respetando paddings */
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group {
   position: absolute !important;
   left: var(--gom-prop-pad-x) !important;
   right: var(--gom-prop-pad-x) !important;
@@ -757,7 +798,7 @@ html.multipropertyindex .amenity-summary-size {
   display: flex !important;
   flex-wrap: wrap !important;
   align-items: center !important;
-  gap: .55rem !important;
+  gap: 0.55rem !important;
 }
 
 /* Quita “bar” accidental si en algún punto lo aplicaste al contenedor */
@@ -770,12 +811,12 @@ html.multipropertyindex .amenity-summary-size .gom-pill,
 html.multipropertyindex .amenity-summary-size span.gom-pill {
   display: inline-flex !important;
   align-items: center !important;
-  padding: .28rem .7rem !important;
+  padding: 0.28rem 0.7rem !important;
   background: var(--gom-prop-glass) !important;
   border: 1px solid var(--gom-prop-border) !important;
   border-radius: 0 !important;
   line-height: 1.2 !important;
-  color: rgba(255, 255, 255, .80) !important;
+  color: rgba(255, 255, 255, 0.8) !important;
   font-size: var(--fs-xs);
 }
 
@@ -798,8 +839,7 @@ html.multipropertyindex #search-bar-widget i.fa.fa-calendar {
   line-height: 1 !important;
 }
 
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
   html.multipropertyindex #header-bar.header-container,
   html.multipropertyindex #header-bar.navbar-fixed-top,
   html.multipropertyindex #header-bar.sticky-top {
@@ -810,7 +850,6 @@ html.multipropertyindex #search-bar-widget i.fa.fa-calendar {
     z-index: 1005 !important;
   }
 }
-
 
 /* =========================================================
    FINAL PATCH (v5) — fixes requested issues
@@ -873,11 +912,11 @@ html.multipropertyindex .sort-selector .dropdown-menu {
   left: 0 !important;
   right: auto !important;
 
-  margin-top: .4rem !important;
-  padding: .45rem 0 !important;
+  margin-top: 0.4rem !important;
+  padding: 0.45rem 0 !important;
 
   background: var(--gom-prop-glass) !important;
-  border: 1px solid rgba(255, 255, 255, .22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 0 !important;
 
   -webkit-backdrop-filter: blur(1rem);
@@ -886,42 +925,50 @@ html.multipropertyindex .sort-selector .dropdown-menu {
   z-index: 1000 !important;
 }
 
-html.multipropertyindex .sort-selector .dropdown-menu>li>a,
+html.multipropertyindex .sort-selector .dropdown-menu > li > a,
 html.multipropertyindex .sort-selector .dropdown-menu .dropdown-item {
-  color: rgba(255, 255, 255, .92) !important;
-  padding: .65rem 1.2rem !important;
-  letter-spacing: .12em !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  padding: 0.65rem 1.2rem !important;
+  letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
   font-size: 1.15rem !important;
 }
 
-html.multipropertyindex .sort-selector .dropdown-menu>li>a:hover,
-html.multipropertyindex .sort-selector .dropdown-menu>li.active>a,
+html.multipropertyindex .sort-selector .dropdown-menu > li > a:hover,
+html.multipropertyindex .sort-selector .dropdown-menu > li.active > a,
 html.multipropertyindex .sort-selector .dropdown-menu .dropdown-item:hover {
-  background: rgba(255, 255, 255, .12) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
   color: #fff !important;
 }
 
 /* D) Ensure the REAL action buttons are always visible */
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group {
   display: flex !important;
   -webkit-line-clamp: unset !important;
   overflow: visible !important;
 }
 
 /* Hide empty duplicates safely (works even if there's whitespace) */
-html.multipropertyindex .property-result-list .col-sm-8>p.btn-group {
+html.multipropertyindex .property-result-list .col-sm-8 > p.btn-group {
   min-height: 0 !important;
 }
 
 @supports selector(p:has(a)) {
-  html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:has(a.btn) {
+  html.multipropertyindex
+    .property-result-list
+    .col-sm-8
+    > p.btn-group:has(a.btn) {
     display: flex !important;
-    max-width: calc(100% - var(--gom-prop-pad-x) - var(--gom-prop-pad-x)) !important;
+    max-width: calc(
+      100% - var(--gom-prop-pad-x) - var(--gom-prop-pad-x)
+    ) !important;
     padding: 0 !important;
   }
 
-  html.multipropertyindex .property-result-list .col-sm-8>p.btn-group:not(:has(a.btn)) {
+  html.multipropertyindex
+    .property-result-list
+    .col-sm-8
+    > p.btn-group:not(:has(a.btn)) {
     display: none !important;
   }
 }
@@ -970,19 +1017,19 @@ html.multipropertyindex .amenity-summary-size span:not(.gom-pill) {
 
 html.multipropertyindex .datepicker.datepicker-dropdown.dropdown-menu {
   background: var(--gom-prop-glass) !important;
-  border: 1px solid rgba(255, 255, 255, .22) !important;
+  border: 1px solid rgba(255, 255, 255, 0.22) !important;
   border-radius: 0 !important;
 
-  padding: .9rem !important;
+  padding: 0.9rem !important;
 
   color: #fff !important;
   font-family: var(--main-font, system-ui) !important;
-  letter-spacing: .04em;
+  letter-spacing: 0.04em;
 
   -webkit-backdrop-filter: blur(1rem);
   backdrop-filter: blur(1rem);
 
-  box-shadow: 0 18px 60px rgba(0, 0, 0, .55) !important;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.55) !important;
 
   /* Asegura que se vea por encima del HUD */
   z-index: 10060 !important;
@@ -990,7 +1037,7 @@ html.multipropertyindex .datepicker.datepicker-dropdown.dropdown-menu {
 
 /* Flechita del dropdown (si aparece) */
 html.multipropertyindex .datepicker-dropdown:before {
-  border-bottom-color: rgba(255, 255, 255, .22) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.22) !important;
 }
 
 html.multipropertyindex .datepicker-dropdown:after {
@@ -1015,30 +1062,30 @@ html.multipropertyindex .datepicker td {
 /* Header (mes/año + prev/next) */
 html.multipropertyindex .datepicker th.datepicker-switch {
   font-weight: 700 !important;
-  letter-spacing: .14em !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
-  padding: .65rem .6rem !important;
+  padding: 0.65rem 0.6rem !important;
 }
 
 html.multipropertyindex .datepicker th.prev,
 html.multipropertyindex .datepicker th.next {
   width: 3.6rem !important;
   cursor: pointer !important;
-  border: 1px solid rgba(255, 255, 255, .18) !important;
-  background: rgba(0, 0, 0, .20) !important;
+  border: 1px solid rgba(255, 255, 255, 0.18) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
 }
 
 html.multipropertyindex .datepicker th.prev:hover,
 html.multipropertyindex .datepicker th.next:hover {
-  background: rgba(255, 255, 255, .12) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 /* Días de la semana */
 html.multipropertyindex .datepicker th.dow {
-  padding: .55rem .4rem !important;
-  color: rgba(255, 255, 255, .78) !important;
+  padding: 0.55rem 0.4rem !important;
+  color: rgba(255, 255, 255, 0.78) !important;
   font-weight: 600 !important;
-  letter-spacing: .08em !important;
+  letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
   font-size: 1.05rem !important;
 }
@@ -1052,25 +1099,25 @@ html.multipropertyindex .datepicker td.day {
   border: 1px solid transparent !important;
   background: transparent !important;
 
-  color: rgba(255, 255, 255, .92) !important;
+  color: rgba(255, 255, 255, 0.92) !important;
   cursor: pointer !important;
 }
 
 html.multipropertyindex .datepicker td.day:hover {
-  background: rgba(255, 255, 255, .12) !important;
-  border-color: rgba(255, 255, 255, .16) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
 }
 
 /* Días fuera del mes */
 html.multipropertyindex .datepicker td.old,
 html.multipropertyindex .datepicker td.new {
-  color: rgba(255, 255, 255, .40) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
 }
 
 /* Disabled */
 html.multipropertyindex .datepicker td.disabled,
 html.multipropertyindex .datepicker td.disabled:hover {
-  color: rgba(255, 255, 255, .22) !important;
+  color: rgba(255, 255, 255, 0.22) !important;
   background: transparent !important;
   border-color: transparent !important;
   cursor: not-allowed !important;
@@ -1078,16 +1125,16 @@ html.multipropertyindex .datepicker td.disabled:hover {
 
 /* Today */
 html.multipropertyindex .datepicker td.today {
-  background: rgba(255, 255, 255, .16) !important;
-  border-color: rgba(255, 255, 255, .38) !important;
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
   color: #fff !important;
 }
 
 /* Selected (active) */
 html.multipropertyindex .datepicker td.active,
 html.multipropertyindex .datepicker td.active:hover {
-  background: rgba(255, 255, 255, .92) !important;
-  border-color: rgba(255, 255, 255, .92) !important;
+  background: rgba(255, 255, 255, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.92) !important;
   color: #000 !important;
   font-weight: 800 !important;
 }
@@ -1103,16 +1150,16 @@ html.multipropertyindex .datepicker span.century {
 
   width: 6.2rem !important;
   height: 3.2rem !important;
-  margin: .25rem !important;
+  margin: 0.25rem !important;
 
-  border: 1px solid rgba(255, 255, 255, .16) !important;
-  background: rgba(0, 0, 0, .20) !important;
+  border: 1px solid rgba(255, 255, 255, 0.16) !important;
+  background: rgba(0, 0, 0, 0.2) !important;
 
   border-radius: 0 !important;
   cursor: pointer !important;
 
-  color: rgba(255, 255, 255, .92) !important;
-  letter-spacing: .08em !important;
+  color: rgba(255, 255, 255, 0.92) !important;
+  letter-spacing: 0.08em !important;
   text-transform: uppercase !important;
 }
 
@@ -1120,22 +1167,22 @@ html.multipropertyindex .datepicker span.month:hover,
 html.multipropertyindex .datepicker span.year:hover,
 html.multipropertyindex .datepicker span.decade:hover,
 html.multipropertyindex .datepicker span.century:hover {
-  background: rgba(255, 255, 255, .12) !important;
+  background: rgba(255, 255, 255, 0.12) !important;
 }
 
 /* Focused + Today en grids grandes */
 html.multipropertyindex .datepicker span.focused,
 html.multipropertyindex .datepicker span.today {
-  border-color: rgba(255, 255, 255, .38) !important;
-  background: rgba(255, 255, 255, .16) !important;
+  border-color: rgba(255, 255, 255, 0.38) !important;
+  background: rgba(255, 255, 255, 0.16) !important;
 }
 
 /* Footer (Clear) */
 html.multipropertyindex .datepicker tfoot th.clear {
-  padding: .75rem 0 .15rem !important;
+  padding: 0.75rem 0 0.15rem !important;
   cursor: pointer !important;
-  color: rgba(255, 255, 255, .78) !important;
-  letter-spacing: .14em !important;
+  color: rgba(255, 255, 255, 0.78) !important;
+  letter-spacing: 0.14em !important;
   text-transform: uppercase !important;
 }
 
@@ -1145,7 +1192,7 @@ html.multipropertyindex .datepicker tfoot th.clear:hover {
 }
 
 /* PROPERTIES: Mobile MENU overlay fullscreen + por encima del drawer */
-@media (max-width:768px) {
+@media (max-width: 768px) {
   html.multipropertyindex #header-menu-phone-container.header-menu-container {
     position: fixed !important;
     top: 0;
@@ -1162,7 +1209,8 @@ html.multipropertyindex .datepicker tfoot th.clear:hover {
   }
 
   /* Bootstrap 3: cuando abre, añade .in */
-  html.multipropertyindex #header-menu-phone-container.header-menu-container.in {
+  html.multipropertyindex
+    #header-menu-phone-container.header-menu-container.in {
     display: block !important;
   }
 
@@ -1188,8 +1236,7 @@ html.multipropertyindex #gom-desktop-overlay {
    Idea: el scroll vive en #content (incluye cards + footer),
    no dentro de .property-result-list.
    ========================================================= */
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
   /* Apaga snap en html/body si existía, para que no interfiera */
   html.multipropertyindex,
   html.multipropertyindex body {
@@ -1213,11 +1260,15 @@ html.multipropertyindex #gom-desktop-overlay {
     box-sizing: border-box !important;
 
     /* Reserva espacio visible para header + drawer */
-    padding-top: calc(var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)) !important;
+    padding-top: calc(
+      var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)
+    ) !important;
 
     /* Mantiene feeling tipo stories, pero permite llegar al footer */
     scroll-snap-type: y proximity !important;
-    scroll-padding-top: calc(var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)) !important;
+    scroll-padding-top: calc(
+      var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)
+    ) !important;
   }
 
   /* La lista ya NO debe ser el “scroll container” */
@@ -1227,8 +1278,10 @@ html.multipropertyindex #gom-desktop-overlay {
   }
 
   /* Cada card ocupa el viewport útil (menos header + drawer) */
-  html.multipropertyindex .property-result-list>.row {
-    min-height: calc(100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)) !important;
+  html.multipropertyindex .property-result-list > .row {
+    min-height: calc(
+      100svh - var(--gom-hdr-h, 9.6rem) - var(--gom-drawer-bar-h, 0px)
+    ) !important;
 
     scroll-snap-align: start !important;
     scroll-snap-stop: always !important;
@@ -1250,8 +1303,7 @@ html.multipropertyindex #gom-desktop-overlay {
    Fix: #content.container tiene padding:0 !important (full-bleed),
    así que aquí lo sobreescribimos SOLO en móvil.
    ========================================================= */
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
   /* Asegura que NO dependemos del padding-top del body (OR a veces lo inyecta inline) */
   html.multipropertyindex body {
     padding-top: 0 !important;
@@ -1259,11 +1311,13 @@ html.multipropertyindex #gom-desktop-overlay {
 
   /* El scroll vive en #content (container), así que aquí va el offset real */
   html.multipropertyindex #content.container {
-    padding-top: calc(var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)) !important;
+    padding-top: calc(
+      var(--gom-hdr-h, 9.6rem) + var(--gom-drawer-bar-h, 0px)
+    ) !important;
   }
 
   /* Opcional: evita que algún margen “fantasma” suba el contenido */
-  html.multipropertyindex #content.container>.body-content {
+  html.multipropertyindex #content.container > .body-content {
     margin-top: 0 !important;
   }
 }
@@ -1278,8 +1332,7 @@ html.multipropertyindex .amenity-summary-amenities {
    Técnica: font-size:0 en el H2 para colapsar el nodo de texto,
    luego restauramos font-size en los hijos reales.
    ========================================================= */
-@media (max-width:768px) {
-
+@media (max-width: 768px) {
   /* H2 donde viven: (property-count) + (&nbsp;) + (sort-selector) */
   html.multipropertyindex .gom-prop-drawer__panel-inner h2 {
     display: flex !important;
