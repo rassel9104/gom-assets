@@ -160,7 +160,7 @@ input[type="button"] {
   font-family: var(--gom-font) !important;
   letter-spacing: 0.12em !important;
   text-transform: uppercase !important;
-  font-weight: 600 !important;
+  font-weight: 400 !important;
 }
 
 /* Primarios */
