@@ -136,7 +136,7 @@
   }
 
   .multihome .col-xs-12 {
-    padding-bottom: 6rem;
+    padding-bottom: 0.8rem;
     padding-left: var(--gom-pad-x);
     padding-right: var(--gom-pad-x);
   }
