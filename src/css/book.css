@@ -99,11 +99,21 @@ html.multibook #header-bar.navbar-fixed-top.sticky-top {
   transform: none !important;
   /* Diseño propuesto: Glassmorphism para el header */
   background: rgba(255, 255, 255, 0.92) !important;
+  -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
 }
 
+.gom-book-fineprint {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 0.4rem !important;
+}
+
+.alert {
+  background: var(--gom-glass) !important;
+}
 /* 2. EL PARCHE MÁGICO PARA MÓVIL:
    El CSS original oculta .not-sticky-top cuando el padre es .sticky-top.
    Aquí lo revertimos forzosamente.
@@ -164,6 +174,7 @@ html.multibook #content .ownerrez-widget {
   max-width: 50%;
   width: 100%;
   background: var(--gom-book-card-bg);
+  -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
   padding: 1.6rem;
@@ -285,7 +296,7 @@ html.multibook .gom-book-link:hover {
   /* Widget ocupa todo el ancho, sin bordes raros */
   html.multibook #content .ownerrez-widget {
     max-width: 100% !important;
-    padding: 1rem;
+    padding: 1.5rem;
     margin-top: 4dvh !important;
     border-radius: 4px;
   }

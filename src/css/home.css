@@ -9,18 +9,18 @@
 /* ROOMS (LISTA DE PROPIEDADES)
 ============================================================ */
 .property-result-list .btn-group {
-    display: flex !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    margin-top: 1px !important;
-    margin-bottom: 0 !important;
-    padding: 0 12px
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 10px !important;
+  margin-top: 1px !important;
+  margin-bottom: 0 !important;
+  padding: 0 12px;
 }
 
 .property-result-list .btn-group .btn:hover,
 .property-result-list .btn-group .btn:focus {
-    filter: brightness(1.05);
-    outline: none !important
+  filter: brightness(1.05);
+  outline: none !important;
 }
 
 /*.property-result-list .thumbnail {
@@ -32,88 +32,91 @@
 */
 /* Botones dentro de cada propiedad (ya los tenías global, lo mantengo) */
 .property-result-list .btn-group .btn {
-    background: #000 !important;
-    color: #fff !important;
-    padding: 4px 6px !important;
-    box-shadow: none !important;
-    text-decoration: none !important;
-    font-size: var(--fs-h4);
-    border: 1px solid #111 !important;
-    flex: 1 1 auto !important;
-    text-align: center !important;
+  background: #000 !important;
+  color: #fff !important;
+  padding: 4px 6px !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  font-size: var(--fs-h4);
+  border: 1px solid #111 !important;
+  flex: 1 1 auto !important;
+  text-align: center !important;
 }
 
 .property-result-list .btn-group {
-    display: flex !important;
-    justify-content: space-between !important;
-    gap: 4px !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 4px !important;
 }
 
 /* Estructura base de cada card: IMG + overlay de contenido */
 .property-result-list .row {
-    position: relative;
-    display: block;
-    height: var(--full-h);
+  position: relative;
+  display: block;
+  height: var(--full-h);
 }
 
 /* Imagen y contenido ocupan el 100% de la card en cualquier viewport */
 .property-result-list .col-sm-4,
 .property-result-list .col-sm-8 {
-    float: none !important;
-    min-width: 100%;
-    padding: 0
+  float: none !important;
+  min-width: 100%;
+  padding: 0;
 }
 
 /* Imagen dentro del thumbnail (misma para móvil y desktop) */
 .property-result-list .thumbnail img {
-    width: 100% !important;
-    height: 100% !important;
-    object-fit: cover !important;
-    object-position: center !important;
-    display: block !important;
-    position: absolute;
-    inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  position: absolute;
+  inset: 0;
 }
 
 /* Gradiente inferior común para legibilidad */
 .property-result-list .thumbnail::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    height: 46%;
-    background: linear-gradient(0deg, rgba(0, 0, 0, .58) 0%, rgba(0, 0, 0, 0) 70%);
-    pointer-events: none;
-    z-index: 1;
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 46%;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.58) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none;
+  z-index: 1;
 }
 
 /* Columna de contenido superpuesto: misma lógica para todos los tamaños */
 .property-result-list .col-sm-8 {
-    position: absolute !important;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100% !important;
-    padding: 0 10.53% 4.44% !important;
-    background: transparent !important;
-    z-index: 2;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    text-align: left;
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100% !important;
+  padding: 0 10.53% 4.44% !important;
+  background: transparent !important;
+  z-index: 2;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  text-align: left;
 }
 
 /* Título visible en overlay (usamos el hidden-xs de desktop) */
 .property-result-list h2.visible-xs.media-heading {
-    display: none !important;
+  display: none !important;
 }
 
 .property-result-list h2.hidden-xs.media-heading {
-    display: block !important;
+  display: block !important;
 }
-
 
 /*.property-result-list h2.media-heading {
     margin: 0 0 4px 0 !important;
@@ -124,746 +127,736 @@
 */
 
 .property-result-list .media-heading a {
-    color: #fff !important;
-    text-decoration: none !important;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-    display: block;
-    max-width: 17ch;
-    font-size: clamp(3.6rem, 3vw + 2.4rem, 3.9rem);
+  color: #fff !important;
+  text-decoration: none !important;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  display: block;
+  max-width: 17ch;
+  font-size: clamp(3.6rem, 3vw + 2.4rem, 3.9rem);
 }
 
 .property-result-list .amenity-summary-size h4,
 .property-result-list .amenity-summary-amenities .h4 {
-    display: inline !important;
-    color: #eeeeee !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, .30);
+  display: inline !important;
+  color: #eeeeee !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 /* Amenity pills */
 .property-result-list .amenity-summary-amenities .amenity-list-item {
-    white-space: nowrap;
-    margin-right: 8px;
+  white-space: nowrap;
+  margin-right: 8px;
 }
 
 .property-result-list .amenity-summary-amenities .amenity-list-item i {
-    margin-right: 4px;
+  margin-right: 4px;
 }
 
 /* Ocultamos descripciones largas: solo headline + líneas clave + botones */
 .property-result-list .col-sm-8 p:not(.btn-group) {
-    display: none !important;
+  display: none !important;
 }
 
 /* Botonera */
 .property-result-list .btn-group {
-    margin-top: 8px !important;
+  margin-top: 8px !important;
 }
 
 hr {
-    display: none !important;
+  display: none !important;
 }
 
 /* ============================================================
    ROOMS – Cabecera de sección (Home)
    ========================================================= */
 
-.multihome form[action="/properties"]>.row>.col-xs-12.col-12>h2 {
-    margin: 0 0 0 var(--gom-pad-x);
-    display: flex !important;
-    align-items: flex-start;
-    gap: 0;
-    font-size: 100%;
-    flex-direction: column;
-    flex-wrap: nowrap;
+.multihome form[action="/properties"] > .row > .col-xs-12.col-12 > h2 {
+  margin: 0 0 0 var(--gom-pad-x);
+  display: flex !important;
+  align-items: flex-start;
+  gap: 0;
+  font-size: 100%;
+  flex-direction: column;
+  flex-wrap: nowrap;
 }
 
 /* Título "2 ROOMS AT GARDEN OF MANORS" */
 .multihome .property-count {
-    display: inline-block;
-    font-family: var(--heading-font);
-    font-weight: var(--fw-medium);
-    text-transform: uppercase;
-    letter-spacing: .01em;
-    font-size: var(--fs-sub);
-    /* texto en una sola línea aprox */
-    white-space: wrap;
+  display: inline-block;
+  font-family: var(--heading-font);
+  font-weight: var(--fw-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.01em;
+  font-size: var(--fs-sub);
+  /* texto en una sola línea aprox */
+  white-space: wrap;
 }
 
 /* Contenedor del selector "Sorted Random" */
 .multihome .sort-selector {
-    display: inline-flex;
-    align-items: center;
-    margin: 0 !important;
-    /* anula el margin-top:-10px inline */
+  display: inline-flex;
+  align-items: center;
+  margin: 0 !important;
+  /* anula el margin-top:-10px inline */
 }
 
 /* Botón de ordenado */
 .multihome .sort-selector .btn {
-    border-radius: 0;
-    border: none;
-    background: #000 !important;
-    color: #fff !important;
-    height: var(--rooms-btn-h);
-    padding: 0 1.6rem !important;
-    font-family: var(--main-font);
-    text-transform: uppercase;
-    letter-spacing: .16em;
-    box-shadow: none;
-    width: 32rem;
+  border-radius: 0;
+  border: none;
+  background: #000 !important;
+  color: #fff !important;
+  height: var(--rooms-btn-h);
+  padding: 0 1.6rem !important;
+  font-family: var(--main-font);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  box-shadow: none;
+  width: 32rem;
 }
 
 /* Lista desplegable del sort */
 .multihome .sort-selector .dropdown-menu {
-    font-size: var(--fs-body);
+  font-size: var(--fs-body);
 }
 
 .multihome .property-result-list {
-    margin-top: var(--rooms-header-gap);
+  margin-top: var(--rooms-header-gap);
 }
-
-
 
 /*============POR PANTALLAS=========*/
 /* ============================================================
  HERO EN DESKTOP CON COLUMNAS Y ETIQUETAS
 ============================================================ */
-@media (min-width:769px) {
-
-    /* =========================================================
+@media (min-width: 769px) {
+  /* =========================================================
      HEADER DESKTOP (logo + MENU + BOOK NOW)
   ========================================================= */
-    /* Mostrar header desktop y ocultar versión phone */
-    #header-bar>.visible-lg {
-        display: block !important;
-    }
+  /* Mostrar header desktop y ocultar versión phone */
+  #header-bar > .visible-lg {
+    display: block !important;
+  }
 
-    #header-bar .header-phone {
-        display: none !important;
-    }
+  #header-bar .header-phone {
+    display: none !important;
+  }
 
-    /* Contenedor del header: ancho completo + padding lateral del mockup */
-    #header-bar .container {
-        width: 100% !important;
-        max-width: none !important;
-        padding-left: var(--gom-pad-x) !important;
-        /* 72px */
-        padding-right: var(--gom-pad-x) !important;
-        /* 72px */
-        margin-left: 0;
-        margin-right: 0;
-    }
+  /* Contenedor del header: ancho completo + padding lateral del mockup */
+  #header-bar .container {
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: var(--gom-pad-x) !important;
+    /* 72px */
+    padding-right: var(--gom-pad-x) !important;
+    /* 72px */
+    margin-left: 0;
+    margin-right: 0;
+  }
 
-    /* Línea principal del header */
-    #header-bar .header-desktop .header-line-container {
-        box-shadow: 0 4px 20px rgba(0, 0, 0, .07);
-    }
+  /* Línea principal del header */
+  #header-bar .header-desktop .header-line-container {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+  }
 
-    #header-bar .header-desktop .header-line {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: var(--header-h);
-        /* se ajusta por CSS + script de head */
-        padding: clamp(1.6rem, 2vh, 2.4rem) 0;
-    }
+  #header-bar .header-desktop .header-line {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: var(--header-h);
+    /* se ajusta por CSS + script de head */
+    padding: clamp(1.6rem, 2vh, 2.4rem) 0;
+  }
 
-    #header-bar .header-desktop .header-line-section {
-        float: none;
-    }
+  #header-bar .header-desktop .header-line-section {
+    float: none;
+  }
 
-    /* Logo alineado a la izquierda */
-    #header-bar .header-desktop .header-logo .navbar-brand {
-        display: block;
-        width: var(--header-logo-w);
-        height: var(--header-logo-h);
-        margin: 0;
-    }
+  /* Logo alineado a la izquierda */
+  #header-bar .header-desktop .header-logo .navbar-brand {
+    display: block;
+    width: var(--header-logo-w);
+    height: var(--header-logo-h);
+    margin: 0;
+  }
 
+  /* Contenedor de enlaces (MENU + BOOK NOW!) alineado a la derecha */
+  #header-bar .header-desktop .header-links {
+    margin-left: auto;
+  }
 
-    /* Contenedor de enlaces (MENU + BOOK NOW!) alineado a la derecha */
-    #header-bar .header-desktop .header-links {
-        margin-left: auto;
-    }
+  #header-bar .header-desktop .header-links .list-inline {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin: 0;
+    padding: 0;
+  }
 
-    #header-bar .header-desktop .header-links .list-inline {
-        display: flex;
-        align-items: center;
-        gap: 1.5rem;
-        margin: 0;
-        padding: 0;
-    }
+  #header-bar .header-desktop .header-links .list-inline > li {
+    float: none;
+    padding: 0;
+  }
 
-    #header-bar .header-desktop .header-links .list-inline>li {
-        float: none;
-        padding: 0;
-    }
+  /* Ocultamos la navegación clásica: los links viven en el overlay */
+  #header-bar .header-desktop .header-links .header-links-menu {
+    display: none !important;
+  }
 
-    /* Ocultamos la navegación clásica: los links viven en el overlay */
-    #header-bar .header-desktop .header-links .header-links-menu {
-        display: none !important;
-    }
+  /* Base común para MENU + BOOK NOW! (pill) */
+  #header-bar .header-desktop .header-links-text span,
+  #header-bar .header-desktop .header-links-page .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--header-btn-minw);
+    height: var(--header-btn-h);
+    padding: 0 1.6rem;
+    /* un poco más de aire lateral */
+    box-sizing: border-box;
 
-    /* Base común para MENU + BOOK NOW! (pill) */
-    #header-bar .header-desktop .header-links-text span,
-    #header-bar .header-desktop .header-links-page .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        min-width: var(--header-btn-minw);
-        height: var(--header-btn-h);
-        padding: 0 1.6rem;
-        /* un poco más de aire lateral */
-        box-sizing: border-box;
+    font-family: var(--main-font);
+    font-size: var(--header-btn-fs);
+    font-weight: var(--fw-semibold);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
 
-        font-family: var(--main-font);
-        font-size: var(--header-btn-fs);
-        font-weight: var(--fw-semibold);
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
+    border-radius: 0;
+    border: 1px solid #000;
+    background: transparent;
+    color: #000;
+    text-decoration: none;
+    line-height: 1;
+    cursor: pointer;
+    white-space: nowrap;
+  }
 
-        border-radius: 0;
-        border: 1px solid #000;
-        background: transparent;
-        color: #000;
-        text-decoration: none;
-        line-height: 1;
-        cursor: pointer;
-        white-space: nowrap;
-    }
+  /* Botón MENU (texto + caret) */
+  #header-bar .header-desktop .header-links-text span {
+    background: transparent;
+  }
 
+  #header-bar .header-desktop .header-links-text span::after {
+    content: "\25be";
+    /* ▾ caret hacia abajo */
+    display: inline-block;
+    margin-left: 0.8rem;
+    font-size: 0.9em;
+  }
 
-    /* Botón MENU (texto + caret) */
-    #header-bar .header-desktop .header-links-text span {
-        background: transparent;
-    }
+  /* BOOK NOW! con fondo negro */
+  #header-bar .header-desktop .header-links-page .btn {
+    background: #000;
+    border-color: #000;
+    color: #fff !important;
+  }
 
-    #header-bar .header-desktop .header-links-text span::after {
-        content: "\25be";
-        /* ▾ caret hacia abajo */
-        display: inline-block;
-        margin-left: 0.8rem;
-        font-size: 0.9em;
-    }
+  #header-bar .header-desktop .header-links-page .btn:hover,
+  #header-bar .header-desktop .header-links-page .btn:focus {
+    background: #111;
+    border-color: #111;
+    color: #fff !important;
+  }
 
-    /* BOOK NOW! con fondo negro */
-    #header-bar .header-desktop .header-links-page .btn {
-        background: #000;
-        border-color: #000;
-        color: #fff !important;
-    }
+  /* Estado cuando el overlay está abierto (body.menu-open) */
+  body.menu-open #header-bar .header-desktop .header-links-text span {
+    background: #000;
+    color: #fff;
+    border-color: #fff;
+  }
 
-    #header-bar .header-desktop .header-links-page .btn:hover,
-    #header-bar .header-desktop .header-links-page .btn:focus {
-        background: #111;
-        border-color: #111;
-        color: #fff !important;
-    }
+  body.menu-open #header-bar .header-desktop .header-links-text span::after {
+    content: "\2715";
+    /* ✕ */
+    margin-left: 0.8rem;
+    font-size: 1em;
+  }
 
-    /* Estado cuando el overlay está abierto (body.menu-open) */
-    body.menu-open #header-bar .header-desktop .header-links-text span {
-        background: #000;
-        color: #fff;
-        border-color: #fff;
-    }
+  .search-bar .search-bar-button {
+    width: 24.4%;
+    padding: 0;
+  }
 
-    body.menu-open #header-bar .header-desktop .header-links-text span::after {
-        content: "\2715";
-        /* ✕ */
-        margin-left: 0.8rem;
-        font-size: 1em;
-    }
+  .carousel-includes-search .search-bar .search-bar-button .btn-default {
+    width: 100% !important;
+  }
 
-    .search-bar .search-bar-button {
-        width: 24.4%;
-        padding: 0;
-    }
-
-    .carousel-includes-search .search-bar .search-bar-button .btn-default {
-        width: 100% !important;
-    }
-
-
-    /* =========================================================
+  /* =========================================================
      OVERLAY DE ESCRITORIO
      ========================================================= */
 
-    #gom-desktop-overlay {
-        position: fixed;
-        inset: 0;
-        width: 100vw;
-        height: 100vh;
-        background: #000;
-        color: #fff;
-        z-index: 9990;
-        display: none;
-    }
+  #gom-desktop-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    color: #fff;
+    z-index: 9990;
+    display: none;
+  }
 
-    #gom-desktop-overlay.is-open {
-        display: block;
-    }
+  #gom-desktop-overlay.is-open {
+    display: block;
+  }
 
-    #gom-desktop-overlay a {
-        color: #fff;
-        text-decoration: none;
-    }
+  #gom-desktop-overlay a {
+    color: #fff;
+    text-decoration: none;
+  }
 
-    .gom-menu-col h3 {
-        letter-spacing: .15em;
-        text-transform: uppercase;
-        margin: 4.2rem 0 1.6rem;
-        color: #fff;
-        font-size: var(--fs-body);
-        font-weight: var(--fw-semibold);
+  .gom-menu-col h3 {
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 4.2rem 0 1.6rem;
+    color: #fff;
+    font-size: var(--fs-body);
+    font-weight: var(--fw-semibold);
+  }
 
-    }
+  .gom-menu-col a {
+    display: block;
+    margin: 0 0 0 0.48rem;
+    font-size: calc(var(--fs-xs) * 1.2);
+  }
 
-    .gom-menu-col a {
-        display: block;
-        margin: 0 0 0 0.48rem;
-        font-size: calc(var(--fs-xs)*1.2);
-    }
+  /* Logo GOM en la esquina inferior derecha del overlay */
+  #gom-desktop-overlay::before {
+    content: "";
+    position: fixed;
+    right: var(--gom-pad-x);
+    /* mismo margen lateral que el contenido */
+    bottom: 4rem;
+    /* separado del borde inferior */
+    width: 14rem;
+    /* ~140px */
+    height: 7.2rem;
+    /* ~72px */
 
-    /* Logo GOM en la esquina inferior derecha del overlay */
-    #gom-desktop-overlay::before {
-        content: "";
-        position: fixed;
-        right: var(--gom-pad-x);
-        /* mismo margen lateral que el contenido */
-        bottom: 4rem;
-        /* separado del borde inferior */
-        width: 14rem;
-        /* ~140px */
-        height: 7.2rem;
-        /* ~72px */
+    background-image: url("https://uc.orez.io/f/5d5c770f7f9f40d294e861812e2e1a74");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: contain;
 
-        background-image: url("https://uc.orez.io/f/5d5c770f7f9f40d294e861812e2e1a74");
-        background-repeat: no-repeat;
-        background-position: right center;
-        background-size: contain;
+    pointer-events: none;
+    /* que no bloquee clicks en nada */
+  }
 
-        pointer-events: none;
-        /* que no bloquee clicks en nada */
-    }
+  /* Texto “All rights Reserved ®” en la esquina inferior izquierda */
+  #gom-desktop-overlay::after {
+    content: "All rights Reserved ®";
+    position: fixed;
+    left: var(--gom-pad-x);
+    bottom: 4rem;
 
-    /* Texto “All rights Reserved ®” en la esquina inferior izquierda */
-    #gom-desktop-overlay::after {
-        content: "All rights Reserved ®";
-        position: fixed;
-        left: var(--gom-pad-x);
-        bottom: 4rem;
+    font-family: var(--main-font);
+    font-size: var(--fs-xs);
+    letter-spacing: 0.08em;
+    text-transform: none;
+    color: #cccccc;
+  }
 
-        font-family: var(--main-font);
-        font-size: var(--fs-xs);
-        letter-spacing: 0.08em;
-        text-transform: none;
-        color: #cccccc;
-    }
-
-
-
-    /* =========================================================
+  /* =========================================================
      HERO – etiquetas superiores tipo columnas + 21+
   ========================================================= */
 
-    #carousel-hero .carousel-caption {
-        top: 0 !important;
-        left: 0 !important;
-        width: 100% !important;
-        height: 100% !important;
-        pointer-events: none;
-        /* evita interacciones no deseadas */
-    }
+  #carousel-hero .carousel-caption {
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none;
+    /* evita interacciones no deseadas */
+  }
 
-    #carousel-hero .carousel-caption h1 {
-        font-size: 0 !important;
-        color: transparent !important;
-    }
+  #carousel-hero .carousel-caption h1 {
+    font-size: 0 !important;
+    color: transparent !important;
+  }
 
-    #carousel-hero .carousel-caption h1::before {
-        content: "";
-        display: none !important;
-    }
+  #carousel-hero .carousel-caption h1::before {
+    content: "";
+    display: none !important;
+  }
 
-    /* Base común para todos los captions + "21+" */
-    #carousel-hero .carousel-caption::before,
-    #carousel-hero .carousel-caption::after,
-    #carousel-hero::before,
-    #carousel-hero::after,
-    #carousel-hero .carousel-inner::before,
-    #carousel-hero .carousel-inner::after {
-        position: absolute;
-        top: calc(var(--full-h)*.1);
-        /* header 72px */
-        font-family: var(--heading-font);
-        font-weight: var(--fw-regular);
-        text-transform: uppercase;
-        font-size: var(--hero-top-fs);
-        color: #fff;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, .65);
-        white-space: pre-line;
-        z-index: 4;
-        line-height: 1.1;
-    }
+  /* Base común para todos los captions + "21+" */
+  #carousel-hero .carousel-caption::before,
+  #carousel-hero .carousel-caption::after,
+  #carousel-hero::before,
+  #carousel-hero::after,
+  #carousel-hero .carousel-inner::before,
+  #carousel-hero .carousel-inner::after {
+    position: absolute;
+    top: calc(var(--full-h) * 0.1);
+    /* header 72px */
+    font-family: var(--heading-font);
+    font-weight: var(--fw-regular);
+    text-transform: uppercase;
+    font-size: var(--hero-top-fs);
+    color: #fff;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.65);
+    white-space: pre-line;
+    z-index: 4;
+    line-height: 1.1;
+  }
 
-    /* Columna 1 */
-    #carousel-hero .carousel-caption::before {
-        content: "Men-focused\A boutique\A guesthouse";
-        left: 5.4%
-            /* 70px */
-    }
+  /* Columna 1 */
+  #carousel-hero .carousel-caption::before {
+    content: "Men-focused\A boutique\A guesthouse";
+    left: 5.4%;
+    /* 70px */
+  }
 
-    /* Columna 2 */
-    #carousel-hero .carousel-caption::after {
-        content: "Steps from\A Wilton Drive\A nightlife";
-        left: 22.1%;
-        /* ≈315px */
-    }
+  /* Columna 2 */
+  #carousel-hero .carousel-caption::after {
+    content: "Steps from\A Wilton Drive\A nightlife";
+    left: 22.1%;
+    /* ≈315px */
+  }
 
-    /* Columna 3 */
-    #carousel-hero::before {
-        content: "Heated\A saltwater\A pool";
-        left: 38.9%;
-        /* ≈545px */
-    }
+  /* Columna 3 */
+  #carousel-hero::before {
+    content: "Heated\A saltwater\A pool";
+    left: 38.9%;
+    /* ≈545px */
+  }
 
-    /* Columna 4 */
-    #carousel-hero::after {
-        content: "Private rooms\A with full climate\A control";
-        left: 55.6%;
-        /* ≈770px */
-    }
+  /* Columna 4 */
+  #carousel-hero::after {
+    content: "Private rooms\A with full climate\A control";
+    left: 55.6%;
+    /* ≈770px */
+  }
 
-    /* columna 5 */
-    #carousel-hero .carousel-inner::after {
-        content: "Clothing\A Optional\A Exclusive vibe";
-        left: 72.6dvw;
+  /* columna 5 */
+  #carousel-hero .carousel-inner::after {
+    content: "Clothing\A Optional\A Exclusive vibe";
+    left: 72.6dvw;
+  }
 
-    }
+  /* 21+ derecha */
+  #carousel-hero .carousel-inner::before {
+    content: "21+";
+    right: var(--gom-pad-x);
+    font-size: var(--hero-21-fs);
+    padding: 0.1rem;
+    top: 8dvh;
+  }
 
-    /* 21+ derecha */
-    #carousel-hero .carousel-inner::before {
-        content: "21+";
-        right: var(--gom-pad-x);
-        font-size: var(--hero-21-fs);
-        padding: .1rem;
-        top: 8dvh;
-    }
-
-
-
-    /* =================INTRO HOME (Desktop)============================
+  /* =================INTRO HOME (Desktop)============================
                        INTRO HOME
     ============================================================ */
-    #gom-intro {
-        /* Ocupa al menos un viewport bajo el header, pero crece si el contenido lo necesita */
-        min-height: var(--full-h);
-        display: flex;
-        padding: var(--intro-top-padding) var(--gom-pad-x) var(--space-80) !important;
-        box-sizing: border-box;
-    }
+  #gom-intro {
+    /* Ocupa al menos un viewport bajo el header, pero crece si el contenido lo necesita */
+    min-height: var(--full-h);
+    display: flex;
+    padding: var(--intro-top-padding) var(--gom-pad-x) var(--space-80) !important;
+    box-sizing: border-box;
+  }
 
-    #gom-intro>.row {
-        width: 100%;
-        margin: 0;
-    }
+  #gom-intro > .row {
+    width: 100%;
+    margin: 0;
+  }
 
-    #gom-intro .col-xs-12.col-sm-11.col-md-10 {
-        width: 100%;
-        margin: 0 auto;
-    }
+  #gom-intro .col-xs-12.col-sm-11.col-md-10 {
+    width: 100%;
+    margin: 0 auto;
+  }
 
-    /* Logo centrado con separación controlada por variable */
-    #gom-intro .col-xs-12.col-sm-11.col-md-10 .text-center {
-        margin: var(--intro-logo-gap) 0 !important;
-    }
+  /* Logo centrado con separación controlada por variable */
+  #gom-intro .col-xs-12.col-sm-11.col-md-10 .text-center {
+    margin: var(--intro-logo-gap) 0 !important;
+  }
 
-    /* Quitamos los <br> manuales y dejamos que sea el layout el que envuelva la frase */
-    #gom-intro-title br {
-        content: "";
-        display: none !important;
-    }
+  /* Quitamos los <br> manuales y dejamos que sea el layout el que envuelva la frase */
+  #gom-intro-title br {
+    content: "";
+    display: none !important;
+  }
 
-    /* Título grande (≈72pt) en mayúsculas, pegado al mockup */
-    #gom-intro .col-xs-12.col-sm-11.col-md-10 h2 {
-        font-family: var(--heading-font);
-        font-weight: 450 !important;
-        letter-spacing: .10em !important;
-        text-transform: uppercase;
-        line-height: .9;
-        font-size: var(--fs-h1) !important;
-        margin: 0 0 var(--intro-title-gap) !important;
-        text-align: left;
-    }
+  /* Título grande (≈72pt) en mayúsculas, pegado al mockup */
+  #gom-intro .col-xs-12.col-sm-11.col-md-10 h2 {
+    font-family: var(--heading-font);
+    font-weight: 450 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase;
+    line-height: 0.9;
+    font-size: var(--fs-h1) !important;
+    margin: 0 0 var(--intro-title-gap) !important;
+    text-align: left;
+  }
 
-    /* 3 columnas de texto en desktop */
-    #gom-intro .gom-intro-text {
-        column-count: 3;
-        column-gap: 3.2rem;
-        max-width: 100%;
-        font-size: var(--fs-body);
-        line-height: 1.6;
-    }
+  /* 3 columnas de texto en desktop */
+  #gom-intro .gom-intro-text {
+    column-count: 3;
+    column-gap: 3.2rem;
+    max-width: 100%;
+    font-size: var(--fs-body);
+    line-height: 1.6;
+  }
 
-    #gom-intro .gom-intro-text p {
-        margin: 0 0 .9rem 0 !important;
-    }
+  #gom-intro .gom-intro-text p {
+    margin: 0 0 0.9rem 0 !important;
+  }
 
-    /*===============ROOMS========================/*
+  /*===============ROOMS========================/*
     /* El listado de propiedades se comporta como grid 2 columnas */
-    .multihome .property-result-list {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 0;
-        margin-bottom: 0;
-    }
+  .multihome .property-result-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0;
+    margin-bottom: 0;
+  }
 
-    /* Cada .row es una card ocupando toda la celda del grid */
-    .multihome .property-result-list .row {
-        position: relative;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        min-height: var(--rooms-card-h);
-    }
+  /* Cada .row es una card ocupando toda la celda del grid */
+  .multihome .property-result-list .row {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    min-height: var(--rooms-card-h);
+  }
 
-    /* Dentro de la card, imagen y overlay ocupan SIEMPRE el 100% del alto de la fila */
-    .multihome .property-result-list .col-sm-4,
-    .multihome .property-result-list .col-sm-8 {
-        float: none !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 0 !important;
+  /* Dentro de la card, imagen y overlay ocupan SIEMPRE el 100% del alto de la fila */
+  .multihome .property-result-list .col-sm-4,
+  .multihome .property-result-list .col-sm-8 {
+    float: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 0 !important;
 
-        /* Anulamos el min-height:1px del tema y lo ligamos a la card */
-        height: 100% !important;
-        min-height: var(--rooms-card-h) !important;
-        box-sizing: border-box;
-    }
+    /* Anulamos el min-height:1px del tema y lo ligamos a la card */
+    height: 100% !important;
+    min-height: var(--rooms-card-h) !important;
+    box-sizing: border-box;
+  }
 
-    /* La columna de imagen sirve de referencia para la thumbnail absoluta */
-    .multihome .property-result-list .col-sm-4 {
-        position: relative !important;
-    }
+  /* La columna de imagen sirve de referencia para la thumbnail absoluta */
+  .multihome .property-result-list .col-sm-4 {
+    position: relative !important;
+  }
 
+  .multihome .property-result-list .thumbnail {
+    display: block;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    overflow: hidden !important;
 
-    .multihome .property-result-list .thumbnail {
-        display: block;
-        margin: 0 !important;
-        border: 0 !important;
-        border-radius: 0 !important;
-        overflow: hidden !important;
+    position: absolute;
+    inset: 0;
 
-        position: absolute;
-        inset: 0;
+    /* 100% del alto de la col-sm-4 (que ahora = alto de la card) */
+    height: 100% !important;
+    min-height: 100% !important;
+    max-height: 100% !important;
 
-        /* 100% del alto de la col-sm-4 (que ahora = alto de la card) */
-        height: 100% !important;
-        min-height: 100% !important;
-        max-height: 100% !important;
+    padding-bottom: 0 !important;
+    /* por si el tema usa truco de padding-bottom */
+    background: #000;
+    /* fallback mientras carga */
+  }
 
-        padding-bottom: 0 !important;
-        /* por si el tema usa truco de padding-bottom */
-        background: #000;
-        /* fallback mientras carga */
-    }
+  .multihome .property-result-list .thumbnail img {
+    position: absolute;
+    inset: 0;
+    width: 100% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
+    display: block !important;
+  }
 
-    .multihome .property-result-list .thumbnail img {
-        position: absolute;
-        inset: 0;
-        width: 100% !important;
-        height: 100% !important;
-        max-height: 100% !important;
-        object-fit: cover !important;
-        object-position: center !important;
-        display: block !important;
-    }
+  /* Gradiente inferior común para legibilidad */
+  .multihome .property-result-list .thumbnail::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 40%;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.85),
+      rgba(0, 0, 0, 0.6) 35%,
+      transparent 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
 
+  /* Columna de contenido superpuesto */
+  .multihome .property-result-list .col-sm-8 {
+    position: absolute !important;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0 10.53% 4.44% !important;
+    /* más o menos tu maqueta */
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text-align: left;
+    background: transparent !important;
+    box-sizing: border-box;
+  }
 
-    /* Gradiente inferior común para legibilidad */
-    .multihome .property-result-list .thumbnail::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        height: 40%;
-        background: linear-gradient(to top,
-                rgba(0, 0, 0, 0.85),
-                rgba(0, 0, 0, 0.6) 35%,
-                transparent 100%);
-        pointer-events: none;
-        z-index: 1;
-    }
+  /* Título (overlay) – usamos el hidden-xs como principal en desktop */
+  .multihome .property-result-list h2.visible-xs.media-heading {
+    display: none !important;
+  }
 
+  .multihome .property-result-list h2.hidden-xs.media-heading {
+    display: block !important;
+    margin: 0 0 0.8rem 0;
+  }
 
-    /* Columna de contenido superpuesto */
-    .multihome .property-result-list .col-sm-8 {
-        position: absolute !important;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 0 10.53% 4.44% !important;
-        /* más o menos tu maqueta */
-        z-index: 2;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        text-align: left;
-        background: transparent !important;
-        box-sizing: border-box;
-    }
+  .multihome .property-result-list .media-heading a {
+    color: #ffffffde !important;
+    text-decoration: none !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+    display: block;
+    max-width: 100%;
+    font-size: var(--fs-sub) !important;
+    text-transform: uppercase;
+  }
 
-    /* Título (overlay) – usamos el hidden-xs como principal en desktop */
-    .multihome .property-result-list h2.visible-xs.media-heading {
-        display: none !important;
-    }
+  /* Size + Amenities (líneas de tamaño y amenities) */
+  .multihome .property-result-list .amenity-summary-size,
+  .multihome .property-result-list .amenity-summary-amenities {
+    margin: 1px 0 !important;
+    font-size: var(--fs-body);
+    color: var(--mtd) !important;
+    text-shadow: 0 1px 6px rgba(0, 0, 0, 0.35);
+  }
 
-    .multihome .property-result-list h2.hidden-xs.media-heading {
-        display: block !important;
-        margin: 0 0 .8rem 0;
-    }
+  .multihome .property-result-list .amenity-summary-size h4,
+  .multihome .property-result-list .amenity-summary-amenities .h4 {
+    display: inline !important;
+    color: var(--mtd) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+  }
 
-    .multihome .property-result-list .media-heading a {
-        color: #ffffffde !important;
-        text-decoration: none !important;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-        display: block;
-        max-width: 100%;
-        font-size: var(--fs-sub) !important;
-        text-transform: uppercase;
-    }
+  /* Pills de amenities */
+  .multihome
+    .property-result-list
+    .amenity-summary-amenities
+    .amenity-list-item {
+    font-size: var(--fs-body);
+    color: var(--mtd);
+  }
 
-    /* Size + Amenities (líneas de tamaño y amenities) */
-    .multihome .property-result-list .amenity-summary-size,
-    .multihome .property-result-list .amenity-summary-amenities {
-        margin: 1px 0 !important;
-        font-size: var(--fs-body);
-        color: var(--mtd) !important;
-        text-shadow: 0 1px 6px rgba(0, 0, 0, .35);
-    }
+  .multihome
+    .property-result-list
+    .amenity-summary-amenities
+    .amenity-list-item
+    i {
+    margin-right: 4px;
+  }
 
-    .multihome .property-result-list .amenity-summary-size h4,
-    .multihome .property-result-list .amenity-summary-amenities .h4 {
-        display: inline !important;
-        color: var(--mtd) !important;
-        text-shadow: 0 1px 3px rgba(0, 0, 0, .30);
-        text-transform: uppercase;
-    }
+  /* Ocultamos párrafos largos de descripción en la card (ya en tu CSS) */
+  .multihome .property-result-list .col-sm-8 p:not(.btn-group) {
+    display: none !important;
+  }
 
-    /* Pills de amenities */
-    .multihome .property-result-list .amenity-summary-amenities .amenity-list-item {
-        font-size: var(--fs-body);
-        color: var(--mtd);
-    }
+  /* Botonera superpuesta al borde inferior */
+  .multihome .property-result-list .btn-group {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    gap: 0 0.8rem !important;
+    margin: 0.8rem 0 0 0 !important;
+    flex-direction: row;
+    padding: 0;
+  }
 
-    .multihome .property-result-list .amenity-summary-amenities .amenity-list-item i {
-        margin-right: 4px;
-    }
+  .multihome .property-result-list .btn-group .btn {
+    flex: 1 1 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: var(--rooms-btn-h);
+    border-radius: 0;
+    border: 0;
+    background: rgba(0, 0, 0, 0.75) !important;
+    color: #fff !important;
+    font-family: var(--main-font);
+    font-size: var(--fs-xs);
+    font-weight: var(--fw-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    text-decoration: none !important;
+    box-shadow: none !important;
+    padding: 0 0.8rem !important;
+  }
 
-    /* Ocultamos párrafos largos de descripción en la card (ya en tu CSS) */
-    .multihome .property-result-list .col-sm-8 p:not(.btn-group) {
-        display: none !important;
-    }
+  .multihome .property-result-list .btn-group .btn:hover,
+  .multihome .property-result-list .btn-group .btn:focus {
+    background: rgba(0, 0, 0, 0.9) !important;
+    outline: none !important;
+  }
 
-    /* Botonera superpuesta al borde inferior */
-    .multihome .property-result-list .btn-group {
-        display: flex !important;
-        flex-wrap: nowrap !important;
-        gap: 0 .8rem !important;
-        margin: .8rem 0 0 0 !important;
-        flex-direction: row;
-        padding: 0;
-    }
+  /* Ocultamos subtítulos / títulos de testimonios que no usamos aquí */
+  #gom-testimonials-title,
+  .gom-subtitle {
+    display: none !important;
+  }
 
-    .multihome .property-result-list .btn-group .btn {
-        flex: 1 1 0;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        height: var(--rooms-btn-h);
-        border-radius: 0;
-        border: 0;
-        background: rgba(0, 0, 0, 0.75) !important;
-        color: #fff !important;
-        font-family: var(--main-font);
-        font-size: var(--fs-xs);
-        font-weight: var(--fw-medium);
-        text-transform: uppercase;
-        letter-spacing: 0.16em;
-        text-decoration: none !important;
-        box-shadow: none !important;
-        padding: 0 .8rem !important;
-    }
+  /*Otros ajustes*/
+  body {
+    background: none !important;
+    /* apagamos el fondo normal */
+    position: relative;
+    overflow-x: hidden;
+    /* evita un desplazamiento lateral cuando se espeja */
+  }
 
-    .multihome .property-result-list .btn-group .btn:hover,
-    .multihome .property-result-list .btn-group .btn:focus {
-        background: rgba(0, 0, 0, 0.9) !important;
-        outline: none !important;
-    }
+  body::before {
+    content: "";
+    position: fixed;
+    /* se mueve con el fondo si deseas absolute */
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
 
-    /* Ocultamos subtítulos / títulos de testimonios que no usamos aquí */
-    #gom-testimonials-title,
-    .gom-subtitle {
-        display: none !important;
-    }
+    background-image: url("https://uc.orez.io/f/2d2167531cae40dd88b6bc3ce567f260");
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
 
+    transform: scaleX(-1);
+    /* volteo horizontal SOLO de esta capa */
+    transform-origin: center;
+    z-index: -1;
+    /* por detrás del contenido */
+    pointer-events: none;
+    /* no bloquea clics */
+  }
 
-    /*Otros ajustes*/
-    body {
-        background: none !important;
-        /* apagamos el fondo normal */
-        position: relative;
-        overflow-x: hidden;
-        /* evita un desplazamiento lateral cuando se espeja */
-    }
-
-    body::before {
-        content: "";
-        position: fixed;
-        /* se mueve con el fondo si deseas absolute */
-        top: 0;
-        left: 0;
-        width: 100vw;
-        height: 100vh;
-
-        background-image: url("https://uc.orez.io/f/2d2167531cae40dd88b6bc3ce567f260");
-        background-size: cover;
-        background-position: center top;
-        background-repeat: no-repeat;
-
-        transform: scaleX(-1);
-        /* volteo horizontal SOLO de esta capa */
-        transform-origin: center;
-        z-index: -1;
-        /* por detrás del contenido */
-        pointer-events: none;
-        /* no bloquea clics */
-    }
-
-    html.has-fullpage-background #content {
-        background: rgba(255, 255, 255, 1);
-    }
-
+  html.has-fullpage-background #content {
+    background: rgba(255, 255, 255, 1);
+  }
 }
 
 /*Reviews: contenedor en Home */
 #gom-testimonials.container {
-    width: 100%;
-    padding: var(--gom-pad-x) !important;
+  width: 100%;
+  padding: var(--gom-pad-x) !important;
 }
 
 #gom-testimonials.container .gom-reviews {
-    padding: 0;
+  padding: 0;
 }
 
 /*Reviews PC */
-@media (min-width:769px) {
-
-    #gom-testimonials.container,
-    .col-md-10 {
-        width: 100%;
-    }
-
+@media (min-width: 769px) {
+  #gom-testimonials.container,
+  .col-md-10 {
+    width: 100%;
+  }
 }
 
 /*Importante para la altura*/
@@ -874,262 +867,259 @@ hr {
 /* Altura media: entre 650px y 799px de alto */
 /* Altura media: entre 650px y 799px de alto */
 @media (min-width: 769px) and (max-height: 799px) {
-    :root {
-        /* HEADER */
-        --header-logo-w: 21rem;
-        --header-logo-h: 5.6rem;
-        --header-btn-minw: 13.6rem;
-        --header-btn-h: 3.6rem;
-        --header-btn-fs: 1.3rem;
+  :root {
+    /* HEADER */
+    --header-logo-w: 21rem;
+    --header-logo-h: 5.6rem;
+    --header-btn-minw: 13.6rem;
+    --header-btn-h: 3.6rem;
+    --header-btn-fs: 1.3rem;
 
-        /* HERO */
-        --hero-top-fs: 1.2rem;
-        --hero-search-h: 18rem;
-        --hero-21-fs: calc(var(--fs-body) * 3);
+    /* HERO */
+    --hero-top-fs: 1.2rem;
+    --hero-search-h: 18rem;
+    --hero-21-fs: calc(var(--fs-body) * 3);
 
-        /* INTRO */
-        --intro-top-padding: 6rem;
-        --intro-logo-gap: 4rem;
-        --intro-title-gap: 4rem;
+    /* INTRO */
+    --intro-top-padding: 6rem;
+    --intro-logo-gap: 4rem;
+    --intro-title-gap: 4rem;
 
-        /* ROOMS */
-        --rooms-section-top: 6.4rem;
-        /* un poco menos aire arriba */
-        --rooms-header-gap: 3.2rem;
-        --rooms-card-h: 56rem;
-        /* card algo más baja */
-        --rooms-btn-h: 3.6rem;
-    }
+    /* ROOMS */
+    --rooms-section-top: 6.4rem;
+    /* un poco menos aire arriba */
+    --rooms-header-gap: 3.2rem;
+    --rooms-card-h: 56rem;
+    /* card algo más baja */
+    --rooms-btn-h: 3.6rem;
+  }
 
-    #gom-testimonials.container .gom-reviews {
-        min-height: var(--full-h);
-    }
-
+  #gom-testimonials.container .gom-reviews {
+    min-height: var(--full-h);
+  }
 }
 
 /* Altura baja: menos de 650px de alto */
 @media (min-width: 769px) and (max-height: 649px) {
-    :root {
-        /* HEADER */
-        --header-logo-w: 18rem;
-        --header-logo-h: 4.8rem;
-        --header-btn-minw: 12.4rem;
-        --header-btn-h: 3.2rem;
-        --header-btn-fs: 1.2rem;
+  :root {
+    /* HEADER */
+    --header-logo-w: 18rem;
+    --header-logo-h: 4.8rem;
+    --header-btn-minw: 12.4rem;
+    --header-btn-h: 3.2rem;
+    --header-btn-fs: 1.2rem;
 
-        /* HERO */
-        --hero-top-fs: 1.1rem;
-        --hero-search-h: 16rem;
-        --hero-21-fs: calc(var(--fs-body) * 2.4);
+    /* HERO */
+    --hero-top-fs: 1.1rem;
+    --hero-search-h: 16rem;
+    --hero-21-fs: calc(var(--fs-body) * 2.4);
 
-        /* INTRO */
-        --intro-top-padding: 4rem;
-        --intro-logo-gap: 2.4rem;
-        --intro-title-gap: 3.2rem;
+    /* INTRO */
+    --intro-top-padding: 4rem;
+    --intro-logo-gap: 2.4rem;
+    --intro-title-gap: 3.2rem;
 
-        /* ROOMS – más compacto */
-        --rooms-section-top: 4.8rem;
-        --rooms-header-gap: 2.4rem;
-        --rooms-card-h: 48rem;
-        /* cards más bajas, dejan respirar la página */
-        --rooms-btn-h: 3.2rem;
-    }
+    /* ROOMS – más compacto */
+    --rooms-section-top: 4.8rem;
+    --rooms-header-gap: 2.4rem;
+    --rooms-card-h: 48rem;
+    /* cards más bajas, dejan respirar la página */
+    --rooms-btn-h: 3.2rem;
+  }
 
-    #gom-testimonials.container .gom-reviews {
-        min-height: var(--full-h);
-    }
+  #gom-testimonials.container .gom-reviews {
+    min-height: var(--full-h);
+  }
 }
 
 /* =========================================================
    FOOTER GARDEN OF MANORS – estructura base
    ========================================================= */
 footer {
-    margin: 0;
-    padding: 0;
-    /* El footer mide al menos el viewport disponible bajo el header */
-    height: var(--full-h);
+  margin: 0;
+  padding: 0;
+  /* El footer mide al menos el viewport disponible bajo el header */
+  height: var(--full-h);
 }
 
 .gomf-wrap {
-    position: relative;
-    overflow: hidden;
+  position: relative;
+  overflow: hidden;
 
-    /* Fondo completo: negro + arcoíris en la parte inferior */
-    background-color: #050404;
-    background-image: url("https://uc.orez.io/f/e186e5e27cc44ec8817ef33be63550a7");
-    background-repeat: no-repeat;
-    background-position: center bottom;
-    background-size: cover;
+  /* Fondo completo: negro + arcoíris en la parte inferior */
+  background-color: #050404;
+  background-image: url("https://uc.orez.io/f/e186e5e27cc44ec8817ef33be63550a7");
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: cover;
 
-    color: #ffffff;
-    font-family: var(--main-font);
+  color: #ffffff;
+  font-family: var(--main-font);
 
-    /* Dejamos un aire razonable arriba y abajo */
-    padding: 4.8rem 2.4rem 4rem;
+  /* Dejamos un aire razonable arriba y abajo */
+  padding: 4.8rem 2.4rem 4rem;
 
-    /* Clave: flex para poder empujar el .gomf-bottom al pie */
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+  /* Clave: flex para poder empujar el .gomf-bottom al pie */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Grid de columnas */
 .gomf-cols {
-    position: relative;
-    z-index: 1;
-    display: grid;
-    grid-template-columns: 1fr;
-    row-gap: 3.2rem;
-    max-width: 100%;
-    margin: 0;
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 3.2rem;
+  max-width: 100%;
+  margin: 0;
 
-    /* Ocupa el espacio disponible por encima del .gomf-bottom */
-    flex: auto 0 0;
+  /* Ocupa el espacio disponible por encima del .gomf-bottom */
+  flex: auto 0 0;
 }
 
 /* Títulos de bloque (ROOMS, GUEST INFO, etc.) */
 .gomf-cols h4 {
-    margin: 0 0 2rem 0;
-    font-family: var(--heading-font);
-    font-weight: var(--fw-regular);
-    letter-spacing: 0em;
-    text-transform: uppercase;
-    font-size: var(--fs-body);
-    color: var(--mtd);
+  margin: 0 0 2rem 0;
+  font-family: var(--heading-font);
+  font-weight: var(--fw-regular);
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  font-size: var(--fs-body);
+  color: var(--mtd);
 }
 
 /* Listas de enlaces */
 .gomf-cols ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.gomf-cols li+li {
-    margin-top: 0.4rem;
+.gomf-cols li + li {
+  margin-top: 0.4rem;
 }
 
 .gomf-cols a {
-    display: inline-block;
-    font-size: var(--fs-xs);
-    color: var(--mtd);
-    text-decoration: none;
+  display: inline-block;
+  font-size: var(--fs-xs);
+  color: var(--mtd);
+  text-decoration: none;
 }
 
 .gomf-cols a:hover,
 .gomf-cols a:focus {
-    color: var(--mtd) !important;
-    /* evita que OwnerRez/Bootstrap lo oscurezca */
-    text-decoration: underline;
+  color: var(--mtd) !important;
+  /* evita que OwnerRez/Bootstrap lo oscurezca */
+  text-decoration: underline;
 }
 
 .gomf-cols a:visited {
-    color: var(--mtd) !important;
-    /* evita morados/oscurecidos en enlaces visitados */
+  color: var(--mtd) !important;
+  /* evita morados/oscurecidos en enlaces visitados */
 }
-
 
 /* Iconos delante de los enlaces (Airbnb, WhatsApp, etc.) */
 .gomf-icon {
-    margin-right: 0.6rem;
-    font-size: 1.2em;
-    vertical-align: -0.1em;
+  margin-right: 0.6rem;
+  font-size: 1.2em;
+  vertical-align: -0.1em;
 }
 
 /* Franja inferior: copyright + logo GOM siempre al pie */
 .gomf-bottom {
-    position: relative;
-    z-index: 1;
+  position: relative;
+  z-index: 1;
 
-    max-width: 100%;
-    /* margin-top auto = empuja hacia abajo todo lo posible */
-    margin: 4rem 0 0;
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    gap: 2.4rem;
+  max-width: 100%;
+  /* margin-top auto = empuja hacia abajo todo lo posible */
+  margin: 4rem 0 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2.4rem;
 
-    /* Esta línea es la que lo pega al fondo de la sección */
-    margin-top: auto;
+  /* Esta línea es la que lo pega al fondo de la sección */
+  margin-top: auto;
 }
 
 .gomf-copy {
-    font-size: var(--fs-xs);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    opacity: 0.9;
+  font-size: var(--fs-xsm);
+  letter-spacing: normal;
+  text-transform: uppercase;
+  opacity: 0.9;
 }
 
 .gomf-bottom img {
-    display: block;
-    width: clamp(13rem, 18vw, 20rem);
-    height: clamp(4rem, 18vw, 7.2rem) !important;
+  display: block;
+  width: clamp(13rem, 18vw, 20rem);
+  height: clamp(4rem, 18vw, 7.2rem) !important;
 }
 
 /* Footer en escritorio: layout cómodo (altura normal) */
 @media (min-width: 769px) and (min-height: 700px) {
-    .gomf-wrap {
-        padding: 8.8rem var(--gom-pad-x) 4rem;
-    }
+  .gomf-wrap {
+    padding: 8.8rem var(--gom-pad-x) 4rem;
+  }
 
-    .gomf-cols {
-        /* antes: repeat(3, minmax(33%, 1fr)) */
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        column-gap: 1.12dvw;
-        row-gap: 16dvh;
-    }
+  .gomf-cols {
+    /* antes: repeat(3, minmax(33%, 1fr)) */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    column-gap: 1.12dvw;
+    row-gap: 16dvh;
+  }
 
-    .gomf-cols h4 {
-        font-size: var(--fs-body) !important;
-    }
+  .gomf-cols h4 {
+    font-size: var(--fs-body) !important;
+  }
 
-    .gomf-bottom {
-        gap: 2.4rem;
-    }
+  .gomf-bottom {
+    gap: 2.4rem;
+  }
 }
 
 /* Footer en escritorio con poca altura (compacto) */
 @media (min-width: 769px) and (max-height: 699px) {
-    .gomf-wrap {
-        padding: 4.8rem var(--gom-pad-x) 3.2rem;
-    }
+  .gomf-wrap {
+    padding: 4.8rem var(--gom-pad-x) 3.2rem;
+  }
 
-    .gomf-cols {
-        grid-template-columns: repeat(4, minmax(18%, 1fr));
-        column-gap: 8%;
-        row-gap: 3.6rem;
-    }
+  .gomf-cols {
+    grid-template-columns: repeat(4, minmax(18%, 1fr));
+    column-gap: 8%;
+    row-gap: 3.6rem;
+  }
 
-    .gomf-cols h4 {
-        font-size: calc(var(--fs-body) * 0.9) !important;
-    }
+  .gomf-cols h4 {
+    font-size: calc(var(--fs-body) * 0.9) !important;
+  }
 
-    .gomf-cols a {
-        font-size: calc(var(--fs-xs) * 0.9) !important;
-    }
+  .gomf-cols a {
+    font-size: calc(var(--fs-xs) * 0.9) !important;
+  }
 
-    .gomf-bottom {
-        gap: 1.6rem;
-    }
+  .gomf-bottom {
+    gap: 1.6rem;
+  }
 
-    .gomf-bottom img {
-        width: clamp(11rem, 14vw, 16rem);
-        height: clamp(3.4rem, 14vw, 6rem) !important;
-    }
+  .gomf-bottom img {
+    width: clamp(11rem, 14vw, 16rem);
+    height: clamp(3.4rem, 14vw, 6rem) !important;
+  }
 }
 
 /*======================VISTA MOVIL==================*/
 
-
 #carousel-hero .carousel-caption h2,
 #carousel-hero .carousel-caption p {
-    font-family: var(--main-font);
-    font-size: clamp(1.6rem, 2.2vh, var(--fs-h4));
-    font-weight: var(--fw-medium);
-    line-height: 1.4;
-    color: rgba(255, 255, 255, 0.9);
-    margin: 0 auto;
-    max-width: 72rem;
+  font-family: var(--main-font);
+  font-size: clamp(1.6rem, 2.2vh, var(--fs-h4));
+  font-weight: var(--fw-medium);
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 auto;
+  max-width: 72rem;
 }
 
 /* =========================================================
@@ -1138,63 +1128,62 @@ footer {
    sin romper el layout interno (Arrival/Departure/Search).
    ========================================================= */
 @media (min-width: 769px) {
-    html.multihome .carousel-includes-search #search-bar-widget.row.search-bar {
-        /* La caja completa respeta el gutter del sitio */
-        width: calc(100% - (var(--gom-pad-x) * 2)) !important;
-        margin: 0 var(--gom-pad-x) !important;
+  html.multihome .carousel-includes-search #search-bar-widget.row.search-bar {
+    /* La caja completa respeta el gutter del sitio */
+    width: calc(100% - (var(--gom-pad-x) * 2)) !important;
+    margin: 0 var(--gom-pad-x) !important;
 
-        /* Evita "doble offset" por padding lateral grande */
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+    /* Evita "doble offset" por padding lateral grande */
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
 
-        /* Mantén tu padding-top actual (si tu diseño depende de él) */
-        /* Si ya tienes otro padding-top en cascada, no lo peleo aquí */
-        box-sizing: border-box !important;
-    }
+    /* Mantén tu padding-top actual (si tu diseño depende de él) */
+    /* Si ya tienes otro padding-top en cascada, no lo peleo aquí */
+    box-sizing: border-box !important;
+  }
 
-    /* Los textos "CHOOSE A DATE" / subtítulo deben alinearse con el contenido,
+  /* Los textos "CHOOSE A DATE" / subtítulo deben alinearse con el contenido,
      no con el gutter (no uses var(--gom-pad-x) aquí). */
-    html.multihome .carousel-includes-search #search-bar-widget::before,
-    html.multihome .carousel-includes-search #search-bar-widget::after {
-        left: 1.5rem !important;
-        /* ~15px: coincide mejor con padding bootstrap */
-    }
+  html.multihome .carousel-includes-search #search-bar-widget::before,
+  html.multihome .carousel-includes-search #search-bar-widget::after {
+    left: 1.5rem !important;
+    /* ~15px: coincide mejor con padding bootstrap */
+  }
 }
 
 @media (min-width: 769px) {
-    .multihome .carousel-includes-search #search-bar-widget.row.search-bar {
-        box-sizing: border-box !important;
-        margin: 0 var(--gom-pad-x) !important;
-        width: calc(100% - (var(--gom-pad-x) * 2)) !important;
+  .multihome .carousel-includes-search #search-bar-widget.row.search-bar {
+    box-sizing: border-box !important;
+    margin: 0 var(--gom-pad-x) !important;
+    width: calc(100% - (var(--gom-pad-x) * 2)) !important;
 
-        /* gutter interno del row (puedes ajustar si quieres) */
-        padding-left: .5rem !important;
-        padding-right: .5rem !important;
-    }
+    /* gutter interno del row (puedes ajustar si quieres) */
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
 
-    .multihome .carousel-includes-search #search-bar-widget::before,
-    .multihome .carousel-includes-search #search-bar-widget::after {
-        left: 1.5rem !important;
-    }
+  .multihome .carousel-includes-search #search-bar-widget::before,
+  .multihome .carousel-includes-search #search-bar-widget::after {
+    left: 1.5rem !important;
+  }
 }
 
 /* ================= INTRO HOME — ultrawide only (>=1600px) ================= */
 @media (min-width: 1600px) {
+  /* Mantén el diseño actual en pantallas normales; aquí solo controlamos el “estiramiento” */
+  .multihome #gom-intro .col-xs-12.col-sm-11.col-md-10 {
+    /* Evita que el bloque interior se vaya a ~1700px en 1920+ */
+    max-width: 128rem;
+    /* ~1280px */
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-    /* Mantén el diseño actual en pantallas normales; aquí solo controlamos el “estiramiento” */
-    .multihome #gom-intro .col-xs-12.col-sm-11.col-md-10 {
-        /* Evita que el bloque interior se vaya a ~1700px en 1920+ */
-        max-width: 128rem;
-        /* ~1280px */
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .multihome #gom-intro .gom-intro-text {
-        /* Controla el ancho del texto multi-columna para que envuelva más */
-        max-width: 110rem;
-        /* ~1100px */
-        width: 100%;
-        column-fill: balance;
-    }
+  .multihome #gom-intro .gom-intro-text {
+    /* Controla el ancho del texto multi-columna para que envuelva más */
+    max-width: 110rem;
+    /* ~1100px */
+    width: 100%;
+    column-fill: balance;
+  }
 }
