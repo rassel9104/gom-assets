@@ -39,6 +39,11 @@ html.multiproperty body,
 html.multiproperty #content {
   overflow-x: hidden;
   margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important ;
+}
+html.multiproperty .container-fluid {
+  margin-top: 4.5dvh !important;
 }
 
 /* =========================
@@ -112,18 +117,23 @@ html.multiproperty #content .row:first-of-type h1 {
   z-index: 12 !important;
   left: var(--gom-prop-pad-x) !important;
   right: var(--gom-prop-pad-x) !important;
-  top: calc(var(--gom-prop-header-h) + 34px) !important;
+  top: 8dvh !important;
   margin: 0 !important;
 
   color: #fff !important;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
-  font-weight: 300;
+  letter-spacing: normal;
+  font-weight: var(--fw-regular);
 
   /* si ya estabas usando clamp con dvh, mantenemos la idea */
-  font-size: clamp(34px, 7dvh, 88px);
-  line-height: 0.92;
+  font-size: clamp(1dvh, 3.55dvh, 7dvh);
+  line-height: normal;
   text-shadow: 0 18px 50px rgba(0, 0, 0, 0.45);
+  width: 40ch;
+}
+
+html.multiproperty #content .row:first-of-type h1 small {
+  display: none !important;
 }
 
 /* Oculta el “sub-h1” duplicado (si existe) */
@@ -372,6 +382,10 @@ html.multiproperty .lSSlideOuter .lSPager.lSGallery > li img {
   display: block !important;
 }
 
+html.multiproperty .thumbnail .caption-overlay,
+.lightSlider .caption {
+  display: none !important;
+}
 /* =========================
    6) “About This Suite” visible (si lo quieres como heading real)
    ========================= */
@@ -548,7 +562,7 @@ html.multiproperty :is(h2.page-header.linktarget, h2.page-header) {
   padding: 4.5dvh 0 2.25dvh !important;
   margin-block-end: 0 !important;
   margin-block-start: 0 !important;
-  font-weight: var(--fw-regular);
+  font-weight: var(--fw-regular) !important;
 }
 
 /* ---------------------------------------------------------------------
@@ -637,6 +651,12 @@ html.multiproperty #amenities-table td {
   font-weight: var(--fw-regular) !important;
 }
 
+html.multiproperty b,
+html.multiproperty dt,
+html.multiproperty .review-average {
+  font-weight: var(--fw-regular) !important;
+}
+
 /* Small-screen readability (preserves label/value proportions on tablets) */
 @media (max-width: 768px) {
   html.multiproperty #amenities-table > tbody > tr > th {
@@ -645,7 +665,7 @@ html.multiproperty #amenities-table td {
 }
 
 html.multiproperty #amenities-table th {
-  font-weight: var(--fw-regular);
+  font-weight: 600;
   letter-spacing: 0.02em;
   width: 34%;
   min-width: 220px;
@@ -738,4 +758,63 @@ html.multiproperty #location.page-header ~ p.lead {
   margin: 12px 0 0;
   font-size: 14px;
   color: rgba(0, 0, 0, 0.7);
+}
+
+/* =========================================================
+   PC — Reviews anchor + Footer full-bleed
+   (Requested: hide duplicate H2#reviews; footer full width + consistent spacing)
+   ========================================================= */
+
+/* Hide the built-in H2 heading (widget already renders its own title)
+   Keep the element in-flow so #reviews anchor still scrolls correctly. */
+html.multiproperty h2#reviews.page-header.linktarget {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  height: 1px !important;
+  line-height: 1px !important;
+  font-size: 0 !important;
+  overflow: hidden !important;
+  color: transparent !important;
+  background: transparent !important;
+}
+
+/* Footer: consistent separation from previous section */
+html.multiproperty footer {
+  margin-top: clamp(32px, 4vw, 72px);
+}
+
+/* Footer full-bleed (break out of any Bootstrap container constraints) */
+html.multiproperty footer {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  /* Make the footer feel like a full section */
+  min-height: calc(100vh - var(--gom-prop-header-h, 0px));
+  display: flex;
+  flex-direction: column;
+}
+
+/* If the footer already has its own layout styles elsewhere, these only
+   ensure the inner content aligns to the same page padding you use above. */
+html.multiproperty footer .gomf-wrap {
+  width: 100%;
+  padding-left: var(--gom-prop-pad-x, 20px);
+  padding-right: var(--gom-prop-pad-x, 20px);
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push the bottom row to the bottom when there’s extra vertical space */
+html.multiproperty footer .gomf-bottom {
+  margin-top: auto;
+}
+
+/* Ensure the top <hr> inside footer doesn't re-introduce side margins */
+html.multiproperty footer > hr {
+  width: 100%;
+  margin-left: 0;
+  margin-right: 0;
 }
