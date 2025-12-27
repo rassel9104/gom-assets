@@ -46,6 +46,7 @@ html.multiproperty #content {
 html.multiproperty #content .body-content > .row:nth-of-type(2) > .col-md-8,
 html.multiproperty #content > .row:nth-of-type(2) > .col-md-8 {
   position: relative;
+  margin-bottom: 8dvh !important;
 }
 /* ============================================================
    HERO full-bleed (FIX: mata cualquier left:50%/translate viejo)
@@ -420,6 +421,7 @@ html.multiproperty .col-md-4.pull-right-md .ownerrez-widget iframe {
     /* Empuja el widget exactamente la altura del hero */
     padding-top: calc(var(--gom-prop-hero-h) + 8dvh);
     padding-right: var(--gom-prop-pad-x);
+    margin-top: 8dvh !important;
   }
 
   /* El inline margin-right del widget a veces deja “desalineado” el card */
@@ -440,8 +442,10 @@ html.multiproperty .linktarget {
 
 /* Por si hay secciones con ID sin .linktarget (fallback seguro) */
 html.multiproperty
-  :is(#details, #availability, #location, #amenities, #reviews) {
-  scroll-margin-top: calc(var(--gom-prop-header-h) + 22px);
+  :is(#details, #availability, #location, #amenities, #reviews, #ownerrez-widget) {
+  margin-block-end: 0;
+  margin-block-start: 0;
+  margin: 0 var(--gom-pad-x);
 }
 
 /* ============================================================
