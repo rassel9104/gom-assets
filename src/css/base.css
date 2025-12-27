@@ -17,7 +17,7 @@
     sans-serif;
   --heading-font: var(--main-font);
 
-  --gom-build: "rev-room-001"; /* Build stamp for cache/debug (update value when needed) */
+  --gom-build: "rev-room-023"; /* Build stamp for cache/debug (update value when needed) */
 
   /* Colores base (ajustables luego) */
   --color-text: #111;
@@ -171,6 +171,7 @@ h3 {
   font-size: var(--fs-h3);
   color: var(--pri-color);
   font-weight: var(--fw-medium);
+  letter-spacing: normal;
 }
 
 input,

@@ -1,0 +1,468 @@
+/* ============================================================
+   Garden of Manors — MULTIPROPERTY (CORREGIDO)
+   Scope: html.multiproperty
+   ============================================================ */
+
+html.multiproperty {
+  /* Tokens base */
+  --gom-prop-header-h: var(--header-h, 88px);
+  --gom-prop-hero-h: calc(100dvh - var(--gom-prop-header-h));
+}
+
+/* ============================================================
+   Paso 2: HERO frame (solo altura)
+   ============================================================ */
+
+/* El “aspect hack” inline del slider debe dejar de dominar */
+html.multiproperty .lSSlideOuter {
+  height: var(--gom-prop-hero-h) !important;
+  overflow: hidden;
+}
+
+/* Fuerza wrapper y UL a ocupar la altura del hero */
+html.multiproperty .lSSlideOuter .lSSlideWrapper,
+html.multiproperty .lSSlideOuter #lightSlider {
+  height: 100% !important;
+}
+
+html.multiproperty .lSSlideOuter #lightSlider {
+  padding-bottom: 0 !important;
+}
+
+html.multiproperty .lSSlideOuter #lightSlider > li {
+  height: 100% !important;
+}
+
+/* Imagen llena el frame */
+html.multiproperty .lSSlideOuter #lightSlider img {
+  width: 100% !important;
+  height: 100% !important;
+  display: block !important;
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+/* ============================================================
+   Paso 3: HERO full-bleed (solo ancho del slider)
+   ============================================================ */
+
+/* FIX — HERO full-bleed real (viewport completo) */
+html.multiproperty #content {
+  overflow-x: visible !important;
+}
+
+/* Evita scroll horizontal sin recortar el HERO dentro de #content */
+html.multiproperty,
+html.multiproperty body {
+  overflow-x: hidden;
+}
+
+/* Full-bleed */
+html.multiproperty .lSSlideOuter {
+  width: 100vw !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* Garantiza que el widget quede por encima si el slider invade su columna */
+html.multiproperty .col-md-4.pull-right-md {
+  position: relative;
+  z-index: 2;
+}
+
+/* ============================================================
+   Paso 4: Tabs overlay (navbar-cabin) anclados al hero
+   ============================================================ */
+
+html.multiproperty {
+  --gom-prop-tabs-h: 64px;
+}
+
+html.multiproperty .col-md-8 {
+  position: relative;
+}
+
+/* Saca el nav del flujo y colócalo al final del hero */
+html.multiproperty .navbar-cabin {
+  position: absolute !important;
+
+  /* full-bleed setup */
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: 100vw !important;
+
+  /* Anclaje al hero por TOP */
+  top: calc(var(--gom-prop-hero-h) - var(--gom-prop-tabs-h)) !important;
+
+  z-index: 10 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  min-height: var(--gom-prop-tabs-h) !important;
+
+  background: rgba(0, 0, 0, 0.3) !important;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+}
+
+html.multiproperty .navbar-cabin .nav {
+  float: none !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+
+  max-width: var(--gom-prop-maxw, 1180px);
+  margin: 0 auto !important;
+  padding-left: var(--gom-prop-pad-x, var(--gom-pad-x, 5%));
+  padding-right: var(--gom-prop-pad-x, var(--gom-pad-x, 5%));
+}
+
+html.multiproperty .navbar-cabin .nav > li {
+  float: none !important;
+}
+
+html.multiproperty .navbar-cabin .nav > li > a {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 0.9rem 1rem !important;
+}
+
+html.multiproperty .navbar-cabin .nav > li > a:hover,
+html.multiproperty .navbar-cabin .nav > li > a:focus {
+  color: rgba(255, 255, 255, 1) !important;
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ============================================================
+   Paso 5: Título (H1) overlay sobre el hero
+   ============================================================ */
+
+html.multiproperty {
+  --gom-prop-title-top: clamp(6dvh, 10dvh, 18dvh);
+}
+
+@supports not (height: 100dvh) {
+  html.multiproperty {
+    --gom-prop-title-top: clamp(6vh, 10vh, 18vh);
+  }
+}
+
+html.multiproperty #content .body-content {
+  position: relative;
+}
+
+/* La 1ra row (la del H1) se vuelve overlay */
+html.multiproperty #content .body-content > .row:first-child {
+  position: absolute !important;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 20 !important;
+  pointer-events: none;
+}
+
+html.multiproperty #content .body-content > .row:first-child > .col-md-12 {
+  max-width: var(--gom-prop-maxw, 1180px);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: var(--gom-prop-pad-x, var(--gom-pad-x, 5%));
+  padding-right: var(--gom-prop-pad-x, var(--gom-pad-x, 5%));
+}
+
+html.multiproperty #content .page-header {
+  margin: 0 !important;
+  padding-top: var(--gom-prop-title-top) !important;
+  padding-bottom: 1.1rem !important;
+
+  border: 0 !important;
+  background: transparent !important;
+
+  color: rgba(255, 255, 255, 0.96) !important;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-family: var(--heading-font, var(--main-font, system-ui)) !important;
+  font-weight: var(--fw-regular, 400) !important;
+  line-height: 0.95 !important;
+
+  text-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
+}
+
+html.multiproperty #content .page-header > small {
+  display: none !important;
+}
+
+/* ============================================================
+   Paso 6: Overlay / Gradient sobre el HERO
+   ============================================================ */
+
+html.multiproperty {
+  --gom-prop-hero-overlay: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.78) 0%,
+    rgba(0, 0, 0, 0.34) 44%,
+    rgba(0, 0, 0, 0.14) 72%,
+    rgba(0, 0, 0, 0.06) 100%
+  );
+}
+
+html.multiproperty .lSSlideOuter {
+  position: relative !important;
+  z-index: 0;
+}
+
+html.multiproperty .lSSlideOuter::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+  background: var(--gom-prop-hero-overlay) !important;
+}
+
+html.multiproperty .lSSlideOuter .lSAction {
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 2 !important;
+  pointer-events: none;
+}
+
+html.multiproperty .lSSlideOuter .lSAction > a {
+  pointer-events: auto;
+}
+
+/* Refuerzo de z-index */
+html.multiproperty .navbar-cabin {
+  z-index: 10 !important;
+}
+html.multiproperty #content .body-content > .row:first-child {
+  z-index: 20 !important;
+}
+
+/* ============================================================
+   Paso 8: Details — visible + encima del HERO
+   ============================================================ */
+
+html.multiproperty {
+  --gom-prop-details-maxch: 72ch;
+  --gom-prop-details-gap: 0.9rem;
+  --gom-prop-details-top: clamp(1.6rem, 3vw, 3rem);
+}
+
+html.multiproperty #details.linktarget {
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* CLAVE: todo lo que venga DESPUÉS del slider dentro de .col-md-8
+   debe quedar por encima del panel (::after) */
+html.multiproperty .col-md-8 .lSSlideOuter ~ * {
+  position: relative;
+  z-index: 5;
+}
+
+html.multiproperty .col-md-8 .amenity-summary-size {
+  margin-top: var(--gom-prop-details-top) !important;
+  margin-bottom: 0.6rem !important;
+  opacity: 0.92;
+}
+
+html.multiproperty .col-md-8 .amenity-summary-amenities {
+  margin-top: 0 !important;
+  margin-bottom: 1.2rem !important;
+  line-height: 1.8 !important;
+  opacity: 0.92;
+}
+
+/* Mostrar Heading SR-ONLY */
+html.multiproperty #desc-title.sr-only {
+  position: relative !important;
+  z-index: 6 !important; /* Por encima del panel */
+
+  width: auto !important;
+  height: auto !important;
+  margin: 0 0 0.9rem 0 !important;
+
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+
+  display: block !important;
+  font-size: clamp(1.25rem, 0.6vw + 1.15rem, 1.6rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Tipografía cuerpo */
+html.multiproperty .col-md-8 > p,
+html.multiproperty .col-md-8 > ul,
+html.multiproperty .col-md-8 > ol {
+  max-width: var(--gom-prop-details-maxch);
+}
+
+html.multiproperty .col-md-8 > p {
+  margin: 0 0 var(--gom-prop-details-gap) 0 !important;
+  line-height: 1.75 !important;
+  font-size: clamp(1rem, 0.25vw + 0.98rem, 1.08rem);
+}
+
+html.multiproperty .col-md-8 > ul,
+html.multiproperty .col-md-8 > ol {
+  margin: 0 0 1.2rem 1.25rem !important;
+  padding: 0 !important;
+}
+
+html.multiproperty .col-md-8 > ul > li,
+html.multiproperty .col-md-8 > ol > li {
+  margin: 0.35rem 0 !important;
+  line-height: 1.65 !important;
+}
+
+/* ============================================================
+   Paso 9: Widget debajo del HERO (solo desktop)
+   ============================================================ */
+
+@media (min-width: 992px) {
+  html.multiproperty .col-md-4.pull-right-md {
+    padding-top: var(--gom-prop-hero-h);
+  }
+
+  html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
+    margin-right: 0 !important;
+  }
+}
+
+/* ============================================================
+   Paso 10: Widget — card glass
+   ============================================================ */
+
+html.multiproperty {
+  --gom-card-r: 22px;
+  --gom-card-pad: clamp(14px, 1.2vw, 20px);
+  --gom-card-bg: rgba(255, 255, 255, 0.08);
+  --gom-card-bd: rgba(255, 255, 255, 0.16);
+  --gom-card-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+}
+
+html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
+  border-radius: var(--gom-card-r);
+  background: var(--gom-card-bg);
+  outline: 1px solid var(--gom-card-bd);
+  box-shadow: var(--gom-card-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: var(--gom-card-pad);
+  overflow: hidden;
+}
+
+html.multiproperty .col-md-4.pull-right-md .ownerrez-widget iframe {
+  display: block;
+  width: 100% !important;
+  border: 0 !important;
+  border-radius: calc(var(--gom-card-r) - 6px);
+  background: transparent;
+}
+
+@media (min-width: 992px) {
+  html.multiproperty .col-md-4.pull-right-md {
+    padding-top: calc(var(--gom-prop-hero-h) + clamp(8px, 1vw, 18px));
+  }
+}
+
+/* ============================================================
+   Paso 12: Details Panel (Glass) debajo del HERO
+   ============================================================ */
+
+html.multiproperty {
+  --gom-prop-hero-gap: clamp(1.6rem, 3vw, 3.2rem);
+  --gom-prop-panel-r: 26px;
+  --gom-prop-panel-pad-x: clamp(14px, 2.2vw, 22px);
+  --gom-prop-panel-pad-y: clamp(16px, 2.6vw, 26px);
+  --gom-prop-panel-bg: rgba(255, 255, 255, 0.07);
+  --gom-prop-panel-bd: rgba(255, 255, 255, 0.14);
+  --gom-prop-panel-shadow: 0 18px 60px rgba(0, 0, 0, 0.3);
+}
+
+html.multiproperty .col-md-8 {
+  position: relative;
+}
+
+/* Panel “glass” */
+html.multiproperty .col-md-8::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: calc(var(--gom-prop-hero-h) + var(--gom-prop-hero-gap));
+  bottom: 0;
+  border-radius: var(--gom-prop-panel-r);
+  background: var(--gom-prop-panel-bg);
+  outline: 1px solid var(--gom-prop-panel-bd);
+  box-shadow: var(--gom-prop-panel-shadow);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  pointer-events: none;
+  z-index: 1; /* Nivel 1: fondo */
+  border-bottom-left-radius: var(--gom-prop-panel-r);
+  border-bottom-right-radius: var(--gom-prop-panel-r);
+}
+
+/* Contenido visible (Nivel 2 o más) */
+html.multiproperty .col-md-8 .lSSlideOuter ~ * {
+  position: relative;
+  z-index: 2;
+  padding-left: var(--gom-prop-panel-pad-x);
+  padding-right: var(--gom-prop-panel-pad-x);
+}
+
+html.multiproperty #details.linktarget {
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+html.multiproperty .col-md-8 .amenity-summary-size {
+  padding-top: var(--gom-prop-panel-pad-y) !important;
+}
+
+html.multiproperty .col-md-8 > :last-child {
+  padding-bottom: var(--gom-prop-panel-pad-y);
+}
+
+/* ============================================================
+   FIX 01 — Mostrar "About This Suite"
+   NOTA: Corregido a 'position: relative' para que el
+   panel de vidrio (z-index: 1) no lo tape.
+   ============================================================ */
+
+html.multiproperty #desc-title {
+  /* CAMBIO CRÍTICO: Debe ser relative para respetar z-index sobre el panel */
+  position: relative !important;
+  z-index: 6 !important;
+
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  display: block !important;
+  margin: 0.9rem 0 0.9rem 0 !important;
+  scroll-margin-top: calc(var(--header-h, 88px) + 18px);
+}
+
+/* Si OwnerRez lo trae como sr-only */
+html.multiproperty #desc-title.sr-only {
+  position: relative !important; /* Mantenemos relative */
+  z-index: 6 !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
+  display: block !important;
+}

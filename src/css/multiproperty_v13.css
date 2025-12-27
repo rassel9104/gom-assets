@@ -385,6 +385,7 @@ html.multiproperty #desc-title.sr-only {
    7) Widget — SOLO él en “card glass”
    ========================= */
 html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
+  border-radius: var(--gom-card-r);
   background: var(--gom-card-bg);
   outline: 1px solid var(--gom-card-bd);
   box-shadow: var(--gom-card-shadow);
@@ -415,7 +416,7 @@ html.multiproperty .col-md-4.pull-right-md .ownerrez-widget iframe {
    - NO estilos glass aún
    ============================================================ */
 
-@media (min-width: 769px) {
+@media (min-width: 768px) {
   html.multiproperty .col-md-4.pull-right-md {
     /* Empuja el widget exactamente la altura del hero */
     padding-top: calc(var(--gom-prop-hero-h) + 8dvh);
@@ -454,23 +455,46 @@ html.multiproperty
 html.multiproperty #desc-title {
   position: relative !important;
   display: block !important;
-  font-size: var(--fs-h3) !important;
-  font-weight: var(--fw-medium) !important;
+
+  margin: 26px 0 14px !important;
+
+  font-size: clamp(22px, 2.2vw, 34px) !important;
+  line-height: 1.1 !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 700 !important;
+
+  /* integra con tu arquetipo (sin “card”) */
+  color: rgba(20, 20, 24, 0.92) !important;
+}
+
+/* Si aún tuviera sr-only, lo anulamos SOLO aquí */
+html.multiproperty #desc-title.sr-only {
+  width: auto !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 8dvh var(--gom-prop-pad-x) 2dvh !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  border: 0 !important;
 }
 
 /* Párrafos: lectura premium */
 html.multiproperty #desc-title ~ p {
-  margin: 0 !important;
+  margin: 0 var(--gom-prop-pad-x) 2dvh !important;
   line-height: normal !important;
 }
 
 /* Listas */
 html.multiproperty #desc-title ~ ul {
-  margin: 0 calc(var(--gom-prop-pad-x) * 2) 0 var(--gom-prop-pad-x) !important;
+  margin: 0 calc(var(--gom-prop-pad-x) * 2) 2dvh var(--gom-prop-pad-x) !important ;
   padding: 0 !important;
 }
 html.multiproperty #desc-title ~ ul > li {
-  margin: 0 !important;
+  margin: 8px 0 !important;
+  font-size: 15.5px !important;
+  line-height: 1.55 !important;
+  color: rgba(20, 20, 24, 0.82) !important;
 }
 
 /* Resúmenes Size / Amenities: más compactos y alineados */
@@ -483,7 +507,9 @@ html.multiproperty .amenity-summary-amenities {
 }
 
 html.multiproperty .amenity-summary-size {
-  display: none;
+  margin-top: 18px !important;
+  margin-bottom: 10px !important;
+  font-size: 14px !important;
 }
 
 html.multiproperty .amenity-summary-amenities {
@@ -513,24 +539,104 @@ html.multiproperty .amenity-summary-amenities a:hover {
 
 html.multiproperty {
   /* tweak freely */
-  --gom-prop-about-max: 44rem; /* ~704px: readable but not cramped */
+  --gom-prop-about-max: 72ch;
   --gom-prop-about-gap-r: clamp(20px, 3vw, 84px);
 }
 
 /* If you wrap your description text in <div class="gom-prop-about">...</div>
    (inside the property description), these rules become even cleaner. */
-@media (min-width: 769px) {
+@media (min-width: 992px) {
+  html.multiproperty .gom-prop-about {
+    max-width: var(--gom-prop-about-max);
+    margin-left: var(--gom-prop-pad-x);
+    margin-right: calc(var(--gom-prop-pad-x) + var(--gom-prop-about-gap-r));
+  }
   html.multiproperty .gom-prop-about > :is(p, ul) {
     margin-left: 0;
     margin-right: 0;
   }
 }
 
+/* CSS-only (no HTML changes): target the auto-rendered block after #desc-title */
+@media (min-width: 992px) {
+  html.multiproperty #desc-title,
+  html.multiproperty #desc-title ~ :is(p, ul) {
+    max-width: var(--gom-prop-about-max);
+  }
+
+  html.multiproperty #desc-title {
+    margin-right: calc(var(--gom-prop-pad-x) + var(--gom-prop-about-gap-r));
+  }
+
+  html.multiproperty #desc-title ~ :is(p, ul) {
+    margin-right: calc(var(--gom-prop-pad-x) + var(--gom-prop-about-gap-r));
+  }
+}
+
+/* =====================================================================
+   MULTIPROPERTY: DETAILS TYPOGRAPHY + AMENITIES TABLE (NO CARDS)
+   Goal: readable text column + clean amenities table while keeping the
+         Booking/Inquiry widget as the only "card-like" element.
+   ===================================================================== */
+
+/* Optional: if you add this wrapper in each Property "Description" HTML:
+   <section class="gom-prop-about" aria-labelledby="desc-title"> ... </section>
+   then the layout becomes stable and easy to control. */
+html.multiproperty .gom-prop-about {
+  /* mobile first: keep it fluid */
+  padding-left: var(--gom-prop-pad-x);
+  padding-right: var(--gom-gutter, var(--gom-prop-pad-x));
+}
+
+/* Title + body text (works both with wrapper and without wrapper) */
+html.multiproperty
+  :is(.gom-prop-about, #desc-title, #desc-title ~ p, #desc-title ~ ul) {
+  color: var(--gom-ink, #0b0b0c);
+}
+
+html.multiproperty :is(.gom-prop-about p, #desc-title ~ p) {
+  line-height: 1.65;
+  margin: 0 0 14px;
+  font-size: 15px;
+}
+
+html.multiproperty :is(.gom-prop-about ul, #desc-title ~ ul) {
+  margin: 10px 0 16px;
+  padding-left: 1.15em;
+}
+
+html.multiproperty :is(.gom-prop-about li, #desc-title ~ ul li) {
+  margin: 0 0 6px;
+}
+
+/* Make the heading visually consistent (even if OR leaves class="sr-only") */
+html.multiproperty #desc-title,
+html.multiproperty #desc-title.sr-only,
+html.multiproperty .gom-desc-title {
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  margin: 18px 0 12px;
+  line-height: 1.15;
+}
+
 /* Keep readable line length + extra breathing room from the widget on desktop */
-@media (min-width: 769px) {
+@media (min-width: 992px) {
   html.multiproperty .gom-prop-about {
+    max-width: var(--gom-prop-about-max);
+    /* left aligned inside the content area */
+    margin-left: var(--gom-prop-pad-x);
+    /* creates the gap to the widget column when your col padding is 0 */
+    margin-right: calc(var(--gom-prop-pad-x) + var(--gom-prop-about-gap-r));
     padding-left: 0;
     padding-right: 0;
+  }
+
+  /* Fallback when you don't add the wrapper */
+  html.multiproperty #desc-title,
+  html.multiproperty #desc-title ~ :is(p, ul) {
+    max-width: var(--gom-prop-about-max);
+    margin-left: var(--gom-prop-pad-x);
+    margin-right: calc(var(--gom-prop-pad-x) + var(--gom-prop-about-gap-r));
   }
 }
 
@@ -604,7 +710,7 @@ html.multiproperty .amenities-detail :is(ul.list-group.row) {
   gap: 6px 16px;
 }
 
-@media (min-width: 769px) {
+@media (min-width: 992px) {
   html.multiproperty .amenities-detail :is(ul.list-group.row) {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -636,45 +742,94 @@ html.multiproperty .amenities-detail :is(ul.list-unstyled) > li {
   }
 }
 /* =========================================================
-   MULTIPROPERTY — Description (About) typography & spacing
-   Assumes your Description HTML is wrapped in:
-   <div class="gom-prop-about" aria-labelledby="desc-title"> ... </div>
+   MULTIPROPERTY — About/Description typography + Amenities table
+   (no wrapper needed; targets #desc-title and the amenities table)
    ========================================================= */
-
-:root {
-  /* Readable line-length for body copy (~704px). */
-  --gom-copy-max: 44rem;
+html.multiproperty {
+  --gom-copy-max: 44rem; /* ~704px: ancho de lectura */
+  --gom-copy-lh: 1.68;
+  --gom-copy-gap: 1.05rem;
+  --gom-h2-size: clamp(20px, 1.55vw, 26px);
+  --gom-h3-size: clamp(14px, 1.05vw, 16px);
+  --gom-body-size: clamp(14px, 1.05vw, 16px);
 }
 
-/* Keep the summary lines and the About block on the same readable width */
-html.multiproperty .amenity-summary-size,
-html.multiproperty .amenity-summary-amenities,
-html.multiproperty .gom-prop-about {
-  max-width: none;
+/* 1) “Ancho de lectura” (no cambia columnas; solo limita el texto dentro del .col-md-8) */
+html.multiproperty .col-md-8 #desc-title,
+html.multiproperty .col-md-8 #desc-title ~ p,
+html.multiproperty .col-md-8 #desc-title ~ ul,
+html.multiproperty .col-md-8 #desc-title ~ ol,
+html.multiproperty .col-md-8 #desc-title ~ h3,
+html.multiproperty .col-md-8 .amenity-summary-size,
+html.multiproperty .col-md-8 .amenity-summary-amenities {
+  max-width: var(--gom-copy-max);
+  margin-right: auto; /* se “pega” a la izquierda y deja aire a la derecha */
 }
 
-/* Align with your page padding on desktop */
-@media (min-width: 769px) {
-  html.multiproperty .amenity-summary-size,
-  html.multiproperty .amenity-summary-amenities,
-  html.multiproperty .gom-prop-about {
-    margin-left: var(--gom-prop-pad-x);
-    margin-right: var(--gom-prop-pad-x);
-  }
+/* Si por alguna razón #desc-title vuelve a venir con sr-only, lo hacemos visible */
+html.multiproperty .col-md-8 #desc-title.sr-only {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 0 var(--gom-copy-gap) 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  clip-path: none !important;
+  white-space: normal !important;
 }
 
-/* About block */
-html.multiproperty .gom-prop-about {
-  margin-top: 8dvh;
+/* 2) Tipografía (Description) */
+html.multiproperty .col-md-8 #desc-title {
+  font-size: var(--gom-h2-size);
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  margin: 1.25rem 0 0.75rem 0;
 }
 
-html.multiproperty .gom-prop-about > h2 {
-  margin: 4.5dvh 0 2.25dvh;
-  font-size: var(--fs-h3);
+html.multiproperty .col-md-8 #desc-title ~ p {
+  font-size: var(--gom-body-size);
+  line-height: var(--gom-copy-lh);
+  margin: 0 0 var(--gom-copy-gap) 0;
+  opacity: 0.92;
 }
 
-html.multiproperty .gom-prop-about > h3 {
-  margin: 4.5dvh 0 2.25dvh;
+html.multiproperty .col-md-8 #desc-title ~ h3 {
+  font-size: var(--gom-h3-size);
+  line-height: 1.25;
+  margin: 1.35rem 0 0.55rem 0;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html.multiproperty .col-md-8 #desc-title ~ ul,
+html.multiproperty .col-md-8 #desc-title ~ ol {
+  margin: 0 0 1.1rem 0;
+  padding-left: 1.15rem;
+  font-size: var(--gom-body-size);
+  line-height: var(--gom-copy-lh);
+}
+
+html.multiproperty .col-md-8 #desc-title ~ ul > li,
+html.multiproperty .col-md-8 #desc-title ~ ol > li {
+  margin: 0.22rem 0;
+}
+
+/* 3) Ajuste suave de las líneas “Size” y “Amenities” (sin cambiar tu estructura) */
+html.multiproperty .col-md-8 .amenity-summary-size,
+html.multiproperty .col-md-8 .amenity-summary-amenities {
+  font-size: clamp(13px, 1vw, 15px);
+  line-height: 1.55;
+  margin-top: 0.65rem;
+  margin-bottom: 0.65rem;
+  opacity: 0.88;
+}
+
+html.multiproperty .col-md-8 .amenity-summary-size h4,
+html.multiproperty .col-md-8 .amenity-summary-amenities .h4 {
+  font-size: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  margin: 0;
 }
 
 /* =========================================================
