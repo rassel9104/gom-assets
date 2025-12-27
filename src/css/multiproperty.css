@@ -12,7 +12,7 @@ html.multiproperty {
   --gom-prop-header-h: var(--header-h, 88px);
   --gom-prop-hero-h: calc(100dvh - var(--gom-prop-header-h));
 
-  --gom-prop-pad-x: var(--gom-pad-x, 5%);
+  --gom-prop-pad-x: var(--gom-pad-x, 5dvw);
 
   --gom-prop-bleed-x: 15px; /* Bootstrap gutter (tunea si hiciera falta) */
   --gom-prop-fullbleed-nudge-x: 0px; /* fine-tune: lleva el hero a left=0 */
@@ -541,8 +541,8 @@ html.multiproperty :is(h2.page-header.linktarget, h2.page-header) {
   border: 0;
   padding: 0;
   margin: 44px var(--gom-prop-pad-x) 14px;
-  font-size: 22px;
-  letter-spacing: 0.02em;
+  font-size: var(--fs-h3);
+  letter-spacing: normal;
 }
 
 /* ---------------------------------------------------------------------
@@ -630,7 +630,7 @@ html.multiproperty .amenities-detail :is(ul.list-unstyled) > li {
 }
 
 /* Small-screen table readability */
-@media (max-width: 767px) {
+@media (max-width: 768px) {
   html.multiproperty #amenities-table > tbody > tr > th {
     width: 40%;
   }
@@ -742,3 +742,5 @@ html.multiproperty #amenities-table .fa-info-circle {
   margin-left: 0.35rem;
   opacity: 0.75;
 }
+
+html.multiproperty #availabil

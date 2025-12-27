@@ -109,7 +109,7 @@
 
   .carousel-includes-search #search-bar-widget {
     width: 90% !important;
-    margin-left: 5% !important;
+    margin-left: 5dvw !important;
   }
 
   .carousel-includes-search #search-bar-widget::before {
