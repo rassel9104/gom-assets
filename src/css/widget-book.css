@@ -26,7 +26,7 @@
   --gom-focus: rgba(0, 0, 0, 0.55);
 
   --gom-radius: 0px; /* tu arquetipo es “sharp” */
-  --gom-h: 44px;
+  --gom-h: 3.2rem;
 }
 
 /* 1) El “truco” clave: que el widget no pinte fondo propio */
@@ -194,7 +194,7 @@ input[type="button"]:hover {
 
 /* 7) Alerts (quote / mensajes) */
 .alert {
-  border-radius: var(--gom-radius) !important;
+  border-radius: 0 !important;
   border: 1px solid var(--gom-bd) !important;
   box-shadow: var(--gom-shadow-soft) !important;
   background: rgba(255, 255, 255, 0.55) !important;

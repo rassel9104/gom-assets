@@ -421,7 +421,6 @@ html.multiproperty .col-md-4.pull-right-md .ownerrez-widget iframe {
     /* Empuja el widget exactamente la altura del hero */
     padding-top: calc(var(--gom-prop-hero-h) + 8dvh);
     padding-right: var(--gom-prop-pad-x);
-    margin-top: 8dvh !important;
   }
 
   /* El inline margin-right del widget a veces deja “desalineado” el card */
@@ -442,7 +441,7 @@ html.multiproperty .linktarget {
 
 /* Por si hay secciones con ID sin .linktarget (fallback seguro) */
 html.multiproperty
-  :is(#details, #availability, #location, #amenities, #reviews, #ownerrez-widget) {
+  :is(#details, #availability, #location, #amenities, #reviews) {
   margin-block-end: 0;
   margin-block-start: 0;
   margin: 0 var(--gom-pad-x);
@@ -543,102 +542,19 @@ html.multiproperty {
    --------------------------------------------------------------------- */
 html.multiproperty :is(h2.page-header.linktarget, h2.page-header) {
   border: 0;
-  padding: 0;
-  margin: 44px var(--gom-prop-pad-x) 14px;
+  margin: 0 !important;
   font-size: var(--fs-h3);
   letter-spacing: normal;
+  padding: 4.5dvh 0 2.25dvh !important;
+  margin-block-end: 0 !important;
+  margin-block-start: 0 !important;
+  font-weight: var(--fw-regular);
 }
 
 /* ---------------------------------------------------------------------
-   Amenities table: clean, readable, responsive (no surrounding card)
+   Amenities table: removed duplicate block here; consolidated further below.
    --------------------------------------------------------------------- */
-html.multiproperty .amenities-detail {
-  padding-left: var(--gom-prop-pad-x);
-  padding-right: var(--gom-prop-pad-x);
-}
 
-/* Table base */
-html.multiproperty #amenities-table {
-  width: 100%;
-  background: transparent;
-  border-collapse: separate;
-  border-spacing: 0;
-  font-size: 14px;
-}
-
-html.multiproperty #amenities-table > tbody > tr > th,
-html.multiproperty #amenities-table > tbody > tr > td {
-  padding: 14px 14px;
-  vertical-align: top;
-}
-
-/* Key column */
-html.multiproperty #amenities-table > tbody > tr > th {
-  width: 260px;
-  font-weight: 600;
-  color: rgba(11, 11, 12, 0.85);
-}
-
-/* Row separators */
-html.multiproperty #amenities-table > tbody > tr > th,
-html.multiproperty #amenities-table > tbody > tr > td {
-  border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-html.multiproperty #amenities-table > tbody > tr:first-child > th,
-html.multiproperty #amenities-table > tbody > tr:first-child > td {
-  border-top: 0;
-}
-
-/* Keep "striped" but subtle */
-html.multiproperty
-  #amenities-table.table-striped
-  > tbody
-  > tr:nth-of-type(odd) {
-  background: rgba(0, 0, 0, 0.02);
-}
-
-/* Lists inside table (House Rules, General, etc.) — convert to neat grid */
-html.multiproperty .amenities-detail :is(ul.list-group.row) {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 6px 16px;
-}
-
-@media (min-width: 769px) {
-  html.multiproperty .amenities-detail :is(ul.list-group.row) {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-html.multiproperty .amenities-detail :is(ul.list-group.row) > li {
-  float: none !important; /* override bootstrap columns */
-  width: auto !important;
-  padding: 0 !important;
-  margin: 0 !important;
-  color: rgba(11, 11, 12, 0.86);
-}
-
-/* Bathrooms / sleeping arrangement bullet lists (list-unstyled) */
-html.multiproperty .amenities-detail :is(ul.list-unstyled) {
-  margin: 8px 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-html.multiproperty .amenities-detail :is(ul.list-unstyled) > li {
-  margin: 0 0 6px;
-}
-
-/* Small-screen table readability */
-@media (max-width: 768px) {
-  html.multiproperty #amenities-table > tbody > tr > th {
-    width: 40%;
-  }
-}
 /* =========================================================
    MULTIPROPERTY — Description (About) typography & spacing
    Assumes your Description HTML is wrapped in:
@@ -718,10 +634,18 @@ html.multiproperty #amenities-table td {
   vertical-align: top;
   font-size: clamp(13px, 1vw, 15px);
   line-height: 1.55;
+  font-weight: var(--fw-regular) !important;
+}
+
+/* Small-screen readability (preserves label/value proportions on tablets) */
+@media (max-width: 768px) {
+  html.multiproperty #amenities-table > tbody > tr > th {
+    width: 40%;
+  }
 }
 
 html.multiproperty #amenities-table th {
-  font-weight: 600;
+  font-weight: var(--fw-regular);
   letter-spacing: 0.02em;
   width: 34%;
   min-width: 220px;
@@ -747,4 +671,71 @@ html.multiproperty #amenities-table .fa-info-circle {
   opacity: 0.75;
 }
 
-html.multiproperty #availabil
+/* =========================================================
+   SECTIONS: Availability / About the owner / Location
+   (no-cards, aligned to var(--gom-prop-pad-x))
+   ========================================================= */
+
+/* A) Alineación general de los bloques full-width bajo el hero */
+html.multiproperty #content .row > .col-md-12 {
+  padding-left: var(--gom-prop-pad-x);
+  padding-right: var(--gom-prop-pad-x);
+}
+
+/* B) Encabezados de sección (override específico para linktargets; evita duplicar reglas base) */
+html.multiproperty h2.page-header.linktarget {
+  margin: 34px 0 14px;
+  padding-bottom: 12px;
+}
+
+/* C) Availability widget (Multiple Month Calendar) – solo contenedor/espaciado */
+html.multiproperty
+  .ownerrez-widget[data-widget-type="Multiple Month Calendar"] {
+  margin: 0 0 22px 0;
+}
+
+html.multiproperty
+  .ownerrez-widget[data-widget-type="Multiple Month Calendar"]
+  iframe {
+  display: block;
+  width: 100% !important;
+  border: 0;
+}
+
+/* D) About the owner (texto limpio, sin card) */
+html.multiproperty .about-the-owner {
+  margin: 0 0 26px 0;
+  max-width: 78ch;
+  font-size: 15px;
+  line-height: 1.65;
+  color: rgba(0, 0, 0, 0.78);
+}
+
+html.multiproperty .about-the-owner p {
+  margin: 0 0 10px;
+}
+
+html.multiproperty .about-the-owner a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* E) Location map (solo el iframe: tamaño y “respiración”) */
+html.multiproperty h2#location.page-header + div iframe[title="Properties Map"],
+html.multiproperty
+  h2#location.page-header
+  + div
+  iframe[src*="google.com/maps"] {
+  display: block;
+  width: 100% !important;
+  height: clamp(320px, 38vw, 440px);
+  border: 0;
+  border-radius: 14px;
+}
+
+/* Dirección debajo del mapa (si viene como .lead) */
+html.multiproperty #location.page-header ~ p.lead {
+  margin: 12px 0 0;
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.7);
+}
