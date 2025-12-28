@@ -1,0 +1,309 @@
+/* ===========================================================
+   Garden of Manors — MULTIPROPERTY (Mobile Overrides <=768px)
+   File: multiproperty_v22-mobile-max768.css
+
+   Load AFTER: multiproperty_v21-PC-ready.css
+   =========================================================== */
+
+@media (max-width: 768px) {
+  html.multiproperty {
+    --gom-prop-pad-x: clamp(16px, 5vw, 22px);
+    --gom-prop-tabs-h: 56px;
+    --gom-prop-hero-h: calc(100dvh - var(--gom-prop-header-h));
+  }
+
+  /* Prevent any accidental horizontal scroll when using 100vw full-bleed */
+  html.multiproperty,
+  html.multiproperty body {
+    overflow-x: hidden !important;
+  }
+
+  /* Ensure content starts below the fixed header */
+  html.multiproperty .container-fluid {
+    margin-top: 0 !important;
+    padding-top: var(--gom-prop-header-h);
+  }
+
+  /* -----------------------------------------------------------
+     Reflow the 2nd row into a vertical stack (mobile)
+     ----------------------------------------------------------- */
+  html.multiproperty #content .body-content > .row:nth-of-type(2),
+  html.multiproperty #content > .row:nth-of-type(2) {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  html.multiproperty #content .body-content > .row:nth-of-type(2) > *,
+  html.multiproperty #content > .row:nth-of-type(2) > * {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  /* Flatten the main content column so its children can be ordered */
+  html.multiproperty #content .body-content > .row:nth-of-type(2) > .col-md-8,
+  html.multiproperty #content > .row:nth-of-type(2) > .col-md-8 {
+    display: contents !important;
+  }
+
+  /* -----------------------------------------------------------
+     HERO — Full-bleed width + viewport height (minus header)
+     ----------------------------------------------------------- */
+  html.multiproperty .lSSlideOuter {
+    order: 10 !important;
+
+    /* full-bleed */
+    width: 100vw !important;
+    max-width: 100vw !important;
+    margin-left: 50% !important;
+    transform: translateX(-50%) !important;
+
+    /* height */
+    height: var(--gom-prop-hero-h) !important;
+    max-height: var(--gom-prop-hero-h) !important;
+
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  /* Ensure slider internals fill hero */
+  html.multiproperty .lSSlideOuter .lSSlideWrapper,
+  html.multiproperty .lSSlideOuter .lSSlideWrapper > ul,
+  html.multiproperty .lSSlideOuter .lSSlideWrapper > ul > li {
+    height: 100% !important;
+  }
+
+  /* Image should cover hero */
+  html.multiproperty .lSSlideOuter img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* -----------------------------------------------------------
+     CAPTIONS — show on mobile, anchored above the nav
+     ----------------------------------------------------------- */
+
+  /* Make sure captions are not visually hidden by legacy styles */
+  html.multiproperty .lightSlider .caption,
+  html.multiproperty .thumbnail .caption-overlay {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Only show caption for active slide (prevents stacking) */
+  html.multiproperty .lightSlider li .caption {
+    display: none !important;
+  }
+  html.multiproperty .lightSlider li.active .caption {
+    display: block !important;
+
+    position: absolute !important;
+    left: var(--gom-prop-pad-x) !important;
+    right: var(--gom-prop-pad-x) !important;
+
+    /* sit above the tabs */
+    bottom: calc(var(--gom-prop-tabs-h) + 10px) !important;
+
+    z-index: 70 !important;
+    padding: 10px 12px !important;
+    border-radius: 14px !important;
+
+    /* readable overlay */
+    background: rgba(0, 0, 0, 0.55) !important;
+    color: #fff !important;
+    font-size: 13px !important;
+    line-height: 1.35 !important;
+
+    max-width: 70ch !important;
+  }
+
+  /* -----------------------------------------------------------
+     Thumbnails — keep hidden on mobile (optional)
+     ----------------------------------------------------------- */
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery {
+    display: none !important;
+  }
+  html.multiproperty .lSSlideOuter::after {
+    display: none !important;
+  }
+
+  /* -----------------------------------------------------------
+     Booking widget — must come right after hero+nav
+     ----------------------------------------------------------- */
+  html.multiproperty .col-md-4.pull-right-md {
+    order: 20 !important;
+    float: none !important;
+    padding: 8dvh 0 0 0 !important;
+    margin: 0 !important;
+  }
+
+  html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+  }
+
+  /* -----------------------------------------------------------
+     Everything from #details onwards comes after widget
+     ----------------------------------------------------------- */
+  html.multiproperty #details {
+    order: 30 !important;
+    padding: 0 !important;
+  }
+  html.multiproperty #details ~ * {
+    order: 30 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-top: 8dvh !important;
+  }
+
+  /* Footer full-bleed */
+  html.multiproperty #details ~ footer {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* -----------------------------------------------------------
+     Title overlay placement (keeps within hero)
+     ----------------------------------------------------------- */
+  html.multiproperty #content .row:first-of-type h1 {
+    top: calc(var(--gom-prop-header-h) + 18px) !important;
+    left: var(--gom-prop-pad-x) !important;
+    right: var(--gom-prop-pad-x) !important;
+    width: auto !important;
+    max-width: 26ch !important;
+    font-size: clamp(22px, 5.8vw, 34px) !important;
+    line-height: 1.1 !important;
+  }
+
+  /* -----------------------------------------------------------
+     Location map height on mobile (keep nice)
+     ----------------------------------------------------------- */
+  html.multiproperty
+    h2#location.page-header
+    + div
+    iframe[title="Properties Map"],
+  html.multiproperty
+    h2#location.page-header
+    + div
+    iframe[src*="google.com/maps"] {
+    height: clamp(260px, 52vw, 360px) !important;
+    border-radius: 16px !important;
+  }
+
+  /*Availability Calendar */
+  html.multiproperty h2.page-header.linktarget {
+    padding-top: 0 !important;
+  }
+
+  /* Reviews H2 (keep anchor but avoid duplicate visible header) */
+  html.multiproperty h2#reviews.page-header.linktarget {
+    line-height: normal !important;
+    height: auto !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+    font-size: var(--fs-h3) !important;
+    color: var(--pri-color) !important;
+    padding: 4.5dvh 0 2.25dvh 0 !important;
+  }
+
+  /* -------------------------
+     4) Thumbs gallery — overlay ON the hero (visible)
+     ------------------------- */
+
+  /* Ensure the thumbs UL is visible and anchored inside the hero. */
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery {
+    /* The plugin injects inline width + translate3d(); we keep those. */
+    display: block !important;
+    position: absolute !important;
+
+    left: 0 !important;
+    right: 0 !important;
+    top: auto !important;
+
+    /* anchored above the very bottom so it doesn't feel glued */
+    bottom: 10px !important;
+
+    margin: 0 !important;
+
+    /* allow finger scroll if the plugin doesn't handle swiping here */
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+    scrollbar-width: none;
+
+    /* make it feel like an overlay */
+    padding: 10px 12px !important;
+    z-index: 30 !important;
+
+    /* subtle readability backdrop */
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0)
+    ) !important;
+  }
+
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Thumbs sizing */
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery > li {
+    float: none !important;
+    display: inline-block !important;
+    vertical-align: top !important;
+    margin-right: 10px !important;
+  }
+
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery > li a {
+    display: block !important;
+    border-radius: 10px !important;
+    overflow: hidden !important;
+  }
+
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery > li img {
+    width: 84px !important;
+    height: 54px !important;
+    object-fit: cover !important;
+    border: 1px solid rgba(255, 255, 255, 0.35) !important;
+    opacity: 0.78 !important;
+    transform: translateZ(0);
+  }
+
+  html.multiproperty .lSSlideOuter .lSPager.lSGallery > li.active img {
+    opacity: 1 !important;
+    border-color: rgba(255, 255, 255, 0.95) !important;
+  }
+
+  /* -------------------------
+     5) Anchor offsets under fixed header (optional quality-of-life)
+     ------------------------- */
+  html.multiproperty .linktarget {
+    scroll-margin-top: calc(var(--gom-prop-header-h) + 14px);
+  }
+
+  /*Otros Ajustes*/
+  html.multiproperty #content .row > .col-md-12 {
+    margin-top: 0 !important;
+  }
+  html.multiproperty :is(#availability) {
+    margin-top: 4.5dvh !important;
+  }
+
+  div#map {
+    height: auto !important;
+  }
+
+  html.multiproperty #location.page-header ~ p.lead {
+    margin-bottom: 4.5dvh !important;
+  }
+  html.multiproperty #desc-title {
+    margin-bottom: 2.25dvh !important;
+    margin-top: 0 !important;
+  }
+}
