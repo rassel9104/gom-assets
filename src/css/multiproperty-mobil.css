@@ -215,69 +215,73 @@
      4) Thumbs gallery — overlay ON the hero (visible)
      ------------------------- */
 
-  /* Ensure the thumbs UL is visible and anchored inside the hero. */
+  /* -------------------------
+   4) Thumbs gallery — clean filmstrip (mobile)
+   Keeps thumbs visible, but with a lighter look.
+   ------------------------- */
+
   html.multiproperty .lSSlideOuter .lSPager.lSGallery {
-    /* The plugin injects inline width + translate3d(); we keep those. */
-    display: block !important;
-    position: absolute !important;
-
+    align-items: center;
+    display: flex !important;
+    gap: 6px !important;
+    justify-content: flex-start;
     left: 0 !important;
-    right: 0 !important;
-    top: auto !important;
-
-    /* anchored above the very bottom so it doesn't feel glued */
-    bottom: 10px !important;
-
     margin: 0 !important;
-
-    /* allow finger scroll if the plugin doesn't handle swiping here */
     overflow-x: auto !important;
-    overflow-y: hidden !important;
+    position: absolute !important;
+    right: 0 !important;
+    width: 100% !important;
     -webkit-overflow-scrolling: touch !important;
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    bottom: 1.6dvh !important;
+    border-top: 1px solid hsla(0, 0%, 100%, 0.1) !important;
+    padding: 0 !important;
     scrollbar-width: none;
-
-    /* make it feel like an overlay */
-    padding: 10px 12px !important;
-    z-index: 30 !important;
-
-    /* subtle readability backdrop */
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.55),
-      rgba(0, 0, 0, 0)
-    ) !important;
+    z-index: 70 !important;
+    height: 5.8rem !important;
   }
 
   html.multiproperty .lSSlideOuter .lSPager.lSGallery::-webkit-scrollbar {
     display: none;
   }
 
-  /* Thumbs sizing */
   html.multiproperty .lSSlideOuter .lSPager.lSGallery > li {
-    float: none !important;
-    display: inline-block !important;
-    vertical-align: top !important;
-    margin-right: 10px !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+    margin: 0 !important;
+    padding: 0 !important;
+
+    /* remove boxed cards */
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+
+    overflow: visible !important;
+    padding-top: 1rem !important;
   }
 
   html.multiproperty .lSSlideOuter .lSPager.lSGallery > li a {
-    display: block !important;
-    border-radius: 10px !important;
-    overflow: hidden !important;
+    display: block;
+    line-height: 0;
   }
 
   html.multiproperty .lSSlideOuter .lSPager.lSGallery > li img {
-    width: 84px !important;
-    height: 54px !important;
+    width: 6.4rem !important;
+    height: 4.4rem !important;
     object-fit: cover !important;
-    border: 1px solid rgba(255, 255, 255, 0.35) !important;
-    opacity: 0.78 !important;
+
+    border-radius: 0 !important;
+    opacity: 0.62 !important;
+    filter: saturate(0.95) contrast(1.05);
     transform: translateZ(0);
   }
 
   html.multiproperty .lSSlideOuter .lSPager.lSGallery > li.active img {
     opacity: 1 !important;
-    border-color: rgba(255, 255, 255, 0.95) !important;
+    filter: none;
+    outline: 2px solid rgba(255, 255, 255, 0.85);
+    outline-offset: 2px;
   }
 
   /* -------------------------
