@@ -170,13 +170,13 @@
      Title overlay placement (keeps within hero)
      ----------------------------------------------------------- */
   html.multiproperty #content .row:first-of-type h1 {
-    top: calc(var(--gom-prop-header-h) + 18px) !important;
+    top: calc(var(--full-hm-vh) / 1.5) !important;
     left: var(--gom-prop-pad-x) !important;
     right: var(--gom-prop-pad-x) !important;
     width: auto !important;
-    max-width: 26ch !important;
-    font-size: clamp(22px, 5.8vw, 34px) !important;
-    line-height: 1.1 !important;
+    max-width: 20ch !important;
+    font-size: 3.5vh !important;
+    line-height: normal !important;
   }
 
   /* -----------------------------------------------------------
