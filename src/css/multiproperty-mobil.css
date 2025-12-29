@@ -177,9 +177,9 @@
       var(--gom-prop-hero-h) - var(--gom-h-capt) - 2.2 *
         clamp(44px, 10dvh, 84px)
     ) !important;
-    margin-left: var(--gom-card-pad) !important;
+    /*margin-left: var(--gom-card-pad) !important;
     margin-right: var(--gom-card-pad) !important;
-    width: auto !important;
+    width: auto !important;*/
     max-width: 20ch !important;
     font-size: 3.5vh !important;
     line-height: normal !important;
