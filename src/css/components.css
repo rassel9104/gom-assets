@@ -8,16 +8,16 @@
 /*============HEADER GLOBAL (Parte de Phone=======================*/
 /* Utilidad general para secciones full-height bajo el header */
 .section-full-under-header {
-    min-height: var(--full-h);
+  min-height: var(--full-h);
 }
 
 .section-full-under-header--exact {
-    height: var(--full-h);
+  height: var(--full-h);
 }
 
 html.has-fullpage-background body {
-    background-position-y: var(--header-h) !important;
-    padding-top: var(--header-h) !important;
+  background-position-y: var(--header-h) !important;
+  padding-top: var(--header-h) !important;
 }
 
 /* ======================MOVIL PHONE MENU============================
@@ -27,186 +27,185 @@ OVERLAY MENU (MÓVI)
 
 /* Overlay del menú móvil nativo de OwnerRez */
 #header-menu-phone-container {
-    position: fixed !important;
-    inset: 0;
-    height: 100% !important;
-    min-height: 100vh;
-    background-color: #000;
-    /* carbón oscuro */
-    z-index: 9990;
-    padding: 10rem 1.5rem 1.5rem;
-    /* espacio para WELCOME/CLOSE y footer */
-    overflow-y: auto;
-    display: block;
+  position: fixed !important;
+  inset: 0;
+  height: 100% !important;
+  min-height: 100vh;
+  background-color: #000;
+  /* carbón oscuro */
+  z-index: 9990;
+  padding: 10rem 1.5rem 1.5rem;
+  /* espacio para WELCOME/CLOSE y footer */
+  overflow-y: auto;
+  display: block;
 
-    /* Estado inicial (cerrado) */
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-16px);
-    transition:
-        opacity 0.26s ease-out,
-        transform 0.26s ease-out,
-        visibility 0.26s ease-out;
+  /* Estado inicial (cerrado) */
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-16px);
+  transition:
+    opacity 0.26s ease-out,
+    transform 0.26s ease-out,
+    visibility 0.26s ease-out;
 
-    /* Importante: cerrado => no intercepta clics */
-    pointer-events: none;
+  /* Importante: cerrado => no intercepta clics */
+  pointer-events: none;
 }
 
 /* Estado visible (Bootstrap añade .in) */
 #header-menu-phone-container.in {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 
-    /* Abierto => sí intercepta clics como overlay */
-    pointer-events: auto;
+  /* Abierto => sí intercepta clics como overlay */
+  pointer-events: auto;
 }
-
 
 /* 2. ELEMENTOS FIJOS: WELCOME + COPYRIGHT/LOGO */
 
 /* WELCOME arriba a la izquierda */
 #header-menu-phone-container::before {
-    content: "WELCOME";
-    position: absolute;
-    top: 2.9rem;
-    right: 70%;
-    font-family: var(--heading-font);
-    font-size: var(--fs-body);
-    color: #f0f0f0;
-    letter-spacing: 0.08rem;
-    font-weight: var(--fw-regular);
-    text-transform: uppercase;
+  content: "WELCOME";
+  position: absolute;
+  top: 2.9rem;
+  right: 70%;
+  font-family: var(--heading-font);
+  font-size: var(--fs-body);
+  color: #f0f0f0;
+  letter-spacing: 0.08rem;
+  font-weight: var(--fw-regular);
+  text-transform: uppercase;
 }
 
 /* 3. GRID 2 COLUMNAS PARA BLOQUES (Rooms, Contact, etc.) */
 
-#header-menu-phone-container>ul {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    column-gap: 15px;
-    row-gap: 30px;
-    list-style: none;
-    padding: 0;
-    margin: 0;
+#header-menu-phone-container > ul {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  column-gap: 15px;
+  row-gap: 30px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
-#header-menu-phone-container>ul>li.dropdown {
-    display: block;
-    float: none;
-    border: none;
-    padding: 0;
-    margin: 3.2rem 0 0;
+#header-menu-phone-container > ul > li.dropdown {
+  display: block;
+  float: none;
+  border: none;
+  padding: 0;
+  margin: 3.2rem 0 0;
 }
 
 /* Ítems impares a la izquierda, pares a la derecha */
-#header-menu-phone-container>ul>li:nth-child(odd) {
-    grid-column: 1;
+#header-menu-phone-container > ul > li:nth-child(odd) {
+  grid-column: 1;
 }
 
-#header-menu-phone-container>ul>li:nth-child(even) {
-    grid-column: 2;
+#header-menu-phone-container > ul > li:nth-child(even) {
+  grid-column: 2;
 }
 
 /* 4. TÍTULOS DE SECCIÓN (Rooms, Contact, Info, Manors News, Socials) */
 
-#header-menu-phone-container>ul>li>a:first-child {
-    font-family: var(--heading-font);
-    font-size: var(--fs-body);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #fff;
-    margin-bottom: 1.2rem;
-    display: inline-block !important;
-    background: transparent !important;
-    padding: 0;
-    text-decoration: none;
-    pointer-events: auto;
-    font-weight: 500;
-    /* vuelven a ser clicables */
+#header-menu-phone-container > ul > li > a:first-child {
+  font-family: var(--heading-font);
+  font-size: var(--fs-body);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #fff;
+  margin-bottom: 1.2rem;
+  display: inline-block !important;
+  background: transparent !important;
+  padding: 0;
+  text-decoration: none;
+  pointer-events: auto;
+  font-weight: 500;
+  /* vuelven a ser clicables */
 }
 
 /* Hover sutil en el título de sección */
-#header-menu-phone-container>ul>li>a:first-child:hover {
-    color: #fff;
+#header-menu-phone-container > ul > li > a:first-child:hover {
+  color: #fff;
 }
 
 /* Ocultar elementos de Bootstrap que ya no usamos */
 #header-menu-phone-container .dropdown-toggle,
 #header-menu-phone-container .caret,
 #header-menu-phone-container .border-line {
-    display: none !important;
+  display: none !important;
 }
 
 /* 5. ENLACES INTERNOS (The Red Room, E-mail, etc.) */
 
 #header-menu-phone-container .dropdown-menu {
-    position: relative;
-    float: none;
-    display: contents;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0;
-    margin: 0;
-    min-width: 0;
-    list-style: none;
+  position: relative;
+  float: none;
+  display: contents;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+  min-width: 0;
+  list-style: none;
 }
 
-#header-menu-phone-container .dropdown-menu>li {
-    list-style: none;
+#header-menu-phone-container .dropdown-menu > li {
+  list-style: none;
 }
 
 /* Espaciado vertical entre enlaces de la misma sección */
-#header-menu-phone-container .dropdown-menu>li+li {
-    margin-top: 1px;
+#header-menu-phone-container .dropdown-menu > li + li {
+  margin-top: 1px;
 }
 
-#header-menu-phone-container .dropdown-menu>li>a {
-    font-family: var(--main-font);
-    font-size: calc(var(--fs-xs)*1.3);
-    color: #f5f5f5;
-    font-weight: 500;
-    text-decoration: none;
-    text-transform: none;
-    display: block;
-    padding: 0 0 0 .6rem;
+#header-menu-phone-container .dropdown-menu > li > a {
+  font-family: var(--main-font);
+  font-size: calc(var(--fs-xs) * 1.3);
+  color: #f5f5f5;
+  font-weight: 500;
+  text-decoration: none;
+  text-transform: none;
+  display: block;
+  padding: 0 0 0 0.6rem;
 }
 
-#header-menu-phone-container .dropdown-menu>li>a:hover {
-    opacity: 0.7;
+#header-menu-phone-container .dropdown-menu > li > a:hover {
+  opacity: 0.7;
 }
 
 /* 6. BOTÓN MENU / CLOSE (ESQUINA SUPERIOR DERECHA) */
 
 #header-bar .header-phone a.header-menu-toggle {
-    transition: color 0.3s ease;
-    z-index: 9995;
-    /* por encima del overlay */
-    position: relative;
+  transition: color 0.3s ease;
+  z-index: 9995;
+  /* por encima del overlay */
+  position: relative;
 }
 
 /* Cuando el menú está activo, lo movemos al overlay y lo estilizamos como CLOSE */
 #header-bar .header-phone a.header-menu-toggle.menu-is-active {
-    position: fixed;
-    top: 65px;
-    right: 15px;
-    color: #fff !important;
-    border: none !important;
-    background: transparent !important;
-    padding: 0 !important;
+  position: fixed;
+  top: 65px;
+  right: 15px;
+  color: #fff !important;
+  border: none !important;
+  background: transparent !important;
+  padding: 0 !important;
 }
 
 /* Reemplazar texto por "CLOSE" */
 #header-bar .header-phone a.header-menu-toggle.menu-is-active::after {
-    content: "CLOSE";
-    font-size: var(--fs-body);
-    color: #f0f0f0;
-    padding: .7rem 2.48rem;
-    position: absolute;
-    right: .3rem;
-    top: -4.5rem;
-    /* Quitar stroke si lo tenía antes */
+  content: "CLOSE";
+  font-size: var(--fs-body);
+  color: #f0f0f0;
+  padding: 0.7rem 2.48rem;
+  position: absolute;
+  right: 0.3rem;
+  top: -4.5rem;
+  /* Quitar stroke si lo tenía antes */
 }
 
 /* =================INTRO Y TESTIMONIOS========================
@@ -214,7 +213,7 @@ OVERLAY MENU (MÓVI)
 ============================================================ */
 
 #gom-intro.container {
-    width: 100%;
+  width: 100%;
 }
 
 /* =============HERO / CARRUSEL==================
@@ -224,83 +223,82 @@ HERO / CARRUSEL PRINCIPAL
 #carousel-hero .carousel-inner,
 #carousel-hero .item,
 #carousel-hero .fill {
-    height: calc((100dvh - var(--header-h))) !important;
-    height: calc(100svh - var(--header-h)) !important;
-    height: var(--full-h) !important
+  height: calc((100dvh - var(--header-h))) !important;
+  height: calc(100svh - var(--header-h)) !important;
+  height: var(--full-h) !important;
 }
 
 #carousel-hero .fill {
-    position: absolute;
-    inset: 0;
-    background-position: center center !important;
-    background-size: cover !important;
-    background-repeat: no-repeat !important
+  position: absolute;
+  inset: 0;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
 }
 
 #carousel-hero .item img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-    display: block
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
 }
 
 #carousel-hero .carousel-inner,
 #carousel-hero .item {
-    position: relative;
-    overflow: hidden
+  position: relative;
+  overflow: hidden;
 }
 
 #carousel-hero {
-    margin-bottom: 0 !important;
-    border: none !important;
-    box-shadow: none !important;
-    z-index: 0;
-    overflow: visible !important
+  margin-bottom: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  z-index: 0;
+  overflow: visible !important;
 }
 
 /*Carrusel Caption (texto Encima)*/
 #carousel-hero .carousel-caption h1 {
-    font-family: var(--heading-font);
-    font-weight: var(--fw-regular);
-    text-transform: uppercase;
-    text-shadow: none !important;
-    color: transparent !important;
-    font-size: var(--fs-xs);
+  font-family: var(--heading-font);
+  font-weight: var(--fw-regular);
+  text-transform: uppercase;
+  text-shadow: none !important;
+  color: transparent !important;
+  font-size: var(--fs-xs);
 }
 
 #carousel-hero .carousel-caption h1::before {
-    content: "Men-only boutique guesthouse in Wilton Manors.\A 21+\AHeated saltwater pool\ASteps from Wilton Drive";
-    display: block !important;
-    white-space: pre-line !important;
-    color: #fff;
-    text-shadow: 0 1px 6px rgba(0, 0, 0, .4) !important;
-    letter-spacing: .02em !important;
-    word-break: break-word !important
+  content: "Men-only boutique guesthouse in Wilton Manors.\A 21+\AHeated saltwater pool\ASteps from Wilton Drive";
+  display: block !important;
+  white-space: pre-line !important;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.4) !important;
+  letter-spacing: 0.02em !important;
+  word-break: break-word !important;
 }
 
 #carousel-hero .carousel-caption {
-    bottom: 12%
+  bottom: 12%;
 }
 
-.carousel-includes-search .search-bar .search-bar-button .btn-default>i {
-    display: contents;
+.carousel-includes-search .search-bar .search-bar-button .btn-default > i {
+  display: contents;
 }
 
 #carousel-hero .carousel-caption {
-    position: absolute !important;
-    top: 3% !important;
-    left: 3% !important;
-    right: auto !important;
-    bottom: auto !important;
-    text-align: left !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    z-index: 5 !important
+  position: absolute !important;
+  top: 3% !important;
+  left: 3% !important;
+  right: auto !important;
+  bottom: auto !important;
+  text-align: left !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  z-index: 5 !important;
 }
-
 
 /* ==============BARRA DE BÚSQUEDA===========================
             BARRA DE BÚSQUEDA (SEARCH BAR)
@@ -309,187 +307,187 @@ HERO / CARRUSEL PRINCIPAL
 /* Placeholder del search bar: solo color, sin fondo extra */
 .incarousel-search-bar .form-control::-webkit-input-placeholder,
 .incarousel-search-bar .form-control::placeholder {
-    background: transparent !important;
-    /* quitamos el parche blanco */
-    color: rgba(0, 0, 0, 0.75) !important;
-    /* texto ligeramente más suave */
+  background: transparent !important;
+  /* quitamos el parche blanco */
+  color: rgba(0, 0, 0, 0.75) !important;
+  /* texto ligeramente más suave */
 }
 
 .incarousel-search-bar .input-group-btn .btn {
-    background: #ffffff70 !important;
-    color: #000 !important;
-    height: 4rem !important;
-    box-shadow: none !important;
-    padding: 1.2rem !important
+  background: #ffffff70 !important;
+  color: #000 !important;
+  height: 4rem !important;
+  box-shadow: none !important;
+  padding: 1.2rem !important;
 }
 
 .search-bar .search-bar-field .input-group.date .input-group-btn {
-    padding-left: 0%;
+  padding-left: 0%;
 }
 
 .carousel-includes-search .search-bar .search-bar-button .btn-default {
-    background: var(--color-primary) !important;
-    height: 4rem;
-    /* ocupa todo el widget */
-    display: block !important;
-    /* asegura comportamiento de bloque */
-    text-align: center !important;
-    /* mantiene alineación del texto/icono */
-    box-sizing: border-box !important;
-    font-weight: var(--fw-semibold);
-    letter-spacing: .16rem;
-    font-size: var(--fs-h4);
-
+  background: var(--color-primary) !important;
+  height: 4rem;
+  /* ocupa todo el widget */
+  display: block !important;
+  /* asegura comportamiento de bloque */
+  text-align: center !important;
+  /* mantiene alineación del texto/icono */
+  box-sizing: border-box !important;
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.16rem;
+  font-size: var(--fs-h4);
 }
 
 #content.container,
 .incarousel-search-bar.container {
-    width: 100% !important;
-    max-width: 100% !important;
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 .incarousel-search-bar.container .form {
-    padding: 0;
+  padding: 0;
 }
-
 
 /* =========================================================
      HERO – barra de búsqueda superpuesta
   ========================================================= */
 .incarousel-search-bar {
-    position: relative;
-    left: auto;
-    transform: none;
-    bottom: auto;
-    z-index: 6;
+  position: relative;
+  left: auto;
+  transform: none;
+  bottom: auto;
+  z-index: 6;
 
-    margin: 0;
-    margin-top: calc(var(--hero-search-h) * -1);
-    height: var(--hero-search-h);
-    padding: 0;
+  margin: 0;
+  margin-top: calc(var(--hero-search-h) * -1);
+  height: var(--hero-search-h);
+  padding: 0;
 }
 
 .carousel-includes-search .incarousel-search-bar .row.search-bar {
-    background: rgba(255, 255, 255, .4) !important;
-    width: 100% !important;
-    max-width: 100%;
-    margin: 0 var(--gom-pad-x);
-    padding: 8.8rem .5rem 0;
-    box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.4) !important;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 0 var(--gom-pad-x);
+  padding: 8.8rem 0.5rem 0;
+  box-sizing: border-box;
 }
 
 .carousel-includes-search #search-bar-widget {
-    position: relative;
-    width: calc(100% - var(--gom-pad-x)*2) !important;
-    margin-left: var(--gom-pad-x);
+  position: relative;
+  width: calc(100% - var(--gom-pad-x) * 2) !important;
+  margin-left: var(--gom-pad-x);
 }
 
 .carousel-includes-search #search-bar-widget::before {
-    content: "CHOOSE A DATE";
-    position: absolute;
-    left: .5rem;
-    top: .01rem;
-    /* 1px */
-    font-family: var(--heading-font);
-    font-weight: var(--fw-semibold);
-    text-transform: uppercase;
-    font-size: var(--fs-h3);
-    color: #000;
+  content: "CHOOSE A DATE";
+  position: absolute;
+  left: 0.5rem;
+  top: 0.01rem;
+  /* 1px */
+  font-family: var(--heading-font);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  font-size: var(--fs-h3);
+  color: #000;
 }
 
 .carousel-includes-search #search-bar-widget::after {
-    content: "Because every getaway deserves a little spark.";
-    position: absolute;
-    left: .5rem;
-    top: 32%;
-    font-family: var(--main-font);
-    font-size: var(--fs-body);
-    color: #222;
+  content: "Because every getaway deserves a little spark.";
+  position: absolute;
+  left: 0.5rem;
+  top: 32%;
+  font-family: var(--main-font);
+  font-size: var(--fs-body);
+  color: #222;
 }
 
 .incarousel-search-bar .input-group-btn .btn {
-    height: 4rem !important;
-    margin-left: 0;
+  height: 4rem !important;
+  margin-left: 0;
 }
 
 .incarousel-search-bar .form-control {
-    background: #ffffff70 !important;
-    /* o #fff si prefieres */
-    color: #000 !important;
-    height: 4rem !important;
-    caret-color: var(--color-bg);
-    padding: 0 .4rem;
-    font-size: var(--fs-body) !important;
+  background: #ffffff70 !important;
+  /* o #fff si prefieres */
+  color: #000 !important;
+  height: 4rem !important;
+  caret-color: var(--color-bg);
+  padding: 0 0.4rem;
+  font-size: var(--fs-body) !important;
 }
 
-
 html.has-fullpage-background #content {
-    background: rgba(255, 255, 255, .3);
-    margin: 0 !important;
-    padding: 0 !important;
+  background: rgba(255, 255, 255, 0.3);
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* ============================================================*/
-@media (max-width:768px) {
+@media (max-width: 768px) {
+  /* deja espacio para el brand footer */
+  #header-menu-phone-container {
+    padding-bottom: 14.5rem !important;
+  }
 
-    /* deja espacio para el brand footer */
-    #header-menu-phone-container {
-        padding-bottom: 14.5rem !important;
-    }
+  /* brand footer fijo abajo, estilo drawer */
+  #header-menu-phone-container .gom-menu-brand {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 1.4rem 1.8rem calc(env(safe-area-inset-bottom) + 1.2rem);
+    text-align: center;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.92),
+      rgba(0, 0, 0, 0.55),
+      rgba(0, 0, 0, 0)
+    );
+    z-index: 9991;
+    pointer-events: none;
+  }
 
-    /* brand footer fijo abajo, estilo drawer */
-    #header-menu-phone-container .gom-menu-brand {
-        position: fixed;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        padding: 1.4rem 1.8rem calc(env(safe-area-inset-bottom) + 1.2rem);
-        text-align: center;
-        background: linear-gradient(to top, rgba(0, 0, 0, .92), rgba(0, 0, 0, .55), rgba(0, 0, 0, 0));
-        z-index: 9991;
-        pointer-events: none;
-    }
+  #header-menu-phone-container .gom-menu-brand * {
+    pointer-events: auto;
+  }
 
-    #header-menu-phone-container .gom-menu-brand * {
-        pointer-events: auto;
-    }
+  #header-menu-phone-container .gom-menu-brand img {
+    width: min(260px, 70vw);
+    height: auto;
+    display: block;
+    margin: 0 auto 0.8rem;
+    opacity: 0.92;
+  }
 
-    #header-menu-phone-container .gom-menu-brand img {
-        width: min(260px, 70vw);
-        height: auto;
-        display: block;
-        margin: 0 auto .8rem;
-        opacity: .92;
-    }
+  #header-menu-phone-container .gom-menu-brand .gom-tagline {
+    font-family: var(--main-font);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.65);
+    margin-bottom: 0.8rem;
+  }
 
-    #header-menu-phone-container .gom-menu-brand .gom-tagline {
-        font-family: var(--main-font);
-        letter-spacing: .14em;
-        text-transform: uppercase;
-        font-size: 1.05rem;
-        color: rgba(255, 255, 255, .65);
-        margin-bottom: .8rem;
-    }
+  #header-menu-phone-container .gom-menu-brand .gom-wa {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    padding: 0.7rem 1.1rem;
+    color: rgba(255, 255, 255, 0.92) !important;
+    text-decoration: none !important;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 1.05rem;
+    background: rgba(255, 255, 255, 0.06);
+  }
 
-    #header-menu-phone-container .gom-menu-brand .gom-wa {
-        display: inline-flex;
-        align-items: center;
-        gap: .6rem;
-        border: 1px solid rgba(255, 255, 255, .35);
-        padding: .7rem 1.1rem;
-        color: rgba(255, 255, 255, .92) !important;
-        text-decoration: none !important;
-        text-transform: uppercase;
-        letter-spacing: .16em;
-        font-size: 1.05rem;
-        background: rgba(255, 255, 255, .06);
-    }
-
-    #header-menu-phone-container .gom-menu-brand .gom-wa:hover {
-        background: rgba(255, 255, 255, .10);
-    }
+  #header-menu-phone-container .gom-menu-brand .gom-wa:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
 }
-
 
 /* =========================================================
    DROPDOWN (GLOBAL) — consistente con el look “glass”
@@ -498,54 +496,56 @@ html.has-fullpage-background #content {
    ========================================================= */
 
 /* Dropdowns normales (cuando están abiertos) */
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) {
-    background: var(--gom-dd-glass) !important;
-    border: var(--gom-dd-border) !important;
-    border-radius: 0 !important;
-    padding: .45rem 0 !important;
+.open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) {
+  background: var(--gom-dd-glass) !important;
+  border: var(--gom-dd-border) !important;
+  border-radius: 0 !important;
+  padding: 0.45rem 0 !important;
 
-    -webkit-backdrop-filter: blur(var(--gom-dd-blur));
-    backdrop-filter: blur(var(--gom-dd-blur));
+  -webkit-backdrop-filter: blur(var(--gom-dd-blur));
+  backdrop-filter: blur(var(--gom-dd-blur));
 
-    margin-top: .4rem !important;
-    min-width: 100% !important;
-    right: auto !important;
-    width: 100% !important;
+  margin-top: 0.4rem !important;
+  min-width: 100% !important;
+  right: auto !important;
+  width: 100% !important;
 
-    box-shadow: none !important;
-    z-index: 1000 !important;
+  box-shadow: none !important;
+  z-index: 1000 !important;
 }
 
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li>a,
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) .dropdown-item {
-    color: var(--gom-dd-text) !important;
-    letter-spacing: .12em !important;
-    text-transform: uppercase !important;
-    font-size: 1.15rem !important;
+.open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) > li > a,
+.open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) .dropdown-item {
+  color: var(--gom-dd-text) !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-size: 1.15rem !important;
 }
 
 /* Hover/active */
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li>a:hover,
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker)>li.active>a,
-.open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) .dropdown-item:hover {
-    background: var(--gom-dd-hover-bg) !important;
-    color: #fff !important;
+.open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) > li > a:hover,
+.open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) > li.active > a,
+.open
+  > .dropdown-menu:not(.datepicker):not(.ui-datepicker)
+  .dropdown-item:hover {
+  background: var(--gom-dd-hover-bg) !important;
+  color: #fff !important;
 }
 
 /* Reset explícito para el menú móvil inyectado (NO lo queremos “glass”) */
 #header-menu-phone-container .dropdown-menu {
-    background: transparent !important;
-    border: 0 !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
 }
 
-@media (max-width:768px) {
-    .multihome .open>.dropdown-menu:not(.datepicker):not(.ui-datepicker) {
-        margin-top: -3.6rem !important;
-    }
+@media (max-width: 768px) {
+  .multihome .open > .dropdown-menu:not(.datepicker):not(.ui-datepicker) {
+    margin-top: -3.6rem !important;
+  }
 }
 
 /* =========================================================
@@ -554,194 +554,245 @@ html.has-fullpage-background #content {
    ========================================================= */
 
 :root {
-    --gom-dp-bg: rgba(0, 0, 0, .72);
-    --gom-dp-border: 1px solid rgba(255, 255, 255, .22);
-    --gom-dp-text: rgba(255, 255, 255, .88);
-    --gom-dp-muted: rgba(255, 255, 255, .55);
-    --gom-dp-hover: rgba(255, 255, 255, .12);
-    --gom-dp-active: rgba(255, 255, 255, .18);
-    --gom-dp-blur: 1rem;
-    --gom-dp-radius: 0px;
-    --gom-dp-cell: 3.2rem;
+  --gom-dp-bg: rgba(0, 0, 0, 0.72);
+  --gom-dp-border: 1px solid rgba(255, 255, 255, 0.22);
+  --gom-dp-text: rgba(255, 255, 255, 0.88);
+  --gom-dp-muted: rgba(255, 255, 255, 0.55);
+  --gom-dp-hover: rgba(255, 255, 255, 0.12);
+  --gom-dp-active: rgba(255, 255, 255, 0.18);
+  --gom-dp-blur: 1rem;
+  --gom-dp-radius: 0px;
+  --gom-dp-cell: 3.2rem;
 }
 
 .datepicker.datepicker-dropdown {
-    background: var(--gom-dp-bg) !important;
-    border: var(--gom-dp-border) !important;
-    border-radius: var(--gom-dp-radius) !important;
+  background: var(--gom-dp-bg) !important;
+  border: var(--gom-dp-border) !important;
+  border-radius: var(--gom-dp-radius) !important;
 
-    -webkit-backdrop-filter: blur(var(--gom-dp-blur));
-    backdrop-filter: blur(var(--gom-dp-blur));
+  -webkit-backdrop-filter: blur(var(--gom-dp-blur));
+  backdrop-filter: blur(var(--gom-dp-blur));
 
-    box-shadow: none !important;
-    padding: .6rem .8rem !important;
-    left: 0 !important;
-    right: auto !important;
+  box-shadow: none !important;
+  padding: 0.6rem 0.8rem !important;
+  left: 0 !important;
+  right: auto !important;
 
-    /* sube por encima de cosas del layout; si se te va “muy arriba”, lo bajamos en Paso 2 */
-    z-index: 3000 !important;
+  /* sube por encima de cosas del layout; si se te va “muy arriba”, lo bajamos en Paso 2 */
+  z-index: 3000 !important;
 }
 
 /* Triangulito (si el plugin lo usa) */
 .datepicker-dropdown:before,
 .datepicker-dropdown:after {
-    border-bottom-color: rgba(255, 255, 255, .22) !important;
+  border-bottom-color: rgba(255, 255, 255, 0.22) !important;
 }
 
 .datepicker-dropdown:after {
-    border-bottom-color: rgba(0, 0, 0, .72) !important;
+  border-bottom-color: rgba(0, 0, 0, 0.72) !important;
 }
 
 /* Tabla base */
 .datepicker table.table-condensed {
-    width: 100%;
+  width: 100%;
 }
 
 .datepicker th,
 .datepicker td {
-    color: var(--gom-dp-text) !important;
-    border-radius: 0 !important;
-    text-shadow: none !important;
+  color: var(--gom-dp-text) !important;
+  border-radius: 0 !important;
+  text-shadow: none !important;
 }
 
 .datepicker .dow {
-    color: var(--gom-dp-muted) !important;
-    font-weight: 500 !important;
-    letter-spacing: .12em !important;
-    text-transform: uppercase !important;
-    font-size: 1.05rem !important;
+  color: var(--gom-dp-muted) !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase !important;
+  font-size: 1.05rem !important;
 }
 
 /* Header: mes/año + flechas */
 .datepicker .datepicker-switch {
-    letter-spacing: .14em !important;
-    text-transform: uppercase !important;
-    font-weight: 600 !important;
-    font-size: 1.15rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  font-size: 1.15rem !important;
 }
 
 .datepicker .prev,
 .datepicker .next {
-    width: var(--gom-dp-cell) !important;
-    height: var(--gom-dp-cell) !important;
-    line-height: var(--gom-dp-cell) !important;
-    font-size: 1.6rem !important;
-    color: var(--gom-dp-text) !important;
+  width: var(--gom-dp-cell) !important;
+  height: var(--gom-dp-cell) !important;
+  line-height: var(--gom-dp-cell) !important;
+  font-size: 1.6rem !important;
+  color: var(--gom-dp-text) !important;
 }
 
 .datepicker .prev:hover,
 .datepicker .next:hover,
 .datepicker .datepicker-switch:hover {
-    background: var(--gom-dp-hover) !important;
+  background: var(--gom-dp-hover) !important;
 }
 
 /* Días */
 .datepicker td.day {
-    width: var(--gom-dp-cell) !important;
-    height: var(--gom-dp-cell) !important;
-    line-height: var(--gom-dp-cell) !important;
-    font-size: 1.15rem !important;
-    letter-spacing: .02em !important;
+  width: var(--gom-dp-cell) !important;
+  height: var(--gom-dp-cell) !important;
+  line-height: var(--gom-dp-cell) !important;
+  font-size: 1.15rem !important;
+  letter-spacing: 0.02em !important;
 }
 
 .datepicker td.day:hover {
-    background: var(--gom-dp-hover) !important;
+  background: var(--gom-dp-hover) !important;
 }
 
 /* Disabled / old / new */
 .datepicker td.disabled,
 .datepicker td.disabled:hover {
-    opacity: .35 !important;
-    cursor: not-allowed !important;
-    background: transparent !important;
+  opacity: 0.35 !important;
+  cursor: not-allowed !important;
+  background: transparent !important;
 }
 
 .datepicker td.old,
 .datepicker td.new {
-    color: rgba(255, 255, 255, .45) !important;
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
 /* Today */
 .datepicker td.today {
-    outline: 1px solid rgba(255, 255, 255, .35) !important;
-    background: transparent !important;
+  outline: 1px solid rgba(255, 255, 255, 0.35) !important;
+  background: transparent !important;
 }
 
 /* Selected (active) */
 .datepicker td.active,
 .datepicker td.active:hover,
 .datepicker td.day.active {
-    background: var(--gom-dp-active) !important;
-    outline: 1px solid rgba(255, 255, 255, .55) !important;
-    color: #fff !important;
+  background: var(--gom-dp-active) !important;
+  outline: 1px solid rgba(255, 255, 255, 0.55) !important;
+  color: #fff !important;
 }
 
 /* Footer buttons (Clear / Today si aparece) */
 .datepicker tfoot th.clear,
 .datepicker tfoot th.today {
-    color: var(--gom-dp-text) !important;
-    letter-spacing: .14em !important;
-    text-transform: uppercase !important;
-    font-size: 1.05rem !important;
-    padding: .9rem 0 .2rem !important;
+  color: var(--gom-dp-text) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-size: 1.05rem !important;
+  padding: 0.9rem 0 0.2rem !important;
 }
 
 .datepicker tfoot th.clear:hover,
 .datepicker tfoot th.today:hover {
-    background: var(--gom-dp-hover) !important;
+  background: var(--gom-dp-hover) !important;
 }
-
-
 
 /* ===== Datepicker — mínimos solicitados ===== */
 
 /* 1) Ancho 100% del popup y de su tabla */
 .datepicker.datepicker-dropdown {
-    width: 94% !important;
-    min-width: 94% !important;
-    left: 0 !important;
-    right: auto !important;
-    box-sizing: border-box !important;
+  width: 94% !important;
+  min-width: 94% !important;
+  left: 0 !important;
+  right: auto !important;
+  box-sizing: border-box !important;
 }
 
 .datepicker.datepicker-dropdown .table-condensed {
-    width: 100% !important;
+  width: 100% !important;
 }
 
 /* 2) “Hoy” más visible (sin llenar el fondo) */
 .datepicker td.today {
-    outline: 2px solid rgba(255, 255, 255, .70) !important;
-    outline-offset: -2px !important;
-    background: rgba(255, 255, 255, .08) !important;
-    font-weight: 600 !important;
+  outline: 2px solid rgba(255, 255, 255, 0.7) !important;
+  outline-offset: -2px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  font-weight: 600 !important;
 }
 
 /* 3) Fechas no disponibles (disabled) más claras */
 .datepicker td.disabled,
 .datepicker td.disabled:hover {
-    opacity: .25 !important;
-    text-decoration: line-through !important;
-    background: transparent !important;
+  opacity: 0.25 !important;
+  text-decoration: line-through !important;
+  background: transparent !important;
 }
 
 /* 4) Mes anterior/siguiente (old/new) más sutil */
 .datepicker td.old,
 .datepicker td.new {
-    color: rgba(255, 255, 255, .38) !important;
+  color: rgba(255, 255, 255, 0.38) !important;
 }
 
 /* 5) Selección activa bien definida */
 .datepicker td.active,
 .datepicker td.active:hover {
-    background: rgba(255, 255, 255, .20) !important;
-    outline: 2px solid rgba(255, 255, 255, .85) !important;
-    outline-offset: -2px !important;
-    font-weight: 700 !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  outline: 2px solid rgba(255, 255, 255, 0.85) !important;
+  outline-offset: -2px !important;
+  font-weight: 700 !important;
 }
 
-@media (min-width:769px) {
-    .datepicker.datepicker-dropdown {
-        min-width: 25% !important;
-        width: 73% !important;
-    }
+@media (min-width: 769px) {
+  .datepicker.datepicker-dropdown {
+    min-width: 25% !important;
+    width: 73% !important;
+  }
+}
+
+/* =========================================================
+   HEADER — FIX CRÍTICO (Desktop & Mobile)
+   ========================================================= */
+
+/* 1. Forzar posición fija siempre */
+#header-bar,
+#header-bar.navbar-fixed-top,
+#header-bar.navbar-fixed-top.sticky-top {
+  position: fixed !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 100% !important;
+  z-index: 99999 !important;
+  margin-top: 0 !important;
+  transform: none !important;
+  /* Diseño propuesto: Glassmorphism para el header */
+  background: rgba(255, 255, 255, 0.92) !important;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08) !important;
+}
+
+.gom-book-fineprint {
+  font-size: 0.85rem !important;
+  color: rgba(255, 255, 255, 0.9) !important;
+  margin-top: 0.4rem !important;
+}
+
+.alert {
+  background: var(--gom-glass) !important;
+}
+/* 2. EL PARCHE MÁGICO PARA MÓVIL:
+   El CSS original oculta .not-sticky-top cuando el padre es .sticky-top.
+   Aquí lo revertimos forzosamente.
+*/
+#header-bar.sticky-top .header .header-line-container.not-sticky-top,
+#header-bar.sticky-top
+  .header
+  .header-line-container.not-sticky-top
+  .navbar-brand {
+  max-height: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  overflow: visible !important;
+}
+
+/* Ajustes visuales para que el logo no se mueva */
+.header-line-container {
+  transition: none !important;
 }

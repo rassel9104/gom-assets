@@ -106,17 +106,17 @@
     right: var(--gom-prop-pad-x) !important;
 
     /* sit above the tabs */
-    bottom: calc(var(--gom-prop-tabs-h) + 10px) !important;
+    bottom: calc(var(--gom-prop-tabs-h) + 5dvh) !important;
 
     z-index: 70 !important;
-    padding: 10px 12px !important;
-    border-radius: 14px !important;
+    padding: 1rem 1.2rem !important;
+    border-radius: 0 !important;
 
     /* readable overlay */
     background: rgba(0, 0, 0, 0.55) !important;
     color: #fff !important;
     font-size: 13px !important;
-    line-height: 1.35 !important;
+    line-height: normal !important;
 
     max-width: 70ch !important;
   }
@@ -170,7 +170,7 @@
      Title overlay placement (keeps within hero)
      ----------------------------------------------------------- */
   html.multiproperty #content .row:first-of-type h1 {
-    top: calc(var(--full-hm-vh) / 1.5) !important;
+    top: 58dvh !important;
     left: var(--gom-prop-pad-x) !important;
     right: var(--gom-prop-pad-x) !important;
     width: auto !important;
