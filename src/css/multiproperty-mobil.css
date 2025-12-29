@@ -320,7 +320,8 @@
     margin-bottom: 4.5dvh !important;
   }
   html.multiproperty #desc-title {
-    margin: 0 var(--gom-card-pad) 2.25dvh !important;
+    margin-bottom: 2.25dvh !important;
+    margin-top: 0 !important;
   }
 }
 
