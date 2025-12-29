@@ -202,7 +202,7 @@
 
   /*Availability Calendar */
   html.multiproperty h2.page-header.linktarget {
-    padding-top: 0 !important;
+    padding-top: 4.5dvh !important;
   }
 
   /* Reviews H2 (keep anchor but avoid duplicate visible header) */
@@ -299,23 +299,18 @@
   html.multiproperty #content .row > .col-md-12 {
     margin-top: 0 !important;
   }
-  html.multiproperty :is(#availability) {
-    margin-top: 4.5dvh !important;
-    padding-left: var(--gom-card-pad) !important;
-    padding-right: var(--gom-card-pad) !important;
-  }
 
-  html.multiproperty .about-the-owner {
+  /*html.multiproperty .about-the-owner {
     padding-left: var(--gom-card-pad) !important;
     padding-right: var(--gom-card-pad) !important;
     margin-bottom: 4.5dvh !important;
-  }
+  }*/
 
-  html.multiproperty :is(#location, #amenities, #reviews) {
+  /*html.multiproperty :is(#location, #amenities, #reviews) {
     padding-left: var(--gom-card-pad) !important;
     padding-right: var(--gom-card-pad) !important;
     margin-bottom: 4.5dvh !important;
-  }
+  }*/
 
   div#map {
     height: auto !important;
@@ -326,13 +321,6 @@
   }
   html.multiproperty #desc-title {
     margin: 0 var(--gom-card-pad) 2.25dvh !important;
-  }
-
-  html.multiproperty #desc-title ~ p,
-  html.multiproperty .gom-prop-about > h3,
-  html.multiproperty #desc-title ~ ul > li {
-    margin-left: var(--gom-card-pad) !important;
-    margin-right: var(--gom-card-pad) !important;
   }
 }
 
