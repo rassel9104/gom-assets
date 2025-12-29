@@ -7,10 +7,6 @@
     --gom-prop-pad-x: clamp(16px, 5vw, 22px);
     --gom-prop-tabs-h: 56px;
     --gom-prop-hero-h: calc(100dvh - var(--gom-prop-header-h));
-    --gom-h-capt: calc(
-      env(safe-area-inset-bottom, 0px) + var(--gom-prop-thumbstrip-bottom) +
-        var(--gom-prop-thumbstrip-h) + var(--gom-prop-caption-gap)
-    );
   }
 
   /* Prevent any accidental horizontal scroll when using 100vw full-bleed */
@@ -110,17 +106,16 @@
     bottom: calc(var(--gom-prop-tabs-h) + 5dvh) !important;
 
     z-index: 70 !important;
-    padding: 0.4dvh !important;
+    padding: 1rem 1.2rem !important;
     border-radius: 0 !important;
 
     /* readable overlay */
     background: rgba(0, 0, 0, 0.55) !important;
     color: #fff !important;
-    font-size: 1.6dvh !important;
+    font-size: 13px !important;
     line-height: normal !important;
 
     max-width: 70ch !important;
-    text-align: left !important;
   }
 
   /* -----------------------------------------------------------
@@ -139,14 +134,13 @@
   html.multiproperty .col-md-4.pull-right-md {
     order: 20 !important;
     float: none !important;
-    padding: 0 0 0 0 !important;
+    padding: 8dvh 0 0 0 !important;
     margin: 0 !important;
   }
 
   html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
     margin-right: 0 !important;
     margin-bottom: 0 !important;
-    padding: 8dvh var(--gom-card-pad) 2.5dvh !important;
   }
 
   /* -----------------------------------------------------------
@@ -165,20 +159,17 @@
 
   /* Footer full-bleed */
   html.multiproperty #details ~ footer {
-    padding-left: var(--gom-card-pad) !important;
-    padding-right: var(--gom-card-pad) !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 
   /* -----------------------------------------------------------
      Title overlay placement (keeps within hero)
      ----------------------------------------------------------- */
   html.multiproperty #content .row:first-of-type h1 {
-    top: calc(
-      var(--gom-prop-hero-h) - var(--gom-h-capt) - 2.2 *
-        clamp(44px, 10dvh, 84px)
-    ) !important;
-    margin-left: var(--gom-card-pad) !important;
-    margin-right: var(--gom-card-pad) !important;
+    top: 58dvh !important;
+    left: var(--gom-prop-pad-x) !important;
+    right: var(--gom-prop-pad-x) !important;
     width: auto !important;
     max-width: 20ch !important;
     font-size: 3.5vh !important;
@@ -301,20 +292,6 @@
   }
   html.multiproperty :is(#availability) {
     margin-top: 4.5dvh !important;
-    padding-left: var(--gom-card-pad) !important;
-    padding-right: var(--gom-card-pad) !important;
-  }
-
-  html.multiproperty .about-the-owner {
-    padding-left: var(--gom-card-pad) !important;
-    padding-right: var(--gom-card-pad) !important;
-    margin-bottom: 4.5dvh !important;
-  }
-
-  html.multiproperty :is(#location, #amenities, #reviews) {
-    padding-left: var(--gom-card-pad) !important;
-    padding-right: var(--gom-card-pad) !important;
-    margin-bottom: 4.5dvh !important;
   }
 
   div#map {
@@ -325,40 +302,7 @@
     margin-bottom: 4.5dvh !important;
   }
   html.multiproperty #desc-title {
-    margin: 0 var(--gom-card-pad) 2.25dvh !important;
-  }
-
-  html.multiproperty #desc-title ~ p,
-  html.multiproperty .gom-prop-about > h3,
-  html.multiproperty #desc-title ~ ul > li {
-    margin-left: var(--gom-card-pad) !important;
-    margin-right: var(--gom-card-pad) !important;
-  }
-}
-
-@media (max-width: 768px) {
-  html.multiproperty {
-    /* “refleja” tu filmstrip actual sin depender de tabs */
-    --gom-prop-thumbstrip-h: 5.8rem;
-    --gom-prop-thumbstrip-bottom: clamp(8px, 1.6dvh, 14px);
-    --gom-prop-caption-gap: 4px;
-  }
-
-  /* Caption: fijo entre título y filmstrip, sin variar por altura de pantalla */
-  html.multiproperty .lightSlider li.active .caption {
-    bottom: calc(
-      env(safe-area-inset-bottom, 0px) + var(--gom-prop-thumbstrip-bottom) +
-        var(--gom-prop-thumbstrip-h) + var(--gom-prop-caption-gap)
-    ) !important;
-
-    /* Evita que “crezca” y se meta debajo/encima del título en pantallas bajas */
-    max-height: clamp(44px, 10dvh, 84px) !important;
-    overflow: hidden !important;
-
-    /* Mantiene estable el alto visual (si el texto es largo, se recorta) */
-    display: -webkit-box !important;
-    -webkit-box-orient: vertical !important;
-    -webkit-line-clamp: 3 !important;
-    line-clamp: 3 !important;
+    margin-bottom: 2.25dvh !important;
+    margin-top: 0 !important;
   }
 }
