@@ -1,0 +1,257 @@
+/*
+  Garden of Manors (OwnerRez)
+  File: gom-blog.css
+  Purpose: Redesign of /blog index page to match brand identity.
+  Load order: After base/components, specific to blog page.
+*/
+
+/* ===============================================================
+   GLOBAL LAYOUT OVERRIDES (BLOG ONLY)
+   =============================================================== */
+
+/* Ensure the main container allows for our layout */
+html.blogindex #content {
+    padding: 0;
+    margin: -0.5rem 0 0 !important;
+}
+
+/* Hide the sidebar to match the requested clean/magazine look */
+html.blogindex .col-lg-3.visible-lg {
+    display: none !important;
+}
+
+/* Make the main content column full width */
+html.blogindex .col-xs-12.col-lg-9 {
+    width: 100% !important;
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0;
+    float: none;
+}
+
+/* Remove default row margins that might cause scrollbars */
+html.blogindex .row.support-container {
+    margin: 0 !important;
+    display: flex;
+    flex-wrap: wrap;
+    background: #fff;
+}
+
+/* ===============================================================
+   HERO SECTION (First Article)
+   =============================================================== */
+
+/* Target the FIRST article to be the Hero */
+html.blogindex .blog-article:first-of-type {
+    position: relative;
+    width: 100%;
+    /* Full viewport height minus header (approx 72px + padding) */
+    height: calc(100vh - 7.2rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+/* The Image: absolute background cover */
+html.blogindex .blog-article:first-of-type .blog-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 1;
+    margin: 0 !important;
+}
+
+html.blogindex .blog-article:first-of-type .blog-image a,
+html.blogindex .blog-article:first-of-type .blog-image picture,
+html.blogindex .blog-article:first-of-type .blog-image img {
+    display: block;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Dark overlay for text readability */
+html.blogindex .blog-article:first-of-type .blog-image::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+}
+
+/* The Content: overlaid at bottom */
+html.blogindex .blog-article:first-of-type .blog-container {
+    position: relative;
+    z-index: 2;
+    padding: 4rem var(--gom-pad-x); /* Use global padding var */
+    max-width: 120rem;
+    color: #fff;
+}
+
+/* Headline */
+html.blogindex .blog-article:first-of-type .blog-title {
+    font-family: var(--heading-font);
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: clamp(2.4rem, 4vw, 5.2rem);
+    line-height: 1.1;
+    margin-bottom: 1.6rem;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+html.blogindex .blog-article:first-of-type .blog-title a {
+    color: #fff !important;
+    text-decoration: none;
+    font-size: var(--fs-h3)!important;
+}
+
+html.blogindex .blog-article:first-of-type .blog-title i {
+    display: none; /* Hide the icon */
+}
+
+/* Text / Excerpt */
+html.blogindex .blog-article:first-of-type .blog-content {
+    font-size: var(--fs-h4);
+    max-width: 80rem;
+    color: rgba(255,255,255,0.9);
+}
+
+html.blogindex .blog-article:first-of-type .more-link {
+    display: inline-block;
+    margin-top: 1.6rem;
+    padding: 1rem 2.4rem;
+    background: #fff;
+    color: #000;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-decoration: none;
+    font-size: var(--fs-xs);
+}
+
+/* ===============================================================
+   GRID LAYOUT (Subsequent Articles)
+   =============================================================== */
+
+/* Container for the rest of the articles */
+/* Note: We can't wrap them in a div because HTML is fixed,
+   so we assume .col-lg-9 is the wrapper. We'll use Flex/Grid on parent?
+   Ah, .col-lg-9 contains all articles directly.
+   We already set .blog-article:first-of-type to full width.
+   Now we style the siblings.
+*/
+
+html.blogindex .col-lg-9 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8dvh;
+    padding-bottom: 8rem;
+}
+
+/* Reset width for non-first items to create a grid */
+html.blogindex .blog-article:not(:first-of-type) {
+    width: calc(50% - 2rem); /* 2 columns with 4rem gap */
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    border: none;
+}
+
+/* Thumbnail for grid items */
+html.blogindex .blog-article:not(:first-of-type) .blog-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    margin-bottom: 2.4rem;
+    overflow: hidden;
+}
+
+html.blogindex .blog-article:not(:first-of-type) .blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+html.blogindex .blog-article:not(:first-of-type):hover .blog-image img {
+    transform: scale(1.05);
+}
+
+/* Titles for grid items */
+html.blogindex .blog-article:not(:first-of-type) .blog-title {
+    font-size: var(--fs-h3);
+    font-family: var(--heading-font);
+    font-weight: 600;
+    margin: 0 0 1.2rem 0;
+    line-height: 1.3;
+}
+
+html.blogindex .blog-article:not(:first-of-type) .blog-title a {
+    color: #000;
+    text-decoration: none;
+    font-size: var(--fs-h3)!important;
+}
+
+html.blogindex .blog-article:not(:first-of-type) .blog-title i {
+    display: none;
+}
+
+/* Content for grid items */
+html.blogindex .blog-article:not(:first-of-type) .blog-content {
+    font-size: var(--fs-body);
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 8dvh;
+}
+
+html.blogindex .blog-article:not(:first-of-type) .more-link {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9em;
+    color: #000;
+    border-bottom: 1px solid #000;
+    text-decoration: none;
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+/* ===============================================================
+   MOBILE OVERRIDES (<= 768px)
+   =============================================================== */
+@media (max-width: 768px) {
+    /* Hero height adjustment */
+
+    html.blogindex .blog-article:first-of-type .blog-title a {
+        font-size: 3dvh !important;
+    }
+
+    /* Ensure image is visible on mobile - overriding potential hidden-xs on source/picture if any, or size issues */
+    html.blogindex .blog-article:first-of-type .blog-image {
+        display: block !important;
+        position: absolute !important;
+        height: 100% !important;
+        inset: 0;
+    }
+
+    html.blogindex .blog-article:first-of-type .blog-image picture,
+    html.blogindex .blog-article:first-of-type .blog-image img {
+        width: 100% !important;
+        height: 100% !important;
+        display: block !important;
+    }
+
+    /* Grid becomes 1 column */
+    html.blogindex .col-lg-9 {
+        gap: 4.5dvh;
+        padding-left: var(--gom-pad-x);
+        padding-right: var(--gom-pad-x);
+    }
+
+    html.blogindex .blog-article:not(:first-of-type) {
+        width: 100%;
+    }
+}

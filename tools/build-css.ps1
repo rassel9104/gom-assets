@@ -12,7 +12,9 @@ $jobs = @(
   @{ Src = "src/css/widget_reviews.css"; Dst = "dist/gom-widget_reviews.min.css" },
   @{ Src = "src/css/gom-book.css"; Dst = "dist/gom-book.min.css" },
   @{ Src = "src/css/widget-book.css"; Dst = "dist/gom-widget_book.min.css" },
-  @{ Src = "src/css/gom-multiproperty.css"; Dst = "dist/gom-multiproperty.min.css" }
+  @{ Src = "src/css/widget-book.css"; Dst = "dist/gom-widget_book.min.css" },
+  @{ Src = "src/css/gom-multiproperty.css"; Dst = "dist/gom-multiproperty.min.css" },
+  @{ Src = "src/css/gom-blog.css"; Dst = "dist/gom-blog.min.css" }
 )
 
 $ok = 0
@@ -29,7 +31,7 @@ foreach ($job in $jobs) {
   }
 
   try {
-    & postcss $src -o $dst
+    & "node_modules\.bin\postcss.cmd" $src -o $dst
     if (Test-Path $dst) {
       Write-Host "OK: $dst"
       $ok++
