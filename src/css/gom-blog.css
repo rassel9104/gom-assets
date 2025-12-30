@@ -12,7 +12,7 @@
 /* Ensure the main container allows for our layout */
 html.blogindex #content {
     padding: 0;
-    margin: -1rem 0 0 !important;
+    margin: -2rem 0 0 !important;
 }
 
 /* Hide the sidebar to match the requested clean/magazine look */
@@ -46,12 +46,12 @@ html.blogindex .blog-article:first-of-type {
     position: relative;
     width: 100%;
     /* Full viewport height minus header (approx 72px + padding) */
-    height: calc(100vh - 7.2rem);
+    height: calc(100vh - var(--header-h));
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     overflow: hidden;
-    margin-bottom: 4rem;
+    margin-bottom: 0;
 }
 
 /* The Image: absolute background cover */
@@ -219,7 +219,7 @@ html.blogindex .blog-article:not(:first-of-type) .more-link {
     display: inline-block;
 }
 
-html.blogindex .blog-category {
+html.blogindex .blog-article:first-of-type .blog-categories .blog-category {
     border: solid 1px var(--gom-dd-text) !important;
     color: var(--gom-dd-text) !important;
 }
@@ -232,6 +232,10 @@ html.blogindex .blog-category {
 
     html.blogindex .blog-article:first-of-type .blog-title a {
         font-size: 3dvh !important;
+    }
+
+    html.blogindex .blog-article:not(:first-of-type) .blog-content{
+        margin-bottom: 0 !important;
     }
 
     /* Ensure image is visible on mobile - overriding potential hidden-xs on source/picture if any, or size issues */
@@ -249,7 +253,7 @@ html.blogindex .blog-category {
         display: block !important;
     }
 
-    /* Grid becomes 1 column */
+    /* Grid becomes 1 column - ZIG ZAG style */
     html.blogindex .col-lg-9 {
         gap: 4.5dvh;
         padding-left: var(--gom-pad-x);
@@ -258,9 +262,54 @@ html.blogindex .blog-category {
 
     html.blogindex .blog-article:not(:first-of-type) {
         width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Reverse order for Odd grid items (Zig Zag effect) */
+    html.blogindex .blog-article:nth-of-type(odd):not(:first-of-type) {
+        flex-direction: column-reverse;
+    }
+
+    /* Force images to show on mobile for list items */
+    html.blogindex .blog-article:not(:first-of-type) .blog-image {
+        display: block !important;
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16/9;
+        margin-bottom: 2rem;
+    }
+
+    /* If reversed, margin needs to be on top */
+    html.blogindex .blog-article:nth-of-type(odd):not(:first-of-type) .blog-image {
+        margin-bottom: 0;
+        margin-top: 4dvh;
+    }
+
+    html.blogindex .blog-article:not(:first-of-type) .blog-image img,
+    html.blogindex .blog-article:not(:first-of-type) .blog-image picture {
+        display: block !important;
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover;
+        margin-top: 2dvh !important;
+    }
+
+    html.blogindex .gomf-wrap{
+        margin-top: 4.5dvh !important;
     }
 
     html.blogindex .blog-article:first-of-type .blog-container{
         width: 100% !important;
+    }
+
+    .blog-article.has-post-thumbnail .blog-container {
+        padding: 0 var(--gom-pad-x) !important; /* Use global padding var */
+        max-width: 100%;
+        color: #fff;
+        width: 100% !important;
+        margin: 0 !important;
+        line-height: normal !important;
+
     }
 }

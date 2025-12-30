@@ -17,6 +17,9 @@
   padding: 0 12px;
 }
 
+body {
+  padding-top: var(--header-h) !important;
+}
 .property-result-list .btn-group .btn:hover,
 .property-result-list .btn-group .btn:focus {
   filter: brightness(1.05);
