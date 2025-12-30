@@ -2,6 +2,8 @@
 node_modules/
 img/
 others/
+src/img/
+src/psd/
 
 # logs
 npm-debug.log*
