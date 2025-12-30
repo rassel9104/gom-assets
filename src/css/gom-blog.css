@@ -12,7 +12,7 @@
 /* Ensure the main container allows for our layout */
 html.blogindex #content {
     padding: 0;
-    margin: -0.5rem 0 0 !important;
+    margin: -1rem 0 0 !important;
 }
 
 /* Hide the sidebar to match the requested clean/magazine look */
@@ -155,7 +155,7 @@ html.blogindex .col-lg-9 {
 
 /* Reset width for non-first items to create a grid */
 html.blogindex .blog-article:not(:first-of-type) {
-    width: calc(50% - 2rem); /* 2 columns with 4rem gap */
+    width: calc(50% - 4dvh - 1px); /* Ensures 2 cols fit with 8dvh gap */
     display: flex;
     flex-direction: column;
     margin: 0;
@@ -219,6 +219,11 @@ html.blogindex .blog-article:not(:first-of-type) .more-link {
     display: inline-block;
 }
 
+html.blogindex .blog-category {
+    border: solid 1px var(--gom-dd-text) !important;
+    color: var(--gom-dd-text) !important;
+}
+
 /* ===============================================================
    MOBILE OVERRIDES (<= 768px)
    =============================================================== */
@@ -253,5 +258,9 @@ html.blogindex .blog-article:not(:first-of-type) .more-link {
 
     html.blogindex .blog-article:not(:first-of-type) {
         width: 100%;
+    }
+
+    html.blogindex .blog-article:first-of-type .blog-container{
+        width: 100% !important;
     }
 }
