@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="blogpost"> <!-- Added class blogpost to simulate real environment -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post Preview (Sidebar)</title>
+    <!-- Base styles assumption -->
+    <link rel="stylesheet" href="src/css/base.css">
+    <link rel="stylesheet" href="src/css/gom-blog-post.css">
+    <style>
+        /* Simulation vars */
+        :root { --header-h: 88px; --gom-pad-x: 5vw; }
+        body { margin: 0; padding: 0; font-family: sans-serif; }
+        /* Mock bootstrap grid basics if not loaded */
+        .container { max-width: 1200px; margin: 0 auto; }
+        .visible-lg { display: block; }
+        @media(max-width: 768px) { .visible-lg { display: none; } }
+    </style>
+    <!-- FontAwesome Helper -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- MOCK HEADER PLACEHOLDER -->
+    <div style="height: 88px; background: #fff; position:fixed; top:0; width:100%; z-index:100; border-bottom:1px solid #eee;">
+        <div style="padding: 20px; font-weight:bold;">HEADER MOCK</div>
+    </div>
+
+    <!-- INJECTING CONTENT FROM blog-ejemplo.html roughly -->
+    <div style="padding-top: 88px;">
+
+        <article itemscope="" itemtype="http://schema.org/BlogPosting" itemprop="mainEntityOfPage">
+            <!-- HERO -->
+            <div class="blog-header-wrap" style="background-image: url('https://uc.orez.io/f/9052139f0d9a4a6897440a3432de7e43');">
+                <header>
+                    <div class="blog-header-container">
+                        <h1 class="blog-title" itemprop="headline">Clothing-Optional 101: What to Expect at a Men’s Guesthouse</h1>
+                        <ul class="blog-meta blog-subnav blog-subnav-line">
+                            <li>Posted on <span itemprop="datePublished" datetime="{0:2025-12-27}">December 27, 2025</span></li>
+                        </ul>
+                        <ul class="blog-meta blog-categories">
+                                <a class="label label-success blog-category" href="/blog?categoryId=1171" rel="category tag">Guesthouse Life</a>
+                        </ul>
+                    </div>
+                </header>
+            </div>
+
+            <div id="content" class="container">
+                <div class="body-content">
+                    <div class="row support-container support-container-sidebar-right support-container-no-borders">
+
+                        <!-- MAIN COLUMN -->
+                        <div class="col-xs-12 col-lg-9">
+                            <div id="7138" class="blog-7138 blog-article">
+                                <div class="support-article-content blog-article-content clearfix" data-role="auto-carousel">
+                                    <article class="gom-blog">
+                                        <header class="gom-blog__header">
+                                            <p class="gom-blog__kicker">Guesthouse Life · Garden of Manors</p>
+                                            <h2 class="gom-blog__title">Clothing-Optional 101: What to Expect at a Men’s Guesthouse</h2>
+                                            <p class="gom-blog__lede">First time at a clothing-optional resort? Don’t sweat it. Here’s the etiquette guide to keeping it classy, comfortable, and respectful for everyone.</p>
+                                        </header>
+
+                                        <nav class="gom-blog__toc" aria-label="Table of contents">
+                                            <h3 class="gom-blog__tocTitle">Quick guide</h3>
+                                            <ol class="gom-blog__tocList">
+                                                <li><a href="#optional">Is "Optional" Required?</a></li>
+                                                <li><a href="#golden-rules">The Golden Rules</a></li>
+                                                <li><a href="#where-wear">Where to Wear What</a></li>
+                                                <li><a href="#try-it">Why Try It?</a></li>
+                                            </ol>
+                                        </nav>
+
+                                        <section id="optional" class="gom-blog__section">
+                                            <h3 class="gom-blog__h3">Is "Clothing Optional" Required?</h3>
+                                            <p><strong>Absolutely not.</strong> The keyword is <em>optional</em>. That means you are free to wear a swimsuit, shorts, a towel, or nothing at all—whatever makes you feel comfortable. There is no pressure to undress. Our goal at Garden of Manors is to create a sanctuary where body positivity rules and judgment is left at the door.</p>
+                                        </section>
+
+                                        <!-- More sections implied... -->
+                                        <aside class="gom-cta">
+                                            <h3 class="gom-cta__title">Experience True Freedom</h3>
+                                            <p class="gom-cta__text">Ready to relax without restrictions? Join us for a stay that celebrates you just as you are.</p>
+                                            <p class="gom-cta__actions"><a class="gom-btn gom-btn--primary" href="/book">Book Your Stay</a></p>
+                                        </aside>
+
+                                    </article>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- SIDEBAR COLUMN -->
+                        <div class="col-lg-3 visible-lg">
+                            <div>
+                                <h3>Categories</h3>
+                                <ul class="blog-categories">
+                                    <li><a class="label label-success blog-category" href="#" rel="category tag">Nightlife &amp; Parties <span class="badge">1</span></a></li>
+                                    <li><a class="label label-success blog-category" href="#" rel="category tag">Local Events <span class="badge">2</span></a></li>
+                                </ul>
+
+                                <h3>Latest Posts</h3>
+                                <ul class="blog-latest-posts">
+                                    <li>
+                                        <a href="#">
+                                            <img width="150" height="150" class="blog-image-thumbnail" src="https://uc.orez.io/f/4718e313d8ba49b4bc0d1deedc42c20b">
+                                            <div class="blog-title">Traveling Solo to Wilton Manor...</div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#">
+                                            <img width="150" height="150" class="blog-image-thumbnail" src="https://uc.orez.io/f/0df9bba4f37b49248e9ae0e28fe3f2a6">
+                                            <div class="blog-title">Clothing-Optional 101: What to...</div>
+                                        </a>
+                                    </li>
+                                </ul>
+
+                                <h3>Subscribe</h3>
+                                <div class="blog-syndication">
+                                    <ul class="links">
+                                        <li><a rel="nofollow" href="#"><i class="fas fa-rss-square"></i>By RSS</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </article>
+    </div>
+</body>
+</html>

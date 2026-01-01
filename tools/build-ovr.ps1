@@ -4,27 +4,17 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@main/dist"
-$base2 = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.4/dist"
+$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.6/dist"
 
 $jobs = @(
   @{ Src = "src/css/gom-global.css"; Dst = "$base/gom-global.min.css" },
   @{ Src = "src/css/gom-home.css"; Dst = "$base/gom-home.min.css" },
   @{ Src = "src/css/gom-properties.css"; Dst = "$base/gom-properties.min.css" },
   @{ Src = "src/css/gom-menu-overlay.css"; Dst = "$base/gom-menu-overlay.min.css" },
-  @{ Src = "src/css/gom-book.css"; Dst = "$base/gom-book.min.css" },
-  @{ Src = "src/css/widget-book.css"; Dst = "dist/gom-widget_book.min.css" },
-  @{ Src = "src/css/widget-book.css"; Dst = "dist/gom-widget_book.min.css" },
-  @{ Src = "src/css/gom-multiproperty.css"; Dst = "$base/gom-multiproperty.min.css" },
+  @{ Src = "src/css/gom-book.css"; Dst = "$base/gom-book.min.css" }
   @{ Src = "src/css/gom-blog.css"; Dst = "$base/gom-blog.min.css" },
-
-  @{ Src = "src/css/gom-global.css"; Dst = "$base2/gom-global.min.css" },
-  @{ Src = "src/css/gom-home.css"; Dst = "$base2/gom-home.min.css" },
-  @{ Src = "src/css/gom-properties.css"; Dst = "$base2/gom-properties.min.css" },
-  @{ Src = "src/css/gom-menu-overlay.css"; Dst = "$base2/gom-menu-overlay.min.css" },
-  @{ Src = "src/css/gom-book.css"; Dst = "$base2/gom-book.min.css" },
-  @{ Src = "src/css/gom-multiproperty.css"; Dst = "$base2/gom-multiproperty.min.css" },
-  @{ Src = "src/css/gom-blog.css"; Dst = "$base2/gom-blog.min.css" }
+  @{ Src = "src/css/gom-blog-post.css"; Dst = "$base/gom-blog-post.min.css" },
+  @{ Src = "src/css/gom-multiproperty.css"; Dst = "$base/gom-multiproperty.min.css" }
 )
 
 $ok = 0

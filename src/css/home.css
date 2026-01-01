@@ -942,7 +942,7 @@ footer {
   margin: 0;
   padding: 0;
   /* El footer mide al menos el viewport disponible bajo el header */
-  height: var(--full-h);
+  height: var(--full-h) !important;
 }
 
 .gomf-wrap {

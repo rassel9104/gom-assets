@@ -1,261 +1,628 @@
 /*
   Garden of Manors (OwnerRez)
-  File: gom-blog-post.css
-  Purpose: Styling for individual blog post pages.
-  Load order: After base/components, specific to blog_post pages.
+  Blog Post Redesign v2
+  Breakpoint: 768px (<= mobile / >= desktop)
+  Scope: html.blogpost
 */
 
 /* ===============================================================
-   BLOG POST CONTAINER
+   BASE TOKENS + RESETS
    =============================================================== */
+html.blogpost {
+  /* fallback-friendly tokens */
+  --post-pad-x: var(--gom-pad-x, 2rem);
+  --post-gap: clamp(1.6rem, 2.4vw, 3.2rem);
+  --post-max: 78rem; /* main reading width */
+  --post-side: 32rem; /* sidebar width */
+  --post-wrap: calc(var(--post-max) + var(--post-side) + var(--post-gap));
+  --post-radius: 18px;
+  --post-border: rgba(0, 0, 0, 0.08);
 
-.gom-blog {
+  --post-text: rgba(0, 0, 0, 0.82);
+  --post-muted: rgba(0, 0, 0, 0.6);
+
+  --post-link: var(--primary-color, #111);
+  --post-bg: #fff;
+  --post-card: #fff;
+}
+
+html.blogpost body {
+  background: var(--post-bg);
+}
+
+html.blogpost .body-content {
+  /* Evita doble offset: el body ya trae padding-top vía JS/inline */
+  margin-top: 0 !important;
+}
+
+/* Limpia wrappers de OwnerRez */
+html.blogpost .blog-article,
+html.blogpost .blog-article-content,
+html.blogpost .support-article-content {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* Container general */
+html.blogpost #content.container {
+  max-width: 140rem;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* ===============================================================
+   HERO (TITLE AREA)
+   =============================================================== */
+html.blogpost .blog-header-wrap {
+  position: relative;
   width: 100%;
-  max-width: 80rem; /* Optimal reading width */
-  margin: 0 auto;
-  padding: 4rem var(--gom-pad-x);
-  color: var(--color-text);
-  font-family: var(--main-font);
-}
-
-/* ===============================================================
-   HEADER SECTION
-   =============================================================== */
-
-.gom-blog__header {
-  text-align: center;
-  margin-bottom: 6rem;
-  padding-bottom: 4rem;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.gom-blog__kicker {
-  font-size: var(--fs-xs);
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: #666; /* Muted text */
-  margin-bottom: 1.6rem;
-  font-weight: 600;
-}
-
-.gom-blog__title {
-  font-family: var(--heading-font);
-  font-size: clamp(3.2rem, 5vw, 4.8rem);
-  line-height: 1.1;
-  color: var(--color-primary);
-  margin-bottom: 2.4rem;
-  font-weight: 700;
-}
-
-.gom-blog__lede {
-  font-size: 2rem;
-  line-height: 1.6;
-  color: #444;
-  max-width: 90%;
-  margin: 0 auto;
-  font-weight: 400;
-}
-
-/* ===============================================================
-   TABLE OF CONTENTS
-   =============================================================== */
-
-.gom-blog__toc {
-  background: #f9f9f9;
-  padding: 3.2rem;
-  border-radius: 4px;
-  margin-bottom: 6rem;
-  border: 1px solid #eee;
-}
-
-.gom-blog__tocTitle {
-  font-size: var(--fs-h4);
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-family: var(--heading-font);
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  font-size: 1.4rem; /* Specific visual hierarchy for TOC label */
-  color: #888;
-}
-
-.gom-blog__tocList {
-  list-style: none;
-  padding: 0;
   margin: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  /* Desktop default; móvil lo ajusta */
+  min-height: clamp(42rem, 58vh, 78rem);
+
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+
+  /* Evita “full-bleed hacks” innecesarios */
+  margin-left: 0;
+  margin-right: 0;
+  overflow: hidden;
+}
+
+/* Overlay editorial (más legible) */
+html.blogpost .blog-header-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.35) 45%,
+    rgba(0, 0, 0, 0.72) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Header content */
+html.blogpost .blog-header-wrap header {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  max-width: var(--post-wrap);
+  padding: 0 var(--post-pad-x) clamp(2.4rem, 4vw, 5.2rem);
+
+  /* ANULA cualquier top raro previo */
+  top: auto !important;
+  text-align: left;
+}
+
+html.blogpost .blog-header-wrap .blog-header-container {
+  margin: 0;
+  padding: 0;
+  max-width: var(--post-max);
+}
+
+html.blogpost .blog-header-wrap h1.blog-title {
+  color: #fff;
+  font-family: var(--heading-font, inherit);
+  font-weight: var(--fw-regular, 400);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+
+  font-size: clamp(2.8rem, 3.1vw, 5.6rem) !important;
+  line-height: 1.06;
+  margin: 0 0 1.6rem;
+
+  text-shadow: 0 8px 30px rgba(0, 0, 0, 0.45);
+}
+
+html.blogpost .blog-header-container .blog-subnav {
+  margin: 0 0 1.2rem;
+  padding: 0;
+  display: flex;
   gap: 1.2rem;
+  flex-wrap: wrap;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.35rem;
 }
 
-.gom-blog__tocList li a {
+html.blogpost .blog-header-wrap .blog-meta {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Categories chips in hero */
+html.blogpost .blog-header-wrap .blog-categories {
+  margin: 1.2rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  list-style: none;
+}
+
+html.blogpost .blog-header-wrap .blog-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  color: #fff;
+
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 1.05rem;
   text-decoration: none;
-  color: var(--color-primary);
-  font-weight: 500;
-  font-size: 1.6rem;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s;
 }
 
-.gom-blog__tocList li a:hover {
-  border-bottom-color: var(--color-primary);
+html.blogpost .blog-header-wrap .blog-category:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.75);
 }
 
 /* ===============================================================
-   CONTENT SECTION
+   LAYOUT WRAP (MAIN + SIDEBAR)
    =============================================================== */
+html.blogpost .row.support-container.support-container-sidebar-right {
+  /* Un solo wrapper centrado */
+  max-width: var(--post-wrap);
+  margin: 0 auto !important;
+  padding: clamp(2.4rem, 3vw, 4.2rem) var(--post-pad-x) clamp(5rem, 6vw, 7rem);
 
-.gom-blog__section {
-  margin-bottom: 6rem;
+  /* Desktop grid default; mobile overrides below */
+  display: grid;
+  grid-template-columns: minmax(0, var(--post-max)) minmax(0, var(--post-side));
+  gap: var(--post-gap);
+  align-items: start;
 }
 
-.gom-blog__h3 {
-  font-family: var(--heading-font);
-  font-size: 2.8rem;
-  margin-bottom: 2.4rem;
-  color: var(--color-primary);
-  font-weight: 600;
+/* Neutraliza floats/bootstrap dentro de este scope */
+html.blogpost .row.support-container > [class*="col-"] {
+  float: none !important;
+  width: auto !important;
+  min-width: 0;
 }
 
-.gom-blog__section p {
-  font-size: 1.8rem; /* Highly readable body text */
-  line-height: 1.8;
-  margin-bottom: 2.4rem;
-  color: #222;
+/* Main column */
+html.blogpost .col-xs-12.col-lg-9 {
+  min-width: 0;
 }
 
-.gom-blog__list {
-  margin: 2.4rem 0 4rem 2rem;
+/* Sidebar column */
+html.blogpost .col-lg-3.visible-lg {
+  min-width: 0;
+  border-left: 1px solid var(--post-border);
+  padding-left: var(--post-gap);
+}
+
+/* Sticky sidebar (desktop) */
+@media (min-width: 769px) {
+  html.blogpost .col-lg-3.visible-lg {
+    position: sticky;
+    top: calc(var(--header-h, 96px) + 2.2rem);
+    align-self: start;
+  }
+}
+
+/* ===============================================================
+   ARTICLE TYPOGRAPHY (gom-blog)
+   =============================================================== */
+html.blogpost article.gom-blog {
+  color: var(--post-text);
+  font-family: var(--body-font, inherit);
+}
+
+html.blogpost .gom-blog__header {
+  padding: 0 0 2.4rem;
+  border-bottom: 1px solid var(--post-border);
+  margin: 0 0 2.8rem;
+}
+
+html.blogpost .gom-blog__kicker {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--post-muted);
+  font-size: 1.15rem;
+  margin: 0 0 1rem;
+}
+
+html.blogpost .gom-blog__title {
+  font-family: var(--heading-font, inherit);
+  font-weight: var(--fw-regular, 400);
+  color: #111;
+
+  font-size: clamp(2.6rem, 2.2vw, 4.2rem);
+  line-height: 1.1;
+  margin: 0 0 1.2rem;
+}
+
+html.blogpost .gom-blog__lede {
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 1.9rem;
+  line-height: 1.55;
+  margin: 0;
+  max-width: 70ch;
+}
+
+/* TOC card */
+html.blogpost .gom-blog__toc {
+  background: var(--post-card);
+  border: 1px solid var(--post-border);
+  border-radius: var(--post-radius);
+  padding: 2.2rem;
+  margin: 3rem 0 3.4rem;
+}
+
+html.blogpost .gom-blog__tocTitle {
+  font-family: var(--heading-font, inherit);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.15rem;
+  margin: 0 0 1.4rem;
+  color: #111;
+}
+
+html.blogpost .gom-blog__tocList {
+  margin: 0;
+  padding-left: 1.8rem;
+  display: grid;
+  gap: 0.8rem;
+}
+
+html.blogpost .gom-blog__tocList a {
+  color: #111;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+html.blogpost .gom-blog__tocList a:hover {
+  border-bottom-color: rgba(0, 0, 0, 0.45);
+}
+
+/* Sections */
+html.blogpost .gom-blog__section {
+  margin: 0 0 3rem;
+}
+
+html.blogpost .gom-blog__h3 {
+  font-family: var(--heading-font, inherit);
+  font-weight: var(--fw-regular, 400);
+  color: #111;
+  font-size: 2.2rem;
+  margin: 3.2rem 0 1.3rem;
+  line-height: 1.2;
+}
+
+/* Readability */
+html.blogpost .gom-blog__section p,
+html.blogpost .gom-blog__section li {
+  font-size: 1.7rem;
+  line-height: 1.85;
+  color: var(--post-text);
+}
+
+html.blogpost .gom-blog__list {
+  margin: 1.2rem 0 0;
   padding-left: 2rem;
 }
 
-.gom-blog__list li {
-  margin-bottom: 1.6rem;
-  font-size: 1.8rem;
+html.blogpost a {
+  color: var(--post-link);
+}
+
+html.blogpost a:hover {
+  text-decoration: underline;
+}
+
+/* Anchor offset for fixed header */
+html.blogpost .gom-blog__section,
+html.blogpost .gom-blog__h3 {
+  scroll-margin-top: calc(var(--header-h, 96px) + 1.6rem);
+}
+
+/* CTA block */
+html.blogpost .gom-cta {
+  border: 1px solid var(--post-border);
+  border-radius: var(--post-radius);
+  padding: 3rem;
+  margin: 4rem 0;
+  background: #fafafa;
+}
+
+html.blogpost .gom-cta__title {
+  font-family: var(--heading-font, inherit);
+  font-size: 2.2rem;
+  margin: 0 0 0.8rem;
+}
+
+html.blogpost .gom-cta__text {
+  margin: 0 0 1.8rem;
+  color: rgba(0, 0, 0, 0.72);
+  font-size: 1.6rem;
   line-height: 1.7;
-  color: #222;
 }
 
-.gom-blog__list li strong {
-  font-weight: 600;
-  color: #000;
-}
-
-/* ===============================================================
-   CTA BOX aka "Mid-roll ad"
-   =============================================================== */
-
-.gom-cta {
-  background: #000;
-  color: #fff;
-  padding: 4rem;
-  text-align: center;
-  margin: 6rem 0;
-  border-radius: 2px;
-}
-
-.gom-cta__title {
-  color: #fff;
-  font-size: 3.2rem;
-  margin-bottom: 1.6rem;
-}
-
-.gom-cta__text {
-  font-size: 1.8rem;
-  color: rgba(255,255,255,0.9);
-  margin-bottom: 3.2rem;
-  max-width: 60rem;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.gom-cta__actions {
+html.blogpost .gom-cta__actions {
   display: flex;
-  justify-content: center;
-  gap: 2rem;
+  gap: 1.2rem;
   flex-wrap: wrap;
 }
 
-/* Reusing/assuming .gom-btn classes exist or defining local fallbacks */
-.gom-btn {
-  display: inline-block;
-  padding: 1.2rem 3.2rem;
-  text-transform: uppercase;
-  font-weight: 600;
+/* If gom-btn exists elsewhere, we just gently enhance */
+html.blogpost .gom-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 2rem;
+  border-radius: 999px;
   text-decoration: none;
-  transition: all 0.3s ease;
-  font-size: 1.4rem !important;
-  letter-spacing: 0.1em;
+  font-size: 1.25rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
 }
 
-.gom-btn--primary {
+html.blogpost .gom-btn--primary {
+  background: #111;
+  color: #fff;
+  border: 1px solid #111;
+}
+
+html.blogpost .gom-btn--ghost {
+  background: transparent;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.22);
+}
+
+/* FAQ */
+html.blogpost .gom-faq {
+  margin: 1.6rem 0 0;
+}
+
+html.blogpost .gom-faq dt {
+  font-weight: 600;
+  margin-top: 1.6rem;
+}
+
+html.blogpost .gom-faq dd {
+  margin: 0.6rem 0 0;
+  color: rgba(0, 0, 0, 0.72);
+}
+
+/* ===============================================================
+   SIDEBAR UI
+   =============================================================== */
+html.blogpost .col-lg-3 h3 {
+  font-family: var(--heading-font, inherit);
+  font-size: 1.25rem;
+  font-weight: var(--fw-regular, 400);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin: 0 0 1.6rem;
+  color: #111;
+}
+
+html.blogpost .col-lg-3 h3 + ul,
+html.blogpost .col-lg-3 h3 + div {
+  margin-top: 0;
+}
+
+/* Categories list */
+html.blogpost .col-lg-3 ul.blog-categories {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  display: grid;
+  gap: 0.9rem;
+}
+
+html.blogpost .col-lg-3 ul.blog-categories a.blog-category {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--post-border);
+  border-radius: 14px;
+  text-decoration: none;
+
+  color: #111;
   background: #fff;
-  color: #000;
-  border: 1px solid #fff;
 }
 
-.gom-btn--primary:hover {
-  background: transparent;
+html.blogpost .col-lg-3 ul.blog-categories a.blog-category .badge {
+  background: rgba(0, 0, 0, 0.06);
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Latest posts */
+html.blogpost ul.blog-latest-posts {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 3rem;
+  display: grid;
+  gap: 1.2rem;
+}
+
+html.blogpost ul.blog-latest-posts a {
+  display: grid;
+  grid-template-columns: 6.4rem 1fr;
+  gap: 1.2rem;
+  align-items: center;
+
+  text-decoration: none;
+  color: #111;
+  padding: 1rem;
+  border: 1px solid var(--post-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+html.blogpost ul.blog-latest-posts img {
+  width: 6.4rem;
+  height: 6.4rem;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+html.blogpost ul.blog-latest-posts .blog-title {
+  font-size: 1.35rem;
+  color: rgba(0, 0, 0, 0.78);
+  line-height: 1.25;
+}
+
+/* Subscribe */
+html.blogpost .blog-syndication ul.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+html.blogpost .blog-syndication a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+
+  padding: 1.25rem 1.2rem;
+  border-radius: 999px;
+  background: #111;
   color: #fff;
+  text-decoration: none;
+
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 1.15rem;
 }
 
-.gom-btn--ghost {
-  background: transparent;
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.5);
-}
-
-.gom-btn--ghost:hover {
-  border-color: #fff;
+html.blogpost .blog-syndication a:hover {
+  opacity: 0.92;
 }
 
 /* ===============================================================
-   FOOTER SECTION (In-Article)
+   MOBILE (<= 768px) — Android-first
    =============================================================== */
-
-.gom-blog__footer {
-  margin-top: 8rem;
-  padding-top: 4rem;
-  border-top: 1px solid #eee;
-}
-
-.gom-faq dt {
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 0.8rem;
-  font-size: 1.8rem;
-}
-
-.gom-faq dd {
-  margin-left: 0;
-  margin-bottom: 2.4rem;
-  font-size: 1.7rem;
-  color: #444;
-  line-height: 1.6;
-}
-
-/* ===============================================================
-   MOBILE TWEAKS
-   =============================================================== */
-
 @media (max-width: 768px) {
-  .gom-blog {
-    padding: 2rem var(--gom-pad-x);
+  /* Hero height stable on Android */
+  html.blogpost .blog-header-wrap {
+    /* Prefer svh/dvh when available */
+    min-height: 54vh;
+    min-height: 54svh;
+    min-height: 54dvh;
   }
 
-  .gom-blog__title {
-    font-size: 3.2rem;
+  html.blogpost .blog-header-wrap header {
+    padding: 0 var(--post-pad-x) 2.6rem;
   }
 
-  .gom-blog__lede {
-    font-size: 1.8rem;
+  html.blogpost .blog-header-wrap h1.blog-title {
+    font-size: clamp(2.6rem, 7vw, 3.6rem) !important;
+    margin-bottom: 1.2rem;
   }
 
-  .gom-blog__section p {
-    font-size: 1.6rem;
+  /* Stack layout (main then sidebar) */
+  html.blogpost .row.support-container.support-container-sidebar-right {
+    grid-template-columns: 1fr;
+    padding: 2.6rem var(--post-pad-x) 6rem;
   }
 
-  .gom-cta {
-    padding: 3rem 2rem;
+  /* IMPORTANT: show sidebar even though it has .visible-lg */
+  html.blogpost .col-lg-3.visible-lg {
+    display: block !important;
+    border-left: 0;
+    padding-left: 0;
+    border-top: 1px solid var(--post-border);
+    padding-top: 2.6rem;
+    margin-top: 1.6rem;
+  }
+
+  /* Sidebar sections become “cards” feel */
+  html.blogpost .col-lg-3.visible-lg > div {
+    display: grid;
+    gap: 2.2rem;
+  }
+
+  /* Categories as chips wrap on mobile */
+  html.blogpost .col-lg-3 ul.blog-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin: 0;
+  }
+
+  html.blogpost .col-lg-3 ul.blog-categories li {
+    margin: 0 !important;
+  }
+
+  html.blogpost .col-lg-3 ul.blog-categories a.blog-category {
+    border-radius: 999px;
+    padding: 0.9rem 1.15rem;
+    justify-content: center;
+  }
+
+  /* Latest posts: horizontal scroll (mejor UX móvil) */
+  html.blogpost ul.blog-latest-posts {
+    display: flex;
+    gap: 1.2rem;
+    overflow-x: auto;
+    padding-bottom: 0.6rem;
+    scroll-snap-type: x mandatory;
+  }
+
+  html.blogpost ul.blog-latest-posts li {
+    min-width: 26rem;
+    scroll-snap-align: start;
+  }
+
+  /* TOC spacing */
+  html.blogpost .gom-blog__toc {
+    padding: 1.8rem;
+    border-radius: 16px;
+  }
+
+  /* CTA buttons stacked */
+  html.blogpost .gom-cta {
+    padding: 2.4rem;
+  }
+
+  html.blogpost .gom-cta__actions {
+    flex-direction: column;
+  }
+
+  html.blogpost .gom-cta__actions a {
+    width: 100%;
+    max-width: 34rem;
+    margin: 0 auto;
+  }
+}
+
+/* ===============================================================
+   DESKTOP (>= 769px)
+   =============================================================== */
+@media (min-width: 769px) {
+  /* Slightly more breathing room for content */
+  html.blogpost .gom-blog__lede {
+    font-size: 2.05rem;
+  }
+
+  /* TOC can float visually better on desktop */
+  html.blogpost .gom-blog__toc {
+    padding: 2.4rem;
   }
 }
