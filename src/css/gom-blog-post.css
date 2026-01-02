@@ -526,6 +526,7 @@ html.blogpost .blog-syndication a:hover {
     min-height: 54vh;
     min-height: 54svh;
     min-height: 54dvh;
+    height: var(--full-hm-vh);
   }
 
   html.blogpost .blog-header-wrap header {

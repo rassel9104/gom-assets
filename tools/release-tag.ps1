@@ -53,11 +53,14 @@ if ($LASTEXITCODE -ne 0) { throw "git push tag falló" }
 
 Write-Host "== Purge jsDelivr for tag =="
 $paths = @(
+  "dist/gom-blog-post.min.css",
+  "dist/gom-blog.min.css",
+  "dist/gom-book.min.css",
   "dist/gom-global.min.css",
   "dist/gom-home.min.css",
-  "dist/gom-properties.min.css",
   "dist/gom-menu-overlay.min.css",
-  "dist/gom-book.min.css",
+  "dist/gom-multiproperty.min.css",
+  "dist/gom-properties.min.css",
   "js/gom-menu-overlay.js",
   "js/gom-properties-mobile-drawer.js"
 )
