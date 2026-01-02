@@ -15,7 +15,7 @@ html.blogpost {
   --post-max: 78rem; /* main reading width */
   --post-side: 32rem; /* sidebar width */
   --post-wrap: calc(var(--post-max) + var(--post-side) + var(--post-gap));
-  --post-radius: 18px;
+  --post-radius: 0px;
   --post-border: rgba(0, 0, 0, 0.08);
 
   --post-text: rgba(0, 0, 0, 0.82);
@@ -51,6 +51,7 @@ html.blogpost #content.container {
   max-width: 140rem;
   padding-left: 0;
   padding-right: 0;
+  padding-bottom: 0;
 }
 
 /* ===============================================================
@@ -163,7 +164,7 @@ html.blogpost .blog-header-wrap .blog-category {
   color: #fff;
 
   padding: 0.7rem 1.3rem;
-  border-radius: 999px;
+  border-radius: var(--post-radius);
 
   text-transform: uppercase;
   letter-spacing: 0.08em;
@@ -323,7 +324,7 @@ html.blogpost .gom-blog__list {
 }
 
 html.blogpost a {
-  color: var(--post-link);
+  color: var(--mtd);
 }
 
 html.blogpost a:hover {
@@ -370,7 +371,7 @@ html.blogpost .gom-btn {
   align-items: center;
   justify-content: center;
   padding: 1.25rem 2rem;
-  border-radius: 999px;
+  border-radius: var(--post-radius);
   text-decoration: none;
   font-size: 1.25rem;
   letter-spacing: 0.06em;
@@ -439,7 +440,7 @@ html.blogpost .col-lg-3 ul.blog-categories a.blog-category {
 
   padding: 1rem 1.1rem;
   border: 1px solid var(--post-border);
-  border-radius: 14px;
+  border-radius: var(--post-radius);
   text-decoration: none;
 
   color: #111;
@@ -470,7 +471,7 @@ html.blogpost ul.blog-latest-posts a {
   color: #111;
   padding: 1rem;
   border: 1px solid var(--post-border);
-  border-radius: 14px;
+  border-radius: var(--post-radius);
   background: #fff;
 }
 
@@ -478,7 +479,7 @@ html.blogpost ul.blog-latest-posts img {
   width: 6.4rem;
   height: 6.4rem;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: var(--post-radius);
 }
 
 html.blogpost ul.blog-latest-posts .blog-title {
@@ -501,7 +502,7 @@ html.blogpost .blog-syndication a {
   gap: 0.8rem;
 
   padding: 1.25rem 1.2rem;
-  border-radius: 999px;
+  border-radius: var(--post-radius);
   background: #111;
   color: #fff;
   text-decoration: none;
@@ -571,7 +572,7 @@ html.blogpost .blog-syndication a:hover {
   }
 
   html.blogpost .col-lg-3 ul.blog-categories a.blog-category {
-    border-radius: 999px;
+    border-radius: var(--post-radius);
     padding: 0.9rem 1.15rem;
     justify-content: center;
   }
@@ -593,7 +594,7 @@ html.blogpost .blog-syndication a:hover {
   /* TOC spacing */
   html.blogpost .gom-blog__toc {
     padding: 1.8rem;
-    border-radius: 16px;
+    border-radius: var(--post-radius);
   }
 
   /* CTA buttons stacked */
@@ -624,5 +625,71 @@ html.blogpost .blog-syndication a:hover {
   /* TOC can float visually better on desktop */
   html.blogpost .gom-blog__toc {
     padding: 2.4rem;
+  }
+}
+
+html.blogpost .gom-blog__footer {
+  padding: 0;
+  min-height: 20dvh !important;
+  height: auto !important;
+  margin-bottom: 4.5dvh !important;
+}
+
+/* ===============================================================
+   DESKTOP (>= 769px)
+   =============================================================== */
+@media (min-width: 769px) {
+  html.blogpost .blog-header-wrap {
+    min-height: 54vh;
+    height: var(--full-h);
+  }
+
+  html.blogpost .blog-header-wrap header {
+    padding: 0;
+    margin-left: var(--gom-pad-x);
+  }
+
+  html.blogpost .blog-header-wrap .blog-header-container {
+    width: 120ch;
+    max-width: 90%;
+    overflow-wrap: break-word;
+  }
+
+  html.blogpost #content.container {
+    margin-top: 0 !important;
+  }
+
+  /* Layout: Left (Article), Right (Sidebar) */
+  html.blogpost .row.support-container.support-container-sidebar-right {
+    margin: 0 !important;
+    display: grid;
+    grid-template-columns: 1fr var(--post-side);
+    gap: var(--post-gap);
+    align-items: start;
+    max-width: none;
+  }
+
+  html.blogpost
+    .row.support-container.support-container-sidebar-right
+    > .col-xs-12 {
+    order: 1;
+    width: auto !important;
+  }
+
+  html.blogpost
+    .row.support-container.support-container-sidebar-right
+    > .col-lg-3 {
+    order: 2;
+    width: auto !important;
+  }
+
+  html.blogpost .gom-cta__actions {
+    justify-content: center;
+  }
+  html.blogpost .gom-btn {
+    width: 17dvw;
+  }
+  html.blogpost .visible-lg {
+    display: block !important;
   }
 }
