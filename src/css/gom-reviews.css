@@ -14,21 +14,29 @@
     --rev-btn-hover: #333;
 }
 
+html.multireviews .col-md-12 {
+    display: none;
+}
+
+html.multireviews #content {
+    margin-top: 0 !important;
+}
+
 /* --- INTRO SECTION --- */
-#reviews-intro {
+html.multireviews #reviews-intro {
     padding: 60px 0 40px;
     text-align: center;
     background-color: #fff;
     font-family: var(--rev-font);
 }
 
-#reviews-intro .intro-container {
+html.multireviews #reviews-intro .intro-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-#reviews-intro h2 {
+html.multireviews #reviews-intro h2 {
     font-size: 3.6rem;
     font-weight: 700;
     text-transform: uppercase;
@@ -38,14 +46,14 @@
     line-height: 1.2;
 }
 
-#reviews-intro p {
+html.multireviews #reviews-intro p {
     font-size: 1.6rem;
     line-height: 1.6;
     color: #444;
     font-weight: 400;
 }
 
-#reviews-intro .divider {
+html.multireviews #reviews-intro .divider {
     width: 60px;
     height: 3px;
     background-color: var(--rev-accent-color);
@@ -53,7 +61,7 @@
 }
 
 /* --- CONCLUSION SECTION --- */
-#reviews-conclusion {
+html.multireviews #reviews-conclusion {
     padding: 60px 0;
     text-align: center;
     background-color: var(--rev-bg-light);
@@ -61,13 +69,13 @@
     margin-top: 40px;
 }
 
-#reviews-conclusion .conclusion-container {
+html.multireviews #reviews-conclusion .conclusion-container {
     max-width: 600px;
     margin: 0 auto;
     padding: 0 20px;
 }
 
-#reviews-conclusion h3 {
+html.multireviews #reviews-conclusion h3 {
     font-size: 2.8rem;
     font-weight: 600;
     text-transform: uppercase;
@@ -76,7 +84,7 @@
     color: var(--rev-text-color);
 }
 
-#reviews-conclusion .cta-button {
+html.multireviews #reviews-conclusion .cta-button {
     display: inline-block;
     padding: 15px 40px;
     background-color: var(--rev-btn-bg);
@@ -91,30 +99,30 @@
     cursor: pointer;
 }
 
-#reviews-conclusion .cta-button:hover {
+html.multireviews #reviews-conclusion .cta-button:hover {
     background-color: var(--rev-btn-hover);
     transform: translateY(-2px);
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    #reviews-intro {
+    html.multireviews #reviews-intro {
         padding: 40px 0 30px;
     }
 
-    #reviews-intro h2 {
+    html.multireviews #reviews-intro h2 {
         font-size: 2.8rem;
     }
 
-    #reviews-intro p {
+    html.multireviews #reviews-intro p {
         font-size: 1.4rem;
     }
 
-    #reviews-conclusion {
+    html.multireviews #reviews-conclusion {
         padding: 50px 0;
     }
 
-    #reviews-conclusion h3 {
+    html.multireviews #reviews-conclusion h3 {
         font-size: 2.4rem;
     }
 }
