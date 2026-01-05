@@ -1,0 +1,120 @@
+/*
+   Garden of Manors - Reviews Page
+   File: gom-reviews.css
+   Purpose: Styling for the Intro and Conclusion sections of the Reviews page.
+*/
+
+:root {
+    --rev-font: "Montserrat", sans-serif;
+    --rev-bg-light: #f9f9f9;
+    --rev-text-color: #000;
+    --rev-accent-color: #000;
+    --rev-btn-bg: #000;
+    --rev-btn-text: #fff;
+    --rev-btn-hover: #333;
+}
+
+/* --- INTRO SECTION --- */
+#reviews-intro {
+    padding: 60px 0 40px;
+    text-align: center;
+    background-color: #fff;
+    font-family: var(--rev-font);
+}
+
+#reviews-intro .intro-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#reviews-intro h2 {
+    font-size: 3.6rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+    color: var(--rev-text-color);
+    line-height: 1.2;
+}
+
+#reviews-intro p {
+    font-size: 1.6rem;
+    line-height: 1.6;
+    color: #444;
+    font-weight: 400;
+}
+
+#reviews-intro .divider {
+    width: 60px;
+    height: 3px;
+    background-color: var(--rev-accent-color);
+    margin: 20px auto 0;
+}
+
+/* --- CONCLUSION SECTION --- */
+#reviews-conclusion {
+    padding: 60px 0;
+    text-align: center;
+    background-color: var(--rev-bg-light);
+    font-family: var(--rev-font);
+    margin-top: 40px;
+}
+
+#reviews-conclusion .conclusion-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+#reviews-conclusion h3 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 30px;
+    color: var(--rev-text-color);
+}
+
+#reviews-conclusion .cta-button {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: var(--rev-btn-bg);
+    color: var(--rev-btn-text);
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+#reviews-conclusion .cta-button:hover {
+    background-color: var(--rev-btn-hover);
+    transform: translateY(-2px);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #reviews-intro {
+        padding: 40px 0 30px;
+    }
+
+    #reviews-intro h2 {
+        font-size: 2.8rem;
+    }
+
+    #reviews-intro p {
+        font-size: 1.4rem;
+    }
+
+    #reviews-conclusion {
+        padding: 50px 0;
+    }
+
+    #reviews-conclusion h3 {
+        font-size: 2.4rem;
+    }
+}

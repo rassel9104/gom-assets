@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en" data-google-analytics-opt-out=""><head>
+    <title>Reviews Widget</title>
+
+
+<style>
+    :root{
+        --main-font: Montserrat;
+        --heading-font: Montserrat;
+        --text-color: #000000;
+        --primary-color: #000000;
+        --heading-color: #000000;
+        --muted-text-color: #757575;
+        --link-color: #000000;
+        --heading-link-color: #000000;
+    }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700" rel="stylesheet">
+            <link rel="stylesheet" href="https://cdn.orez.io/sc/content/css/common/widgethostedbundle.min.css?v=10f1675a3ce8d358be2bca5f85937d23b2b3d02c">
+
+
+<script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-MHWVM66Q"></script><script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('set', 'linker', { 'accept_incoming': true });
+gtag('js', new Date());
+
+                    (function(w,d,s,l,i){
+                        w[l]=w[l]||[];
+                        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+                        var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),
+                        dl=l!='dataLayer'?'&l='+l:'';
+                        j.async=true;
+                        j.src= 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                        const url = 'https://www.googletagmanager.com/gtm.js?id='+i+dl;
+                        f.parentNode.insertBefore(j,f);
+                    })(window,document,'script','dataLayer', 'GTM-MHWVM66Q');
+
+</script>
+<script async="" src="//www.googletagmanager.com/gtag/js?id=GTM-MHWVM66Q"></script>
+
+        <script>
+            var loadId = Math.floor(Math.random() * 10000000);
+
+            var hasLocalStorage = 'localStorage' in window;
+            if (hasLocalStorage)
+            {
+                try
+                {
+                    window.localStorage.setItem('incognito', 'false');
+                    window.localStorage.removeItem('incognito');
+                } catch (e)
+                {
+                    hasLocalStorage = false;
+                    console.debug("localStorage is BLOCKED!");
+                }
+            }
+
+            console.debug("Kicking off GA Load", loadId)
+
+            var gaTrackers = {};
+            var sendTrackerRequest = function (gaTrackerId)
+            {
+                var widgetKey =  "608c017770804425bfd720173baf4679" ;
+
+                gaTrackers[gaTrackerId] = { gaTrackerId: gaTrackerId };
+                let request = { or_gatrackerid: gaTrackerId, widgetKey: widgetKey, loadId: loadId };
+                var jsonRequest = JSON.stringify(request);
+
+                console.debug("Requsting analytics data from parent", loadId, widgetKey);
+                window.parent.postMessage(jsonRequest, "*")
+            };
+            sendTrackerRequest("G-N1B8M9GSSM");
+
+            var hasRescheduled = false;
+            var gTagConfig = {
+                'cookie_flags': 'SameSite=None;Secure',
+                'client_storage': !hasLocalStorage ? 'none' : null,
+                'send_page_view': false,
+                'linker': { 'accept_incoming': true },
+
+            }
+
+            let retryTimeout = 5000;
+            var gaTimeout = window.setTimeout(function ()
+            {
+                console.debug(`No GA data received in 5 seconds. Loading without configuration.`, loadId);
+                for (var gaTrackerId in gaTrackers)
+                {
+                    var gaTracker = gaTrackers[gaTrackerId];
+                    if (!!gaTracker.isGALoaded)
+                        continue;
+
+                    // No gtag parameters sent after 2 seconds.
+                    // Assume that the widget isn't hosted on a site with Google Analytics, and so send the page_view here.
+                    gTagConfig['send_page_view'] = true;
+
+                    gtag('config', gaTracker.gaTrackerId, gTagConfig);
+                    gtag('event', "LoadedTimeout", { send_to: gaTracker.gaTrackerId, event_category: "Widget", event_label: "Reviews" });
+
+                    gaTracker.isGALoaded = true;
+                }
+            }, retryTimeout);
+
+            window.addEventListener("message", function (event)
+            {
+                console.debug("Received message", loadId, event);
+
+                var data = null;
+                try
+                {
+                    data = JSON.parse(event.data);
+                }
+                catch
+                {
+                    // eat it
+                }
+
+                if (data && data.gaReschedule === true){
+                    if (!!hasRescheduled)
+                        return;
+
+                    // GA hasn't loaded yet (or won't load) on host page.
+                    // Try again a single time in 5 seconds.
+                    hasRescheduled = true;
+                    setTimeout(() => sendTrackerRequest("G-N1B8M9GSSM"), retryTimeout);
+                }
+                else if (data && data.gaTrackerId)
+                {
+                    var existingData = gaTrackers[data.gaTrackerId];
+                    if (existingData != null && !!existingData.isGALoaded)
+                    {
+                        console.debug("Received GA information too late. GA has already been configured.", loadId);
+                        return;
+                    }
+
+                    console.debug("Received GA information." + data.gaTrackerId, data, loadId);
+
+                    data.isGALoaded = true;
+                    gaTrackers[data.gaTrackerId] = data;
+
+                    if (hasLocalStorage)
+                    {
+                        localStorage.setItem('gaclientdate_' + data.gaTrackerId, new Date().toISOString())
+                        localStorage.setItem('gaclientid_' + data.gaTrackerId, data.gaClientId);
+                        localStorage.setItem('gasessionid_' + data.gaTrackerId, data.gaSessionId);
+                    }
+                    else
+                    {
+                        console.debug("storage not available, turning off: " + data.gaTrackerId);
+                        gtag('consent', 'default', { analytics_storage: 'denied' });
+                    }
+
+                    try {
+
+
+                        let cookieName = 'gaclientid_' + data.gaTrackerId;
+                        const hasCookie = document.cookie.indexOf(cookieName) > -1;
+                        if (!hasCookie) {
+                            function setCookie(name,value,days) {
+                                var expires = "";
+                                if (days) {
+                                    var date = new Date();
+                                    date.setTime(date.getTime() + (days*24*60*60*1000));
+                                    expires = "; expires=" + date.toUTCString();
+                                }
+                                const newCookie = name + "=" + (value || "")  + expires + "; path=/";
+                                document.cookie = newCookie;
+                            }
+
+                            const cookieSuffix = "; Domain=.ownerrez.com";
+                            setCookie('gaclientdate_' + data.gaTrackerId, new Date().toISOString() + cookieSuffix, 7);
+                            setCookie('gaclientid_' + data.gaTrackerId, data.gaClientId + cookieSuffix, 7);
+                            setCookie('gasessionid_' + data.gaTrackerId, data.gaSessionId + cookieSuffix, 7);
+                            if(!!data.gaGClid)
+                                setCookie('gagclid_' + data.gaTrackerId, data.gaGClid + cookieSuffix, 7);
+                        }
+                    } catch {}
+
+                    if (!!data.gaClientId)
+                        gTagConfig['client_id'] = data.gaClientId;
+                    if (!!data.gaSessionId)
+                        gTagConfig['session_id'] = data.gaSessionId;
+                    if (!!data.gaGClid)
+                        gTagConfig['gclid'] = data.gaGClid;
+                    if (!!data.gaPageReferrer)
+                        gTagConfig['page_referrer'] = data.gaPageReferrer;
+
+                    console.debug("Initializing GA with config", gTagConfig, loadId);
+                    gtag('config', data.gaTrackerId, gTagConfig);
+                    gtag('event', "Loaded", { send_to: data.gaTrackerId, event_category: "Widget", event_label: "Reviews" });
+
+                    isGALoaded = true;
+
+                    if (gaTimeout !== null){
+                        clearTimeout(gaTimeout);
+                        gaTimeout = null;
+                    }
+                }
+            }, false);
+        </script>
+
+
+    <style>
+    </style>
+    <style>
+        html
+        {
+            overflow: visible;
+        }
+        .reviews-filter-bar { margin-bottom: 0; }
+        .reviews-filter-section { display: block; }
+        .reviews-filter-section strong { min-width: 40px; display: inline-block; }
+        .reviews-filter-section-extra { display: none; }
+        .reviews-filter-section-sort, .reviews-filter-section-filter { }
+        .reviews-filter-section .form-group { display: inline-block; }
+        .reviews-filter-section-keyword .form-group .help-block { display: inline; }
+        .reviews-filter-bar .help-block { display: inline-block; }
+        .reviews-showing-bar { margin-bottom: 20px; }
+        .review-item { margin-bottom: 20px; }
+        .review-item-header { margin-bottom: 6px; }
+        .review-item-stars { margin-right: 10px; }
+        .review-item-by-line { color: #777777; }
+        .review-item-body { position:relative }
+        .reviews-pager { text-align: center; margin-top: 20px; margin-bottom: 20px; margin-right: 0; }
+        .reviews-pager .btn.active { font-weight: bold; }
+        .reviews-pager .pager-button-separator { margin-left: 10px; margin-right: 10px; }
+
+        @media screen and (min-width: 600px)
+        {
+            .reviews-filter-section { display: inline-block; }
+            .reviews-filter-section-sort { margin-right: 30px; }
+            .reviews-filter-section strong { min-width: initial; display: initial; }
+            .reviews-filter-section-extra { display: initial; }
+        }
+
+        @media screen and (min-width: 850px)
+        {
+            .reviews-filter-section-filter { margin-right: 30px; }
+            .reviews-filter-section-keyword { width: 200px; }
+            .reviews-filter-section-keyword .input-group { display: inline-table; vertical-align: middle; }
+        }
+
+        @media screen and (min-width: 1050px)
+        {
+            .reviews-filter-section-keyword { width: 300px; }
+        }
+
+        .has-read-more
+        {
+            max-height: 250px;
+            position:relative;
+            overflow: hidden;
+            -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 225px, rgba(0,0,0,0) 240px);
+            -webkit-mask-size: 100% 100%;
+            -webkit-mask-position-y: top;
+            -webkit-mask-repeat: no-repeat;
+            mask-image: linear-gradient(to bottom, rgba(0,0,0,1) 0px, rgba(0,0,0,1) 225px, rgba(0,0,0,0) 240px);
+            mask-size: 100% 100%;
+            mask-position-y: top;
+            mask-repeat: no-repeat;
+        }
+
+            /*.has-read-more:after
+            {
+                content: ' ';
+                position: absolute;
+                bottom: 0;
+                left:0;
+                right:0;
+                height: 20px;
+                height: -webkit-calc(100% - 230px);
+                height: -moz-calc(100% - 230px);
+                height: calc(100% - 230px);
+                background: linear-gradient(to bottom, rgba(255,255,255,.5) 0%, rgba(255,255,255,1) 50%);
+                display: block;
+                max-height:20px
+            }*/
+
+        .read-more-selector { display: none; }
+
+            .read-more-selector:checked + .has-read-more
+            {
+                max-height: inherit;
+                overflow: visible;
+                -webkit-mask-image: none;
+            }
+
+            .read-more-selector:checked + .has-read-more:after
+            {
+                display:none
+            }
+
+                .read-more-selector:checked + .has-read-more + .read-more
+                {
+                    top:0;
+                    margin:10px 10px 0;
+                }
+
+                .read-more-selector:checked + .has-read-more + .read-more:after
+                {
+                    content: "- Read Less";
+                }
+
+        .read-more
+        {
+            cursor: pointer;
+            color: #428bca;
+            font-weight: normal;
+            visibility:hidden;
+            margin:0 10px;
+            position: relative;
+            top: -5px;
+        }
+
+        .read-more:hover { text-decoration: underline; }
+        .read-more:after { content: "+ Read More"; }
+
+        .has-read-more mark
+        {
+            font-weight:bold
+        }
+
+        .review-average
+        {
+            margin-bottom:20px
+        }
+        .review-average-number
+        {
+            float: left;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            margin-right: 20px;
+            border-radius: 50%;
+            background-color: #eee;
+            font-size: 1.5em;
+            border: 1px solid #ccc;
+            box-shadow: 0px 0px 3px #ccc;
+        }
+
+        .review-average-stars, .review-average-detail
+        {
+            line-height:25px
+        }
+    </style>
+
+                    <!-- Widget: Reviews -->
+    <!-- Property: (none) -->
+</head>
+<body>
+
+
+<div class="container-fluid">
+    <div class="review-average">
+        <div class="review-average-number">5</div>
+        <div class="review-average-stars">
+                    <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+        </div>
+        <span class="review-average-detail">
+            based on 12 reviews
+        </span>
+    </div>
+    <form action="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679" class="reviews-form" method="get" novalidate="novalidate"><div class="validation-summary-valid alert alert-danger" data-valmsg-summary="true"><span>Please correct the errors below.</span>
+<ul><li style="display:none"></li>
+</ul></div><input id="Key" name="Key" type="hidden" value="608c017770804425bfd720173baf4679"><input id="PropertyKeyx" name="PropertyKeyx" type="hidden" value=""><input data-val="true" data-val-number="The field PageSize must be a number." data-val-required="The PageSize field is required." id="PageSize" name="PageSize" type="hidden" value="10"><input id="HostUrl" name="HostUrl" type="hidden" value="https%3A%2F%2Fgardenofmanors.com%2Freviews">        <div class="reviews-filter-bar">
+            <div class="reviews-filter-section reviews-filter-section-sort">
+                <strong>Sort<span class="reviews-filter-section-extra"> by:&nbsp;</span></strong>
+<div class="form-group">                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Most recent stay <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                                <li class="&quot;active&quot;"><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Most recent stay</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentWritten&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Most recent written</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=OldestStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Oldest stay</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=OldestWritten&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Oldest written</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=HighestRated&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Highest rated</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=LowestRated&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">Lowest rated</a></li>
+
+                        </ul>
+                    </div>
+<input data-val="true" data-val-required="The Sort field is required." id="Sort" name="Sort" type="hidden" value="MostRecentStay"><span class="field-validation-valid help-block" data-valmsg-for="Sort" data-valmsg-replace="true"></span></div>            </div>
+            <div class="reviews-filter-section reviews-filter-section-filter">
+                <strong>Filter<span class="reviews-filter-section-extra"> by:&nbsp;</span></strong>
+<div class="form-group">                        <div class="btn-group">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    All rooms at garden of manors
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                    <li class="&quot;active&quot;"><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">All rooms at garden of manors</a></li>
+
+                                <li role="separator" class="divider"></li>
+    <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=468304&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">The Gold Room · Garden of Manors · Guesthouse·FL</a></li>
+    <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=467269&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">The Green Room · Garden of Manors · Guesthouse·FL</a></li>
+    <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=467270&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">The Red Room · Garden of Manors · Guesthouse·FL</a></li>
+                            </ul>
+                        </div>
+<input data-val="true" data-val-number="The field PropertyId must be a number." id="PropertyId" name="PropertyId" type="hidden" value=""><span class="field-validation-valid help-block" data-valmsg-for="PropertyId" data-valmsg-replace="true"></span></div>                <div class="form-group">                    <div class="btn-group">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            All stars <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                                <li class="&quot;active&quot;"><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">All stars</a></li>
+
+                            <li role="separator" class="divider"></li>
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=FiveStarOnly&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">5 star only</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=FourStarOnly&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">4 star only</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=ThreeStarOnly&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">3 star only</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=TwoStarOnly&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">2 star only</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=OneStarOnly&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">1 star only</a></li>
+
+                            <li role="separator" class="divider"></li>
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=AllPositive&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">All positive</a></li>
+
+                                <li><a href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=AllCritical&amp;Keyword=&amp;PageSize=10&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">All critical</a></li>
+
+                        </ul>
+                    </div>
+<input id="Star" name="Star" type="hidden" value=""><span class="field-validation-valid help-block" data-valmsg-for="Star" data-valmsg-replace="true"></span></div>            </div>
+            <div class="reviews-filter-section reviews-filter-section-keyword">
+<div class="form-group">                    <div class="input-group">
+
+
+<input autocomplete="off" class="form-control" data-val="true" data-val-length="The field Keyword must be a string with a maximum length of 30." data-val-length-max="30" id="Keyword" name="Keyword" placeholder="Keyword" role="presentation" type="text" value="">
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="submit">Search</button>
+                        </span>
+                    </div>
+<span class="field-validation-valid help-block" data-valmsg-for="Keyword" data-valmsg-replace="true"></span></div>            </div>
+        </div>
+            <div class="reviews-showing-bar">
+                Showing
+                    1 - 10 of
+                12 reviews
+            </div>
+            <div class="review-list">
+
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong>Very comfortable place to stay</strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Peter S
+
+
+
+                                        – stayed
+                                             at The Red Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Dec 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore0" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                We definitely had a great stay… And will love to return soon … It’s my new Happy Place <br>Charlie and I had a great New Year’s there .<br>&nbsp; &nbsp; You both were amazing and very accommodating…. Wishing you both a wonderful New Year
+                            </div>
+                            <label class="read-more" for="readmore0" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong>Perfect Escape from the Cold!</strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Frank O
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Dec 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore1" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                This room in particular is directly poolside and lovely. It’s not huge, but two people fit well for a four day stay. The hosts were very accommodating and gracious the entire length of our stay. <br><br>The pool was warm, meticulously clean and the other guests and hosts ended up enjoying an afternoon together and had a great time on New Year’s Day. <br><br>The driveway parking was great since we rented a car, the location of the beautiful property was super convenient to downtown Wilton Manors and the drive. <br><br>Bottom line, the “Green Room” was modern, nicely appointed, very clean, comfortable and the hosts were wonderful. We will be back!
+                            </div>
+                            <label class="read-more" for="readmore1" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Alex B
+
+
+
+                                        – stayed
+                                             at The Red Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Dec 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore2" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                I really enjoyed my stay with Anthony. The room itself was super clean and comfortable. The pool was such a a great space to relax. Anthony was very responsive and friendly with any questions I had. I’ll definitely be staying again if I’m back in the area!
+                                    <div style="margin-top:15px"><b>Response</b> from Garden of Manors – Wilton Manors Guesthouse:</div>
+Alex was an excellent guest. He stayed with us at Garden of Manors in the Red Room, and his visit was absolutely wonderful. He was respectful, easy to communicate with, and took great care of the space.<br><br>The room was left in excellent condition, and all house rules were followed. We truly appreciated having him as a guest and would gladly recommend him to any host.<br><br>Alex is always welcome back at Garden of Manors!<br> Anthony &amp; joe                            </div>
+                            <label class="read-more" for="readmore2" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong>Relaxing</strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Shay
+
+
+
+                                        – stayed
+                                             at The Gold Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Dec 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore3" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                Very nice host. Great location! Clean and accommodating.
+                            </div>
+                            <label class="read-more" for="readmore3" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Mike B
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Nov 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore4" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                From the moment we booked until arrival the host were receptive and very easy to communicate with, we were greeted upon arrival and made to feel rite at home, the place was immaculate and looked exactly like the photos.They had snacks waters and sodas, I thought that was an amazing thing to have.The pool was beautiful and well maintained unfortunately on this trip we didn’t get to swim,the back yard was beautiful and inviting you can tell they put a lot of love and time into this place.I would highly recommend for anyone to stay here you won’t be disappointed.
+                                    <div style="margin-top:15px"><b>Response</b> from Garden of Manors – Wilton Manors Guesthouse:</div>
+Mike was an exceptional guest at Garden of Manors. Respectful, kind, and very considerate of the space. He left everything in perfect condition, and it was a pleasure hosting him. He is welcome back anytime.                            </div>
+                            <label class="read-more" for="readmore4" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong>Beautiful place to stay.</strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Mike B
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Nov 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore5" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                From the moment we booked until arrival the host were receptive and very easy to communicate with, we were greeted upon arrival and made to feel rite at home, the place was immaculate and looked exactly like the photos.They had snacks waters and sodas, l thought that was an amazing thing to have.The pool was beautiful and well maintained unfortunately on this trip we didn't get to swim,the back yard was beautiful and inviting you can tell they put a lot of love and time into this place.I would highly recommend for anyone to stay here you won't be disappointed.
+                            </div>
+                            <label class="read-more" for="readmore5" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Ray K
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Nov 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore6" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                great property.&nbsp;  secluded.&nbsp;  very nice hosts.
+                            </div>
+                            <label class="read-more" for="readmore6" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Carlos D
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Nov 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore7" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                I honestly don’t even know where to start. This was hands down one of the best Airbnb experiences I’ve ever had. From the moment I arrived, everything was spotless, cozy, and thoughtfully prepared. They truly thought of every little detail, from clear, easy instructions for everything to a ton of free snacks and drinks waiting in the room. It felt like checking into a boutique hotel with the warmth and comfort of home.<br><br>What really made this stay special though was them. They are the kind of hosts who make you feel like family from the second you walk in. They constantly checked in to make sure I had everything I needed, introduced me to their friends so I could meet amazing people in a new city, and even invited me to share drinks, homemade food, and their amazing cafecito.<br><br>They were super quick to respond to any messages, and their place is just beautiful. The saltwater pool and patio area are perfect for relaxing, meeting others, or just enjoying the sunshine. Honestly, they went a
+                                    <div style="margin-top:15px"><b>Response</b> from Garden of Manors – Wilton Manors Guesthouse:</div>
+Wow — your words truly touched our hearts. Thank you so much for taking the time to share such a beautiful review. Hosting you was an absolute pleasure from beginning to end. We’re thrilled to hear that you felt comfortable, welcomed, and at home — that’s exactly the experience we work hard to create for every guest.<br><br>We’re especially happy that you enjoyed the little details, the snacks, the space, and of course our cafecito. But what made your stay special for us was you. Your positive energy, your kindness, and your openness made it feel like we were welcoming an old friend.<br><br>Our home is always open for you here in Wilton Manors. We can’t wait to host you again and create even more great memories together. 🌿✨<br><br>With gratitude,<br>Anthony &amp; Joel — Garden of Manors                            </div>
+                            <label class="read-more" for="readmore7" style="visibility: visible;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Jose I B
+
+
+
+                                        – stayed
+                                             at The Gold Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Oct 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore8" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                Beautiful space, very cozy place and amenities, great location and&nbsp; Anthony &amp; Joel were an A plus hosts. Made us feel like home. Definitely we will repeat!
+                                    <div style="margin-top:15px"><b>Response</b> from Garden of Manors – Wilton Manors Guesthouse:</div>
+José was a truly wonderful guest, full of positive energy and respect. He cared for the space as if it were his own, and his kindness brought such a warm atmosphere to the stay.<br>We’re so grateful to have hosted him in the Red Room at Garden of Manors. Thank you from the heart, José, for choosing us and leaving such a beautiful impression.<br>You’ll always be welcome here. 🌿<br><br>— With gratitude,<br>Anthony &amp; Joe                            </div>
+                            <label class="read-more" for="readmore8" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+                    <div class="review-item">
+                        <div class="review-item-header">
+                            <div class="review-item-title-line">
+                                <span class="review-item-stars">
+                                            <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+        <span class="fas fa-star"></span>
+    <span class="sr-only">5.0 stars</span>
+
+                                </span>
+                                <span class="review-item-title">
+                                    <strong></strong>
+                                </span>
+                            </div>
+                            <div class="review-item-by-line">
+                                By Yudaine
+
+
+
+                                        – stayed
+                                             at The Green Room · Garden of Manors · Guesthouse·FL  in
+                                                                                    Oct 2025
+
+                            </div>
+                        </div>
+                        <div class="review-item-body">
+                            <input id="readmore9" type="checkbox" class="read-more-selector">
+                            <div class="has-read-more">
+                                JajajA gift that definitely hit the right spot 😏”<br>I booked the Green Room at Den of Sin for my brother — a little surprise getaway. He came back beyond happy and couldn’t stop talking about how amazing everything was: the vibe, the décor, and especially the hosts, Anthony &amp; Joe. 💚<br>He said they were charming, attentive, and truly complacent in every sense — making sure he felt comfortable, pampered, and a little spoiled. 😉<br>Thank you for creating such a unique and welcoming space where men can just be themselves and enjoy the moment. 🌈
+                                    <div style="margin-top:15px"><b>Response</b> from Garden of Manors – Wilton Manors Guesthouse:</div>
+Thank you so much for this amazing review! 💚<br>We’re thrilled your brother loved his stay at the Green Room — and we’re even happier that you chose Den of Sin for his surprise getaway. It means a lot to us to create a space where men can relax, feel pampered, and truly be themselves. 🌈                            </div>
+                            <label class="read-more" for="readmore9" style="visibility: hidden;"></label>
+                        </div>
+                    </div>
+            </div>
+                <div class="reviews-pager">
+                        <a class="btn btn-default" disabled="disabled" href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;PageNumber=1&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">
+        <span class="fa far fa-long-arrow-left"></span>
+        Previous
+    </a>
+    <a class="btn btn-default active" href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;PageNumber=1&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">1</a>
+    <a class="btn btn-default " href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;PageNumber=2&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">2</a>
+    <a class="btn btn-default" href="/widgets/getreviews?key=608c0177-7080-4425-bfd7-20173baf4679&amp;Sort=MostRecentStay&amp;PropertyId=&amp;Star=&amp;Keyword=&amp;PageSize=10&amp;PageNumber=2&amp;HostUrl=https%3A%2F%2Fgardenofmanors.com%2Freviews">
+        Next
+        <span class="fa far fa-long-arrow-right"></span>
+    </a>
+
+
+
+                </div>
+</form></div>
+
+
+
+
+
+
+
+    <script>
+        var BaseUrl = "";
+        var FullUrl = "https://app.ownerrez.com/widgets/608c017770804425bfd720173baf4679?seq=0&amp;referrer=https%3A%2F%2Fgardenofmanors.com%2Freviews";
+        var ContentUrl = function (value) { return "https://cdn.orez.io/sc/content/{0}".replace("{0}", value) };
+        var widgetKey =  "608c017770804425bfd720173baf4679" ;
+        var widgetSeq =  "0" ;
+        var CurrencySymbol = "$";
+        var ContentNonversionedUrl = "https://cdn.orez.io/sc/content-nonversioned/";
+    </script>
+
+
+
+<script>
+
+
+    window.dayjsLocale = {
+        name: 'en',
+        culture: "en-US",
+        months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"),
+        monthsShort: "Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec".split("_"),
+        weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),
+        weekdaysShort: "Sun_Mon_Tue_Wed_Thu_Fri_Sat".split("_").map(x => x.substring(0, 2)),
+        weekdaysMin: "Su_Mo_Tu_We_Th_Fr_Sa".split("_").map(x => x.substring(0, 2)),
+        weekStart: 0,
+        format: "MMM D, YYYY",
+        datePickerFormat: "M d, yyyy"
+    };
+
+    window.locale = {
+        culture: "en-US",
+        isoCurrency: "USD",
+        currencyDecimalDigits: "2"
+    };
+
+    // TODO: do we need these?
+    //    formats: {
+    //        LT: 'H:mm',
+    //        LTS: 'H:mm:ss',
+    //        L: 'DD/MM/YYYY',
+    //        LL: 'D [de] MMMM [de] YYYY',
+    //        LLL: 'D [de] MMMM [de] YYYY H:mm',
+    //        LLLL: 'dddd, D [de] MMMM [de] YYYY H:mm'
+    //    },
+    //    relativeTime: {
+    //        future: 'en %s',
+    //        past: 'hace %s',
+    //        s: 'unos segundos',
+    //        m: 'un minuto',
+    //        mm: '%d minutos',
+    //        h: 'una hora',
+    //        hh: '%d horas',
+    //        d: 'un dÃ­a',
+    //        dd: '%d dÃ­as',
+    //        M: 'un mes',
+    //        MM: '%d meses',
+    //        y: 'un aÃ±o',
+    //        yy: '%d aÃ±os'
+    //    },
+    //    ordinal: n => `${n}Âº`
+    //}
+</script>
+    <script src="https://cdn.orez.io/sc/content/jscript/common/widgetbundle.min.js?v=bcee9270f30427f2d83b62f38e5fdbd8029ea4ef"></script>
+
+    <script>
+        var hostUrl;
+
+        if (window.location.hash.replace(/^#/, ''))
+        {
+            hostUrl = window.location.hash.replace(/^#/, '');
+
+            $("#HostUrl").val(hostUrl);
+        }
+        else if ($("#HostUrl").val())
+        {
+            hostUrl = $("#HostUrl").val();
+
+            window.location.hash = hostUrl;
+        }
+
+        $("a[href]").each(function (e)
+        {
+            var href = $(this).attr("href");
+
+            if (href.indexOf("?") == -1)
+                href += "?";
+            else
+                href += "&";
+
+            href += "HostUrl=" + hostUrl;
+
+            $(this).attr("href", href);
+        });
+
+        $("label.read-more").click(function ()
+        {
+            window.setTimeout(updateHeight, 1);
+        });
+
+        $(".btn-group").on("shown.bs.dropdown hidden.bs.dropdown", function ()
+        {
+            updateHeight();
+        });
+
+        $(document).on("widgetresize", function ()
+        {
+            $(".review-item-body").each(function ()
+            {
+                var canReadMore = $(this).find(".has-read-more").outerHeight() >= 250;
+
+                $(this).find(".read-more").css("visibility", canReadMore ? "visible" : "hidden");
+            });
+        });
+    </script>
+
+
+        <script>
+            // with international dates, we can't rely on client parsing.
+            $("[data-val-date]").removeAttr("data-val-date");
+
+            // turn off ie caching GETs
+            $.ajaxSetup({ cache: false });
+
+            $(document).on("click", function (e)
+            {
+                if (e.altKey || e.metaKey)
+                {
+                    alert("Widget: Reviews\r\nProperty: [none]");
+                }
+            });
+        </script>
+
+
+
+</body></html>
