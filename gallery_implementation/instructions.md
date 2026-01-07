@@ -17,24 +17,22 @@ Sigue estos pasos para activar la galería automática en el sitio web de Garden
 
 ## 2. Insertar el Código (Copy-Paste)
 
-### A. CSS (Estilos)
-1. Abre el archivo `gallery-styles.css` que te he enviado.
-2. Copia todo el contenido.
-3. En la configuración de la página en OwnerRez, busca el campo **CSS** (o "Inline CSS").
-4. Pega el código allí.
+### A. CSS y JS (Head Injection)
+En lugar de pegar código, usaremos el CDN para cargar los archivos optimizados.
+1. Ve a **Settings > Hosted Websites > (Tu Sitio) > Change Layout HTML**.
+2. Busca la sección `<head>` y añade las siguientes líneas (asegúrate de que la versión sea la más reciente, ej `v3.1.13`):
+
+```html
+<!-- Gallery CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.13/dist/gom-gallery.min.css">
+<!-- Gallery JS -->
+<script defer src="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.13/js/gom-gallery.js"></script>
+```
 
 ### B. HTML Body (Estructura)
 1. Abre el archivo `gallery-body.html`.
 2. Copia todo el contenido.
-3. Pega el código en el campo **Body HTML** de la página.
-
-### C. Javascript (Lógica)
-1. Abre el archivo `gallery-loader.js`.
-2. Copia todo el contenido.
-3. Para insertar este script, tienes dos opciones:
-   - **Opción Recomendada**: Ir a **Settings > Hosted Websites > (Tu Sitio) > Change Layout HTML**. Busca la sección `<head>` y pega el script justo antes del cierre `</head>`.
-     - *Nota*: El script tiene una protección (`window.location.pathname`) para que SOLO se ejecute cuando el usuario está en `/gallery`, así que es seguro ponerlo en el layout global.
-   - **Opción Alternativa**: Si OwnerRez permite "Footer Injection" específico por página, úsalo ahí, pero asegúrate de envolverlo en `<script>...</script>`.
+3. Pega el código en el campo **Body HTML** de la Custom Page "Gallery".
 
 ## 3. Verificación y QA
 
