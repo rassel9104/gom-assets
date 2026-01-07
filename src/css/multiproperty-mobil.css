@@ -6,7 +6,7 @@
   html.multiproperty {
     --gom-prop-pad-x: clamp(16px, 5vw, 22px);
     --gom-prop-tabs-h: 56px;
-    --gom-prop-hero-h: calc(100dvh - var(--gom-prop-header-h));
+    --gom-prop-hero-h: calc(100svh - var(--gom-prop-header-h));
     --gom-h-capt: calc(
       env(safe-area-inset-bottom, 0px) + var(--gom-prop-thumbstrip-bottom) +
         var(--gom-prop-thumbstrip-h) + var(--gom-prop-caption-gap)
@@ -107,16 +107,16 @@
     right: var(--gom-prop-pad-x) !important;
 
     /* sit above the tabs */
-    bottom: calc(var(--gom-prop-tabs-h) + 5dvh) !important;
+    bottom: calc(var(--gom-prop-tabs-h) + 5svh) !important;
 
     z-index: 70 !important;
-    padding: 0.4dvh !important;
+    padding: 0.4svh !important;
     border-radius: 0 !important;
 
     /* readable overlay */
     background: rgba(0, 0, 0, 0.55) !important;
     color: #fff !important;
-    font-size: 1.6dvh !important;
+    font-size: 1.6svh !important;
     line-height: normal !important;
 
     max-width: 70ch !important;
@@ -146,7 +146,7 @@
   html.multiproperty .col-md-4.pull-right-md .ownerrez-widget {
     margin-right: 0 !important;
     margin-bottom: 0 !important;
-    padding: 8dvh var(--gom-card-pad) 2.5dvh !important;
+    padding: 8svh var(--gom-card-pad) 2.5svh !important;
   }
 
   /* -----------------------------------------------------------
@@ -160,7 +160,7 @@
     order: 30 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
-    margin-top: 8dvh !important;
+    margin-top: 8svh !important;
   }
 
   /* Footer full-bleed */
@@ -175,7 +175,7 @@
   html.multiproperty #content .row:first-of-type h1 {
     top: calc(
       var(--gom-prop-hero-h) - var(--gom-h-capt) - 2.2 *
-        clamp(44px, 10dvh, 84px)
+        clamp(44px, 10svh, 84px)
     ) !important;
     /*margin-left: var(--gom-card-pad) !important;
     margin-right: var(--gom-card-pad) !important;
@@ -202,7 +202,7 @@
 
   /*Availability Calendar */
   html.multiproperty h2.page-header.linktarget {
-    padding-top: 4.5dvh !important;
+    padding-top: 4.5svh !important;
   }
 
   /* Reviews H2 (keep anchor but avoid duplicate visible header) */
@@ -214,7 +214,7 @@
     overflow: hidden !important;
     font-size: var(--fs-h3) !important;
     color: var(--pri-color) !important;
-    padding: 4.5dvh 0 2.25dvh 0 !important;
+    padding: 4.5svh 0 2.25svh 0 !important;
   }
 
   /* -------------------------
@@ -239,7 +239,7 @@
     width: 100% !important;
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
-    bottom: 1.6dvh !important;
+    bottom: 1.6svh !important;
     border-top: 1px solid hsla(0, 0%, 100%, 0.1) !important;
     padding: 0 !important;
     z-index: 70 !important;
@@ -317,10 +317,10 @@
   }
 
   html.multiproperty #location.page-header ~ p.lead {
-    margin-bottom: 4.5dvh !important;
+    margin-bottom: 4.5svh !important;
   }
   html.multiproperty #desc-title {
-    margin-bottom: 2.25dvh !important;
+    margin-bottom: 2.25svh !important;
     margin-top: 0 !important;
   }
 }
@@ -329,7 +329,7 @@
   html.multiproperty {
     /* “refleja” tu filmstrip actual sin depender de tabs */
     --gom-prop-thumbstrip-h: 5.8rem;
-    --gom-prop-thumbstrip-bottom: clamp(8px, 1.6dvh, 14px);
+    --gom-prop-thumbstrip-bottom: clamp(8px, 1.6svh, 14px);
     --gom-prop-caption-gap: 4px;
   }
 
@@ -341,7 +341,7 @@
     ) !important;
 
     /* Evita que “crezca” y se meta debajo/encima del título en pantallas bajas */
-    max-height: clamp(44px, 10dvh, 84px) !important;
+    max-height: clamp(44px, 10svh, 84px) !important;
     overflow: hidden !important;
 
     /* Mantiene estable el alto visual (si el texto es largo, se recorta) */

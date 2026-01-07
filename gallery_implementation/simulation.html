@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery Simulation</title>
+    <!-- MOCK STYLE FOR SITE HEADER/FOOTER -->
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f9f9f9; }
+        header, footer { background: #333; color: white; padding: 20px; text-align: center; }
+        main { min-height: 80vh; }
+    </style>
+
+    <!-- INJECTED SCOPED CSS -->
+    <link rel="stylesheet" href="gallery-styles.css">
+
+    <!-- MOCK SCRIPTS -->
+    <script>
+        // MOCK FETCH for local testing
+        const originalFetch = window.fetch;
+        window.fetch = async (url, options) => {
+            console.log("[MockFetch]", url);
+
+            // 1. Mock Index Page
+            if (url === "/properties") {
+                return {
+                    ok: true,
+                    text: async () => `
+                        <html>
+                            <body>
+                                <h1>Our Properties</h1>
+                                <div class="property-list">
+                                    <a href="/properties/villa-rosa">Villa Rosa</a>
+                                    <a href="/properties/sunset-manor">Sunset Manor</a>
+                                    <a href="/properties/garden-suite">Garden Suite</a>
+                                </div>
+                            </body>
+                        </html>
+                    `
+                };
+            }
+
+            // 2. Mock Property Pages
+            if (url.startsWith("/properties/")) {
+                const propName = url.split("/").pop().replace("-", " ").toUpperCase();
+                // Generate fake images from placeholder.com or similar, or local colors
+                const colors = ["550000", "005500", "000055", "555500", "550055"];
+                let imagesHtml = "";
+                for(let i=1; i<=6; i++) {
+                    const w = 400 + (i*10);
+                    const h = 300 + (i*20 % 50);
+                    const color = colors[(i + propName.length) % colors.length];
+                    // Using placeholders
+                    const src = `https://placehold.co/${w}x${h}/${color}/FFFFFF?text=${propName}+${i}`;
+                    // Mocking an OwnerRez lightbox link pattern
+                    imagesHtml += `
+                        <a href="${src}" data-caption="${propName} View ${i}" class="fancybox">
+                            <img src="${src}" alt="Thumb ${i}">
+                        </a>
+                    `;
+                }
+
+                return {
+                    ok: true,
+                    text: async () => `
+                        <html>
+                            <body>
+                                <h1>${propName}</h1>
+                                <div class="gallery-widget">
+                                    ${imagesHtml}
+                                </div>
+                            </body>
+                        </html>
+                    `
+                };
+            }
+
+            // Fallback to real fetch (will fail for local files usually if not handled, but we only scrape relatives)
+            return originalFetch(url, options);
+        };
+
+        // Mock Location
+        // We can't easily overwrite window.location.pathname, so we modify the config in the loader or just ensure the loader checks for "simulation.html"
+        // I'll update the loader config on the fly if possible, actually the loader is inside an IIFE.
+        // I added a debug check in the loader: window.location.search.includes("gallery_debug")
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Garden of Manors</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/properties">Properties</a>
+            <a href="/gallery">Gallery</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- PASTE BODY CONTENT HERE -->
+        <div id="gallery-root" class="gallery-wrapper">
+            <div class="gallery-intro">
+                <h2>Our Gallery</h2>
+                <p class="gallery-lead">Experience the detailed beauty of our properties.</p>
+                <div id="gallery-controls" class="gallery-controls" style="display: none;">
+                    <select id="gallery-filter-property" aria-label="Filter by property">
+                        <option value="all">All Properties</option>
+                    </select>
+                    <span id="gallery-status" class="gallery-status"></span>
+                </div>
+            </div>
+
+            <div id="gallery-loader" class="gallery-loader">
+                <div class="spinner"></div>
+                <p>Curating gallery...</p>
+            </div>
+
+            <div id="gallery-error" class="gallery-error" style="display: none;">
+                <p>We couldn't load the gallery at this moment.</p>
+            </div>
+
+            <div id="gallery-grid" class="gallery-grid"></div>
+        </div>
+
+        <div id="gallery-lightbox" class="gallery-lightbox" aria-hidden="true">
+            <div class="lightbox-overlay"></div>
+            <div class="lightbox-content">
+                <button class="lightbox-close" aria-label="Close">&times;</button>
+                <div class="lightbox-image-container">
+                    <img id="lightbox-img" src="" alt="">
+                </div>
+                <div class="lightbox-caption">
+                    <h3 id="lightbox-title"></h3>
+                    <span id="lightbox-property"></span>
+                </div>
+                <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+                <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+            </div>
+        </div>
+        <!-- END BODY PASTE -->
+    </main>
+
+    <footer>
+        &copy; 2026 Garden of Manors
+    </footer>
+
+    <!-- INJECT JS -->
+    <script src="gallery-loader.js"></script>
+
+</body>
+</html>

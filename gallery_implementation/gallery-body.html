@@ -1,0 +1,54 @@
+<!--
+  OWNERREZ GALLERY PAGE - BODY CONTENT
+  Paste this into the "Body" field of your Custom Page in OwnerRez.
+-->
+
+<div id="gallery-root" class="gallery-wrapper">
+    <!-- Header / Intro (Optional, can be removed if Title field covers it) -->
+    <div class="gallery-intro">
+        <p class="gallery-lead">Experience the detailed beauty of our properties.</p>
+
+        <!-- Controls (Hidden by default until fully loaded) -->
+        <div id="gallery-controls" class="gallery-controls" style="display: none;">
+            <select id="gallery-filter-property" aria-label="Filter by property">
+                <option value="all">All Properties</option>
+                <!-- Options populated by JS -->
+            </select>
+            <span id="gallery-status" class="gallery-status"></span>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="gallery-loader" class="gallery-loader">
+        <div class="spinner"></div>
+        <p>Curating gallery...</p>
+    </div>
+
+    <!-- Error State -->
+    <div id="gallery-error" class="gallery-error" style="display: none;">
+        <p>We couldn't load the gallery at this moment.</p>
+        <button onclick="window.location.reload()">Retry</button>
+    </div>
+
+    <!-- The Grid -->
+    <div id="gallery-grid" class="gallery-grid">
+        <!-- Images will be injected here by JS -->
+    </div>
+</div>
+
+<!-- Lightbox / Modal -->
+<div id="gallery-lightbox" class="gallery-lightbox" aria-hidden="true">
+    <div class="lightbox-overlay"></div>
+    <div class="lightbox-content">
+        <button class="lightbox-close" aria-label="Close">&times;</button>
+        <div class="lightbox-image-container">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-caption">
+            <h3 id="lightbox-title"></h3>
+            <span id="lightbox-property"></span>
+        </div>
+        <button class="lightbox-prev" aria-label="Previous">&lsaquo;</button>
+        <button class="lightbox-next" aria-label="Next">&rsaquo;</button>
+    </div>
+</div>
