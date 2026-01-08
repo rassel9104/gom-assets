@@ -24,10 +24,11 @@ En lugar de pegar código, usaremos el CDN para cargar los archivos optimizados.
 
 ```html
 <!-- Gallery CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.13/dist/gom-gallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.14/dist/gom-gallery.min.css">
 <!-- Gallery JS -->
-<script defer src="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.13/js/gom-gallery.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.14/js/gom-gallery.js"></script>
 ```
+
 
 ### B. HTML Body (Estructura)
 1. Abre el archivo `gallery-body.html`.
