@@ -7,6 +7,7 @@ html.custom-house-rules h1.page-header, html.custom-house-rules .lead {
 html.custom-house-rules #content {
     padding-left: 0;
     padding-right: 0;
+    padding-bottom: 0;
     margin-top: 0;
     margin-bottom: 0;
 }
@@ -22,8 +23,8 @@ html.custom-house-rules #content {
     --c-border: #eaeaea;
 
     max-width: 1000px;
-    margin: 0 auto;
-    padding: 0 0 60px 0;
+    margin: 0;
+    padding: 0 var(--gom-pad-x) 4.5dvh;
     font-family: 'Segoe UI', system-ui, sans-serif;
     color: var(--c-text);
 }
@@ -31,7 +32,7 @@ html.custom-house-rules #content {
 /* Header */
 .rules-header {
     text-align: center;
-    padding: 50px 20px 30px;
+    padding: 4.5dvh 0px 2.25dvh;
     background: linear-gradient(to bottom, #fff, #f8f8f8);
 }
 .rules-title {
@@ -61,7 +62,7 @@ html.custom-house-rules #content {
     justify-content: center;
     gap: 10px;
     margin-bottom: 30px;
-    padding: 0 15px;
+    padding: 0;
 }
 .badge {
     background: var(--c-white);
@@ -85,7 +86,7 @@ html.custom-house-rules #content {
     justify-content: center;
     gap: 8px;
     margin-bottom: 40px;
-    padding: 0 10px;
+    padding: 0;
     position: sticky;
     top: 10px;
     z-index: 100;
@@ -123,7 +124,7 @@ html.custom-house-rules #content {
     display: grid;
     grid-template-columns: 1fr;
     gap: 20px;
-    padding: 0 20px;
+    padding: 0;
 }
 @media (min-width: 768px) {
     .rules-grid { grid-template-columns: 1fr 1fr; }
@@ -175,7 +176,7 @@ html.custom-house-rules #content {
 /* Agreement Footer */
 .agreement-section {
     margin-top: 60px;
-    padding: 0 20px;
+    padding: 0;
     scroll-margin-top: 80px;
 }
 .agreement-box {
