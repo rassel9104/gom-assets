@@ -8,7 +8,11 @@
     // --- CONFIGURATION ---
     const CONFIG = {
         GALLERY_PATH: "/gallery", // The path where this script should run
-        INDEX_CANDIDATES: ["/the-gold-room-garden-of-manors-guesthousefl"], // Paths to look for property links
+        INDEX_CANDIDATES: ["/properties", "/rooms", "/suites"],
+        // List of specific property URLs to scrape (overrides auto-discovery)
+        // Example: ["/properties/villa-rosa", "/properties/sunset-manor"]
+        MANUAL_URLS: ["/the-gold-room-garden-of-manors-guesthousefl", "/the-red-room-garden-of-manors-guesthousefl"],
+
         MAX_PROPERTIES: 20,
         MAX_PHOTOS_PER_PROPERTY: 120,
         MAX_TOTAL_PHOTOS: 500,
@@ -73,14 +77,20 @@
     // --- CORE LOGIC: CRAWLER ---
 
     async function buildGalleryIndex() {
-        // A. Find the property index page
-        const indexUrl = await findWorkingIndexUrl();
-        if (!indexUrl) throw new Error("Could not find property index page.");
+        let urlsToVisit = [];
 
-        // B. Fetch Index
-        const indexHtml = await fetchHtml(indexUrl);
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(indexHtml, "text/html");
+        // A. Check Manual List
+        if (CONFIG.MANUAL_URLS && CONFIG.MANUAL_URLS.length > 0) {
+            log("Using manual property list", CONFIG.MANUAL_URLS);
+            urlsToVisit = CONFIG.MANUAL_URLS;
+        } else {
+            // B. Auto-Discovery
+            const indexUrl = await findWorkingIndexUrl();
+            if (!indexUrl) throw new Error("Could not find property index page.");
+
+            const indexHtml = await fetchHtml(indexUrl);
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(indexHtml, "text/html");
 
         // C. Extract Property Links
         // Look for links that seemingly go to property details
@@ -88,23 +98,25 @@
         const links = Array.from(doc.querySelectorAll("a[href]"));
         const propertyLinks = new Set();
 
-        links.forEach(a => {
-            const href = a.getAttribute("href");
-            // Basic OwnerRez pattern detection + exclusions
-            if (
-                href &&
-                !href.startsWith("#") &&
-                !href.includes("javascript:") &&
-                !href.includes("/book")  &&
-                !href.includes("/inquiry") &&
-                (href.includes("property") || href.includes("vacation-rental") || href.match(/\/[a-z0-9-]+\/[0-9]+$/i)) // Adjust this regex based on actual site structure
-            ) {
-                 // Normalize URL
-                 propertyLinks.add(href);
-            }
-        });
+            links.forEach(a => {
+                const href = a.getAttribute("href");
+                // Basic OwnerRez pattern detection + exclusions
+                if (
+                    href &&
+                    !href.startsWith("#") &&
+                    !href.includes("javascript:") &&
+                    !href.includes("/book")  &&
+                    !href.includes("/inquiry") &&
+                    (href.includes("property") || href.includes("vacation-rental") || href.match(/\/[a-z0-9-]+\/[0-9]+$/i)) // Adjust this regex based on actual site structure
+                ) {
+                     // Normalize URL
+                     propertyLinks.add(href);
+                }
+            });
 
-        const urlsToVisit = Array.from(propertyLinks).slice(0, CONFIG.MAX_PROPERTIES);
+            urlsToVisit = Array.from(propertyLinks).slice(0, CONFIG.MAX_PROPERTIES);
+        }
+
         log("Property URLs found:", urlsToVisit);
 
         // D. Visit Each Property (Concurrent with limit)

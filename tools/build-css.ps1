@@ -17,7 +17,8 @@ $jobs = @(
   @{ Src = "src/css/gom-blog.css"; Dst = "dist/gom-blog.min.css" },
   @{ Src = "src/css/gom-blog-post.css"; Dst = "dist/gom-blog-post.min.css" },
   @{ Src = "src/css/gom-reviews.css"; Dst = "dist/gom-reviews.min.css" },
-  @{ Src = "src/css/gom-gallery.css"; Dst = "dist/gom-gallery.min.css" }
+  @{ Src = "src/css/gom-gallery.css"; Dst = "dist/gom-gallery.min.css" },
+  @{ Src = "src/css/gom-contact.css"; Dst = "dist/gom-contact.min.css" }
 
 )
 

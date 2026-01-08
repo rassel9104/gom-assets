@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page Simulation</title>
+    <!-- Use Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- MOCK STYLE FOR SITE HEADER/FOOTER -->
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', serif; background: #fff; }
+        header.site-header, footer.site-footer { background: #333; color: white; padding: 20px; text-align: center; }
+        main { min-height: 80vh; }
+    </style>
+
+    <!-- INJECTED SCOPED CSS -->
+    <link rel="stylesheet" href="contact-styles.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <h1>Garden of Manors</h1>
+        <nav>
+            <a href="/" style="color:white;margin:10px;">Home</a>
+            <a href="/contact" style="color:white;margin:10px;">Contact</a>
+        </nav>
+    </header>
+
+    <main>
+        <!-- PASTE BODY CONTENT HERE -->
+        <div id="contact-root" class="contact-wrapper">
+
+            <!-- Hero Section -->
+            <header class="contact-hero">
+                <h1 class="contact-title">Get in <span class="text-gradient">Touch</span></h1>
+                <p class="contact-subtitle">Experience the Garden of Manors hospitality.</p>
+            </header>
+
+            <!-- Main Contact Grid -->
+            <section class="contact-grid">
+                <!-- Address Card -->
+                <div class="contact-card card-address">
+                    <div class="icon-box"><i class="fas fa-map-marker-alt"></i></div>
+                    <h3>Visit Us</h3>
+                    <p>109 NE 26th Street<br>Wilton Manors, FL 33305</p>
+                    <a href="https://maps.google.com/?q=109+NE+26th+Street,+Wilton+Manors,+FL+33305" target="_blank" class="action-link">Open in Maps</a>
+                </div>
+
+                <!-- General Contact Card -->
+                <div class="contact-card card-general">
+                    <div class="icon-box"><i class="fas fa-comment-dots"></i></div>
+                    <h3>Direct Contact</h3>
+                    <div class="contact-row">
+                        <span class="label">WhatsApp:</span>
+                        <a href="https://wa.me/17863887255" class="contact-link">+1 (786) 388-7255</a>
+                    </div>
+                    <div class="contact-row">
+                        <span class="label">Email:</span>
+                        <a href="mailto:raulserrano9104@gmail.com" class="contact-link email-link">raulserrano9104@gmail.com</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Hosts Section (LGBT Colors Integration visible here) -->
+            <section class="hosts-section">
+                <h2 class="section-title">Your Hosts</h2>
+                <div class="hosts-grid">
+                    <!-- Host: Anthony -->
+                    <div class="host-card rainbow-border">
+                        <div class="host-image">
+                            <!-- Placeholder: Replace with real URL in OwnerRez if available, or keep placeholder -->
+                            <img src="https://placehold.co/400x400/333/D4AF37?text=Anthony" alt="Anthony">
+                        </div>
+                        <div class="host-info">
+                            <h3>Anthony</h3>
+                            <a href="tel:+17865398947" class="host-phone"><i class="fas fa-phone"></i> +1 786 539-8947</a>
+                            <a href="https://wa.me/17865398947" class="host-action">Message</a>
+                        </div>
+                    </div>
+
+                    <!-- Host: Joe -->
+                    <div class="host-card rainbow-border">
+                        <div class="host-image">
+                            <img src="https://placehold.co/400x400/333/D4AF37?text=Joe" alt="Joe">
+                        </div>
+                        <div class="host-info">
+                            <h3>Joe</h3>
+                            <a href="tel:+17864845745" class="host-phone"><i class="fas fa-phone"></i> +1 786 484-5745</a>
+                            <a href="https://wa.me/17864845745" class="host-action">Message</a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Social Media Bar -->
+            <section class="social-section">
+                <h3>Follow Our Journey</h3>
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/garden_of_manors/" target="_blank" class="social-btn instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=61579288606794" target="_blank" class="social-btn facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.tiktok.com/@gardenofmanors?_r=1&_t=ZG-91L3jVsVw3t" target="_blank" class="social-btn tiktok" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </section>
+
+            <!-- Map Embed Container -->
+            <section class="map-container">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3581.4468648777926!2d-80.1444!3d26.1512!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x88d9010000000000%3A0x0!2s109%20NE%2026th%20St%2C%20Wilton%20Manors%2C%20FL%2033305!5e0!3m2!1sen!2sus!4v1600000000000!5m2!1sen!2sus"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>
+            </section>
+
+        </div>
+        <!-- END BODY PASTE -->
+    </main>
+
+    <footer class="site-footer">
+        &copy; 2026 Garden of Manors
+    </footer>
+
+</body>
+</html>
