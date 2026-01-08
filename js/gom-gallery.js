@@ -155,18 +155,42 @@
 
         const candidates = [];
 
-        // 1. Lightbox anchors (High Res) - Best quality
-        const lightboxLinks = doc.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.webp']");
-        lightboxLinks.forEach(a => {
-            // filtering small icons?
-            candidates.push({
-                src: a.getAttribute("href"),
-                thumb: a.querySelector("img")?.src || a.getAttribute("href"),
-                caption: a.getAttribute("title") || a.getAttribute("data-caption") || "",
-                property: title,
-                url: url
+        // 1. #lightSlider (User validated selector)
+        const lightSlider = doc.querySelector("#lightSlider");
+        if (lightSlider) {
+            const slides = lightSlider.querySelectorAll("li img");
+            slides.forEach(img => {
+                let src = img.currentSrc || img.getAttribute("src");
+                // User snippet fix: ensure absolute URL
+                if (src) {
+                   try { src = new URL(src, url).href; } catch(e) { /* ignore */ }
+                }
+
+                if (src) {
+                    candidates.push({
+                         src: src,
+                         thumb: src, // Use same for now, browser will cache
+                         caption: img.getAttribute("alt") || "",
+                         property: title,
+                         url: url
+                    });
+                }
             });
-        });
+        }
+
+        // 2. Lightbox anchors (Fallback if lightSlider missing)
+        if (candidates.length === 0) {
+            const lightboxLinks = doc.querySelectorAll("a[href$='.jpg'], a[href$='.jpeg'], a[href$='.png'], a[href$='.webp']");
+            lightboxLinks.forEach(a => {
+                candidates.push({
+                    src: a.getAttribute("href"),
+                    thumb: a.querySelector("img")?.src || a.getAttribute("href"),
+                    caption: a.getAttribute("title") || a.getAttribute("data-caption") || "",
+                    property: title,
+                    url: url
+                });
+            });
+        }
 
         // 2. Img tags if no lightbox links found (Fallback)
         if (candidates.length === 0) {
