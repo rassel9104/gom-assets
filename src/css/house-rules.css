@@ -21,8 +21,6 @@ html.custom-house-rules #content {
     --c-bg: #fdfdfd;
     --c-white: #ffffff;
     --c-border: #eaeaea;
-
-    max-width: 1000px;
     margin: 0;
     padding: 0 var(--gom-pad-x) 4.5dvh;
     font-family: 'Segoe UI', system-ui, sans-serif;
