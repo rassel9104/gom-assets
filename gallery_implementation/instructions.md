@@ -18,45 +18,67 @@ Sigue estos pasos para activar la galería automática en el sitio web de Garden
 ## 2. Insertar el Código (Copy-Paste)
 
 ### A. CSS y JS (Head Injection)
-En lugar de pegar código, usaremos el CDN para cargar los archivos optimizados.
+En lugar de pegar código, usaremos el CDN para cargar los archivos optimizados (versión **v3.1.15**).
 1. Ve a **Settings > Hosted Websites > (Tu Sitio) > Change Layout HTML**.
-2. Busca la sección `<head>` y añade las siguientes líneas (asegúrate de que la versión sea la más reciente, ej `v3.1.13`):
+2. Busca la sección `<head>` y añade las siguientes líneas:
 
 ```html
 <!-- Gallery CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.14/dist/gom-gallery.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.15/dist/gom-gallery.min.css">
 <!-- Gallery JS -->
-<script defer src="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.14/js/gom-gallery.js"></script>
+<script defer src="https://cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.15/js/gom-gallery.js"></script>
 ```
-
 
 ### B. HTML Body (Estructura)
 1. Abre el archivo `gallery-body.html`.
 2. Copia todo el contenido.
 3. Pega el código en el campo **Body HTML** de la Custom Page "Gallery".
 
-## 3. Verificación y QA
+## 3. Configuración Manual (Si el auto-crawler falla)
 
-Una vez guardado:
-1. Abre una pestaña de incógnito.
-2. Ve a `https://tu-dominio.com/gallery`.
-3. Deberías ver el mensaje "Curating gallery..." y un spinner.
-4. Tras unos segundos, las fotos deberían aparecer en formato grid masonería.
-5. **Prueba**:
-   - Haz clic en una foto -> Debe abrirse el Lightbox.
-   - Usa las flechas del teclado -> Debe navegar.
-   - Filtra por propiedad en el dropdown superior -> Debe mostrar solo esa casa.
-   - Carga la página en el móvil -> Debe verse en 1 o 2 columnas y ser táctil.
+Si la galería no encuentra las casas automáticamente, puedes especificar las URLs manualmente.
+**Para hacer esto, debes editar el archivo `js/gom-gallery.js` en tu repositorio y crear una nueva release.**
 
-## Configuración Avanzada (Opcional)
-
-Si necesitas cambiar límites o rutas, edita las constantes al inicio del script `gallery-loader.js`:
+Busca la línea `MANUAL_URLS` al principio del archivo:
 
 ```javascript
-    const CONFIG = {
-        GALLERY_PATH: "/gallery",  // Cambiar si usas otro slug
-        INDEX_CANDIDATES: ["/properties", ...], // Dónde buscar los links a casas
-        MAX_TOTAL_PHOTOS: 500, // Límite total
+    CONFIG = {
+        // ...
+        // List of specific property URLs to scrape (overrides auto-discovery)
+        MANUAL_URLS: [
+             "/properties/the-gold-room",
+             "/properties/sunset-villa"
+        ],
         // ...
     };
+```
+
+## 4. Troubleshooting (Consola Debugger)
+
+Si necesitas verificar qué detecta el script en una página específica, abre esa página en tu navegador, abre la consola (F12) y ejecuta este código:
+
+```javascript
+(() => {
+  console.log("--- DEBUGGER GOM GALLERY ---");
+
+  // 1. Check LightSlider (Prioridad 1)
+  const ls = document.querySelector("#lightSlider");
+  if(ls) {
+      console.log("✅ #lightSlider found.");
+      const imgs = Array.from(ls.querySelectorAll("li img"));
+      console.log(`📸 Images in slider: ${imgs.length}`);
+      imgs.forEach((img, i) => {
+           let src = img.currentSrc || img.src;
+           console.log(`   [${i}] ${src}`);
+      });
+  } else {
+      console.warn("❌ #lightSlider NOT found.");
+  }
+
+  // 2. Check Links (Fallback)
+  const links = document.querySelectorAll("a[href$='.jpg'], a[href$='.webp']");
+  console.log(`🔗 High-Res Links found: ${links.length}`);
+  links.forEach((a, i) => console.log(`   [Link ${i}] ${a.href}`));
+
+})();
 ```
