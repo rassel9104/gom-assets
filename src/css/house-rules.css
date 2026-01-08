@@ -1,7 +1,15 @@
 /*
   OWNERREZ HOUSE RULES PAGE - SCOPED CSS
 */
-
+html.custom-house-rules h1.page-header, html.custom-house-rules .lead {
+    display: none;
+}
+html.custom-house-rules #content {
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
 .rules-wrapper {
     /* -- Colors -- */
     --c-dark: #1a1a1a;
