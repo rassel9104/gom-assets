@@ -121,7 +121,7 @@ html.blogindex .blog-article:first-of-type .blog-title i {
 
 /* Text / Excerpt */
 html.blogindex .blog-article:first-of-type .blog-content {
-  font-size: var(--fs-h4);
+  font-size: var(--fs-body);
   max-width: 80rem;
   color: rgba(255, 255, 255, 0.9);
 }
