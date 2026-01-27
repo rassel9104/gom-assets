@@ -1,0 +1,216 @@
+/*
+  Garden of Manors (OwnerRez)
+  File: blog-rich-media.css
+  Purpose: Advanced rich media containers for blog posts (Immersive, Grids, Video, Quotes).
+  Colors: Gold (#d4af37), Green (#57ae57), Glass (rgba 255/0.92)
+*/
+
+/* --- 1. IMMERSIVE CONTAINERS --- */
+.blog-content .container-immersive {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    margin-bottom: 4rem;
+    overflow: hidden;
+}
+
+.immersive-image {
+    width: 100%;
+    height: 60vh;
+    object-fit: cover;
+    display: block;
+}
+
+/* Glass overlay for text over immersive images */
+.immersive-overlay {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    max-width: 600px;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 3rem;
+    border-left: 5px solid var(--c-gold, #d4af37);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.immersive-overlay h3 {
+    margin-top: 0;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* --- 2. PARALLAX SECTION --- */
+.parallax-section {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 4rem 0;
+}
+
+.parallax-content {
+    background: #fff;
+    padding: 2rem 4rem;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* --- 3. MASONRY GRID GALLERY --- */
+.grid-gallery-masonry {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin: 4rem 0;
+}
+
+.masonry-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    transition: transform 0.3s ease;
+}
+
+.masonry-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.masonry-item:hover img {
+    transform: scale(1.05);
+}
+
+.masonry-item.wide { grid-column: span 2; }
+.masonry-item.tall { grid-row: span 2; }
+
+/* --- 4. CINEMATIC VIDEO CARD --- */
+.video-card-cinematic {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000;
+    margin: 4rem 0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+.video-card-cinematic iframe,
+.video-card-cinematic video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+/* --- 5. STYLED BLOCKQUOTES --- */
+blockquote.quote-styled {
+    font-family: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-size: 1.25em;
+    line-height: 1.6;
+    margin: 3rem 0;
+    padding: 2rem 3rem;
+    background: #f9f9f9;
+    border-left: 5px solid #ccc; /* Default */
+    position: relative;
+}
+
+blockquote.quote-styled::before {
+    content: '\201C'; /* Open quote */
+    font-family: serif;
+    font-size: 4em;
+    position: absolute;
+    left: 10px;
+    top: -10px;
+    opacity: 0.2;
+}
+
+/* Color Variants */
+blockquote.quote-gold {
+    border-left-color: #d4af37;
+    background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent);
+}
+blockquote.quote-gold::before { color: #d4af37; }
+
+blockquote.quote-green {
+    border-left-color: #57ae57;
+    background: linear-gradient(to right, rgba(87, 174, 87, 0.05), transparent);
+}
+blockquote.quote-green::before { color: #57ae57; }
+
+/* --- 6. HOST SIGNATURE --- */
+.host-signature {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid #eaeaea;
+}
+
+.host-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #d4af37;
+}
+
+.host-info h4 {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #111;
+}
+
+.host-info p {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .blog-content .container-immersive {
+        margin-left: -15px; /* Adjust for container padding */
+        margin-right: -15px;
+        width: calc(100% + 30px);
+        left: 0;
+    }
+
+    .immersive-overlay {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin: -40px 20px 0;
+        width: auto;
+        max-width: none;
+    }
+
+    .grid-gallery-masonry {
+        grid-template-columns: 1fr;
+    }
+
+    .masonry-item.wide, .masonry-item.tall {
+        grid-column: auto;
+        grid-row: auto;
+    }
+}

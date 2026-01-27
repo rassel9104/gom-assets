@@ -694,3 +694,225 @@ html.blogpost .gom-blog__footer {
     display: block !important;
   }
 }
+
+/* ===============================================================
+   RICH MEDIA COMPONENTS (Integrated for Brand Identity)
+   =============================================================== */
+
+/* --- 1. IMMERSIVE CONTAINERS --- */
+/* Breaks out of the standard text width to span the full column */
+html.blogpost .container-immersive {
+  width: 100%;
+  position: relative;
+  margin: 4rem 0;
+  overflow: hidden;
+  border-radius: var(--post-radius);
+}
+
+html.blogpost .immersive-image {
+  width: 100%;
+  height: clamp(30rem, 50vh, 60rem);
+  object-fit: cover;
+  display: block;
+}
+
+/* Glass overlay for text over immersive images */
+html.blogpost .immersive-overlay {
+  position: absolute;
+  bottom: 10%;
+  left: 5%;
+  max-width: 90%;
+  width: auto;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 2.2rem;
+  border-left: 5px solid var(--c-gold, #d4af37);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+html.blogpost .immersive-overlay h3 {
+  margin-top: 0;
+  color: #111;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+}
+
+html.blogpost .immersive-overlay p {
+  margin: 0;
+  font-size: 1.4rem;
+  color: #333;
+}
+
+/* --- 2. PARALLAX SECTION --- */
+html.blogpost .parallax-section {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 40vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 4rem calc(var(--post-pad-x) * -1); /* Break out to edge */
+  width: calc(100% + (var(--post-pad-x) * 2));
+}
+
+html.blogpost .parallax-content {
+  background: #fff;
+  padding: 1.5rem 3rem;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+html.blogpost .parallax-content h2 {
+    margin: 0;
+    font-size: 1.8rem;
+    color: #111;
+}
+
+/* --- 3. MASONRY GRID GALLERY --- */
+html.blogpost .grid-gallery-masonry {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+  gap: 1.5rem;
+  margin: 4rem 0;
+}
+
+html.blogpost .masonry-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  transition: transform 0.3s ease;
+}
+
+html.blogpost .masonry-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+html.blogpost .masonry-item:hover img {
+  transform: scale(1.05);
+}
+
+html.blogpost .masonry-item.wide { grid-column: 1 / -1; }
+html.blogpost .masonry-item.tall { grid-row: span 2; }
+
+/* --- 4. CINEMATIC VIDEO CARD --- */
+html.blogpost .video-card-cinematic {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  background: #000;
+  margin: 4rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
+
+html.blogpost .video-card-cinematic iframe,
+html.blogpost .video-card-cinematic video,
+html.blogpost .video-card-cinematic img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* --- 5. STYLED BLOCKQUOTES --- */
+html.blogpost blockquote.quote-styled {
+  font-family: var(--heading-font, sans-serif);
+  font-style: italic;
+  font-size: 1.25em;
+  line-height: 1.6;
+  margin: 3rem 0;
+  padding: 2rem 3rem;
+  background: #fdfdfd;
+  border-left: 5px solid #ccc;
+  position: relative;
+}
+
+html.blogpost blockquote.quote-styled::before {
+  content: '\201C';
+  font-family: serif;
+  font-size: 4em;
+  position: absolute;
+  left: 1rem;
+  top: -1rem;
+  opacity: 0.1;
+  color: #000;
+}
+
+/* Color Variants */
+html.blogpost blockquote.quote-gold {
+  border-left-color: var(--c-gold, #d4af37);
+  background: linear-gradient(to right, rgba(212, 175, 55, 0.05), transparent);
+}
+html.blogpost blockquote.quote-gold::before { color: var(--c-gold, #d4af37); }
+
+html.blogpost blockquote.quote-green {
+  border-left-color: #57ae57;
+  background: linear-gradient(to right, rgba(87, 174, 87, 0.05), transparent);
+}
+html.blogpost blockquote.quote-green::before { color: #57ae57; }
+
+/* --- 6. HOST SIGNATURE --- */
+html.blogpost .host-signature {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 5rem;
+  padding-top: 2rem;
+  border-top: 1px solid #eaeaea;
+}
+
+html.blogpost .host-avatar {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--c-gold, #d4af37);
+}
+
+html.blogpost .host-info h4 {
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #111;
+  font-size: 1.4rem;
+}
+
+html.blogpost .host-info p {
+  margin: 0.5rem 0 0;
+  color: #666;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+/* Mobile Tweak for Immersive */
+@media (max-width: 768px) {
+    html.blogpost .container-immersive {
+        width: calc(100% + (var(--post-pad-x) * 2));
+        margin-left: calc(var(--post-pad-x) * -1);
+        border-radius: 0;
+    }
+
+    html.blogpost .immersive-overlay {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        margin: -3rem auto 0;
+        width: 90%;
+        max-width: none;
+    }
+}
