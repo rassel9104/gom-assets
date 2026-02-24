@@ -365,18 +365,18 @@ HERO / CARRUSEL PRINCIPAL
   padding: 0;
 }
 
-#content .carousel-includes-search .incarousel-search-bar .row.search-bar {
-  background: rgba(255, 255, 255, 0.4);
-  width: 100%;
+.carousel-includes-search .incarousel-search-bar .row.search-bar {
+  background: rgba(255, 255, 255, 0.4) !important;
+  width: 100% !important;
   max-width: 100%;
   margin: 0 var(--gom-pad-x);
   padding: 8.8rem 0.5rem 0;
   box-sizing: border-box;
 }
 
-#content .carousel-includes-search #search-bar-widget {
+.carousel-includes-search #search-bar-widget {
   position: relative;
-  width: calc(100% - var(--gom-pad-x) * 2);
+  width: calc(100% - var(--gom-pad-x) * 2) !important;
   margin-left: var(--gom-pad-x);
 }
 
@@ -403,19 +403,19 @@ HERO / CARRUSEL PRINCIPAL
   color: #222;
 }
 
-#content .incarousel-search-bar .input-group-btn .btn {
-  height: 4rem;
+.incarousel-search-bar .input-group-btn .btn {
+  height: 4rem !important;
   margin-left: 0;
 }
 
-#content .incarousel-search-bar .form-control {
-  background: #ffffff70;
+.incarousel-search-bar .form-control {
+  background: #ffffff70 !important;
   /* o #fff si prefieres */
-  color: #000;
-  height: 4rem;
+  color: #000 !important;
+  height: 4rem !important;
   caret-color: var(--color-bg);
   padding: 0 0.4rem;
-  font-size: var(--fs-body);
+  font-size: var(--fs-body) !important;
 }
 
 html.has-fullpage-background #content {

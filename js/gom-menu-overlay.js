@@ -115,17 +115,11 @@
         var year = (new Date()).getFullYear();
         var bookHref = getBookNowHref();
 
-        ov.innerHTML = \`
+        ov.innerHTML = `
       <div class="gom-ov-wrap">
         <div class="gom-ov-top">
-          <div class="gom-ov-mark">
-            WELCOME
-            <span class="gom-ov-mark-sub">\${BRAND.brandName}</span>
-          </div>
-          <div class="gom-ov-actions">
-            <button type="button" class="gom-ov-action gom-ov-close">CLOSE</button>
-            <a class="gom-ov-action gom-ov-book" href="\${bookHref}">BOOK NOW</a>
-          </div>
+          <div class="gom-ov-mark">Menu</div>
+          <button type="button" class="gom-ov-close">CLOSE ▲</button>
         </div>
 
         <div class="gom-ov-grid" id="gom-ov-grid"></div>
@@ -133,19 +127,53 @@
 
       <!-- Brand footer (centered content) -->
       <div class="gom-ov-brand">
-        <a href="\${BRAND.homeUrl}" aria-label="\${BRAND.brandName}">
-          <img class="gom-ov-logo" src="\${BRAND.logo}" alt="\${BRAND.brandName}">
+        <a href="${BRAND.homeUrl}" aria-label="${BRAND.brandName}">
+          <img class="gom-ov-logo" src="${BRAND.logo}" alt="${BRAND.brandName}">
         </a>
-        <div class="gom-ov-tagline">\${BRAND.tagline}</div>
-        <a class="gom-ov-wa" rel="noopener" target="_blank" href="\${BRAND.waUrl}">\${BRAND.waLabel}</a>
-        <small class="gom-ov-copy">© \${year} \${BRAND.brandName} · All rights reserved ®</small>
+        <div class="gom-ov-tagline">${BRAND.tagline}</div>
+        <a class="gom-ov-wa" rel="noopener" target="_blank" href="${BRAND.waUrl}">${BRAND.waLabel}</a>
+        <small class="gom-ov-copy">© ${year} ${BRAND.brandName} · All rights reserved ®</small>
       </div>
 
       <!-- Desktop signature logo -->
-      <a class="gom-ov-sig" href="\${BRAND.homeUrl}" aria-label="\${BRAND.brandName}">
-        <img src="\${BRAND.logo}" alt="\${BRAND.brandName}">
+      <a class="gom-ov-sig" href="${BRAND.homeUrl}" aria-label="${BRAND.brandName}">
+        <img src="${BRAND.logo}" alt="${BRAND.brandName}">
       </a>
-    \`;
+    `;
+
+        // ...dentro de buildOverlayOnce(), en el bloque:  var top = ov.querySelector('.gom-ov-top');
+        var top = ov.querySelector('.gom-ov-top');
+        if (top) {
+            var actions = document.createElement('div');
+            actions.className = 'gom-ov-actions';
+
+            var close = document.createElement('button');
+            close.type = 'button';
+            close.className = 'gom-ov-action gom-ov-close';
+            close.textContent = 'CLOSE';
+
+            var book = document.createElement('a');
+            book.className = 'gom-ov-action gom-ov-book';
+            book.setAttribute('href', bookHref);
+            book.textContent = 'BOOK NOW';
+
+            actions.appendChild(close);
+            actions.appendChild(book);
+
+            // 👇 NUEVO: marca/“welcome” a la izquierda
+            var mark = document.createElement('div');
+            mark.className = 'gom-ov-mark';
+            mark.textContent = 'WELCOME';
+
+            var sub = document.createElement('span');
+            sub.className = 'gom-ov-mark-sub';
+            sub.textContent = BRAND.brandName; // "Garden of Manors"
+            mark.appendChild(sub);
+
+            top.innerHTML = '';
+            top.appendChild(mark);
+            top.appendChild(actions);
+        }
 
         // Click outside closes
         ov.addEventListener('click', function (e) {
