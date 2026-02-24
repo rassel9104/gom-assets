@@ -2,13 +2,13 @@
     "name": "gom-assets",
     "private": true,
     "scripts": {
-        "build:css": "postcss \"src/css/*.css\" --dir dist",
-        "build:ovr": "postcss \"src/css/*.css\" --dir src/css-overrides-devtool",
+        "build:css": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-css.ps1",
+        "build:ovr": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-ovr.ps1",
         "watch:css": "chokidar \"src/css/*.css\" -c \"npm run build:css\"",
         "build": "npm run build:css",
         "build:css:ps1": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-css.ps1",
         "build:ovr:ps1": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/build-ovr.ps1",
-        "dev:push": "npm run build:css:ps1 && git add -A && (git diff --cached --quiet || git commit -m \"dev\") && git push origin main && powershell -NoProfile -ExecutionPolicy Bypass -File tools/purge-jsdelivr.ps1 -Ref main",
+        "dev:push": "npm run build:css && git add -A && (git diff --cached --quiet || git commit -m \"dev\") && git push origin main && powershell -NoProfile -ExecutionPolicy Bypass -File tools/purge-jsdelivr.ps1 -Ref main",
         "release": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/release-tag.ps1",
         "tags:purge": "powershell -NoProfile -ExecutionPolicy Bypass -File tools/purge-tags.ps1"
     },

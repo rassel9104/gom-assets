@@ -37,15 +37,22 @@ foreach ($job in $jobs) {
   }
 
   try {
-    & "node_modules\.bin\postcss.cmd" $src -o $dst
+    if (Test-Path "node_modules\.bin\postcss.cmd") {
+      & "node_modules\.bin\postcss.cmd" $src -o $dst
+    }
+    else {
+      npx postcss $src -o $dst
+    }
     if (Test-Path $dst) {
       Write-Host "OK: $dst"
       $ok++
-    } else {
+    }
+    else {
       Write-Host "FAIL: $dst (missing output)"
       $fail++
     }
-  } catch {
+  }
+  catch {
     Write-Host "FAIL: $dst"
     Write-Host "Reason: $($_.Exception.Message)"
     $fail++

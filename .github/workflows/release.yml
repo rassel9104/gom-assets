@@ -32,8 +32,8 @@ jobs:
         run: npm ci
 
       - name: Build CSS
-        # Reemplazamos el script de powershell por el script directo de npm para evitar dependencias de OS
-        run: npm run build
+        shell: pwsh
+        run: ./tools/build-css.ps1
 
       - name: Get Latest Tag and Auto-Increment
         id: generate_tag
