@@ -174,18 +174,13 @@ h3 {
   letter-spacing: normal;
 }
 
-input,
-button,
-.btn,
-p,
-a {
-  font-size: var(--fs-body) !important;
-  font-weight: var(--fw-regular) !important;
-}
-
+/* 
+ * Removido: reseteo nuclear de fonts en input, button, p, a con !important.
+ * Dejamos que hereden del body o se definan por componente para mantener la cascada.
+ */
 input::placeholder {
-  color: rgba(0, 0, 0, 0.842) !important;
-  font-weight: 500 !important;
+  color: rgba(0, 0, 0, 0.842);
+  font-weight: 500;
 }
 
 .small,
