@@ -820,12 +820,17 @@ html.multiproperty footer > hr {
 }
 
 /* ============================================================
-   NO RESULTS STATE — "No available rooms found"
-   Scope: html.multipropertyindex (clase real cuando la búsqueda no retorna habitaciones)
-   OwnerRez renderiza: <div class="row"><div class="col-xs-12"><h2>No available rooms...</h2></div></div>
-   El h2 hereda la regla position:absolute del hero, dejándolo invisible detrás del header.
-   Este bloque lo rescata y lo presenta de forma elegante.
+   PREMIUM NO RESULTS STATE — "No available rooms found"
    ============================================================ */
+
+/* Anular el fondo gris del contenedor que pone OwnerRez por defecto */
+html.multipropertyindex #content .row:has(> .col-xs-12 > h2),
+html.multiproperty #content .row:has(> .col-xs-12 > h2) {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  margin-top: 2rem !important;
+}
 
 html.multipropertyindex #content .col-xs-12 > h2,
 html.multiproperty #content .col-xs-12 > h2 {
@@ -834,29 +839,38 @@ html.multiproperty #content .col-xs-12 > h2 {
   left: auto !important;
   right: auto !important;
   top: auto !important;
-  width: auto !important;
+  width: 100% !important;
   z-index: auto !important;
 
-  /* Espaciado: empuja el mensaje debajo del header */
-  margin: calc(var(--gom-prop-header-h, 88px) + 6dvh) var(--gom-prop-pad-x, 5dvw) 4dvh !important;
+  /* Premium Layout: Caja de cristal oscura, aireada y centrada */
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 20vh !important;
+  margin: 4vh auto !important;
+  padding: 2rem !important;
 
-  /* Tipografía elegante, acorde al resto del sitio */
-  font-size: clamp(2rem, 2.8dvh, 3.2rem) !important;
-  font-weight: var(--fw-regular, 400) !important;
-  color: rgba(10, 10, 12, 0.78) !important;
+  /* Glassmorphism premium dark */
+  background: rgba(10, 10, 12, 0.45) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 16px !important;
+  backdrop-filter: blur(16px) saturate(1.2) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(1.2) !important;
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.5) !important;
+
+  /* Tipografía blanca, elegante y delgada */
+  color: #ffffff !important;
+  font-size: clamp(14px, 1.8vw, 18px) !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.18em !important;
   text-transform: uppercase !important;
-  letter-spacing: 0.08em !important;
+  text-align: center !important;
   text-shadow: none !important;
-  line-height: 1.4 !important;
+  line-height: 1.6 !important;
 }
 
-/* Línea decorativa sutil debajo del mensaje */
+/* Ocultar el pseudo-elemento para que no estorbe */
 html.multipropertyindex #content .col-xs-12 > h2::after,
 html.multiproperty #content .col-xs-12 > h2::after {
-  content: "";
-  display: block;
-  width: 4rem;
-  height: 1px;
-  background: rgba(10, 10, 12, 0.22);
-  margin-top: 1.6rem;
+  display: none !important;
 }
