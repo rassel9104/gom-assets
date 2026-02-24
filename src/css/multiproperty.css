@@ -818,3 +818,45 @@ html.multiproperty footer > hr {
   margin-left: 0;
   margin-right: 0;
 }
+
+/* ============================================================
+   NO RESULTS STATE — "No available rooms found"
+   Scope: html.multipropertyindex (clase real cuando la búsqueda no retorna habitaciones)
+   OwnerRez renderiza: <div class="row"><div class="col-xs-12"><h2>No available rooms...</h2></div></div>
+   El h2 hereda la regla position:absolute del hero, dejándolo invisible detrás del header.
+   Este bloque lo rescata y lo presenta de forma elegante.
+   ============================================================ */
+
+html.multipropertyindex #content .col-xs-12 > h2,
+html.multiproperty #content .col-xs-12 > h2 {
+  /* Cancelar herencia del posicionamiento absoluto del hero h1/h2 */
+  position: static !important;
+  left: auto !important;
+  right: auto !important;
+  top: auto !important;
+  width: auto !important;
+  z-index: auto !important;
+
+  /* Espaciado: empuja el mensaje debajo del header */
+  margin: calc(var(--gom-prop-header-h, 88px) + 6dvh) var(--gom-prop-pad-x, 5dvw) 4dvh !important;
+
+  /* Tipografía elegante, acorde al resto del sitio */
+  font-size: clamp(2rem, 2.8dvh, 3.2rem) !important;
+  font-weight: var(--fw-regular, 400) !important;
+  color: rgba(10, 10, 12, 0.78) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.08em !important;
+  text-shadow: none !important;
+  line-height: 1.4 !important;
+}
+
+/* Línea decorativa sutil debajo del mensaje */
+html.multipropertyindex #content .col-xs-12 > h2::after,
+html.multiproperty #content .col-xs-12 > h2::after {
+  content: "";
+  display: block;
+  width: 4rem;
+  height: 1px;
+  background: rgba(10, 10, 12, 0.22);
+  margin-top: 1.6rem;
+}
