@@ -1,0 +1,97 @@
+name: Auto Release and CDN Purge
+
+on:
+  push:
+    branches:
+      - main
+    # Ignora cambios en archivos que no afectan el build
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - '.gitignore'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Necesario para leer tags anteriores
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Build CSS
+        # Reemplazamos el script de powershell por el script directo de npm para evitar dependencias de OS
+        run: npm run build
+
+      - name: Get Latest Tag and Auto-Increment
+        id: generate_tag
+        run: |
+          # Obtenemos el último tag (format vX.Y.Z) o asignamos v0.0.1 si no existe
+          LATEST_TAG=$(git tag --sort=-v:refname | head -n 1)
+          if [ -z "$LATEST_TAG" ]; then
+            NEW_TAG="v0.0.1"
+          else
+            # Incrementa la versión patch (Z)
+            # Ej: v3.1.15 -> v3.1.16
+            MAJOR=$(echo $LATEST_TAG | cut -d. -f1)
+            MINOR=$(echo $LATEST_TAG | cut -d. -f2)
+            PATCH=$(echo $LATEST_TAG | cut -d. -f3)
+            NEW_PATCH=$((PATCH + 1))
+            NEW_TAG="${MAJOR}.${MINOR}.${NEW_PATCH}"
+          fi
+          echo "tag=$NEW_TAG" >> $GITHUB_OUTPUT
+          echo "Generated new tag: $NEW_TAG"
+
+      - name: Commit Built Files
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add dist/
+          # Solo hacer commit si hay cambios en dist/
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: auto-build CSS [skip ci]" && git push origin main)
+
+      - name: Create Git Tag
+        run: |
+          NEW_TAG="${{ steps.generate_tag.outputs.tag }}"
+          git tag -a "$NEW_TAG" -m "Auto-release $NEW_TAG"
+          git push origin "$NEW_TAG"
+
+      - name: Purge jsDelivr Cache for New Tag
+        run: |
+          NEW_TAG="${{ steps.generate_tag.outputs.tag }}"
+          PAGES=(
+            "dist/gom-blog-post.min.css"
+            "dist/gom-blog.min.css"
+            "dist/gom-book.min.css"
+            "dist/gom-global.min.css"
+            "dist/gom-home.min.css"
+            "dist/gom-menu-overlay.min.css"
+            "dist/gom-multiproperty.min.css"
+            "dist/gom-properties.min.css"
+            "dist/gom-reviews.min.css"
+            "dist/gom-gallery.min.css"
+            "dist/gom-contact.min.css"
+            "dist/gom-house-rules.min.css"
+            "js/gom-menu-overlay.js"
+            "js/gom-properties-mobile-drawer.js"
+            "js/gom-gallery.js"
+          )
+          
+          echo "Purging jsDelivr cache for $NEW_TAG..."
+          for page in "${PAGES[@]}"; do
+            URL="https://purge.jsdelivr.net/gh/rassel9104/gom-assets@$NEW_TAG/$page"
+            echo "Purging: $URL"
+            curl -s -o /dev/null -w "%{http_code}\n" "$URL"
+          done
