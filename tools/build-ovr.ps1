@@ -4,20 +4,20 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.8/dist"
+$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.27/dist"
 
 $jobs = @(
   @{ Src = "src/css/gom-global.css"; Dst = "$base/gom-global.min.css" },
   @{ Src = "src/css/gom-home.css"; Dst = "$base/gom-home.min.css" },
   @{ Src = "src/css/gom-properties.css"; Dst = "$base/gom-properties.min.css" },
   @{ Src = "src/css/gom-menu-overlay.css"; Dst = "$base/gom-menu-overlay.min.css" },
-  @{ Src = "src/css/gom-book.css"; Dst = "$base/gom-book.min.css" }
+  @{ Src = "src/css/gom-book.css"; Dst = "$base/gom-book.min.css" },
   @{ Src = "src/css/gom-blog.css"; Dst = "$base/gom-blog.min.css" },
   @{ Src = "src/css/gom-blog-post.css"; Dst = "$base/gom-blog-post.min.css" },
   @{ Src = "src/css/gom-multiproperty.css"; Dst = "$base/gom-multiproperty.min.css" },
   @{ Src = "src/css/gom-gallery.css"; Dst = "$base/gom-gallery.min.css" },
-  @{ Src = "src/css/gom-contact.css"; Dst = "$base/gom-contact.min.css" },
-  @{ Src = "src/css/gom-house-rules.css"; Dst = "$base/gom-house-rules.min.css" }
+  @{ Src = "src/css/contact.css"; Dst = "$base/gom-contact.min.css" },
+  @{ Src = "src/css/house-rules.css"; Dst = "$base/gom-house-rules.min.css" }
 
 )
 

@@ -109,6 +109,79 @@ html.multipropertyindex form[action="/properties"] > .row > .col-12 > h2 {
   backdrop-filter: blur(1rem);
 
   z-index: 900 !important;
+
+  /* FIX: H2 Baseline styles ensures "No available rooms" reads clearly in white without the .property-count span */
+  color: #eee !important;
+  font-family: var(--main-font, system-ui) !important;
+  font-weight: var(--fw-semibold, 600) !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase !important;
+  font-size: clamp(1.4rem, 0.8vw + 1.8rem, 2rem) !important;
+}
+
+/* FIX EMPTY STATE ON MOBILE: Allow multiline text to wrap gracefully instead of overflowing 4.4rem fixed height */
+@media (max-width: 768px) {
+  html.multipropertyindex form.has-dates:not(:has(.property-result-list)) > .row > .col-xs-12 > h2,
+  html.multipropertyindex form[action="/properties"]:not(:has(.property-result-list)) > .row > .col-12 > h2,
+  html.multipropertyindex form[action="/properties"]:not(:has(.property-result-list)) > .row > .col-xs-12 > h2 {
+    height: auto !important;
+    min-height: var(--gom-prop-topbar-h) !important;
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  /* =========================================================
+     FIX EMPTY STATE ON MOBILE DRAWER
+     OwnerRez JS manda el H2 (sin resultados) dentro del Drawer,
+     ocultándolo de la vista principal. Lo "extraemos" visualmente.
+     ========================================================= */
+
+  /* Forzamos al panel cerrado a existir envolver el H2 secretamente */
+  html.multipropertyindex:not(:has(.property-result-list)) .gom-prop-drawer:not(.is-open) .gom-prop-drawer__panel {
+    display: block !important;
+    visibility: hidden !important; /* Todo invisible para no tapar página */
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    bottom: auto !important; 
+    pointer-events: none !important; /* Dejar pasar clics */
+  }
+
+  /* Rescatar específicamente el H2 de la invisibilidad para que viva en pantalla */
+  html.multipropertyindex:not(:has(.property-result-list)) .gom-prop-drawer:not(.is-open) .gom-prop-drawer__panel-inner h2 {
+    visibility: visible !important;
+    pointer-events: auto !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    
+    height: auto !important;
+    min-height: 15vh !important;
+    margin: 8vh auto 2vh !important;
+    padding: 0 2rem !important;
+
+    color: #eee !important;
+    font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
+    line-height: 1.5 !important;
+    font-family: var(--main-font, system-ui) !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+  }
+
+  /* Si el usuario ABRE el drawer, asegurarse de que también se lea en blanco */
+  html.multipropertyindex:not(:has(.property-result-list)) .gom-prop-drawer.is-open .gom-prop-drawer__panel-inner h2 {
+    color: #eee !important;
+    text-align: center !important;
+    height: auto !important;
+    font-family: var(--main-font, system-ui) !important;
+    font-size: clamp(1.4rem, 4vw, 1.8rem) !important;
+    line-height: 1.5 !important;
+  }
 }
 
 html.multipropertyindex .property-count {
