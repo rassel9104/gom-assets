@@ -138,6 +138,11 @@ html.multipropertyindex form[action="/properties"] > .row > .col-12 > h2 {
      ocultándolo de la vista principal. Lo "extraemos" visualmente.
      ========================================================= */
 
+  /* Empujar el footer hacia abajo: al llevarse el HTML al Drawer, la página se queda sin altura */
+  html.multipropertyindex:not(:has(.property-result-list)) #content {
+    min-height: 65svh !important; 
+  }
+
   /* Forzamos al panel cerrado a existir envolver el H2 secretamente */
   html.multipropertyindex:not(:has(.property-result-list)) .gom-prop-drawer:not(.is-open) .gom-prop-drawer__panel {
     display: block !important;
