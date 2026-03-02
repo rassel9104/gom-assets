@@ -154,3 +154,17 @@ html.blogpost #error-message {
   border-color: #ff4949 !important;
   color: #ff4949 !important;
 }
+
+/* Field-level error messages */
+html.blogindex .entry__error,
+html.blogpost .entry__error {
+  display: block;
+  margin-top: 0.8rem;
+  padding: 0.8rem;
+  background: rgba(255, 73, 73, 0.15) !important;
+  border: 1px solid rgba(255, 73, 73, 0.4) !important;
+  color: #ff8888 !important;
+  border-radius: 2px !important;
+  font-size: 0.9rem !important;
+  text-align: center !important;
+}
