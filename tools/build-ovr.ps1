@@ -4,7 +4,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.33/dist"
+$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.35/dist"
 
 $jobs = @(
   @{ Src = "src/css/gom-global.css"; Dst = "$base/gom-global.min.css" },
