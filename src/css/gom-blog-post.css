@@ -916,3 +916,16 @@ html.blogpost .host-info p {
         max-width: none;
     }
 }
+
+/* ===============================================================
+   RSS DEPRECATION
+   Hide native OwnerRez RSS links/badges to avoid confusion
+   with the new Brevo Newsletter approach
+   =============================================================== */
+html.blogpost .blog-syndication,
+html.blogpost a[href$=".rss"],
+html.blogpost a[href*="/rss/"],
+html.blogpost .fa-rss,
+html.blogpost .rss-icon {
+  display: none !important;
+}

@@ -4,7 +4,7 @@ param(
 
 $ErrorActionPreference = "Stop"
 
-$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.27/dist"
+$base = "src/css-overrides-devtool/cdn.jsdelivr.net/gh/rassel9104/gom-assets@v3.1.30/dist"
 
 $jobs = @(
   @{ Src = "src/css/gom-global.css"; Dst = "$base/gom-global.min.css" },
@@ -14,6 +14,7 @@ $jobs = @(
   @{ Src = "src/css/gom-book.css"; Dst = "$base/gom-book.min.css" },
   @{ Src = "src/css/gom-blog.css"; Dst = "$base/gom-blog.min.css" },
   @{ Src = "src/css/gom-blog-post.css"; Dst = "$base/gom-blog-post.min.css" },
+  @{ Src = "src/css/gom-newsletter.css"; Dst = "$base/gom-newsletter.min.css" },
   @{ Src = "src/css/gom-multiproperty.css"; Dst = "$base/gom-multiproperty.min.css" },
   @{ Src = "src/css/gom-gallery.css"; Dst = "$base/gom-gallery.min.css" },
   @{ Src = "src/css/contact.css"; Dst = "$base/gom-contact.min.css" },
